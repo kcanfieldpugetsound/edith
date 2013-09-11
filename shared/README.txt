@@ -1,0 +1,1 @@
+This folder is intended for fiels that would be shared between groups. 3rd party libraries would be a good fit, as would other configuration files.
