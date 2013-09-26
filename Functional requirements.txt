@@ -1,30 +1,39 @@
 Functional requirements/use cases
 - Sprite object (variable)
-	- delete
-	- add
-	- edit
-- Create new method
-- Save method
-- Delete method
-- Export/import
-- Loops (while)
-- Drag/drop
-- Conditionals
-- subroutine - Parameters
-- lists
+	- delete [Vikram]
+	- add [Vikram]
+	- edit [Walker]
+- Create new method [Graham]
+- Save method [Graham]
+- Delete method [Graham]
+- Export project [Vikram]
+- Import Project [Vikram]
+- Running project 
+	- play [Eli]
+	- pause [Eli]
+	- step [Steve]
+	- stop [Jessica]
+- While loops [Eli]
+- Drag/drop [Walker]
+- Conditionals [Walker]
+- Lists [Jessica]
+- Boolean operators [Steve]
+- Print [Steve] 
 
+
+Non-functional requirements
 - operators (mathematical & logical)
-	- <, >, =, +, -, *, /, mod, sqrt, 	  true, false
-
-- boolean operators
-- print
-- string parsing
-- run 
-	- play
-	- pause
-	- step
-	- stop
+	- <, >, =, +, -, *, /, mod, sqrt, true, false
+- string parsing 
+- subroutine - Parameters
 
 Actors:
 - user
 - developers 
+
+Name: Edit variable
+Actor(s): End user
+Preconditions/assumptions: Add method which does have a variable parameter.
+Flow of events: User selects variable, changes the parameter. Check type, if it is compatible, allow input and save parameter, if input is incorrect wait for user to correct, or they will exit. 
+Alternatives: Incorrect inputs may include boundary warnings or wrong types.
+Postconditions: Variable is defined.
