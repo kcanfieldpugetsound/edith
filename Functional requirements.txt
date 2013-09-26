@@ -1,0 +1,30 @@
+Functional requirements/use cases
+- Sprite object (variable)
+	- delete
+	- add
+	- edit
+- Create new method
+- Save method
+- Delete method
+- Export/import
+- Loops (while)
+- Drag/drop
+- Conditionals
+- subroutine - Parameters
+- lists
+
+- operators (mathematical & logical)
+	- <, >, =, +, -, *, /, mod, sqrt, 	  true, false
+
+- boolean operators
+- print
+- string parsing
+- run 
+	- play
+	- pause
+	- step
+	- stop
+
+Actors:
+- user
+- developers 
