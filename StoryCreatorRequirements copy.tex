@@ -35,10 +35,11 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	%adding this section to the beginning because he asks for description of the overall product in intro -Nate
 	Edith will be a web-based, educational system designed to help younger students develop an interest in and learn about programming. The user will be able to create a "story" by dragging and dropping objects, giving the objects animations, and creating ways for the user or other users to interact with their story. By doing this, students will be able to learn how relationships among objects work in programming.
 	\subsection{Scope}
-	The Story Creator module is intended to function as a display that integrates the work of the Animation System module and Visual Editor module in order to allow the user to create an animated story.  This module will employ the Visual Editor and Animation System module to interact with objects that are given by the Object Creator.  This module will provide a user interface that combines the displays of the Animation System and Visual Editor module.  Story creator will add extra functionality to the Visual Editor and Animation System module and put together the interaction between the Object Creator module in order to specify actions performed by the objects given by the Object Creator module.\
+	%%Tried to get rid of all the "fluff" -DJ
+	The Story Creator module is intended to function as a display that integrates the work of the Animation System module and Visual Editor module in order to allow the user to create an animated story.  This module will employ the Visual Editor and Animation System module to interact with objects that are given by the Object Creator through a user interface combining the displays of the Animation System and Visual Editor module.  Story creator will add extra functionality to the Visual Editor and Animation System modules to interact with the Object Creator module in order to specify actions performed by the objects given by the Object Creator module.\
 	\subsection{Purpose}
 	%basically rewrote this section while trying to find the best way to describe the purpose of our team -Nate
-	The purpose of the Story Creator section of the Edith software is to ensure that each other piece of the software can work together as a cohesive whole. This will be done through the user interface by providing a way for the user to select objects and choose actions and animations for each object. From there, the user will be able to interact in different ways with the animated objects they have created and then finalize the "story" they have created so they can keep it or share it among friends. Story creator will construct these interactions between the pieces as well as a pleasant display view for the user.
+	The purpose of the Story Creator section of the Edith software is to ensure that each other piece of the software can work together as a cohesive whole. This will be done through the user interface by providing a way for the user to select objects to choose actions and animations for each object. From there, the user will be able to interact in different ways with the animated objects that they have created and then finalize the "story" they have created so they can keep it or share it among friends. Story creator will construct these interactions between the pieces as well as a pleasant display view for the user.
 	
 %********	Next Team Member!  I ended here in the introduction.  I think it is almost/mainly done.  It will need some tweaks revision later on. ~Brandon ******************************
 	
@@ -59,10 +60,11 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	\item Postconditions: The program will be ready for the user to create a story.
 \end{itemize}
 
+%%I'd assume that if nothing is there nothing is saved -DJ
 		\subsection{"Save a story"}
 \begin{itemize}
 	\item Actor: The user
-		\item Preconditions/Assumptions: None.
+		\item Preconditions/Assumptions: A story has been created.
 	\item Flow of Events: \\
 	\	- User selects a "save story" option. \\
 	\	- A representation of the story and its objects, scripts, and settings is saved.
@@ -74,7 +76,7 @@ This SRS describes the requirements and specifications for the Story Creator mod
 		\subsection{"Close a story"}
 \begin{itemize}
 	\item Actor: The user
-		\item Preconditions/Assumptions: None.
+		\item Preconditions/Assumptions: A story is open at the time.
 	\item Flow of Events: \\
 	\	- The user selects an option to close the story. \\
 	\	- The story is removed from the story editor. \\
@@ -143,7 +145,7 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	\subsection{"Edit a script"}
 \begin{itemize}
 		\item Actor: The user
-		\item Preconditions/Assumptions: None.
+		\item Preconditions/Assumptions: There is a script active.
 	\item Flow of Events: \\
 	\	- User interacts with the visual editor to edit a script.
 	\item Alternatives: None.
@@ -153,7 +155,7 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	\subsection{"Delete a script"}
 \begin{itemize}
 		\item Actor: The user
-		\item Preconditions/Assumptions: None.
+		\item Preconditions/Assumptions: There is a script active.
 	\item Flow of Events: \\
 	\	- User interacts with the visual editor to delete a script.
 	\item Alternatives: None.
@@ -163,7 +165,8 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	
 	% Another question. If the user makes objects or scripts, can they reuse them in 
 	% other scenes, or just in the present scene? I'm leaving both options open here,
-	% and generalizing to just say that the object or script is "saved."
+	% and generalizing to just say that the object or script is "saved." -???
+	%I'd assume that an object made can be reused.  No clue.  Someone else confirm?  -DJ
 	\subsection{"Save an object or script"}
 \begin{itemize}
 	\item Actor: The user
@@ -202,7 +205,7 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	\subsection{"Playback a story"}
 \begin{itemize}
 	\item Actor: The user
-		\item Preconditions/Assumptions: None.
+		\item Preconditions/Assumptions: A 'story' is present.
 	\item Flow of Events: \\
 	\	- User selects a "play scene" option. \\
 	\	- The story plays for the user in the animation viewer.
@@ -217,7 +220,7 @@ This SRS describes the requirements and specifications for the Story Creator mod
 		\subsection{"Share a story"}
 \begin{itemize}
 	\item Actor: The user
-		\item Preconditions/Assumptions: None.
+		\item Preconditions/Assumptions: There is a story present.
 	\item Flow of Events: \\
 	\	- User selects a "publish story option." \\
 	\	- The story is converted to a representation that the sharing framework can read. \\
@@ -255,7 +258,6 @@ This SRS describes the requirements and specifications for the Story Creator mod
 % I think they're almost done, but will need some edits and revisions
 % I'll make another pass later. -Billy
 %===========
-
 
 %-------------------------------------------------------------------------------------------------------------
 %GLOSSARY/REFERENCES
