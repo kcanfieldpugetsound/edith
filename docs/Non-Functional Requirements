@@ -1,0 +1,25 @@
+Non-Functional Requirements
+
+Usability.  
+Training should not be required for users to effectively use the module.  
+Module documentation and basic age-specific computer knowledge should provide sufficient guidance.
+The module should allow the user to recover from errors with informative and understandable error messages.
+
+Documentation.
+The module will provide documentation that allows users to easily begin using the system.
+
+Modifiability.
+The module will have the flexibility to allow feature expansion over time.
+
+Privacy.
+The user's work will remain private/secure unless the user chooses to share it.
+
+Learning Experience.
+In order to support the learning of young computing students, the module will provide
+a sufficiently "pleasant" interface.
+
+Platform.
+Users will be able to run the module from Windows or Mac [TEAM - DO YOU EXPECT THIS TO BE TRUE?]
+
+Open Source.
+After initial development, the source code will be open and redistributed with improvements by anyone.
