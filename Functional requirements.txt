@@ -51,3 +51,16 @@ Preconditions/assumptions:
 Flow of events: A user or developer decides they want to use a conditional statement, add the conditional statement, including the parameter (e.g. if this), then defines what is inside of this if-statement (e.g. then that).
 Alternatives: The user or developer may specify what will happen if the if-statement's parameter is not met (e.g. else do this).
 Postconditions: The if-statement is then either done because its parameter is met or its skipped because it is not met.
+
+Name: Boolean Operators
+Actor(s): End user & developer
+Preconditions/assumptions: 
+Flow of events: A user or developer wants to perform an operation (e.g. and, or, not) on one or two variables or expressions. The user selects the boolean operator and the variable(s) or expression(s) to be evaluated.
+Alternatives: 
+Postconditions: The boolean result of the operation is returned.
+
+Name: Print
+Actor(s): End user 
+Preconditions/assumptions: The user has created a script
+Flow of events: A user or developer wants to print the script he has created.  The user selects the option to print the script, and it is printed.
+Postconditions: No changes are made; the status is the same as prior to printing.
