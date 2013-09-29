@@ -1,0 +1,21 @@
+Introduction - Edith and the Visual Editor Module
+
+	Edith is educational software designed to introduce new computer science students to programming.  New students of any age can learn basic object-oriented programming concepts
+	prior to learning a particular programming language in detail (syntax, data types and structures, etc.).  Edith provides a graphical user interface through which
+	users can create a "script" that animates a 2-D character, or sprite, provided by the program.  The user creates the script by piecing together provided blocks of 
+	program structure in a functional way.  Users may create games and share their creations with others. 
+	Similar programs (e.g., Alice) have been shown to increase the interest level and retention of students taking their first programming classes.	
+	Edith will be written primarily in JavaScript and will be available over the internet.  After initial development, the software will be open-source to allow 
+	further development and additional educational opportunities.  
+	
+	The Visual Editor (VE) module will provide a visual programming language editor (in essence, an integrated development environment(IDE)).  The VE will allow users
+	to arrange programming elements to create an animation sequence; programming elements will include methods, variables, control statements, etc. 
+	The VE will, while enforcing syntax rules, convert the program into JavaScript, which will be used by other modules.
+
+	The VE will directly interact with two other Edith modules, Object Creator and Story Creator.  It will provide the Object Creator an interface for defining
+	objects, and the Story Creator an interface for defining animations.  The VE will be able to run its own disply view and integrate into the views of 
+	other Edith modules.
+	
+	The user will be able to export his program in JavaScript/JavaScript Object Notation (JSON) format. JSON is an efficient data interchange text format that is language independent. 
+
+   	
