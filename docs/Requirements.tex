@@ -29,8 +29,9 @@ Walker Bohannan\\
 Steve Marx    \\
 Vikram Nilakantan\\
 Jessica Penick\\
-Eli Spiegel
-}\\[0.5cm]
+Eli Spiegel \\
+}
+
 		\today %put the date that the data is compiled
 	\end{center}
 	\vspace*{\fill}
@@ -526,10 +527,45 @@ Eli Spiegel
     	\end{enumerate}
 
 }
+\end{usecase}
+\begin{usecase}
+
+\addtitle{Use Case 12}{Exporting Project} 
+
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{End-User}
+
+
+
+%Preconditions: What must be true on start and worth telling the reader?
+\addfield{Preconditions:}{Project contains atleast one method/action}
+%when multiple
+%\additemizedfield{Preconditions:}{} 
+
+%Postconditions: What must be true on successful completion and worth telling the reader
+\addfield{Postconditions:}{If successful, the user should get a message on how to share the file with another user.}
+%when multiple
+%\additemizedfield{Preconditions:}{}
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Success Scenario:}{
+    \item The user selects the Export button
+    \item The system generates an export-ready file for the user
+    \item The system gives the user options on how to share the file
+
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Extensions:}{
+	\item[2.a] No methods existed.
+		\begin{enumerate}
+		\item[1.]  User prompted to add a method/action before trying to export again.
+    	\end{enumerate}
+
+}
 
 %Non-Functional Requirements Needed: Related Non-Functional Requirements Needed.
 \additemizedfield{Non-Functional Requirements Needed:}{
-	\item Learning Experience.
 	\item Usability.
 }
 
