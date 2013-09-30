@@ -15,13 +15,48 @@
 
 %include the usecases package
 \usepackage{usecases}
-
 \begin{document}
 
 %Sometimes it is a good idea to put domain objects in \texttt{}
 %The template and the descriptions are based on the book Applying UML and Patterns: 
 %An Introduction to Object-Oriented Analysis and Design and Iterative Development
 %(3rd Edition) by Craig Larman.
+\begin{usecase}
+
+\addtitle{Introduction}{} 
+
+
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{}{\indent Edith is educational software designed to introduce new computer science students to programming.  New students of any age can learn basic object-oriented programming concepts
+    prior to learning a particular programming language in detail (syntax, data types and structures, etc.).  Edith provides a graphical user interface through which
+	users can create a "script" that animates a 2-D character, or sprite, provided by the program.  The user creates the script by piecing together provided blocks of 
+	program structure in a functional way.  Users may create games and share their creations with others. 
+	Similar programs (e.g., Alice) have been shown to increase the interest level and retention of students taking their first programming classes.	
+	Edith will be written primarily in JavaScript and will be available over the internet.  After initial development, the software will be open-source to allow 
+	further development and additional educational opportunities. 
+    \newline
+
+\indent The Visual Editor (VE) module will provide a visual programming language editor (in essence, an integrated development environment(IDE)).  The VE will allow users
+	to arrange programming elements to create an animation sequence; programming elements will include methods, variables, control statements, etc. 
+	The VE will, while enforcing syntax rules, convert the program into JavaScript, which will be used by other modules.
+    \newline
+
+\indent The VE will directly interact with two other Edith modules, Object Creator and Story Creator.  It will provide the Object Creator an interface for defining
+	objects, and the Story Creator an interface for defining animations.  The VE will be able to run its own disply view and integrate into the views of 
+	other Edith modules.
+    \newline
+
+\indent The user will be able to export his program in JavaScript/JavaScript Object Notation (JSON) format. JSON is an efficient data interchange text format that is language independent.
+   
+}
+
+
+
+
+\end{usecase}
+
+
 \begin{usecase}
 
 \addtitle{Use Case 1}{Edit variable} 
@@ -43,10 +78,10 @@
 
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
 \addscenario{Main Success Scenario:}{
-	\item User selects variable
+    \item User selects variable
     \item User changes the parameter 
     \item Check type
-    \item if it is a compatible tyep allow input and save parameter
+    \item If it is a compatible type allow input and save parameter
 }
 
 %Extensions: Alternate scenarios of success or failure.
@@ -103,7 +138,7 @@
 	\item[2.a] Invalid drop location:
 		\begin{enumerate}
 		\item[1.] The user attempts to drag the variable outside of     acceptable boundaries, the variable will no be "locked" inside of boundary.
-	
+
 		\end{enumerate}
 
 }
@@ -458,10 +493,205 @@
 
 \end{usecase}
 
+\begin{usecase}
 
+\addtitle{Use Case 11}{Creating a new Action} 
+
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{End-User}
+
+
+
+%Preconditions: What must be true on start and worth telling the reader?
+\addfield{Preconditions:}{None.}
+%when multiple
+%\additemizedfield{Preconditions:}{} 
+
+%Postconditions: What must be true on successful completion and worth telling the reader
+\addfield{Postconditions:}{If first method, the box is made, if attaching to another method, the boxes are connected}
+%when multiple
+%\additemizedfield{Preconditions:}{}
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Success Scenario:}{
+    \item The user selects the new method button
+    \item Drags the method into the workbox 
+    \item then the method prompts the user to give arguments for that specific action 
+    \item If arguments are compatible, the method is created
+
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Extensions:}{
+	\item[2.a] Invalid input:
+		\begin{enumerate}
+		\item[1.]  User prompted to re-enter arguments
+    	\end{enumerate}
+
+}
+
+%Non-Functional Requirements Needed: Related Non-Functional Requirements Needed.
+\additemizedfield{Non-Functional Requirements Needed:}{
+	\item Learning Experience.
+	\item Usability.
+}
+
+
+%Miscellaneous: Such as open issues/questions
+%\addfield{Open Issues:}{}
+
+\end{usecase}
+
+\begin{usecase}
+
+\addtitle{Use Case 12}{Connecting actions} 
+
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{End-User}
+
+
+
+%Preconditions: What must be true on start and worth telling the reader?
+\addfield{Preconditions:}{There are two actions on the development board.}
+%when multiple
+%\additemizedfield{Preconditions:}{} 
+
+%Postconditions: What must be true on successful completion and worth telling the reader
+\addfield{Postconditions:}{The methods are connected}
+%when multiple
+%\additemizedfield{Preconditions:}{}
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Success Scenario:}{
+    \item The action is selected by the user
+    \item The action is dragged above or below the action they want to connect to
+    \item Release to connect
+
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Extensions:}{
+	\item[2.a] Invalid Action Placement:
+		\begin{enumerate}
+		\item[1.]  If the user misses the action while dropping another one on it or the user drops the action in a place out of the frames range, the action will be returned to where it got picked up from. 
+    	\end{enumerate}
+
+}
+
+%Non-Functional Requirements Needed: Related Non-Functional Requirements Needed.
+\additemizedfield{Non-Functional Requirements Needed:}{
+	\item Learning Experience.
+	\item Usability.
+}
+
+
+%Miscellaneous: Such as open issues/questions
+%\addfield{Open Issues:}{}
+
+\end{usecase}
+
+
+\begin{usecase}
+
+\addtitle{Use Case 13}{Save a collection of methods} 
+
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{End-User}
+
+
+
+%Preconditions: What must be true on start and worth telling the reader?
+\addfield{Preconditions:}{There is a method to be saved on the board.}
+%when multiple
+%\additemizedfield{Preconditions:}{} 
+
+%Postconditions: What must be true on successful completion and worth telling the reader
+\addfield{Postconditions:}{The method is saved}
+%when multiple
+%\additemizedfield{Preconditions:}{}
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Success Scenario:}{
+    \item The user selects the method or the set of actions that they want to save. The method gets highlighted
+    \item The user clicks the save button
+    \item Method is added to list of actions that the User can access. 
+    \item User is prompted to name method
+    \item Method is created after it is named
+    
+
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Extensions:}{
+	\item[2.a] Invalid Action Sequence:
+		\begin{enumerate}
+		\item[1.]  If the user selects the set of actions, and then clicks somewhere other than the save button, the set of actions becomes deselected
+    	\end{enumerate}
+
+}
+
+%Non-Functional Requirements Needed: Related Non-Functional Requirements Needed.
+\additemizedfield{Non-Functional Requirements Needed:}{
+	\item Learning Experience.
+	\item Usability.
+}
+
+
+%Miscellaneous: Such as open issues/questions
+%\addfield{Open Issues:}{}
+
+\end{usecase}
+
+\begin{usecase}
+
+\addtitle{Use Case 14}{Delete a Method} 
+
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{End-User}
+
+
+
+%Preconditions: What must be true on start and worth telling the reader?
+\addfield{Preconditions:}{There is a method to be deleted on the board.}
+%when multiple
+%\additemizedfield{Preconditions:}{} 
+
+%Postconditions: What must be true on successful completion and worth telling the reader
+\addfield{Postconditions:}{The method is dleted}
+%when multiple
+%\additemizedfield{Preconditions:}{}
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Success Scenario:}{
+    \item The user selects the method or the set of actions that they want to save. The method gets highlighted
+    \item The user clicks the delete button
+    \item Method is deleted
+    
+
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Extensions:}{
+	\item[2.a] Invalid Action Sequence:
+		\begin{enumerate}
+		\item[1.]  If the user selects the set of actions, and then clicks somewhere other than the delete button, the set of actions becomes deselected
+    	\end{enumerate}
+
+}
+
+%Non-Functional Requirements Needed: Related Non-Functional Requirements Needed.
+\additemizedfield{Non-Functional Requirements Needed:}{
+	\item Learning Experience.
+	\item Usability.
+}
+
+
+%Miscellaneous: Such as open issues/questions
+%\addfield{Open Issues:}{}
+
+\end{usecase}
 
 
 
 
 \end{document}
-
