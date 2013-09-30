@@ -115,7 +115,7 @@ Flow of Events:\\
 4.       The image is selected in the reader and sent back to the webpage program.\\
 a.       The reader window is closed upon selecting the image.\\
 5.        The UI takes the image and creates it as an object on the canvas.\\
-a.       The application calls the visual editor method to display and create objects sending the method the information on the imported image.\\
+a.       The application calls a method to display and create objects sending the method the information on the imported image.\\
 6.       The image is displayed in the canvas and saved as a java object with the name of the imported image. \\
 7.       End of use case.\\[0\baselineskip]
 
@@ -123,7 +123,7 @@ Alternatives:\\
 - The image attempting to be imported is too large for the application to handle. The application throws an error message on the import telling the actor that the image is to large and gives the maximum size allowed (ex: 800x600 pixels). \\
 - The name of the imported object is the same name as an object that already exists, in such a case a notification window will pop open letting the user know that a different temporary name has been assigned to the image. \\
 - The file was not properly transferred so no import was able to occur.\\
-Post condition:  The image is now displayed in the application canvas and exists as an object to be manipulated.
+Postcondition:  The image is now displayed in the application canvas and exists as an object to be manipulated.
 
 \pagebreak
 
