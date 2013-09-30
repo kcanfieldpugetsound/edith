@@ -575,13 +575,6 @@ Eli Spiegel \\
 
 \end{usecase}
 % New Page for Use Case Diagram
-\newpage
-
-\begin{usecase}
-\addtitle{Use Case Diagram}{}
-% Use case diagram inserted
-\includegraphics[scale=.2]{req_uml_diag.png}
-\end{usecase}
 
 \begin{usecase}
 
@@ -612,9 +605,9 @@ Eli Spiegel \\
 
 %Extensions: Alternate scenarios of success or failure.
 \addscenario{Extensions:}{
-	\item[2.a] Export file missing or corrupt
+	\item[1] Export file missing or corrupt
 		\begin{enumerate}
-		\item[1.]  User prompted to re-upload a file with the correct file structure.
+		\item[1.a]  User prompted to re-upload a file with the correct file structure.
     	\end{enumerate}
 
 }
@@ -630,6 +623,52 @@ Eli Spiegel \\
 %\addfield{Open Issues:}{}
 
 \end{usecase}
+
+\begin{usecase}
+
+\addtitle{Use Case 14}{Add Sprite Object} 
+
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{End-User}
+
+
+
+%Preconditions: What must be true on start and worth telling the reader?
+\addfield{Preconditions:}{None.}
+%when multiple
+%\additemizedfield{Preconditions:}{} 
+
+%Postconditions: What must be true on successful completion and worth telling the reader
+\addfield{Postconditions:}{New Sprite Object has been added to the visual editor and methods/actions can be added to it.}
+%when multiple
+%\additemizedfield{Preconditions:}{}
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Success Scenario:}{
+    \item The user selects the New Sprite button
+    \item The user fills in basic details of the Sprite
+    \item The editor updates with the ability to add new methods/actions to the Sprite.
+
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Extensions:}{
+	\item[1] None.
+
+}
+
+%Non-Functional Requirements Needed: Related Non-Functional Requirements Needed.
+\additemizedfield{Non-Functional Requirements Needed:}{
+	\item Usability
+	\item Learning Experience
+}
+
+
+%Miscellaneous: Such as open issues/questions
+%\addfield{Open Issues:}{}
+
+\end{usecase}
+
 % New Page for Use Case Diagram
 \newpage
 
