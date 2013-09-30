@@ -1,0 +1,128 @@
+\documentclass[12pt]{report}
+\setlength{\parindent}{0pt}
+\begin{document}
+% This is the cover letter
+\begin{center}
+{\bf\huge Requirements specification for Object Creator Team}
+\\[3\baselineskip]
+{\large Software Engineering (CS240)}
+\\[2\baselineskip]
+{\large Object Creator team}
+\\[2\baselineskip]
+{\bf Contributors: }\\
+Darren Chu \\ Todd Detweiler \\ Cody Kagawa \\  Lauren Swanson \\  Dongni Wang 
+\\[8\baselineskip]
+Version 1\\
+September 29, 2013 
+\end{center} 
+\pagebreak
+
+\begin{center}
+{\bf\large Abstract \\[1\baselineskip] }
+{\it
+
+
+
+}
+\end{center}
+\pagebreak
+
+{\bf\large Introduction: \\[1\baselineskip] }
+
+\pagebreak
+
+{\bf\large Use Cases: \\[1\baselineskip] }
+Name: Create Object\\
+Actor(s): User/Sprite creator
+(Sprite creator generates a new sprite for our object, the user specifies parameters of new object)\\
+Preconditions/Assumptions: The view has been initialized, file save location specified(not sure if this is part of program start-up sequence)\\[1\baselineskip]
+Flow of Events:\\
+1. User selects create new object(potentially through interaction with empty space or UI)\\
+2. UI prompt generated for user to select between importing or creating image for sprite\\
+3. User selects an option and generates image(s) for sprite\\
+4. Object creator generates interface for specifying identifiers(name, references, etc)\\
+5. User submits name for object\\
+6. Images and identifiers converted to JSON/Javascript files and saved into memory.\\
+7. Sprite appears on view and sent to story editor(if available)\\
+8. Object creation interface disappears\\
+9. End of use case\\[1\baselineskip]
+Alternatives:\\
+- Multiple objects with same name/identifier\\
+- File cannot be saved in specified location\\
+Postconditions: The object creation interface disappears, new sprite is displayed\\[1\baselineskip]
+Name: Create Sprite\\
+Actor(s): User\\
+Preconditions/Assumptions: The view has been initialized\\[1\baselineskip]
+
+Flow of Events:\\
+1. User selects create new sprite option\\
+2. Object creator generates new canvas and sprite creator window\\
+3. User selects tool from Sprite creator options\\
+4. User inputs tool parameters(mouse commands/inputs)\\
+5. Input added to canvas\\
+6. Repeat actions 3 - 5 as specified by User\\
+7. Store canvas data\\
+8. Close sprite creator window and send to view\\
+9. End of Use Case\\[1\baselineskip]
+
+Alternatives: None expected.\\[1\baselineskip]
+
+Postcondition: Sprite creator disappears, sprite is displayed and usable\\[1\baselineskip]
+
+Name: Specify Objects' Names\\
+Actor(s): Users/ Sprite creator\\
+(Sprite creator can specify the names of the objects. These names would be saved and later be called for adding methods.)
+Preconditions/Assumptions: Objects have been created\\[1\baselineskip]
+Flow of Events: \\
+1. User double-clicks the object to select the target.\\
+2. User creator right-clicks the screen. Right-click menu will be displayed.\\
+3. User left-clicks the "Name" option on the right-click menu.\\
+4. A dialog box asking for the user's input within a one-line textbox will be displayed.\\
+5.1 If the object hasn't been assigned a name, user can type a name within the textbox.\\
+5.2 If the object has had a name, the name will be displayed within the textbox, the user can modify, delete the name or assign a new name for the object.\\
+6.1 User clicks the submit button, the object's name will be saved.\\
+6.2 User clicks the cancel button, the modification will be canceled. \\
+7. End of the use case. \\[1\baselineskip]
+Alternatives: \\
+-The user has typed illegal characters\\
+-The name is too long. (maybe more than 32 letter+numbers)\\
+:the input won't be saved, a dialog box would display a warning message. User would have to assign a new name. --back to Event No.4.\\
+Postconditions: Methods can be called using the right-click menu.\\[1\baselineskip]
+Name: Object Manipulation\\
+Actor(s):Users/ Sprite creator\\
+(Sprite creator can manipulate the objects. The user can access the Object Manipulations menu and change the object with the specific methods in the menu.)\\
+Preconditions/Assumptions: Objects have been created\\[1\baselineskip]
+Flow of Events: \\
+1. User double-clicks the object to select target\\
+2. User right-clicks the object. Right-click menu will be displayed.\\
+3. User left-clicks the ?Object Manipulation? option on the right-click menu.\\
+4. The Object Manipulation menu will be displayed. \\
+5. User left-clicks any of the Object Manipulation options.\\
+6. User clicks accept changes once he/she has finished manipulating the object or User clicks cancel changes if he/she wants to undo the manipulations to the object.\\
+7. Object Manipulation menu disappears.\\
+8. End of Use case.\\[1\baselineskip]
+Alternatives:\\
+-User moves the object out of the boundaries of the canvas.\\
+-User using the Undo or Redo if the object has not been manipulated. \\[1\baselineskip]
+Postconditions: The Object Manipulation menu disappears.\\
+
+\pagebreak
+
+{\bf\large Nonfunctional Requirements:}\\[1\baselineskip]
+Availability: \\
+- The Object-creator module would be available whenever the users log into the system with PC or Macintosh platforms.\\
+-The object-creator module should not fail for 90\% of cases.\\[0\baselineskip]
+
+Usability: \\
+-The users are not expected to have any knowledge of or previous experience programming.\\
+-For users with basic computer operation ability, the average time of learning the facilities of the module independently should be no more than one hour. Ten minutes of training before independent use is possible. \\
+-On average, the users with previous experience using graphics editing program may make errors no more than 5 times per hour. The new users may make more errors while learning, but should be able to be skilled users in one hour with informative error messages and well-formed graphical user interfaces.\\[0\baselineskip]
+
+Documentation:\\
+-The documentation of object-creator module should be fully understandable to the animation module group.\\
+\pagebreak
+
+{\bf\large Glossary:}\\[1\baselineskip]
+
+
+\end{document}
