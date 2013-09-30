@@ -1,5 +1,6 @@
 \documentclass[12pt]{report}
 \setlength{\parindent}{0pt}
+\usepackage{hyperref}
 \begin{document}
 % This is the cover letter
 \begin{center}
@@ -102,7 +103,29 @@ Flow of Events: \\
 Alternatives:\\
 -User moves the object out of the boundaries of the canvas.\\
 -User using the Undo or Redo if the object has not been manipulated. \\[1\baselineskip]
-Postconditions: The Object Manipulation menu disappears.\\
+Postconditions: The Object Manipulation menu disappears.\\[2\baselineskip]
+
+Name: Importing an image\\
+Actor(s): Image importer\\
+The user who will be adding the image to the page through importing it.\\
+Preconditions: A canvas type layer exists that the image will be imported and displayed on.\\[0\baselineskip]
+
+Flow of Events:\\
+1.       Image importer clicks on import image button/option.\\
+2.       File reading/uploader window is opened.\\
+3.       The importer finds the file on their local machine using the reader window.\\
+4.       The image is selected in the reader and sent back to the webpage program.\\
+a.       The reader window is closed upon selecting the image.\\
+5.        The UI takes the image and creates it as an object on the canvas.\\
+a.       The application calls the visual editor method to display and create objects sending the method the information on the imported image.\\
+6.       The image is displayed in the canvas and saved as a java object with the name of the imported image. \\
+7.       End of use case.\\[0\baselineskip]
+
+Alternatives:\\
+- The image attempting to be imported is too large for the application to handle. The application throws an error message on the import telling the actor that the image is to large and gives the maximum size allowed (ex: 800x600 pixels). \\
+- The name of the imported object is the same name as an object that already exists, in such a case a notification window will pop open letting the user know that a different temporary name has been assigned to the image. \\
+- The file was not properly transferred so no import was able to occur.\\
+Post condition:  The image is now displayed in the application canvas and exists as an object to be manipulated.
 
 \pagebreak
 
@@ -121,6 +144,10 @@ Documentation:\\
 \pagebreak
 
 {\bf\large Glossary:}\\[1\baselineskip]
-
+Organizational Requirement Engineering\\
+Chapter 9, Non-functional Requirements\\
+Prof. Dr. Armin B. Cremers\\
+Sascha Alda\\
+\url{http://www.iai.uni-bonn.de/III/lehre/vorlesungen/SWT/RE05/slides/09_Non-functional\%20Requirements.pdf}
 
 \end{document}
