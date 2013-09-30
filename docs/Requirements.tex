@@ -585,6 +585,63 @@ Eli Spiegel \\
 
 \begin{usecase}
 
+\addtitle{Use Case 13}{Importing Project} 
+
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Primary Actor:}{End-User}
+
+
+
+%Preconditions: What must be true on start and worth telling the reader?
+\addfield{Preconditions:}{User has a valid export file to import}
+%when multiple
+%\additemizedfield{Preconditions:}{} 
+
+%Postconditions: What must be true on successful completion and worth telling the reader
+\addfield{Postconditions:}{If successful, the visual editor should load the actions/methods present in the export file}
+%when multiple
+%\additemizedfield{Preconditions:}{}
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Main Success Scenario:}{
+    \item The user selects the Import button
+    \item The system reads and loads in methods/actions from file
+    \item The user is now available to edit/add methods or actions to the file
+
+}
+
+%Extensions: Alternate scenarios of success or failure.
+\addscenario{Extensions:}{
+	\item[2.a] Export file missing or corrupt
+		\begin{enumerate}
+		\item[1.]  User prompted to re-upload a file with the correct file structure.
+    	\end{enumerate}
+
+}
+
+%Non-Functional Requirements Needed: Related Non-Functional Requirements Needed.
+\additemizedfield{Non-Functional Requirements Needed:}{
+	\item Usability
+	\item Learning Experience
+}
+
+
+%Miscellaneous: Such as open issues/questions
+%\addfield{Open Issues:}{}
+
+\end{usecase}
+% New Page for Use Case Diagram
+\newpage
+
+\begin{usecase}
+\addtitle{Use Case Diagram}{}
+% Use case diagram inserted
+\includegraphics[scale=.2]{req_uml_diag.png}
+\end{usecase}
+
+
+\begin{usecase}
+
 \addtitle{Non-Functional Requirements}{} 
 
 
