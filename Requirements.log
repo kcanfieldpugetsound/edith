@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.9.16)  29 SEP 2013 19:11
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.9.16)  29 SEP 2013 19:45
 entering extended mode
 **Requirements.tex
 ("C:\Users\Cody Kagawa\Documents\GitHub\edith\Requirements.tex"
@@ -66,18 +66,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--106
+
+ []
+
 [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 91--95
+Underfull \hbox (badness 10000) in paragraph at lines 109--113
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--100
+Underfull \hbox (badness 10000) in paragraph at lines 114--118
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 105--106
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
 
  []
 
@@ -85,7 +90,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 105--106
 Here is how much of TeX's memory you used:
  230 strings out of 493921
  2811 string characters out of 3141650
- 52031 words of memory out of 3000000
+ 54031 words of memory out of 3000000
  3606 multiletter control sequences out of 15000+200000
  5504 words of font info for 20 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -94,7 +99,7 @@ Here is how much of TeX's memory you used:
 am Files/Internet Explorer/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:
 /Program Files/Internet Explorer/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pf
 b>
-Output written on Requirements.pdf (8 pages, 41730 bytes).
+Output written on Requirements.pdf (8 pages, 42615 bytes).
 PDF statistics:
  37 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

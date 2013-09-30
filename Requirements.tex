@@ -49,10 +49,10 @@ Flow of Events:\\
 Alternatives:\\
 - Multiple objects with same name/identifier\\
 - File cannot be saved in specified location\\
-Postconditions: The object creation interface disappears, new sprite is displayed\\[1\baselineskip]
+Postconditions: The object creation interface disappears, new sprite is displayed\\[2\baselineskip]
 Name: Create Sprite\\
 Actor(s): User\\
-Preconditions/Assumptions: The view has been initialized\\[1\baselineskip]
+Preconditions/Assumptions: The view has been initialized\\
 
 Flow of Events:\\
 1. User selects create new sprite option\\
@@ -63,13 +63,13 @@ Flow of Events:\\
 6. Repeat actions 3 - 5 as specified by User\\
 7. Store canvas data\\
 8. Close sprite creator window and send to view\\
-9. End of Use Case\\[1\baselineskip]
+9. End of Use Case\\
 
-Postcondition: Sprite creator disappears, sprite is displayed and usable\\[1\baselineskip]
+Postcondition: Sprite creator disappears, sprite is displayed and usable\\[2\baselineskip]
 
 Name: Specify Objects' Names\\
 Actor(s): Users/ Sprite creator\\
-(Sprite creator can specify the names of the objects. These names would be saved and later be called for adding methods.)
+(Sprite creator can specify the names of the objects. These names would be saved and later be called for adding methods.)\\
 Preconditions/Assumptions: Objects have been created\\[1\baselineskip]
 Flow of Events: \\
 1. User double-clicks the object to select the target.\\
@@ -85,7 +85,25 @@ Alternatives: \\
 -The user has typed illegal characters\\
 -The name is too long. (maybe more than 32 letter+numbers)\\
 :the input won't be saved, a dialog box would display a warning message. User would have to assign a new name. --back to Event No.4.\\
-Postconditions: Methods can be called using the right-click menu.\\[1\baselineskip]
+Postconditions: Methods can be called using the right-click menu.\\[2\baselineskip]
+Name: Object Manipulation\\
+Actor(s):Users/ Sprite creator\\
+(Sprite creator can manipulate the objects. The user can access the Object Manipulations menu and change the object with the specific methods in the menu.)\\
+Preconditions/Assumptions: Objects have been created\\[1\baselineskip]
+Flow of Events: \\
+1. User double-clicks the object to select target\\
+2. User right-clicks the object. Right-click menu will be displayed.\\
+3. User left-clicks the ?Object Manipulation? option on the right-click menu.\\
+4. The Object Manipulation menu will be displayed. \\
+5. User left-clicks any of the Object Manipulation options.\\
+6. User clicks accept changes once he/she has finished manipulating the object or User clicks cancel changes if he/she wants to undo the manipulations to the object.\\
+7. Object Manipulation menu disappears.\\
+8. End of Use case.\\[1\baselineskip]
+Alternatives:\\
+-User moves the object out of the boundaries of the canvas.\\
+-User using the Undo or Redo if the object has not been manipulated. \\[1\baselineskip]
+Postconditions: The Object Manipulation menu disappears.\\
+
 \pagebreak
 
 {\bf\large Nonfunctional Requirements:}\\[1\baselineskip]
