@@ -50,8 +50,22 @@ Alternatives:\\
 - Multiple objects with same name/identifier\\
 - File cannot be saved in specified location\\
 Postconditions: The object creation interface disappears, new sprite is displayed\\[1\baselineskip]
+Name: Create Sprite\\
+Actor(s): User\\
+Preconditions/Assumptions: The view has been initialized\\[1\baselineskip]
 
+Flow of Events:\\
+1. User selects create new sprite option\\
+2. Object creator generates new canvas and sprite creator window\\
+3. User selects tool from Sprite creator options\\
+4. User inputs tool parameters(mouse commands/inputs)\\
+5. Input added to canvas\\
+6. Repeat actions 3 - 5 as specified by User\\
+7. Store canvas data\\
+8. Close sprite creator window and send to view\\
+9. End of Use Case\\[1\baselineskip]
 
+Postcondition: Sprite creator disappears, sprite is displayed and usable\\[1\baselineskip]
 
 Name: Specify Objects' Names\\
 Actor(s): Users/ Sprite creator\\

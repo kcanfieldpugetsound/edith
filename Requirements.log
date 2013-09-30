@@ -1,0 +1,102 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.9.16)  29 SEP 2013 19:11
+entering extended mode
+**Requirements.tex
+("C:\Users\Cody Kagawa\Documents\GitHub\edith\Requirements.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("C:\Program Files\Internet Explorer\MiKTeX\tex\latex\base\report.cls"
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\Internet Explorer\MiKTeX\tex\latex\base\size12.clo"
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Users\Cody Kagawa\Documents\GitHub\edith\Requirements.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+ [1
+
+{C:/Users/Cody Kagawa/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 34--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--67
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
+
+ []
+
+[5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 91--95
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--100
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+
+ []
+
+[8] ("C:\Users\Cody Kagawa\Documents\GitHub\edith\Requirements.aux") ) 
+Here is how much of TeX's memory you used:
+ 230 strings out of 493921
+ 2811 string characters out of 3141650
+ 52031 words of memory out of 3000000
+ 3606 multiletter control sequences out of 15000+200000
+ 5504 words of font info for 20 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 22i,4n,19p,340b,115s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Progr
+am Files/Internet Explorer/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:
+/Program Files/Internet Explorer/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pf
+b>
+Output written on Requirements.pdf (8 pages, 41730 bytes).
+PDF statistics:
+ 37 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
