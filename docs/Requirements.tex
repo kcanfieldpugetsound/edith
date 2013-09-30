@@ -28,7 +28,8 @@
 
 
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
-\addscenario{}{\indent Edith is educational software designed to introduce new computer science students to programming.  New students of any age can learn basic object-oriented programming concepts
+\addscenario{}{
+\item []\indent Edith is educational software designed to introduce new computer science students to programming.  New students of any age can learn basic object-oriented programming concepts
     prior to learning a particular programming language in detail (syntax, data types and structures, etc.).  Edith provides a graphical user interface through which
 	users can create a "script" that animates a 2-D character, or sprite, provided by the program.  The user creates the script by piecing together provided blocks of 
 	program structure in a functional way.  Users may create games and share their creations with others. 
@@ -575,8 +576,6 @@
 		\begin{enumerate}
 		\item[1.]  If the user misses the action while dropping another one on it or the user drops the action in a place out of the frames range, the action will be returned to where it got picked up from. 
     	\end{enumerate}
-<<<<<<< HEAD:docs/Requirements.tex
-=======
 
 }
 
@@ -591,26 +590,8 @@
 %\addfield{Open Issues:}{}
 
 \end{usecase}
->>>>>>> ca7e8dbfb137db7a6841da853c0e8f7888c63974:docs/eli-tryingstuff.tex
-
-}
-
-<<<<<<< HEAD:docs/Requirements.tex
-%Non-Functional Requirements Needed: Related Non-Functional Requirements Needed.
-\additemizedfield{Non-Functional Requirements Needed:}{
-	\item Learning Experience.
-	\item Usability.
-}
 
 
-%Miscellaneous: Such as open issues/questions
-%\addfield{Open Issues:}{}
-
-\end{usecase}
-
-
-=======
->>>>>>> ca7e8dbfb137db7a6841da853c0e8f7888c63974:docs/eli-tryingstuff.tex
 \begin{usecase}
 
 \addtitle{Use Case 13}{Save a collection of methods} 
@@ -710,10 +691,42 @@
 %\addfield{Open Issues:}{}
 
 \end{usecase}
-<<<<<<< HEAD:docs/Requirements.tex
-=======
 
->>>>>>> ca7e8dbfb137db7a6841da853c0e8f7888c63974:docs/eli-tryingstuff.tex
+\begin{usecase}
+
+\addtitle{Non-Functional Requirements}{} 
+
+
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Usability}{
+ \item []Training should not be required for users to effectively use the module.  
+Module documentation and basic age-specific computer knowledge should provide sufficient guidance.
+The module should allow the user to recover from errors with informative and understandable error messages. 
+}
+
+\addscenario{Documentation}{
+\item []The module will provide documentation that allows users to easily begin using the system.
+  
+}
+\addscenario{Modifiability}{
+ \item [] The module will have the flexibility to allow feature expansion over time.
+}
+\addscenario{Privacy}{
+\item [] The user's work will remain private/secure unless the user chooses to share it. 
+}
+\addscenario{Learning Experience}{
+ \item [] In order to support the learning of young computing students, the module will provide
+a sufficiently "pleasant" interface.
+}
+\addscenario{Platform}{
+\item []  Users will be able to run the module from Windows or Mac
+}
+\addscenario{Open Source}{
+ \item []After initial development, the source code will be open and redistributed with improvements by anyone.
+}
+
+\end{usecase}
 
 
 
