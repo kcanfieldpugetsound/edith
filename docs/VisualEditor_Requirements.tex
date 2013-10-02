@@ -35,9 +35,9 @@ Eli Spiegel \\
 \vspace*{75pt}
 		
 
-
+\end{center}
 \noindent This document describes how a user of Edith, an educational software designed to teach young computer scientists the basics of programming, will be able to interact with the program by developing a story. The visual interface of Edith is designed to graphically represent bits of code and let the user manipulate physical objects instead of using text. Edith should effectively teach young programmers some of the building blocks of programming. The visual interface will support the user creating new methods, control structures, and conditional statements by dragging and dropping graphic representations of code together. The visual-editor must interact directly with the Object and Story creator in order to implement the user's visual abstraction of code. When the user completes the story, the visual interface will be able to convert the shapes and symbols into JavaScript. This visual representation will give young coders instant gratification encouraging them to progress to text-based programming. 
-	\end{center}
+	
 	\vspace*{\fill}
 \end{titlepage}
 
@@ -73,12 +73,12 @@ Eli Spiegel \\
 \addfield{Primary Actor:}{End-User}
 
 %Preconditions: What must be true on start and worth telling the reader?
-\addfield{Preconditions:}{Add method which does have a variable parameter.}
+\addfield{Preconditions:}{Method exists which has a variable parameter.}
 %when multiple
 %\additemizedfield{Preconditions:}{} 
 
 %Postconditions: What must be true on successful completion and worth telling the reader
-\addfield{Postconditions:}{Variable is defined.}
+\addfield{Postconditions:}{Variable is assigned value given by user.}
 %when multiple
 %\additemizedfield{Preconditions:}{}
 
@@ -86,7 +86,8 @@ Eli Spiegel \\
 \addscenario{Main Success Scenario:}{
     \item[1.] User selects variable
     \item[2.] User changes the parameter 
-    \item[3.] Check type
+    \item[3.] Check variable type to make sure it is compatible with method
+    \item[4.] Variable is saved in method
 }
 
 %Extensions: Alternate scenarios of success or failure.
@@ -141,9 +142,9 @@ Eli Spiegel \\
 
 %Extensions: Alternate scenarios of success or failure.
 \addscenario{Extensions:}{
-	\item[2.a] Invalid drop location:
+	\item[1.] Invalid drop location:
 		\begin{enumerate}
-		\item[1.] The user attempts to drag the variable outside of     acceptable boundaries, the variable will no be "locked" inside of boundary.
+		\item[1.a.] The user attempts to drag the variable outside of acceptable boundaries, the variable will now be "locked" inside of method boundaries
 
 		\end{enumerate}
 
