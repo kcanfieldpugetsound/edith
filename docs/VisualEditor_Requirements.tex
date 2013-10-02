@@ -144,7 +144,7 @@ Eli Spiegel \\
 \addscenario{Extensions:}{
 	\item[1.] Invalid drop location:
 		\begin{enumerate}
-		\item[1.a.] The user attempts to drag the variable outside of acceptable boundaries, the variable will now be "locked" inside of method boundaries
+		\item[1.a.] The user attempts to drag the variable outside of acceptable boundaries, the variable will now be "locked" inside of acceptable boundary.
 
 		\end{enumerate}
 
@@ -604,6 +604,7 @@ Eli Spiegel \\
 \addscenario{Main Success Scenario:}{
     \item The user selects the Import button
     \item The system reads and loads in methods/actions from file
+    \item Canvas/Display updates with GUI versions of the methods with appropriate parameters.
     \item The user is now available to edit/add methods or actions to the file
 
 }
@@ -698,6 +699,7 @@ Eli Spiegel \\
 \addscenario{Main Success Scenario:}{
     \item The user selects a Sprite from the visual editor.
     \item The user clicks on the Remove Sprite button
+    \item System throws a confirmation box to make sure removal was triggered on purpose
     \item The sprite and its associated methods/actions are removed from the visual editor
 
 }
