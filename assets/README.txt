@@ -1,1 +1,0 @@
-A folder for (shared) art assets, such as images or audio files.
