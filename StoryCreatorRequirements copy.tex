@@ -2,6 +2,7 @@
 %@date 9/23/13
 
 \documentclass[12pt]{article}
+\usepackage{graphicx}
 
 \begin{document}
 
@@ -23,7 +24,7 @@
 %ABSTRACT/SUMMARY
 %-------------------------------------------------------------------------------------------------------------
 \section{Summary}
-This SRS describes the requirements and specifications for the Story Creator module of the edith software, a system to help younger students learn to program. 
+This SRS describes the requirements and specifications for the Story Creator module of the Edith software, a system to help younger students learn to program. The Story Creator module is used to combines the Sharing Framework, Object Creator, Visual Editor and Animation module in order to create a holistic view of Edith.  
 
 
 %-------------------------------------------------------------------------------------------------------------
@@ -47,12 +48,24 @@ This SRS describes the requirements and specifications for the Story Creator mod
 %FUNCTIONAL REQUIREMENTS/USE CASES
 %-------------------------------------------------------------------------------------------------------------
 \section{Functional Requirements/Use Cases}
-	\subsection{"Create a new story"}
+\subsection{"Navigate Story Files"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller 
 	\item Preconditions/Assumptions: No preconditions.
 	\item Flow of Events: \\
 	 	\ - User will open program. \\
+		\ - 3.2 "Start a new story file" \\
+		\ - 3.3 "Save the story" \\
+		\ - 3.4 "Close the story"
+	\item Alternatives: None
+	\item Postconditions: None
+\end{itemize}
+
+	\subsection{"Start a new story file"}
+\begin{itemize}
+	\item Actor: The storyteller 
+	\item Preconditions/Assumptions: No preconditions.
+	\item Flow of Events: \\
 		\ - User wants to create a new story. \\
 		\ - User will select an option to create a new story.
 	
@@ -63,11 +76,11 @@ This SRS describes the requirements and specifications for the Story Creator mod
 %%I'd assume that if nothing is there nothing is saved -DJ
 		\subsection{"Save a story"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller 
 		\item Preconditions/Assumptions: A story has been created.
 	\item Flow of Events: \\
 	\	- User selects a "save story" option. \\
-	\	- A representation of the story and its objects, scripts, and settings is saved.
+	\	- A representation of the story and its objects, scripts, and settings is sent to the Sharing Framework.
 	\item Alternatives: If the story has never been saved before, the story editor will prompt
 	the user to "save as."
 	\item Postconditions: The story is saved to the local computer.
@@ -75,7 +88,7 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	
 		\subsection{"Close a story"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller
 		\item Preconditions/Assumptions: A story is open at the time.
 	\item Flow of Events: \\
 	\	- The user selects an option to close the story. \\
@@ -90,15 +103,16 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	
 	\subsection{"Create an object"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller
 	% changed from program is open to scene is open -BR
 	\item Preconditions/Assumptions: A scene is open. 
 	\item Flow of Events: \\
-	 	\ - User wants to create an object in their story. \\
-		\ - User will select an option to create an object. \\
-		\ - User will use the mouse to drag the object. \\
-		\ - User will choose where to place the object. \\
-		\ - User will drop the object in that place.
+	 	\ - Storyteller wants to create an object in their story. \\
+	 	\ - Storyteller will go to the Object Creator screen. \\
+		\ - Storyteller will select an option to create an object. \\
+		\ - Storyteller will use the mouse to drag the object. \\
+		\ - Storyteller will choose where to place the object. \\
+		\ - Storyteller will drop the object in that place.
 	\item Alternatives: Object may not be compatible with some other objects/animations already in story, in that case user will choose whether to delete the old object or not create the new one.
 	\item Postconditions: The program will display one additional object than it did before.
 \end{itemize}
@@ -107,7 +121,7 @@ This SRS describes the requirements and specifications for the Story Creator mod
 
 	\subsection{"Remove an object"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller
 	\item Preconditions/Assumptions: At least one object is in the scene.
 	\item Flow of Events: \\
 	\	- User selects an option to delete objects. \\
@@ -119,11 +133,11 @@ This SRS describes the requirements and specifications for the Story Creator mod
 
 	\subsection{"Move an object"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller
 		\item Preconditions/Assumptions: At least one object is in the scene.
 	\item Flow of Events: \\
 	\	- User selects an option to move objects. \\
-	\	- User drags the object from its original location to a new one.
+	\	- User drags the object from its original location to a new one. (This is not an animation)
 	\item Alternatives: If the user attempts to drag the object outside of the scene, the object
 	will stay within the scene frame's boundaries.
 	\item Postconditions: None.
@@ -132,29 +146,21 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	%--- I'm not sure if these should be longer... Right now there's not much 
 	% I can think of for event flow besides interacting with the visual editor.
 	
-	\subsection{"Develop a script"}
+	\subsection{"Develop or edit a script"}
 \begin{itemize}
-		\item Actor: The user
+		\item Actor: The storyteller
 		\item Preconditions/Assumptions: None.
 	\item Flow of Events: \\
-	\	- User interacts with the visual editor to develop a new script.
-	\item Alternatives: None.
+	\	- Storyteller interacts with the visual editor to develop a new script. \\
+	\   - Storyteller selects a specific action which is an individual script (All of the scripts interact a main loop) \\
+	
+	\item Alternatives: 3.9 "Delete a script"
 	\item Postconditions: A script is added to the visual editor's list of scripts.
-\end{itemize}
-
-	\subsection{"Edit a script"}
-\begin{itemize}
-		\item Actor: The user
-		\item Preconditions/Assumptions: There is a script active.
-	\item Flow of Events: \\
-	\	- User interacts with the visual editor to edit a script.
-	\item Alternatives: None.
-	\item Postconditions: A script in the visual editor's list of scripts is changed.
 \end{itemize}
 
 	\subsection{"Delete a script"}
 \begin{itemize}
-		\item Actor: The user
+		\item Actor: The storyteller
 		\item Preconditions/Assumptions: There is a script active.
 	\item Flow of Events: \\
 	\	- User interacts with the visual editor to delete a script.
@@ -169,7 +175,7 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	%I'd assume that an object made can be reused.  No clue.  Someone else confirm?  -DJ
 	\subsection{"Save an object or script"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller
 		\item Preconditions/Assumptions: The user has created a new object or script.
 	\item Flow of Events: \\
 	\	- The user wants to save an object or script for reuse. \\
@@ -182,7 +188,7 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	
 	\subsection{"Animate an object"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller
 		\item Preconditions/Assumptions: At least one object is in the scene and one script is in the visual editor.
 	\item Flow of Events: \\
 	\	- User selects a script from the visual editor. \\
@@ -191,35 +197,25 @@ This SRS describes the requirements and specifications for the Story Creator mod
 	\item Postconditions: The object has an associated script/animation.
 \end{itemize}
 
-	\subsection{"Play back animation for a single object"}
-\begin{itemize}
-	\item Actor: The user
-		\item Preconditions/Assumptions: At least one object is in the scene.
-	\item Flow of Events: \\
-	\	- User selects an option to play back object animations. \\
-	\	- User selects a "play" option.
-	\item Alternatives: None.
-	\item Postconditions: None.
-\end{itemize}
 
-	\subsection{"Playback a story"}
+	\subsection{"Play story"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller
 		\item Preconditions/Assumptions: A 'story' is present.
 	\item Flow of Events: \\
-	\	- User selects a "play scene" option. \\
-	\	- The story plays for the user in the animation viewer.
-	\item Alternatives: The user may interrupt playback with a variety
+	\	- Storyteller selects a "play scene" option. \\
+	\	- The story plays for the storyteller in the animation viewer at the beginning.
+	\item Alternatives: The storyteller may interrupt playback with a variety
 	of options, including stop, fast-forward, or rewind. The playback system will respond
 	to these options. In the case of "stop," the scene playback will cancel. In the case of
 	fast-forward or rewind, the scene will progress forward or backward more rapidly as long
-	as the user continues to select the fast-forward or rewind option.
+	as the storyteller continues to select the fast-forward or rewind option.
 	\item Postconditions: None.	
 \end{itemize}
 
 		\subsection{"Share a story"}
 \begin{itemize}
-	\item Actor: The user
+	\item Actor: The storyteller
 		\item Preconditions/Assumptions: There is a story present.
 	\item Flow of Events: \\
 	\	- User selects a "publish story option." \\
@@ -262,6 +258,23 @@ This SRS describes the requirements and specifications for the Story Creator mod
 %-------------------------------------------------------------------------------------------------------------
 %GLOSSARY/REFERENCES
 %-------------------------------------------------------------------------------------------------------------
+\section{Glossary}
+\begin{itemize}
+\item Script:  A small program made in the visual editor that controls the object or scene event to be displayed.
 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{FlowChart.png}
+\caption{Use Case Diagram}
+\label{overflow}
+\end{figure}
+
+
+
+
+
+
+\end{itemize}
 
 \end{document}
