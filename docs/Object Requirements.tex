@@ -39,74 +39,73 @@ September 29, 2013
 
 {\bf\large Use Cases: \\[1\baselineskip] }
 Name: Create Object\\
-Actor(s): Creator(user)
-(Creator specifies parameters of new object)\\
-Preconditions/Assumptions: The view has been initialized\\[1\baselineskip]
+Actor(s): User/Sprite creator
+(Sprite creator generates a new sprite for our object, the user specifies parameters of new object)\\
+Preconditions/Assumptions: The view has been initialized, file save location specified(not sure if this is part of program start-up sequence)\\[1\baselineskip]
 Flow of Events:\\
-1. Creator creates sprite(see sprite creator or image import)\\
-2. Object creator generates window for text inputs\\
-3. User inputs identifiers for new object\\
-4. Send new object to Sharing module\\[1\baselineskip]
+1. User selects create new object(potentially through interaction with empty space or UI)\\
+2. UI prompt generated for user to select between importing or creating image for sprite\\
+3. User selects an option and generates image(s) for sprite\\
+4. Object creator generates interface for specifying identifiers(name, references, etc)\\
+5. User submits name for object\\
+6. Images and identifiers converted to JSON/Javascript files and saved into memory.\\
+7. Sprite appears on view and sent to story editor(if available)\\
+8. Object creation interface disappears\\
+9. End of use case\\[1\baselineskip]
 Alternatives:\\
 - Multiple objects with same name/identifier\\
-1.Prompt user for different input\\
-2a. User exits, terminating object\\
-2b. User inputs new identifier, change object id\\
+- File cannot be saved in specified location\\
 Postconditions: The object creation interface disappears, new sprite is displayed\\[2\baselineskip]
 Name: Create Sprite\\
-Actor(s): Creator\\
+Actor(s): User\\
 Preconditions/Assumptions: The view has been initialized\\
 
 Flow of Events:\\
-1. Creator selects create new sprite option\\
+1. User selects create new sprite option\\
 2. Object creator generates new canvas and sprite creator window\\
-3. Creator selects tool from Sprite creator options\\
-3a. Draw tools prepare canvas for mouse inputs\\
-3b. Geometry tools wait for dimension parameter inputs\\
-3c. Editing tools retrieve draw history\\
-4. Creator inputs tool parameters(mouse commands/inputs)\\
+3. User selects tool from Sprite creator options\\
+4. User inputs tool parameters(mouse commands/inputs)\\
 5. Input added to canvas\\
 6. Repeat actions 3 - 5 as specified by User\\
 7. Store canvas data\\
 8. Close sprite creator window and send to view\\
+9. End of Use Case\\
 
 Postcondition: Sprite creator disappears, sprite is displayed and usable\\[2\baselineskip]
-
 Name: Specify Objects' Names\\
-Actor(s): Users/ Sprite creator\\
-(Sprite creator can specify the names of the objects. These names would be saved and later be called for adding methods.)\\
+Actor(s): Editor\\
+(Editor can specify the names of the objects. These names would be saved and later be called for adding methods.)\\
 Preconditions/Assumptions: Objects have been created\\[1\baselineskip]
 Flow of Events: \\
-1. User double-clicks the object to select the target.\\
-2. User creator right-clicks the screen. Right-click menu will be displayed.\\
-3. User left-clicks the "Name" option on the right-click menu.\\
-4. A dialog box asking for the user's input within a one-line textbox will be displayed.\\
-5.1 If the object hasn't been assigned a name, user can type a name within the textbox.\\
-5.2 If the object has had a name, the name will be displayed within the textbox, the user can modify, delete the name or assign a new name for the object.\\
-6.1 User clicks the submit button, the object's name will be saved.\\
-6.2 User clicks the cancel button, the modification will be canceled. \\
-7. End of the use case. \\[1\baselineskip]
+1. Editor selects new Name option\\
+2. Display input name textbox.\\
+3. Editor inputs a name in textbox.\\
+4. Editor selects submit, the object's name is saved.\\
 Alternatives: \\
--The user has typed illegal characters\\
+-The editor has typed illegal characters\\
+1. Display error message to editor.\\
+2. Editor repeats Flow of Events.\\
 -The name is too long. (maybe more than 32 letter+numbers)\\
-:the input won't be saved, a dialog box would display a warning message. User would have to assign a new name. --back to Event No.4.\\
+1. Display name is too long error message to editor.
+2. Editor repeats Flow of Events.\\
 Postconditions: Methods can be called using the right-click menu.\\[2\baselineskip]
 Name: Object Manipulation\\
-Actor(s):Users/ Sprite creator\\
-(Sprite creator can manipulate the objects. The user can access the Object Manipulations menu and change the object with the specific methods in the menu.)\\
+Actor(s):Editor\\
+(Editor can manipulate the objects. The editor can access the Object Manipulations menu and change the object with the specific methods in the menu.)\\
 Preconditions/Assumptions: Objects have been created\\[1\baselineskip]
 Flow of Events: \\
-1. User double-clicks the object to select target\\
-2. User right-clicks the object. Right-click menu will be displayed.\\
-3. User left-clicks the ?Object Manipulation? option on the right-click menu.\\
-4. The Object Manipulation menu will be displayed. \\
-5. User left-clicks any of the Object Manipulation options.\\
-6. User clicks accept changes once he/she has finished manipulating the object or User clicks cancel changes if he/she wants to undo the manipulations to the object.\\
-7. Object Manipulation menu disappears.\\
-8. End of Use case.\\[1\baselineskip]
+1. Editor selects object.\\
+2. Editor selects the Object Manipulation menu.\\
+3. Display Object Manipulation menu.
+4. Editor manipulates object. \\
+5. Editor selects submit, all changes to object is saved.\\
+6. Object Manipulation menu disappears.\\
 Alternatives:\\
 -User moves the object out of the boundaries of the canvas.\\
+1. Display Object out of bounds message.\\
+2. Move object back to center of canvas.\\
 -User using the Undo or Redo if the object has not been manipulated. \\[1\baselineskip]
+1. Display error message to editor.
 Postconditions: The Object Manipulation menu disappears.\\[2\baselineskip]
 
 Name: Importing an image\\
