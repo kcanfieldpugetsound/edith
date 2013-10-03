@@ -35,6 +35,8 @@ September 29, 2013
 
 \pagebreak
 
+\includepdf[pages={1}]{UML_Diagram.pdf}
+
 {\bf\large Use Cases: \\[1\baselineskip] }
 Name: Create Object\\
 Actor(s): User/Sprite creator
@@ -121,19 +123,23 @@ Flow of Events:\\
 a.       The reader window is closed upon selecting the image.\\
 5.        The UI takes the image and creates it as an object on the canvas.\\
 a.       The application calls a method to display and create objects sending the method the information on the imported image.\\
-6.       The image is displayed in the canvas and saved as a java object with the name of the imported image. \\
-7.       End of use case.\\[0\baselineskip]
+6.       The image is displayed in the canvas and saved as a java object with the name of the imported image. \\[0\baselineskip]
 
 Alternatives:\\
-- The image attempting to be imported is too large for the application to handle. The application throws an error message on the import telling the actor that the image is to large and gives the maximum size allowed (ex: 800x600 pixels). \\
-- The name of the imported object is the same name as an object that already exists, in such a case a notification window will pop open letting the user know that a different temporary name has been assigned to the image. \\
+- The image attempting to be imported is too large for the application to handle. \\{\parindent 10pt} 1. The importer tries to upload a file to large.\\
+2. The application throws an error message on the import 	telling the actor that the image is to large and gives the maximum size allowed (ex: 800x600 pixels). \\
+3. The actor selects ok on the error message and the import is dropped. The actor must try again with a smaller file.\\
+-The name of the imported object is the same name as an object that already exists.\\
+1. In such a case a notification window will pop open letting the user know that the name is already being used. \\
+2. The application will then assign a random name to the object.\\
+3. The actor must close the notification.
 - The file was not properly transferred so no import was able to occur.\\
+1. An error message will appear letting the actor know that the import had a general fail. \\
+2. The user must close the window and try again.\\
 Postcondition:  The image is now displayed in the application canvas and exists as an object to be manipulated.
 
 \pagebreak
 
-
-\includepdf[pages={1}]{UML_Diagram.pdf}
 
 {\bf\large Nonfunctional Requirements:}\\[1\baselineskip]
 Availability: \\
