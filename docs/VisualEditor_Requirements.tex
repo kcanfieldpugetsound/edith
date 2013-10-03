@@ -33,11 +33,11 @@ Eli Spiegel \\
 }
     \today %put the date that the data is compiled
 \vspace*{75pt}
-		
+\end{center}		
 
 
 \noindent This document describes how a user of Edith, an educational software designed to teach young computer scientists the basics of programming, will be able to interact with the program by developing a story. The visual interface of Edith is designed to graphically represent bits of code and let the user manipulate physical objects instead of using text. Edith should effectively teach young programmers some of the building blocks of programming. The visual interface will support the user creating new methods, control structures, and conditional statements by dragging and dropping graphic representations of code together. The visual-editor must interact directly with the Object and Story creator in order to implement the user's visual abstraction of code. When the user completes the story, the visual interface will be able to convert the shapes and symbols into JavaScript. This visual representation will give young coders instant gratification encouraging them to progress to text-based programming. 
-	\end{center}
+
 	\vspace*{\fill}
 \end{titlepage}
 
@@ -53,7 +53,7 @@ Eli Spiegel \\
 
 %Main Success Scenario: A typical, unconditional happy path scenario of success.
 \addscenario{}{
-\item []\indent Edith is educational software designed to introduce new computer science students to programming.  New students of any age can learn basic object-oriented programming concepts prior to learning a particular programming language in detail (syntax, data types and structures, etc.).  Edith provides a graphical user interface through which users can create a "script" that animates a 2-D character, or sprite, provided by the program.  The user creates the script by piecing together provided blocks of program structure in a functional way.  Users may create games and share their creations with others. Similar programs (e.g., Alice) have been shown to increase the interest level and retention of students taking their first programming classes.    Edith will be written primarily in JavaScript and will be available over the internet.  After initial development, the software will be open-source to allow further development and additional educational opportunities.\newline	
+\item []\indent Edith is an educational software designed to introduce new computer science students to programming.  New students of any age can learn basic object-oriented programming concepts prior to learning a particular programming language in detail (syntax, data types and structures, etc.).  Edith provides a graphical user interface through which users can create a "script" that animates a 2-D character, or sprite, provided by the program.  The user creates the script by piecing together provided blocks of program structure in a functional way.  Users may create games and share their creations with others. Similar programs (e.g., Alice) have been shown to increase the interest level and retention of students taking their first programming classes.    Edith will be written primarily in JavaScript and will be available over the internet.  After initial development, the software will be open-source to allow further development and additional educational opportunities.\newline	
 
 \indent The Visual Editor (VE) module will provide a visual programming language editor (in essence, an integrated development environment(IDE)).  The VE will allow users to arrange programming elements to create an animation sequence; programming elements will include methods, variables, control statements, etc. The VE will, while enforcing syntax rules, convert the program into JavaScript, which will be used by other modules. The VE aims to create an interface that it is easy to use, and following its name will create a view that is always immediately ready to be seen. Since it will be using JavaScript, there will be no time to wait for compiling to see if the code "works," on the view of the end-user. Rather, the code, or sequence of events defined by the user will be always ready to run unless a script notifying the user otherwise.\newline
 
