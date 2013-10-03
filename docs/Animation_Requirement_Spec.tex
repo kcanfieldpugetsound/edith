@@ -57,7 +57,7 @@ One of the components of the "Edith" system, a 2D web-based computer science tea
   \begin{enumerate}
    		 \item The ``Drawer" provides media creation instructions to the Animation System. (The instructions must follow the Animation System's specification.)
    		 \item The Animation System processes the instructions and pulls out the relevant data such as the sprite or image to draw, the animation method (e.g. rotate, move, etc.), parameters of the method, and associated sound files.
-		\item The Animation System creates media in a frame-based format. In other words, for each frame,the animations provided are a sequence of drawing commands for the canvas. The effect of viewing many ``frames" of drawing commands will be the same as watching a traditional format of video or film.
+		\item The Animation System creates media in a frame-based format. In other words, for each frame,the animations provided are a sequence of drawing commands for the canvas. The effect of viewing many frames of drawing commands will be the same as watching a traditional format of video or film.
 		\item The Animation System provides the drawing commands to the ``Taker" for final display on the canvas and at the same time plays the associated audio file(s), given in a standard digital-audio format such as .wav, .mp3, or another standard.
   \end{enumerate}
   \item Alternatives
@@ -89,8 +89,8 @@ One of the components of the "Edith" system, a 2D web-based computer science tea
   \end{enumerate}
   \item Flow of Events
   \begin{enumerate}
-      \item The ``Drawer" calls one of the playback control functions provided by the Animation System: play, pause, or seek. Addiional playback controls may be added. Note: The seek function is not the same as "scrubbing" through a video; the ``Programmer" will enter or select a time location in the animations and the media will play from that selected time.
-      \item The Animation System determines which frame(s) needs to be drawn based on the function called and gives that frame to the ``Taker" for final display. If the media is ``paused", the animations will stop and any associated audio will not be played.
+      \item The ``Drawer" calls one of the playback control functions provided by the Animation System: play, pause, or seek. Additional playback controls may be added. Note: The seek function is not the same as scrubbing through a video; the ``Programmer" will enter or select a time location in the animations and the media will play from that selected time.
+      \item The Animation System determines which frame(s) needs to be drawn based on the function called and gives that frame to the ``Taker" for final display. For instance, if the media is paused, the animations will stop and any associated audio will not be played.
   \end{enumerate}
   \item Alternatives
   \begin{enumerate}
