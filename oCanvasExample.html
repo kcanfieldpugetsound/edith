@@ -1,0 +1,58 @@
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ocanvas/2.5.0/ocanvas.min.js"></script>
+<html>
+<head>
+</head>
+<body>
+<p>Alright guys, so this oCanvas library actually uses a refernce to a HTML5 canvas which is AWSOME. Here is one of their examples from the website. 
+
+<a href = "http://ocanvas.org/docs">Take a look at the documentation</a>
+Speciffically, take a look at adding objects. Here is a link to<a href = "http://ocanvas.org/docs/Display-Objects/Sprite"> adding sprites</a> (notice .png ;))
+
+</p>
+
+<canvas id="canvas" width="506" height="400" style = "border:solid; position:none" ></canvas>
+<script>
+var canvas = oCanvas.create({
+    canvas: "#canvas",
+    fps: 60
+});
+
+var button = canvas.display.rectangle({
+    x: canvas.width / 2,
+    y: canvas.width / 5,
+    origin: { x: "center", y: "top" },
+    width: 300,
+    height: 100,
+    fill: "linear-gradient(315deg, #079, #013)",
+    shadow: "0 0 20px rgba(0,0,0, 0.8)"
+});
+canvas.addChild(button);
+
+var increase = true;
+button.bind("click tap", function () {
+    if (increase) {
+        increase = false;
+
+        this.stop().animate({
+            x: canvas.width / 2,
+            y: canvas.height / 1.5,
+            height: 300,
+            rotation: 180
+        });
+    } else {
+        increase = true;
+
+        this.stop().animate({
+            x: canvas.width / 2,
+            y: canvas.width / 5,
+            height: 100,
+            rotation: 0
+        });
+    }
+});
+</script>
+<p>Click the rectangle!</p>
+
+
+</body>
+</html>
