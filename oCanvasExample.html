@@ -12,6 +12,8 @@ Speciffically, take a look at adding objects. Here is a link to<a href = "http:/
 
 <canvas id="canvas" width="506" height="400" style = "border:solid; position:none" ></canvas>
 <script>
+var audioClip = new Audio("flyby.mp3"); 
+
 var canvas = oCanvas.create({
     canvas: "#canvas",
     fps: 60
@@ -32,7 +34,7 @@ var increase = true;
 button.bind("click tap", function () {
     if (increase) {
         increase = false;
-
+        audioClip.play();
         this.stop().animate({
             x: canvas.width / 2,
             y: canvas.height / 1.5,
@@ -41,7 +43,7 @@ button.bind("click tap", function () {
         });
     } else {
         increase = true;
-
+        audioClip.play();
         this.stop().animate({
             x: canvas.width / 2,
             y: canvas.width / 5,
