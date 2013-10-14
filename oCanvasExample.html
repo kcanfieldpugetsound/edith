@@ -3,10 +3,9 @@
 <head>
 </head>
 <body>
-<p>Alright guys, so this oCanvas library actually uses a refernce to a HTML5 canvas which is AWSOME. Here is one of their examples from the website. 
+<p> 
 
 <a href = "http://ocanvas.org/docs">Take a look at the documentation</a>
-Speciffically, take a look at adding objects. Here is a link to<a href = "http://ocanvas.org/docs/Display-Objects/Sprite"> adding sprites</a> (notice .png ;))
 
 </p>
 
@@ -15,45 +14,194 @@ Speciffically, take a look at adding objects. Here is a link to<a href = "http:/
 var audioClip = new Audio("flyby.mp3"); 
 
 var canvas = oCanvas.create({
-    canvas: "#canvas",
-    fps: 60
+    canvas: "#canvas"
 });
 
-var button = canvas.display.rectangle({
-    x: canvas.width / 2,
-    y: canvas.width / 5,
-    origin: { x: "center", y: "top" },
-    width: 300,
+var image = canvas.display.image({
+    x: canvas.width/2,
+    y: canvas.height/2,
+    width: 100,
     height: 100,
-    fill: "linear-gradient(315deg, #079, #013)",
-    shadow: "0 0 20px rgba(0,0,0, 0.8)"
+    origin: { x: "center", y: "center" },
+    image: "mario.jpg"
 });
-canvas.addChild(button);
 
-var increase = true;
-button.bind("click tap", function () {
-    if (increase) {
-        increase = false;
-        audioClip.play();
-        this.stop().animate({
-            x: canvas.width / 2,
-            y: canvas.height / 1.5,
-            height: 300,
-            rotation: 180
-        });
-    } else {
-        increase = true;
-        audioClip.play();
-        this.stop().animate({
-            x: canvas.width / 2,
-            y: canvas.width / 5,
-            height: 100,
-            rotation: 0
-        });
-    }
+// add the sprite onto the canvas
+canvas.addChild(image);
+
+var text = canvas.display.text({ 
+    x: 5, 
+    y: 5, 
+    align: "center", 
+    font: "bold 12px sans-serif", 
+    text: "We can make text objects too!", 
+    fill: "red"
 });
+
+canvas.addChild(text);
+
+
+function rotate()
+{
+        // get the type of rotation animation
+        var element = document.getElementById("select").value;
+        //alert(element);
+
+        image.animate({rotation: image.rotation + 360}, {
+        duration: 2000,
+        easing: element, //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
+
+function vertJump()
+{
+        // get the type of rotation animation
+        var element = document.getElementById("select").value;
+
+        image.animate({y: image.y - 100}, {
+        duration: 200,
+        easing: element, //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+
+        // now we need to go back down...
+        image.animate({y: image.y}, {
+        duration: 100,
+        easing: element, //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });    
+}
+
+function longJump(reverse)
+{
+        var xValue1 = image.x + 50;
+        var xValue2 = image.x + 100;
+        if(reverse)
+        {
+            xValue1 = xValue1 - 100;
+            xValue2 = xValue2 - 200;
+        }
+
+        // get the type of rotation animation
+        var element = document.getElementById("select").value;
+
+        image.animate({y: image.y - 100, x: xValue1   }, {
+        duration: 150,
+        easing: element, //see http://ocanvas.org/docs/Animation/animate
+        newQueue: true,
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+
+        // now we need to go back down...
+        image.animate({y: image.y, x: xValue2}, {
+        duration: 150,
+        easing: element, //see http://ocanvas.org/docs/Animation/animate
+        newQueue: true,
+        callback: function () {
+            canvas.redraw();
+        }
+    });    
+}
+
+function moveLeft()
+{
+        // get the type of rotation animation
+        var element = document.getElementById("select").value;
+        //alert(element);
+
+        image.animate({x: image.x - 20 }, {
+        duration: 100,
+        easing: element, //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
+function moveRight()
+{
+        // get the type of rotation animation
+        var element = document.getElementById("select").value;
+        //alert(element);
+
+        image.animate({x: image.x + 20 }, {
+        duration: 100,
+        easing: element, //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
+function moveDown()
+{
+        // get the type of rotation animation
+        var element = document.getElementById("select").value;
+        //alert(element);
+
+        image.animate({y: image.y + 20 }, {
+        duration: 100,
+        easing: element, //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
+function moveUp()
+{
+        // get the type of rotation animation
+        var element = document.getElementById("select").value;
+        //alert(element);
+
+        image.animate({y: image.y - 20 }, {
+        duration: 100,
+        easing: element, //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
+
 </script>
-<p>Click the rectangle!</p>
+<p>
+
+<select id = "select">
+<option value="ease-in-out-bounce">ease-in-out-bounce</option>
+  <option value="ease-in-out-cubic">cubic ease</option>
+  <option value="ease-in-sine">ease-in-sinee</option>
+  <option value="ease-in-out-elastic">ease-in-out-elastic</option>
+  <option value="ease-in-out-quad">ease-in-out-quad</option>
+</select>
+
+<button id = "rotate" onclick = "rotate()">Rotate 360</button>
+<button id = "vertJump" onclick = "vertJump()">Jump!</button>
+<button id = "longJump" onclick = "longJump(false)">Jump Forwards</button>
+<button id = "longJump" onclick = "longJump(true)">Jump Reverse</button>
+
+</br>
+<button id = "rotate" onclick = "moveLeft()">Left</button>
+<button id = "vertJump" onclick = "moveRight()">Right</button>
+<button id = "longJump" onclick = "moveUp()">Up</button>
+<button id = "longJump" onclick = "moveDown()">Down</button>
+
+
+
+</p>
+<p>When jumping we'd most likey use the "ease-in-out-bounce" easing function. (notice how much more smooth it is) There are many predefined easing functions in oCanvas already <a href = "http://ocanvas.org/docs/Animation/animate">(see here)</a> but we could always make our own! (Cramer, your the physics guy :p)
+</br>
+</br>
+Notice what rotate does with the ease-in-bounce compared to ease-in-out-quad.
+</br>
+</br>
+Take a look at the code! It pretty straight forward.
+</p>
 
 
 </body>
