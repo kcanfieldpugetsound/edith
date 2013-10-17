@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+*.synctex.gz
+*.aux
+*.log
+=======
 *.acn
 *.acr
 *.alg
@@ -33,3 +38,4 @@
 *.log
 *.aux
 *.gz
+>>>>>>> story_creator
