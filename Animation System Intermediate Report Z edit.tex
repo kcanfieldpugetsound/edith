@@ -1,0 +1,89 @@
+%http://cs.pugetsound.edu/~jross/courses/cs240/project/requirements/
+%Animation Group
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\begin{document}
+
+% Front Page
+\begin{titlepage}
+	\begin{center}
+	\huge  Edith \\
+	\vspace*{\fill}%
+ 	\huge \textsc{\textbf{Animation System \\Intermediate Report} }	
+	\bigskip 
+	\rule{130mm}{.1pt}
+	\textsc{\textbf{October 7, 2013 \\ Revised: October 7, 2013} \\ }	
+	\vspace*{\fill}%
+	Eric Lund \\
+	Kramer Canfield \\ 
+	Zeke Rosenberg \\
+	Calder Whiteley \\
+	Jon Youmans
+	\end{center}
+	\end{titlepage}
+
+% Next page
+
+%Executive Summary
+\section{\emph{Class Design and Interaction}}
+One of the components of the "Edith" system, a 2D web-based computer science teaching tool, is the Animation System. The Animation System module is important because it includes the core animation frameworks and specifications of how the animations and audio will be produced. In a visually-based programming environment, this module is clearly important because it provides animations without requiring the user to have any knowledge of a scripting language or computer graphics concepts. There are two use cases for this module: creating new media and navigating existing media. The media is specified by a different sub-system which delivers the instructions to the Animation System module. The Animation System processes the instructions (assuming the instructions are delivered correctly) and delivers the animations to another sub-system to be displayed on the screen as desired.
+
+
+%Design Specification
+\section{\emph{Design Specification}}%Create a section for the introduction
+	
+	\subsection{Purpose}
+        The Animation Module allows the user to render animations without knowledge of a scripting language. This is possible by applying pre-defined animation sets to image sprites. The module also allows the user to include audio with their animations. The module is intended to interpret animation instructions and render an animation sequence.
+
+% Use Cases
+\section{\emph{Functional Requirements}}
+	\subsection{``Use Case 1: Create Media"}
+\begin{enumerate}
+  \item Actor
+  \begin{enumerate}
+  		 \item ``Taker": The Edith sub-system that takes and displays our media.
+       \item ``Programmer": The individual who is using Edith through his/her web browser to learn how to program.
+  \end{enumerate}
+  
+
+
+  \subsection{``Use Case 2: Navigate Existing Media"}
+\begin{enumerate}
+  \item Actor
+  \begin{enumerate}
+      \item ``Drawer": The Edith sub-system providing us with sprites to animate and a list of media creation instructions.
+      \item ``Programmer": The individual who is using Edith through his/her web browser to learn how to program.
+  \end{enumerate}
+  \end{enumerate}
+
+\subsection{\emph{Animation System Structure}}%Create a section for the introduction
+
+\item 'translator' or 'reader'
+\begin{enumerate}
+\item The Animation System will be receiving instructions for animations in JSON format. This subsystem will take the instructions and actually call the functions with correct inputs. Our required interface is JSON, but more specifically a JSON entry with the following elements:
+\item \{"function name" : "jump(x1, x2, y1, y2)", "Image Name": "example.png", "sound name": "soundFile.mp3"\}
+\item There will be some instructions that might not have some of these fields; 'null' will be acceptable.
+
+\end{enumerate}
+\item 'animator'
+\begin{enumerate}
+\item Once we have parsed JSON inputs into instructions, the next subsystem will carry out those instructions and make calls to the HTML5 canvas. This subsystem will have several important interactions with other pieces.
+\item This system will take the raw data about instructions- with files waiting to be loaded until the canvas is ready to actually animate. For example, this system takes the instruction to move to the right, and 'remembers' the last position of an object, and the new position with x=x+5 (example). This information will be stored in a 'frame' array so that fastforward/rewind will allow the user to 'step' through the program if they desire.
+\item This system will also take the instructions and call them on the canvas. Therefore, this is where the majority of functions that will be written, and can be called if given the correct input.
+\end{enumerate}
+
+\item 'Frame Array'
+\begin{enumerate}
+\item The Frame Array subsystem simply holds a list of frames, each frame being one step of the animation process. These will be stored in an array so that input from buttons (done by another team) will allow the user to select a time to view from, and the frame array can then grab the necessary frames and display them. 
+\end{enumerate}
+
+\begin{enumerate}
+
+\end{enumerate}
+
+
+
+  \end{enumerate}
+
+	
+\end{document}
