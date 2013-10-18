@@ -71,20 +71,20 @@ We chose to use this architecture so that we would be able to easily retrieve th
 	The master object class includes all the data necessary for the Animation Framework to
 	animate an object. It has fields for: \\
 
-	\indent - Object's name ('name')
-	\indent - Object .png name ('pngName') \\
+	\indent - Object's name ('name') \\
+	\indent - Object's .png name ('pngName') \\
 	\indent - Object's Methods (Array of string 'methods') \\
 	\indent - Object's Timing Parameters (Dictionary of 'methods' at 'times') \\
 	
 	It should have the following methods: \\
 	\indent - "String getJSONRepresentation(String name)" -- Makes JSON representation of object named 'name' \\
-	\indent - Getters and Settors for each field \\
+	\indent - Getters and setters for each field \\
 	
 	\item Required Sharing Framework Interface
 	The Sharing Framework interface is a required interface that the Sharing Framework must make available to the Storyteller Framework for downloading objects and their associated methods, specified in JSON, from the server \\
 	
 	Methods: \\
-	\indent - fileHandle getPngObject(String name) -- Returns a .png file with the name, "name" from the server. Throws an exception if the file does not exist. \\
+	\indent - fileHandle getPngObject(String name) -- Returns a .png file with the name, "name," from the server. Throws an exception if the file does not exist. \\
 	\indent - String getJSONMethodsForObject(String name) -- Returns a JSON file with the methods associated with the object named, 'name'. \\
 	\indent - int getNumberOfImagesAndMethods() -- Returns the number of images and methods on the server. Useful for iterating through all images and/or methods. \\
 	
@@ -95,7 +95,7 @@ We chose to use this architecture so that we would be able to easily retrieve th
 	\indent - String getJSONRepresentationOfMethods(String storyObjectName) -- Returns a JSON representation of the new methods developed in the Visual Editor for the object named, 'storyObjectName'. \\
 	
 	\item Provided Visual Editor Interface \\
-	The Storycreator Framework will provide the Visual Editor Framework with an interface for accessing objects currently on the canvas for which it can develop new methods. The Visual Editor framework will most likely first call getAllObjectsOnCanvas to see which objects arecurrently on the canvas, then it will call getJSONRepresentationOfMethods for one of the available objects to get a JSON representation of the methods already attached to the given object.  \\
+	The Storycreator Framework will provide the Visual Editor Framework with an interface for accessing objects currently on the canvas for which it can develop new methods. The Visual Editor framework will most likely first call getAllObjectsOnCanvas to see which objects are currently on the canvas, then it will call getJSONRepresentationOfMethods for one of the available objects to get a JSON representation of the methods already attached to the given object.  \\
 	
 	Methods: \\
 	\indent String[] getAllObjectsOnCanvas() -- Returns an array of 'master' objects corresponding to all the objects on the canvas. \\
@@ -115,7 +115,7 @@ We chose to use this architecture so that we would be able to easily retrieve th
 We have no interface.  We will be implementing the Visual Editor interface in order to retrieve the parameters for modified methods.
 
 \subsection{Design details and restrictions}
-We will begin every file name with "sc."  We will also need a folder for each component of the system (Visual Editor, Sharing Framework, Object Creator, and Animation).  The Story Creator will also place the .png of the object in a folder labeled by name for that object.  This folder will contain another folder for all of the methods for the specific object(named by "objectNameMethods").  Where applicable we will also use camel casing instead of using underscore.
+We will begin every file name with "sc."  We will also need a folder for each component of the system (Visual Editor, Sharing Framework, Object Creator, and Animation Framework).  The Story Creator will also place the .png of the object in a folder labeled by name for that object.  This folder will contain another folder for all of the methods for the specific object(named by "objectNameMethods").  Where applicable we will also use camel casing instead of using underscore.
 
 
 %------------------------------------------------------------------------------------------------------
