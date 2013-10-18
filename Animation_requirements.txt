@@ -1,0 +1,50 @@
+# This is a test edit ##
+
+Requirements Specification ROUGH DRAFT in Plain Text
+Animation Team
+
+
+Cover Page-done
+Include a cover page with the title of the document, the name of your project and module, the names of all your team members, and other metadata (such as the date and a document revision number, if appropriate).
+
+Requirements Specification - Edith
+Animation System Team
+Zeke, Jon, Kramer, Calder, Eric
+9/23/13
+
+
+Abstract/Executive Summary - Zeke's rough draft
+A short (aim for 150 words) summary of the document. It should give a very brief summary of the content of the document: "This document describes..." Imagine in ten years someone finds this document and wants to know what's in it, but doesn't want to read the whole thing. That's what the summary should detail.
+
+This document details (will detail) what the animation system of the edith project will do. The animation system is responsible for taking input from
+several of the other groups and making sure that sprites that have been created by the user can actually be animated. There are really only several use
+cases for this system- The use case involving inputs of sprites and commands for them to execute (as well as the output the other systems will use), and
+a use case detailing how the user will be able to control the animation with a series of controls. The animation system will serve as a back end part of the
+system that enables animation to be specified by the user/other parts of the system.
+
+
+Introduction
+A 1-2 page description of the module you will be implementing. This section should explain the context for the software. What is the overall product? What is the module described here? What is its purpose? Give me a brief overview of what the software will do, and why anyone should care. In short: what are you building and why?
+
+Functional Requirements/Use Cases
+This will be the bulk of your specification. Describe in detail each use case for your module: what functions are supported by the system, and how will the user perform those functions? Each use case should be formally described, including these attributes:
+
+
+Use Case #1
+Name: back end animation
+Actors: 'drawer' (The system supplying us with sprites, etc), 'taker' (the other system that takes our canvas and puts it in general context
+preconditions/assumptions: Before this use case can occur the user has to have already used edith to design their own sprites and define what movements can
+occur. 
+Flow of Events
+
+
+
+Name: A descriptive name for the use case.
+Actor(s): A list of the actor(s) in the use case, with details if necessary.
+Preconditions/Assumptions: Any special conditions that need to have been met before the use case can occur.
+Flow of Events: The events that occur in this use case. These can be written in prose or as a list. You are welcome to use "subflows" if desired.
+Alternatives: Details and events that may deviate from the main flow of events. Most commonly will be what happens when something "goes wrong" or otherwise doesn't work exactly as expected.
+Postconditions: If appropriate, any details about the state of the system at the end of the use case.
+You should also include a UML use case diagram graphically detailing the relationship between your use cases. I like using Lucidchart for making UML diagrams, but Violet is also a good option for making simple diagrams.
+
+test
