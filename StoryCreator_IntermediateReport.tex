@@ -52,13 +52,7 @@ The interface should include methods for downloading a .png by name, downloading
 
 The Story Creator module will implement an interface for the Visual Editor module in order to retrieve the storyteller updated methods that may have changed from the original creation by the Animation module that was downloaded from the server with the object.  We will then attach the specific time and parameters provided by the storyteller to the unique object that is created by   the various components that the storyteller requires. \\ 
 
-
-
-%Allow Visual Editor to specify the parameters possibly???
-
-
 ------Possibly drop down box of the objects methods when right click
-------Possibly a class to retrieve information from Sharing and pass it around.
 
 \subsection{Design Rational}
 %Design Rationale-----------------------------
@@ -74,10 +68,10 @@ We chose to use this architecture so that we would be able to easily retrieve th
 \subsection{UML}
 
 \subsection{Design interface}
-The user interface will include a story panel which displays the story to the user and allows the user to interact with the objects displayed.  The Visual Editor will have a p
-
+We have no interface.  We will be implementing the Visual Editor interface in order to retrieve the parameters for modified methods.
 
 \subsection{Design details and restrictions}
+We will begin every file name with "sc."  We will also need a folder for each component of the system (Visual Editor, Sharing Framework, Object Creator, and Animation).  The Story Creator will also place the .png of the object in a folder labeled by name for that object.  This folder will contain another folder for all of the methods for the specific object(named by "objectNameMethods").  Where applicable we will also use camel casing instead of using underscore.
 
 
 %------------------------------------------------------------------------------------------------------
