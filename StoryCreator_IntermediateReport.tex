@@ -36,7 +36,7 @@ After the object is present on the story panel we will retrieve methods provided
 \subsection{Interfaces and Code Flow}
 
 \begin{verbatim}
-Sharing Framework interface 
+Sharing Framework interface
 ---Object and Methods 
 ------Provided interface for VE (objects and the methods they have)
 ---------Visual Editor interface for changing the methods 
@@ -52,6 +52,8 @@ The interface should include methods for downloading a .png by name, downloading
 
 The Story Creator module will implement an interface for the Visual Editor module in order to retrieve the storyteller updated methods that may have changed from the original creation by the Animation module that was downloaded from the server with the object.  We will then attach the specific time and parameters provided by the storyteller to the unique object that is created by   the various components that the storyteller requires. \\ 
 
+
+
 %Allow Visual Editor to specify the parameters possibly???
 
 
@@ -59,14 +61,21 @@ The Story Creator module will implement an interface for the Visual Editor modul
 ------Possibly a class to retrieve information from Sharing and pass it around.
 
 \subsection{Design Rational}
-
-
+%Design Rationale-----------------------------
+We chose to use this architecture so that we would be able to easily retrieve the objects from the Sharing Framework as well as the methods that the objects can use.  It will then be very simple to combine the objects taken from the Sharing Framework interface and combine it with the storyteller modified methods that the Visual Editor interface will provide.  
+%----------------------------------------------
 
 \subsection{Detailed formal spec}
-
+\begin{itemize}
+	\item Required Sharing Framework interface
+	\item Required Visual Editor interface
+	\item Provided Animation interface
+\end{itemize}
 \subsection{UML}
 
 \subsection{Design interface}
+The user interface will include a story panel which displays the story to the user and allows the user to interact with the objects displayed.  The Visual Editor will have a p
+
 
 \subsection{Design details and restrictions}
 
@@ -84,27 +93,6 @@ The Story Creator module will implement an interface for the Visual Editor modul
 \end{figure}
 
 Nothing..........
-
-
-
-
-%------------------------------------------------------------------------------------------------------
-%
-%----------------------------------------------------------------------------------------------------
-
-
-
-
-%------------------------------------------------------------------------------------------------------
-%
-%----------------------------------------------------------------------------------------------------
-
-
-
-
-%------------------------------------------------------------------------------------------------------
-%
-%----------------------------------------------------------------------------------------------------
 
 
 
