@@ -24,7 +24,7 @@
 %\author{Author Name}
 
 %For multiple authors:
-\author{Graham Baker, Walker Bohannan, Steve Marx, Vikram Nilakantan, Jessica Penick and Eli Spiegel}
+\author{Graham Baker, Walker Bohannan, Steve Marx, Vikram Nilakantan, \newline Jessica Penick and Eli Spiegel}
 
 
 %If using runnningheads you can abbreviate the author name on even pages:
@@ -54,22 +54,18 @@
 \section{Design Specification}
 
 \subsection{Model-View Controller}
-\subsubsection{}
 The architecture best for the visual editor module of Edith is the model-view-controller. This architecture, by splitting up the view controller and model into separate modules, allows us to separately tackle the issues of the draggable interface and the core structure of the editor. For example, a typical editor structure is a textbox where the programmer might directly edit code, but given that code has special syntax, we could “cut the middle man” so to speak and provide the structures for the language with editable parts. This model also allows us to later adjust the interface to meet non-functional requirements like “easy to use.”
  
 \subsection{Alternatives}
-\subsubsection{}
 Alternative architectures considered were the layered model and the pipe and filter model. The layered model also puts space between the interface and the core of the editor (the infrastructure layer) but the fact that each layer relies only on the layer beneath it is a kind of rigidity that will most likely hinder us later. Modifying the core editor module at later points in development more complicated than if each module was independent. The second alternative considered was the pipe and filter model, simply because it was a good structure for work flow. The model was rejected, however, because the scope of our module at this point is currently much narrower than document workflow. Our goal is to make a simple code editor and work our way into higher complexity from there. It is possible that we might later incorporate elements from these other models.
 
 \subsection{UML Class Diagram}
-\subsubsection{}
 \noindent\makebox[\textwidth]{%
 \includegraphics[width=1.8\textwidth]{visual_editor_uml.png}}
 
 \clearpage
 
 \subsection{User Interface Mock-Up}
-\subsubsection{}
 \noindent\makebox[\textwidth]{%
 \includegraphics[width=1.0\textwidth]{UI.png}}
 
@@ -78,7 +74,6 @@ Alternative architectures considered were the layered model and the pipe and fil
 \section{Reflections and Status Update}
 
 \subsection{Reflections on Development Process}
-\subsubsection{}
 Developing a clear understanding of the Visual Editor’s role in the overall Edith project has been the major challenge.   Of course, it is easy to say that understanding the VE module’s role and its interaction with other modules should have been an easy first step.  However, even with somewhat detailed requirements specifications, some of the language can be interpreted in different ways, resulting in miscommunication.  
 
 \subsubsection{}
@@ -107,17 +102,17 @@ A thorough UML class diagram (included) has been developed.  Also, a mock-up of 
 
 
 
-\begin{proposition}
-Insert proposition here
-\end{proposition}
+%\begin{proposition}
+%Insert proposition here
+%\end{proposition}
 
-\begin{proof}
-Insert proof here
-\end{proof}
+%\begin{proof}
+%Insert proof here
+%\end{proof}
 
 %The bibliography, done here without a bib file
 %This is the old BibTeX style for use with llncs.cls
-\bibliographystyle{splncs}
+%\bibliographystyle{splncs}
 
 %Alternative bibliography styles:
 %the following does the same as above except with alphabetic sorting
@@ -126,13 +121,13 @@ Insert proof here
 %\bibliographystyle{splncs03}
 %If you want to use a different BibTex style include [oribibl] in the document class line
 
-\begin{thebibliography}{1}
+%\begin{thebibliography}{1}
 %add each reference in here like this:
-\bibitem[RE1]{reference1}
-Author:
-Article/Book:
-Other info: (date) page numbers.
-\end{thebibliography}
+%\bibitem[RE1]{reference1}
+%Author:
+%Article/Book:
+%Other info: (date) page numbers.
+%\end{thebibliography}
 
 \end{document}
 
