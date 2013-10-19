@@ -12,7 +12,7 @@
  	\huge \textsc{\textbf{Animation System \\Intermediate Report} }	
 	\bigskip 
 	\rule{130mm}{.1pt}
-	\textsc{\textbf{October 7, 2013 \\ Revised: October 17, 2013} \\ }	
+	\textsc{\textbf{October 7, 2013 \\ Revised: October 18, 2013} \\ }	
 	\vspace*{\fill}%
 	Eric Lund \\
 	Kramer Canfield \\ 
@@ -65,6 +65,28 @@ The Parser is its own sub-system rather than being part of the Controller becaus
 \includegraphics[scale=.45]{AnimationUMLClassDiagram.png}
 \\UML Class Diagram
 \pagebreak
+
+%Glossary/References
+\section{\emph{Project Status}}
+\noindent\subsection{Current State of Implementation}
+\begin{itemize}
+	\item Our team has created an example HTML file which creates a HTML5 canvas with a sprite. This file implements the external HTML library, oCanvas which we use to bind several animations to the sprite. These animations can be invoked on the sprite by pressing the associated buttons. Even though this example simulates a final implementation of a scene, it provides a good example of how the sprite will react to certain animations in which we create. 
+
+The animations we have implemented are rotate 360 degrees, vertical jump, forward jump and a reverse jump. Each animation also has an ease function associated that when applied, effects the playback of the animations to create different effects. For example, our jump animation looks best with a ease-in-out-bounce ease and a rotation looks best with a smoother easing function. Until we get a JSON file from the Story Creator we will continue to add animation elements on our example. 
+	
+\noindent\subsection{Member Responsibilities}
+
+
+\begin{description}
+  \item[Kramer:] \hfill \\
+  Documentation with flexible responsibility between groups. Kramer will help where ever help is needed. 
+  \item[Zeke and Jon:] \hfill \\
+  JSON parsing
+  \item[Eric and Caluder:] \hfill \\
+  Scene array and controller
+\end{description}
+
+\end{itemize}
 
 %Glossary/References
 \section{\emph{Glossary/References}}
