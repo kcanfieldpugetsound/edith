@@ -53,16 +53,12 @@ The JSON methods and the png image downloaded from the server will need to be co
 
 The Story Creator module will utilize two interfaces for communicating with the Visual Editor. One is a provided interface that allows the visual editor to access which objects are on the canvas to attach methods to them. The other is a required interface that attaches methods developed in the Visual Editor to objects made in the canvas. This allows the objects downloaded from the server to be given new or updated methods. \\
 
+We chose to use this architecture so that we would be able to easily retrieve the objects from the Sharing Framework as well as the methods that the objects can use.  It will then be very simple to combine the objects taken from the Sharing Framework interface and combine it with the storyteller modified methods that the Visual Editor interface will provide.  \\
+
 We will then attach the specific time and parameters provided by the storyteller to the unique 'master' object that is created by the various components integrated in the story creator. \\ 
 
 This 'master' object will be sent to the Animation Framework via a provided Animation Interface. The interface, provided by the Storyteller Framework, will allow the Animation Framework to access a JSON representation of the objects developed in the Story Creator. \\
 
-------Possibly drop down box of the objects methods when right click
-
-\subsection{Design Rational}
-%Design Rationale-----------------------------
-We chose to use this architecture so that we would be able to easily retrieve the objects from the Sharing Framework as well as the methods that the objects can use.  It will then be very simple to combine the objects taken from the Sharing Framework interface and combine it with the storyteller modified methods that the Visual Editor interface will provide.  
-%----------------------------------------------
 
 %% Indents aren't working! I'll take a look later... -BR
 \subsection{Detailed formal spec}
@@ -115,23 +111,31 @@ We chose to use this architecture so that we would be able to easily retrieve th
 We have no interface.  We will be implementing the Visual Editor interface in order to retrieve the parameters for modified methods.
 
 \subsection{Design details and restrictions}
-We will begin every file name with "sc."  We will also need a folder for each component of the system (Visual Editor, Sharing Framework, Object Creator, and Animation Framework).  The Story Creator will also place the .png of the object in a folder labeled by name for that object.  This folder will contain another folder for all of the methods for the specific object(named by "objectNameMethods").  Where applicable we will also use camel casing instead of using underscore.
+We will begin every file name with "sc."  We will also need a folder for each component of the system (Visual Editor, Sharing Framework, Object Creator, and Animation Framework).  The Story Creator will also place the .png of the object in a folder labeled by name for that object.  This folder will contain another folder for all of the methods for the specific object(named by "objectNameMethods").  Where applicable we will also use camel casing instead of using underscore. \\ \\
 
 
 %------------------------------------------------------------------------------------------------------
 %PROJECT STATUS
 %----------------------------------------------------------------------------------------------------
-\section{Project Status}
+\section{Project Status} 
+\subsection{Current State of Project}
+The state of the Story Creator segment of Edith is currently still in the planning stage. In favor of making clear the responsibilities of our team we have worked mainly on notes and documentation of what we plan to implement.
 
+\subsection{Member Contribution}
+So far all team members have provided a contribution on all notes and documentation done, whether it be through the actual action of taking notes, creating detailed charts and graphs, and/or providing ideas and information that help clarify the process. For further implementation of the project the team members have agreed to discuss what components need to be done when, and distrubute the work according to availabilities and specialties.
+
+\subsection{Previous Development Process}
+As previously mentioned, the development process to date has been mostly collaborative on all work. For this work we mostly would take advantage of LaTeX for pdf generation and github in conjunction with e-mailing for collaboration. This procedure has proven to be very effective, especially in contrast to our initial idea of just working when in class, which was dismissed very early on. \\
+If given the chance to redo the project from the beginning, we feel that we would change how early we start the work and the attention we paid to the small details. \\
+The only challege we have met so far has been a struggle to understand and clarify the overall concept of our module. Through hard work and communication with Joel Ross we have gained clarity that should help us carry on further.
+
+\subsection{Timeline for Implementation}
 \begin{figure}[ht!]
 \centering
 \includegraphics{GanttChart.png}
 \caption{Gantt Chart}
 \label{overflow}
 \end{figure}
-
-Nothing..........
-
 
 
 
