@@ -43,6 +43,8 @@
 \begin{enumerate}
 \item The Scene Array sub-component of the Controller simply holds a list of frames, each frame being one step of the animation process. These will be stored in an array so that playback control functions (called by another team) will allow the user to select a time to view from, and the Scene Array can then get the necessary media and display it. 
 \end{enumerate}
+\end{enumerate}
+
 
 
 \noindent\subsection{Design Rationale}
@@ -59,8 +61,6 @@ The Parser is its own sub-system rather than being part of the Controller becaus
 
 
 
-\end{enumerate}
-
 \subsection{Activity Diagram}
 \includegraphics[scale=.45]{AnimationUMLClassDiagram.png}
 \\UML Class Diagram
@@ -69,8 +69,8 @@ The Parser is its own sub-system rather than being part of the Controller becaus
 %Glossary/References
 \section{\emph{Project Status}}
 \noindent\subsection{Current State of Implementation}
-\begin{itemize}
-	\item Our team has created an example HTML file which creates a HTML5 canvas with a sprite. This file implements the external HTML library, oCanvas which we use to bind several animations to the sprite. These animations can be invoked on the sprite by pressing the associated buttons. Even though this example simulates a final implementation of a scene, it provides a good example of how the sprite will react to certain animations in which we create. 
+
+Our team has created an example HTML file which creates a HTML5 canvas with a sprite. This file implements the external HTML library, oCanvas which we use to bind several animations to the sprite. These animations can be invoked on the sprite by pressing the associated buttons. Even though this example simulates a final implementation of a scene, it provides a good example of how the sprite will react to certain animations in which we create. 
 
 The animations we have implemented are rotate 360 degrees, vertical jump, forward jump and a reverse jump. Each animation also has an ease function associated that when applied, effects the playback of the animations to create different effects. For example, our jump animation looks best with a ease-in-out-bounce ease and a rotation looks best with a smoother easing function. Until we get a JSON file from the Story Creator we will continue to add animation elements on our example. 
 	
@@ -79,14 +79,23 @@ The animations we have implemented are rotate 360 degrees, vertical jump, forwar
 
 \begin{description}
   \item[Kramer:] \hfill \\
-  Documentation with flexible responsibility between groups. Kramer will help where ever help is needed. 
+  Documentation with flexible responsibility between groups. Kramer will help where ever help is needed. Kramer will also be the contact point for other groups.
   \item[Zeke and Jon:] \hfill \\
   JSON parsing
-  \item[Eric and Caluder:] \hfill \\
+  \item[Eric and Calder:] \hfill \\
   Scene array and controller
 \end{description}
 
-\end{itemize}
+\noindent\subsection{Implementation Timeline}
+\includegraphics[scale=.45]{AnimationGanttChart.png}
+\linebreak
+\linebreak
+Basic animation controls and the parsing of JSON instruction sets must be handled first in order to allow integration with other modules.  After the basic animations and JSON parsing are implemented the Frame Array will be added to allow playback controls.  The animation set will be expanded alongside the implementation of the Frame Array to provide the programmer with a wider variety of available animations.
+
+\noindent\subsection{Development Reflection}
+Scheduling has been difficult due to the members of the Animation Team's varied availability.  This has managed by team members uploading individual schedules to a group Google Calendar which then allows easier meeting planning.  The group has decided to use the oCanvas library to augment the built in canvas tool of HTML5.
+
+
 
 %Glossary/References
 \section{\emph{Glossary/References}}
