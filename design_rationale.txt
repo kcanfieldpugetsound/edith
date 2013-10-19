@@ -1,0 +1,9 @@
+The architecture best for the visual editor module of Edith is the model-view-controller. This architecture, by splitting up the view controller and model into separate modules, allows us to separately tackle the issues of the draggable interface and the core structure of the editor. For example, a typical editor structure is a textbox where the programmer might directly edit code, but given that code has special syntax, we could “cut the middle man” so to speak and provide the structures for the language with editable parts. This model also allows us to later adjust the interface to meet non-functional requirements like “easy to use.”
+
+Alternative architectures considered were the layered model and the pipe and filter model. The layered model also puts space between the interface and the core of the editor (the infrastructure layer) but the fact that each layer relies only on the layer beneath it is a kind of rigidity that will most likely hinder us later. Modifying the core editor module at later points in development more complicated than if each module was independent. The second alternative considered was the pipe and filter model, simply because it was a good structure for work flow. The model was rejected, however, because the scope of our module at this point is currently much narrower than document workflow. Our goal is to make a simple code editor and work our way into higher complexity from there. It is possible that we might later incorporate elements from these other models.
+
+
+
+
+
+
