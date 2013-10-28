@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	</head>
+	<script>
+	  $(function() {
+	  		//Initialize Sortable
+    		$( "#sortable" ).sortable({
+    				stop: function(event, ui) {
+    					var sorted = $("#sortable").sortable( "toArray" );
+    					console.log(sorted);
+    				}
+    			}
+    			);
+    		$( "#sortable" ).disableSelection();
+
+
+  		});
+  </script>
+
+	<body>
+		<ul id="sortable">
+		  <li id='1' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+		  <li id='2' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+		  <li id='3' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+		  <li id='4' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+		  <li id='5' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+		  <li id='6' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+		  <li id='7' class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+		</ul>
+	</body>
+</html>
