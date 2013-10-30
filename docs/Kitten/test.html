@@ -5,17 +5,26 @@
 <body>
 <script>
 
+var time = 0;
+
+function reset_time()
+{
+	time = window.prompt("Please enter a delay time:","0");
+	time = time*1000;
+}
+
 function myFunction()
 {
 	alert("Hello");
 }
 function wait(){
-	setTimeout(myFunction, 5000);
+	setTimeout(myFunction, time);
 }
 
 
 
 </script>
 <button onclick="wait()">Try it</button>
+<button onclick="reset_time()"> Set a new time </button>
 </body>
 </html>
