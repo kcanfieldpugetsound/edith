@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript" src="testInput.JSON"></script>
+</head>
+  <body>
+    <canvas id="canvas" width="506" height="400" style = "border:solid; position:none" ></canvas>
+    <p>Header...</p>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ocanvas/2.5.0/ocanvas.min.js"></script>
+<script>
+var canvas = oCanvas.create({
+    canvas: "#canvas"
+});
+
+var image = canvas.display.image({
+    x: canvas.width/2,
+    y: canvas.height/2,
+    width: 100,
+    height: 100,
+    origin: { x: "center", y: "center" },
+    image: mediaInput1["Image Name"]
+});
+
+// add the sprite onto the canvas
+canvas.addChild(image);
+
+function vertJump()
+
+{
+
+
+        image.animate({y: image.y - 100}, {
+        duration: 200,
+        easing:"ease-in-out-bounce",
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+
+        // now we need to go back down...
+        image.animate({y: image.y}, {
+        duration: 100,
+       easing:"ease-in-out-bounce",
+        callback: function () {
+            canvas.redraw();
+        }
+    });    
+}
+</script>
+
+    <script>
+      document.write("testing<br>");
+      document.write(mediaInput1["function name"]+"<br>");
+      document.write(mediaInput2["function name"]+"<br>");
+    </script>
+    
+    <script>
+      var inputFunction = mediaInput1["function name"];
+      var inputImage = mediaInput1["Image Name"];
+      var inputSound = mediaInput1["sound name"];
+
+      if (inputFunction == "jump") {
+      vertJump();
+      }
+
+      document.write("end of second script");
+
+</script>  
+      
+
+      
+    <p>...Footer</p>
+    
+  </body>
+</html>

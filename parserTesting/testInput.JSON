@@ -1,0 +1,3 @@
+mediaInput1 = {"function name" : "jump", "Image Name": "mario.jpg", "sound name": "flyby.mp3"}
+mediaInput2 = {"function name" : "movR", "Image Name": "mario.jpg", "sound name": "null"}
+mediaInput3 = {"function name" : "movL", "Image Name": "mario.jpg", "sound name": "null"}
