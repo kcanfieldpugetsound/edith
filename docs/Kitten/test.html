@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src='sharingTest.js' type = 'text/javascript'></script>
 </head>
-<body>
+<body id = 'body'>
 <script>
+
+var o = obj['functionName'];
 
 var time = 0;
 
@@ -17,14 +20,37 @@ function myFunction()
 {
 	alert("Hello");
 }
-function wait(){
+
+function wait()
+{
 	setTimeout(myFunction, time);
 }
 
+function addImage(src, width, height)
+{
+	var img = document.createElement("img");
+	img.src = src;
+	img.width = width;
+	img.height = height;
 
+	//var body = document.getElementById('body');
+	document.body.appendChild(img);
+}
+
+function makeNewObject() 
+{
+	var newObject = {'functionName': obj['functionName'], 'Time': time};
+	document.write('Function: ' + newObject['functionName']);
+	document.write('<br\><br\>');
+	document.write('Time: ' + newObject['Time']);
+	document.write('<br/><br/>');
+	//document.write('<img src = kitten.png/>');
+}
 
 </script>
 <button onclick="wait()">Try it</button>
 <button onclick="reset_time()"> Set a new time </button>
+<button onclick="makeNewObject()"> Build new JSON object </button>
+<button onclick="addImage('kitten.png', 300, 300)"> make image </button>
 </body>
 </html>
