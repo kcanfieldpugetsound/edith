@@ -32,6 +32,7 @@ function wait()
 
 function addImage(src, width, height)
 {
+	$("body").append('<audio autoplay> <source src="kittenMeow.mp3" type="audio/mpeg"> </audio>');
 	var img = document.createElement("img");
 	img.src = src;
 	img.width = width;
@@ -61,8 +62,6 @@ Set a new time:
 <button onclick="wait()">Try it</button>
 <button onclick="makeNewObject()"> Build new JSON object </button>
 <button onclick="addImage('kitten.png', 300, 300)"> make image </button>
-
-
 
 </body>
 </html>
