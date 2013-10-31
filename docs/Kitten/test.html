@@ -15,7 +15,8 @@ var time = 0;
 
 function reset_time()
 {
-	time = window.prompt("Please enter a delay time:","0");
+	time = $("#time").val();
+	//time = window.prompt("Please enter a delay time:","0");
 	time = time*1000;
 }
 
@@ -51,9 +52,17 @@ function makeNewObject()
 }
 
 </script>
+
+Set a new time:
+<input id = "time" name = "time" type = "text"/>
+<button onclick="reset_time()"> Submit </button>
+<br/><br/>
+
 <button onclick="wait()">Try it</button>
-<button onclick="reset_time()"> Set a new time </button>
 <button onclick="makeNewObject()"> Build new JSON object </button>
 <button onclick="addImage('kitten.png', 300, 300)"> make image </button>
+
+
+
 </body>
 </html>
