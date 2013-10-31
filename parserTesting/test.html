@@ -1,37 +1,54 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<script type="text/javascript" src="testInput.JSON"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script id = "json" type="text/javascript" src="testInput.JSON"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ocanvas/2.5.0/ocanvas.min.js"></script>
 </head>
-  <body>
-    <canvas id="canvas" width="506" height="400" style = "border:solid; position:none" ></canvas>
-    <p>Header...</p>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/ocanvas/2.5.0/ocanvas.min.js"></script>
-<script>
-var canvas = oCanvas.create({
-    canvas: "#canvas"
-});
+<body>
+<canvas id="canvas" width="506" height="400" style = "border:solid; position:none" ></canvas>
 
-var image = canvas.display.image({
+<!-- Create the oCanvas object and sprite -->
+<script>
+    var canvas = oCanvas.create({
+    canvas: "#canvas"
+    });
+
+    var image = canvas.display.image({
     x: canvas.width/2,
     y: canvas.height/2,
     width: 100,
     height: 100,
     origin: { x: "center", y: "center" },
     image: mediaInput1["Image Name"]
-});
+    });
 
-// add the sprite onto the canvas
-canvas.addChild(image);
+    // add the sprite onto the canvas
+    canvas.addChild(image);
+</script>
+
+
+
+
+      
+<!-- The Animation Blocks -->
+<script>
+function rotate()
+{
+        image.animate({rotation: image.rotation + 360}, {
+        duration: 2000,
+        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
 
 function vertJump()
-
 {
-
-
         image.animate({y: image.y - 100}, {
         duration: 200,
-        easing:"ease-in-out-bounce",
+        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
         callback: function () {
             canvas.redraw();
         }
@@ -40,36 +57,97 @@ function vertJump()
         // now we need to go back down...
         image.animate({y: image.y}, {
         duration: 100,
-       easing:"ease-in-out-bounce",
+        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
         callback: function () {
             canvas.redraw();
         }
     });    
 }
+
+function longJump(reverse)
+{
+        var xValue1 = image.x + 50;
+        var xValue2 = image.x + 100;
+        if(reverse)
+        {
+            xValue1 = xValue1 - 100;
+            xValue2 = xValue2 - 200;
+        }
+
+        image.animate({y: image.y - 100, x: xValue1   }, {
+        duration: 150,
+        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+        newQueue: true,
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+
+        // now we need to go back down...
+        image.animate({y: image.y, x: xValue2}, {
+        duration: 150,
+        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+        newQueue: true,
+        callback: function () {
+            canvas.redraw();
+        }
+    });    
+}
+
+function moveLeft()
+{
+        image.animate({x: image.x - 20 }, {
+        duration: 100,
+        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
+function moveRight()
+{
+        image.animate({x: image.x + 20 }, {
+        duration: 100,
+        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
+function moveDown()
+{
+        image.animate({y: image.y + 20 }, {
+        duration: 100,
+        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
+function moveUp()
+{
+        image.animate({y: image.y - 20 }, {
+        duration: 100,
+        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+        callback: function () {
+            canvas.redraw();
+        }
+    });
+}
 </script>
 
-    <script>
-      document.write("testing<br>");
-      document.write(mediaInput1["function name"]+"<br>");
-      document.write(mediaInput2["function name"]+"<br>");
-    </script>
-    
-    <script>
-      var inputFunction = mediaInput1["function name"];
-      var inputImage = mediaInput1["Image Name"];
-      var inputSound = mediaInput1["sound name"];
 
-      if (inputFunction == "jump") {
-      vertJump();
+<!-- Here is where we parse the JSON and do the animations -->
+<script>
+      if (mediaInput1["function name"] == "jump") 
+      {
+           alert("The parsed function name was" + mediaInput1["function name"] + " Press OK to continue");
+           vertJump();
       }
-
-      document.write("end of second script");
-
-</script>  
-      
+     
+</script>
 
       
-    <p>...Footer</p>
-    
-  </body>
+<p>End of example</p>  
+</body>
 </html>
