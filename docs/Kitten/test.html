@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src='sharingTest.js' type = 'text/javascript'></script>
+	<script src='objectTest.js' type = 'text/javascript'></script>
+	<script src='VETest.js' type = 'text/javascript'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
@@ -9,7 +10,9 @@
 <body id = 'body'>
 <script>
 
-var o = obj['functionName'];
+var o = obj['objectName'];
+var f = funct['functionName'];
+
 
 var time = 0;
 
@@ -44,10 +47,10 @@ function addImage(src, width, height)
 
 function makeNewObject() 
 {
-	var newObject = {'functionName': obj['functionName'], 'Time': time};
+	var newObject = {'objectName': obj['objectName'], 'functionName': funct['functionName'], 'Time': time};
+	$("body").append('<br\><br\> Object: ' + newObject['objectName']);
 	$("body").append('<br\><br\> Function: ' + newObject['functionName']);
-	$("body").append('<br\><br\>');
-	$("body").append('Time: ' + newObject['Time']);
+	$("body").append('<br\><br\> Time: ' + newObject['Time']);
 	$("body").append('<br/><br/>');
 	//document.write('<img src = kitten.png/>');
 }
