@@ -39,11 +39,12 @@
                    {'title':'var', 'jstext':'var'},
                    {'title':'end', 'jstext':'}'},
                   ]
+      var box = {};
+      var methods = 1;
       var startX = 20;
       var startY = 30;
       for (var i=0; i<tools.length; i++) {
-            alert(tools[i].jstext)
-            var x = new Kinetic.Rect({
+            box[i] = new Kinetic.Rect({
             x: startX,
             y: startY,
             width: 100,
@@ -57,16 +58,28 @@
 
 
           startY = startY + 65;
-          layer.add(x);
+          layer.add(box[i]);
+       
+          
+      }
 
-          x.on('dragend', function() {
-          if (x.getAttr('x')>=400) {
-          console.log(tools[i].jstext)
+      box[0].on('dragend', function() {
+          if (box[0].getAttr('x')>=400) {
+          console.log(tools[0].jstext)
           }
         });
 
-          
-      }
+      box[1].on('dragend', function() {
+          if (box[1].getAttr('x')>=400) {
+          console.log(tools[1].jstext)
+          }
+        });
+
+      box[2].on('dragend', function() {
+          if (box[2].getAttr('x')>=400) {
+          console.log(tools[2].jstext)
+          }
+        });
      
 
       var text = new Kinetic.Text({
