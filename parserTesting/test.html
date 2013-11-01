@@ -6,10 +6,11 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/ocanvas/2.5.0/ocanvas.min.js"></script>
 </head>
 <body>
+  <h3 style = "color:blue">Animation Team Demo </h3>
 <canvas id="canvas" width="506" height="400" style = "border:solid; position:none" ></canvas>
 <p>
 <button style = "width:100px" id = "rotate" onclick = "playAnimation()">Next Animation!</button>
-<button style = "width:100px" id = "vertJump" onclick = "playContinious()">Continious Play</button>
+<!-- <button style = "width:100px" id = "vertJump" onclick = "playContinious()">Continious Play</button> -->
 </p>
 
 <!-- Create the oCanvas object and sprite -->
@@ -24,7 +25,7 @@
     width: 100,
     height: 100,
     origin: { x: "center", y: "center" },
-    image: mediaInput1["Image Name"]
+    image: mediaInput1["imageName"]
     });
 
     // add the sprite onto the canvas
@@ -35,11 +36,21 @@
 <!-- The Animation Blocks -->
 <script>
 
+function sleep(milliseconds) {
+var start = new Date().getTime();
+while ((new Date().getTime() - start) < milliseconds){
+// Do nothing
+}
+}
 
-function rotate(dur)
+function rotate(dur, angle, clockwise)
 {
-      image.animate({rotation: image.rotation + 360}, {
-      duration: 2000,
+      if(!clockwise)
+      {
+          angle = -angle;
+      }
+      image.animate({rotation: image.rotation + angle}, {
+      duration: dur,
       easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
           canvas.redraw();
@@ -47,10 +58,10 @@ function rotate(dur)
       });
 }
 
-function jump(height, dur)
+function jump(dur, height)
 {
       image.animate({y: image.y - height}, {
-      duration: 200,
+      duration: dur,
       easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
           canvas.redraw();
@@ -59,7 +70,7 @@ function jump(height, dur)
 
       // now we need to go back down...
       image.animate({y: image.y}, {
-      duration: 100,
+      duration: dur,
       easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
           canvas.redraw();
@@ -67,18 +78,18 @@ function jump(height, dur)
   });    
 }
 
-function longJump(reverse, dur)
+function longJump(dur, height, distance, reverse)
 {
-      var xValue1 = image.x + 50;
-      var xValue2 = image.x + 100;
+      var xValue1 = image.x + distance/2;
+      var xValue2 = image.x + distance;
       if(reverse)
       {
-          xValue1 = xValue1 - 100;
-          xValue2 = xValue2 - 200;
+          xValue1 = xValue1 - distance;
+          xValue2 = xValue2 - distance*2;
       }
 
-      image.animate({y: image.y - 100, x: xValue1   }, {
-      duration: 150,
+      image.animate({y: image.y - height, x: xValue1}, {
+      duration: dur,
       easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
       newQueue: true,
       callback: function () {
@@ -88,7 +99,7 @@ function longJump(reverse, dur)
 
       // now we need to go back down...
       image.animate({y: image.y, x: xValue2}, {
-      duration: 150,
+      duration: dur,
       easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
       newQueue: true,
       callback: function () {
@@ -97,10 +108,10 @@ function longJump(reverse, dur)
       });    
 }
 
-function movL(dur, xVal)
+function movL(dur, distance)
 {
-      image.animate({x: image.x - 20 }, {
-      duration: 100,
+      image.animate({x: image.x - distance }, {
+      duration: dur,
       easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
           canvas.redraw();
@@ -109,8 +120,6 @@ function movL(dur, xVal)
 }
 function movR(dur, distance)
 {
-      alert("dur" +dur);
-      alert("xval" +distance);
       image.animate({x: image.x + distance}, {
       duration: dur,
       easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
@@ -119,20 +128,20 @@ function movR(dur, distance)
       }
       });
 }
-function movD(dur, xVal)
+function movD(dur, height)
 {
-      image.animate({y: image.y + 20 }, {
-      duration: 100,
+      image.animate({y: image.y + height }, {
+      duration: dur,
       easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
           canvas.redraw();
       }
       });
 }
-function movU(dur, xVal)
+function movU(dur, height)
 {
-      image.animate({y: image.y - 20 }, {
-      duration: 100,
+      image.animate({y: image.y - height }, {
+      duration: dur,
       easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
           canvas.redraw();
@@ -147,17 +156,76 @@ function movU(dur, xVal)
 
       function playContinious()
       {
+
           if (mediaInput1["functionName"] == "jump") 
           {
-              jump();
+              win = new Audio(mediaInput1["soundName"]);
+              win.play();
+              jump(mediaInput1["duration"],mediaInput1["height"]);
+
+
           }
-          if (mediaInput2["functionName"] == "movR")
+          
+          //higher jump
+          if (mediaInput2["functionName"] == "jump") 
           {
-               movR(mediaInput2["Duration"], mediaInput2["xVal"]);
-          } 
-          //
-          //
-          //
+              win = new Audio(mediaInput2["soundName"]);
+              win.play();
+              jump(mediaInput2["duration"],mediaInput2["height"]);
+
+          }
+          
+          //move right slowly
+          if (mediaInput3["functionName"] == "movR") 
+          {
+              movR(mediaInput3["duration"],mediaInput3["distance"]);
+
+      
+          }
+
+          //move left FAST
+          if (mediaInput4["functionName"] == "movL") 
+          {
+              movL(mediaInput4["duration"],mediaInput4["distance"]);
+          }
+
+          //long jump right
+          if (mediaInput5["functionName"] == "longJump") 
+          {
+              longJump(mediaInput5["duration"],mediaInput5["height"],mediaInput5["distance"],false);
+          }
+
+           //move down
+          if (mediaInput6["functionName"] == "movD") 
+          {
+              movD(mediaInput6["duration"],mediaInput6["height"]);
+          }
+
+           //move left
+          if (mediaInput7["functionName"] == "movL") 
+          {
+              movL(mediaInput7["duration"],mediaInput7["distance"]);
+          }
+
+          //move up
+          if (mediaInput8["functionName"] == "movU") 
+          {
+              movU(mediaInput8["duration"],mediaInput8["height"]);
+          }
+
+          //rotate clockwise 360
+          if (mediaInput9["functionName"] == "rotate") 
+          {
+              rotate(mediaInput9["duration"],mediaInput9["angle"],mediaInput9["clockwise"]);
+          }
+
+          //rotate COUNTERclockwise 360
+          if (mediaInput10["functionName"] == "rotate") 
+          {
+              rotate(mediaInput10["duration"],mediaInput10["angle"],mediaInput10["clockwise"]);
+              i = 0;
+          }
+
       } 
 
       var i = 0;
@@ -170,7 +238,7 @@ function movU(dur, xVal)
           {
               win = new Audio(mediaInput1["soundName"]);
               win.play();
-              jump(mediaInput1["height"]);
+              jump(mediaInput1["duration"],mediaInput1["height"]);
           }
 
           //higher jump
@@ -178,32 +246,79 @@ function movU(dur, xVal)
           {
               win = new Audio(mediaInput2["soundName"]);
               win.play();
-              jump(mediaInput2["height"]);
+              jump(mediaInput2["duration"],mediaInput2["height"]);
           }
 
-          //rove right slowly
+          //move right slowly
           if (mediaInput3["functionName"] == "movR" && i == 3) 
           {
-              movR(mediaInput3["Duration"],mediaInput3["distance"]);
+              movR(mediaInput3["duration"],mediaInput3["distance"]);
+      
+          }
+
+          //move left FAST
+          if (mediaInput4["functionName"] == "movL" && i == 4) 
+          {
+              movL(mediaInput4["duration"],mediaInput4["distance"]);
+          }
+
+          //long jump right
+          if (mediaInput5["functionName"] == "longJump" && i == 5) 
+          {
+              longJump(mediaInput5["duration"],mediaInput5["height"],mediaInput5["distance"],false);
+          }
+
+           //move down
+          if (mediaInput6["functionName"] == "movD" && i == 6) 
+          {
+              movD(mediaInput6["duration"],mediaInput6["height"]);
+          }
+
+           //move left
+          if (mediaInput7["functionName"] == "movL" && i == 7) 
+          {
+              movL(mediaInput7["duration"],mediaInput7["distance"]);
+          }
+
+          //move up
+          if (mediaInput8["functionName"] == "movU" && i == 8) 
+          {
+              movU(mediaInput8["duration"],mediaInput8["height"]);
+            
+          }
+
+          //rotate clockwise 360
+          if (mediaInput9["functionName"] == "rotate" && i == 9) 
+          {
+              rotate(mediaInput9["duration"],mediaInput9["angle"],mediaInput9["clockwise"]);
+          }
+
+          //rotate COUNTERclockwise 360
+          if (mediaInput10["functionName"] == "rotate" && i == 10) 
+          {
+              rotate(mediaInput10["duration"],mediaInput10["angle"],mediaInput10["clockwise"]);
               i = 0;
           }
 
-
-
-
-
-
-
       } 
 
-
-
-</script>
-<script>
-
 </script>
 
-      
-<p>End of example</p>  
+
+
+<p>
+  mediaInput1 = {"functionName" : "jump", "imageName": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "duration": 100, "height": 50} </br>
+mediaInput2 = {"functionName" : "jump", "imageName": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "duration": 100, "height": 150}  </br>
+mediaInput3 = {"functionName" : "movR", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "distance": 175}  </br>
+mediaInput4 = {"functionName" : "movL", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "distance": 350}  </br>
+mediaInput5 = {"functionName" : "longJump", "imageName": "mario.jpg", "soundName": "null", "duration": 200, "distance": 350, "height": 85}  </br>
+mediaInput6 = {"functionName" : "movD", "imageName": "mario.jpg", "soundName": "null", "duration": 100, "height": 150}  </br>
+mediaInput7 = {"functionName" : "movL", "imageName": "mario.jpg", "soundName": "null", "duration": 100, "distance": 175}  </br>
+mediaInput8 = {"functionName" : "movU", "imageName": "mario.jpg", "soundName": "null", "duration": 100, "height": 150}  </br>
+mediaInput9 = {"functionName" : "rotate", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "angle": 360, "clockwise": true}  </br>
+mediaInput10 = {"functionName" : "rotate", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "angle": 360, "clockwise": false}  </br>
+
+</p>
+
 </body>
 </html>
