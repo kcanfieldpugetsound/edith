@@ -104,10 +104,10 @@ function moveLeft()
         }
     });
 }
-function moveRight()
+function moveRight(int dur, int xVal)
 {
-        image.animate({x: image.x + 20 }, {
-        duration: 100,
+        image.animate({x: image.x + xVal }, {
+        duration: dur,
         easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
         callback: function () {
             canvas.redraw();
@@ -143,6 +143,11 @@ function moveUp()
       {
            alert("The parsed function name was" + mediaInput1["function name"] + " Press OK to continue");
            vertJump();
+      }
+      if (mediaInput2["function name"] == "moveR")
+      {
+            alert(""The parsed function name was" + mediaInput2["function name"] + " Press OK to continue");
+            moveRight(duration, xVal);
       }
      
 </script>
