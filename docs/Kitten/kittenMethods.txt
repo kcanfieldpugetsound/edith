@@ -1,1 +1,0 @@
- {“function name” : “jump(x1, x2, y1, y2)”, “Image Name”: “ex- ample.png”, “Audio File Name”: “soundFile.mp3”}
