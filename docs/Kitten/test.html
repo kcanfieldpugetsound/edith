@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<script src='objectTest.js' type = 'text/javascript'></script>
 	<script src='VETest.js' type = 'text/javascript'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -10,17 +11,16 @@
 <body id = 'body'>
 <script>
 
-var o = obj['objectName'];
-var f = funct['functionName'];
+var o = obj['objectName'];			//Retrieve the name of the object
+var f = funct['functionName'];		//Retrieve the name of the function for the object
 
 
 var time = 0;
 
 function reset_time()
 {
-	time = $("#time").val();
-	//time = window.prompt("Please enter a delay time:","0");
-	time = time*1000;
+	time = $("#time").val();		//Retrieve the time that the user input
+	time = time*1000;				//Multipy by 1000 to get in ms for the setTimeout function
 }
 
 function myFunction()
@@ -30,12 +30,12 @@ function myFunction()
 
 function wait()
 {
-	setTimeout(myFunction, time);
+	setTimeout(myFunction, time);		//Pair the user's time with the function they are using it with
 }
 
 function addImage(src, width, height)
 {
-	$("body").append('<audio autoplay> <source src="kittenMeow.mp3" type="audio/mpeg"> </audio>');
+	$("body").append('<audio autoplay> <source src="kittenMeow.mp3" type="audio/mpeg"> </audio>');		//The kitten MEOWS!!!
 	var img = document.createElement("img");
 	img.src = src;
 	img.width = width;
@@ -47,12 +47,11 @@ function addImage(src, width, height)
 
 function makeNewObject() 
 {
-	var newObject = {'objectName': obj['objectName'], 'functionName': funct['functionName'], 'Time': time};
-	$("body").append('<br\><br\> Object: ' + newObject['objectName']);
+	var newObject = {'objectName': obj['objectName'], 'functionName': funct['functionName'], 'Time': time};		//Create a new object with 
+	$("body").append('<br\><br\> Object: ' + newObject['objectName']);											//the time to make it do something
 	$("body").append('<br\><br\> Function: ' + newObject['functionName']);
 	$("body").append('<br\><br\> Time: ' + newObject['Time']);
 	$("body").append('<br/><br/>');
-	//document.write('<img src = kitten.png/>');
 }
 
 </script>
