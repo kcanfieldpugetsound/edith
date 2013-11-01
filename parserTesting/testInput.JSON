@@ -1,4 +1,5 @@
-mediaInput1 = {"function name" : "jump", "Image Name": "mario.jpg", "sound name": "flyby.mp3"}
-mediaInput2 = {"function name" : "movR", "Image Name": "mario.jpg", "sound name": "null", "Duration" : 100, "xVal" : 20}
-mediaInput3 = {"function name" : "movL", "Image Name": "mario.jpg", "sound name": "null"}
+mediaInput1 = {"functionName" : "jump", "Image Name": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "height": "50"}
+mediaInput2 = {"functionName" : "jump", "Image Name": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "height": "200"}
+mediaInput3 = {"functionName" : "movR", "Image Name": "mario.jpg", "soundName": "null", "Duration": "3000", "distance": "10"}
+mediaInput4 = {"functionName" : "movL", "Image Name": "mario.jpg", "soundName": "null"}
 

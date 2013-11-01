@@ -7,6 +7,10 @@
 </head>
 <body>
 <canvas id="canvas" width="506" height="400" style = "border:solid; position:none" ></canvas>
+<p>
+<button style = "width:100px" id = "rotate" onclick = "playAnimation()">Next Animation!</button>
+<button style = "width:100px" id = "vertJump" onclick = "playContinious()">Continious Play</button>
+</p>
 
 <!-- Create the oCanvas object and sprite -->
 <script>
@@ -28,128 +32,175 @@
 </script>
 
 
-
-
-      
 <!-- The Animation Blocks -->
 <script>
-function rotate()
+
+
+function rotate(dur)
 {
-        image.animate({rotation: image.rotation + 360}, {
-        duration: 2000,
-        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
-        callback: function () {
-            canvas.redraw();
-        }
-    });
+      image.animate({rotation: image.rotation + 360}, {
+      duration: 2000,
+      easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+          canvas.redraw();
+      }
+      });
 }
 
-function vertJump()
+function jump(height, dur)
 {
-        image.animate({y: image.y - 100}, {
-        duration: 200,
-        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
-        callback: function () {
-            canvas.redraw();
-        }
-    });
+      image.animate({y: image.y - height}, {
+      duration: 200,
+      easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+          canvas.redraw();
+      }
+  });
 
-        // now we need to go back down...
-        image.animate({y: image.y}, {
-        duration: 100,
-        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
-        callback: function () {
-            canvas.redraw();
-        }
-    });    
+      // now we need to go back down...
+      image.animate({y: image.y}, {
+      duration: 100,
+      easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+          canvas.redraw();
+      }
+  });    
 }
 
-function longJump(reverse)
+function longJump(reverse, dur)
 {
-        var xValue1 = image.x + 50;
-        var xValue2 = image.x + 100;
-        if(reverse)
-        {
-            xValue1 = xValue1 - 100;
-            xValue2 = xValue2 - 200;
-        }
+      var xValue1 = image.x + 50;
+      var xValue2 = image.x + 100;
+      if(reverse)
+      {
+          xValue1 = xValue1 - 100;
+          xValue2 = xValue2 - 200;
+      }
 
-        image.animate({y: image.y - 100, x: xValue1   }, {
-        duration: 150,
-        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
-        newQueue: true,
-        callback: function () {
-            canvas.redraw();
-        }
-    });
+      image.animate({y: image.y - 100, x: xValue1   }, {
+      duration: 150,
+      easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+      newQueue: true,
+      callback: function () {
+          canvas.redraw();
+      }
+      });
 
-        // now we need to go back down...
-        image.animate({y: image.y, x: xValue2}, {
-        duration: 150,
-        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
-        newQueue: true,
-        callback: function () {
-            canvas.redraw();
-        }
-    });    
+      // now we need to go back down...
+      image.animate({y: image.y, x: xValue2}, {
+      duration: 150,
+      easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+      newQueue: true,
+      callback: function () {
+          canvas.redraw();
+      }
+      });    
 }
 
-function moveLeft()
+function movL(dur, xVal)
 {
-        image.animate({x: image.x - 20 }, {
-        duration: 100,
-        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
-        callback: function () {
-            canvas.redraw();
-        }
-    });
+      image.animate({x: image.x - 20 }, {
+      duration: 100,
+      easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+          canvas.redraw();
+      }
+      });
 }
-function moveRight(int dur, int xVal)
+function movR(dur, distance)
 {
-        image.animate({x: image.x + xVal }, {
-        duration: dur,
-        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
-        callback: function () {
-            canvas.redraw();
-        }
-    });
+      alert("dur" +dur);
+      alert("xval" +distance);
+      image.animate({x: image.x + distance}, {
+      duration: dur,
+      easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+          canvas.redraw();
+      }
+      });
 }
-function moveDown()
+function movD(dur, xVal)
 {
-        image.animate({y: image.y + 20 }, {
-        duration: 100,
-        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
-        callback: function () {
-            canvas.redraw();
-        }
-    });
+      image.animate({y: image.y + 20 }, {
+      duration: 100,
+      easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+          canvas.redraw();
+      }
+      });
 }
-function moveUp()
+function movU(dur, xVal)
 {
-        image.animate({y: image.y - 20 }, {
-        duration: 100,
-        easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
-        callback: function () {
-            canvas.redraw();
-        }
-    });
+      image.animate({y: image.y - 20 }, {
+      duration: 100,
+      easing: "ease-in-sine", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+          canvas.redraw();
+      }
+      });
 }
 </script>
 
 
 <!-- Here is where we parse the JSON and do the animations -->
 <script>
-      if (mediaInput1["function name"] == "jump") 
+
+      function playContinious()
       {
-           alert("The parsed function name was" + mediaInput1["function name"] + " Press OK to continue");
-           vertJump();
-      }
-      if (mediaInput2["function name"] == "moveR")
+          if (mediaInput1["functionName"] == "jump") 
+          {
+              jump();
+          }
+          if (mediaInput2["functionName"] == "movR")
+          {
+               movR(mediaInput2["Duration"], mediaInput2["xVal"]);
+          } 
+          //
+          //
+          //
+      } 
+
+      var i = 0;
+      var win;
+      function playAnimation()
       {
-            alert(""The parsed function name was" + mediaInput2["function name"] + " Press OK to continue");
-            moveRight(duration, xVal);
-      }
-     
+          i++;
+          //jump
+          if (mediaInput1["functionName"] == "jump" && i == 1) 
+          {
+              win = new Audio(mediaInput1["soundName"]);
+              win.play();
+              jump(mediaInput1["height"]);
+          }
+
+          //higher jump
+          if (mediaInput2["functionName"] == "jump" && i == 2) 
+          {
+              win = new Audio(mediaInput2["soundName"]);
+              win.play();
+              jump(mediaInput2["height"]);
+          }
+
+          //rove right slowly
+          if (mediaInput3["functionName"] == "movR" && i == 3) 
+          {
+              movR(mediaInput3["Duration"],mediaInput3["distance"]);
+              i = 0;
+          }
+
+
+
+
+
+
+
+      } 
+
+
+
+</script>
+<script>
+
 </script>
 
       
