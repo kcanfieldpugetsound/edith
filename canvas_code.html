@@ -12,7 +12,82 @@
   <body>
     <div id="container"></div>
     <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script defer="defer">
+     
+     $(function() {
+        var stage = new Kinetic.Stage({
+          container: 'container',
+          width: 800,
+          height: 800,
+        });
+        var layer = new Kinetic.Layer();
+        stage.add(layer);
+
+         var line = new Kinetic.Line({
+            x: 200,
+            y: 0,
+            points: [200, 0, 200,800],
+            stroke: 'red'
+         });
+        layer.add(line);
+
+        var startX = 20;
+        var startY = 30;
+
+         var tools = [{'title':'method', 'jstext':'function newMethod() {'},
+                   {'title':'var', 'jstext':'var'},
+                   {'title':'end', 'jstext':'}'},
+                  ]
+
+        for (var i = 0; i < tools.length; i++) {
+          newRect(startX, startY, tools[i].title);
+          startY = startY + 65;
+        }
+
+        function newRect(x, y, id) {
+          var rect = new Kinetic.Rect({
+            id: id,
+            x: startX,
+            y: startY,
+            width: 100,
+            height: 50,
+            fill: '#00D2FF',
+            stroke: 'black',
+            strokeWidth: 3,
+            draggable: true,
+            offset: 10
+          });
+
+          //have the rectangles save its orginal XY
+          rect.orginalX = x;
+          rect.orginalY = y;
+          //on dragend, calc the rect has passed the threshold
+          rect.on("dragend", function() {
+            //Sets the threshold and rules below.
+            var dx = this.getX()
+            if (dx > 400) {
+            //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER
+              var id = this.attrs.id;
+              alert(id);
+              //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
+              for (var i = 0; i < tools.length; i++) {
+                if (id == tools[i].title) {
+                  console.log(tools[i].jstext);
+                }
+              }
+            // END THAT
+            }
+
+          });
+
+          layer.add(rect);
+          layer.draw();
+
+        }
+     });
+
+      /*
       function writeMessage(message) {
         text.setText(message);
         layer.draw();
@@ -91,6 +166,8 @@
         text: '',
         fill: 'black'
       });
+
+      */
       
      /* var box = new Kinetic.Rect({
         x: 15,
@@ -179,7 +256,7 @@ layer.add(box3);
 
 */
 
-stage.add(layer);
+//stage.add(layer);
 
     </script>
   </body>
