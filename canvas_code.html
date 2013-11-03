@@ -46,8 +46,11 @@
         }
 
         function newRect(x, y, id) {
-          var rect = new Kinetic.Rect({
+          var group = new Kinetic.Group({
             id: id,
+            draggable: true,
+          })
+          var rect = new Kinetic.Rect({
             x: startX,
             y: startY,
             width: 100,
@@ -55,15 +58,24 @@
             fill: '#00D2FF',
             stroke: 'black',
             strokeWidth: 3,
-            draggable: true,
             offset: 10
           });
+
+          var simpleText = new Kinetic.Text({
+            x: startX + 10,
+            y: startY + 10,
+            text: id,
+            fontSize: 12,
+            fontFamily: 'Calibri',
+            stroke: 'black',
+            strokeWidth: 2,
+        });
 
           //have the rectangles save its orginal XY
           rect.orginalX = x;
           rect.orginalY = y;
           //on dragend, calc the rect has passed the threshold
-          rect.on("dragend", function() {
+          group.on("dragend", function() {
             //Sets the threshold and rules below.
             var dx = this.getX()
             if (dx > 400) {
@@ -80,8 +92,9 @@
             }
 
           });
-
-          layer.add(rect);
+          group.add(rect);
+          group.add(simpleText);
+          layer.add(group);
           layer.draw();
 
         }
