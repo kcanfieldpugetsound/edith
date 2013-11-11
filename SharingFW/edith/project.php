@@ -17,9 +17,9 @@
 		<div class = "contentBox2">
 			<div id = "contentHeader">
 				<form name = "codeInfo" id = "codeInfo" method = "post" action = "/edith/functions/save.php">
-					username:<input type = "text" size = "25" name = "code" id="code" />
-          			password:<input type = "text" size = "25" name = "projectName" id="projectName" /><br/> <br/>
-         			<input type="submit" value="Go!">
+          	project name:<input type = "text" size = "25" name = "projectName" id="projectName" /></br>
+            <textarea name="code" id="code" style="width: 870px; height: 200px;"></textarea>
+         		<input type="submit" value="Go!">
 				</form>
         	</div>
         </div>
