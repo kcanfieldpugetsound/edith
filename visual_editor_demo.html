@@ -36,6 +36,7 @@
       });
       layer.add(line);
 
+<<<<<<< HEAD
       var tools = [{'title':'Method', 'jstext':'function newMethod() {'},
                    {'title':'Variable', 'jstext':'var'},
                    {'title':'End', 'jstext':'}'},
@@ -43,10 +44,18 @@
       var box = {};
       var boxText = {};
       var group = {};
+=======
+      var tools = [{'title':'method', 'jstext':'function newMethod() {'},
+                   {'title':'var', 'jstext':'var'},
+                   {'title':'end', 'jstext':'}'},
+                  ]
+      var box = {};
+>>>>>>> 70867e3f57488bb34c64ab2f769c63c3ef74a4e5
       var methods = 1;
       var startX = 20;
       var startY = 30;
       for (var i=0; i<tools.length; i++) {
+<<<<<<< HEAD
             group[i] = new Kinetic.Group({
               x: startX,
               y: startY,
@@ -62,6 +71,8 @@
               align: 'left',
             });
 
+=======
+>>>>>>> 70867e3f57488bb34c64ab2f769c63c3ef74a4e5
             box[i] = new Kinetic.Rect({
             x: startX,
             y: startY,
@@ -75,6 +86,7 @@
           });
 
 
+<<<<<<< HEAD
           group[i].add(box[i]);
           group[i].add(boxText[i]);
           startY = startY + 65;
@@ -136,6 +148,31 @@
           console.log(tools[2].jstext)
         }
       });
+=======
+          startY = startY + 65;
+          layer.add(box[i]);
+       
+          
+      }
+
+      box[0].on('dragend', function() {
+          if (box[0].getAttr('x')>=400) {
+          console.log(tools[0].jstext)
+          }
+        });
+
+      box[1].on('dragend', function() {
+          if (box[1].getAttr('x')>=400) {
+          console.log(tools[1].jstext)
+          }
+        });
+
+      box[2].on('dragend', function() {
+          if (box[2].getAttr('x')>=400) {
+          console.log(tools[2].jstext)
+          }
+        });
+>>>>>>> 70867e3f57488bb34c64ab2f769c63c3ef74a4e5
      
 
       var text = new Kinetic.Text({
@@ -234,7 +271,11 @@ layer.add(box3);
 
 */
 
+<<<<<<< HEAD
       stage.add(layer);
+=======
+stage.add(layer);
+>>>>>>> 70867e3f57488bb34c64ab2f769c63c3ef74a4e5
 
     </script>
   </body>
