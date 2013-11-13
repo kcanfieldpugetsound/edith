@@ -20,12 +20,15 @@ $idRecords = mysql_query($selectID, $conn);
 //Create a table to display them nicely
 echo "<table border = '1' cellpadding = 20 bordercolor = white align = center><tr>";
 //The loop to print them out
-while ($theRecord = mysql_fetch_row($records) and ($theIDRecord = mysql_fetch_row($idRecords)){
+while ($theRecord = mysql_fetch_row($records) and ($theIDRecord = mysql_fetch_row($idRecords))
+{
 	echo "<tr>";
 	//Go through each project name
-    for ($i = 0; $i < count($theRecord); $i++){
+    for ($i = 0; $i < count($theRecord); $i++)
+    {
     	//Go through each projectID
-    	for ($j = 0; $j < count($theIDRecord); $j++){
+    	for ($j = 0; $j < count($theIDRecord); $j++)
+        {
     		//Print out name of projecht in a link and have the link be the ID of the project to load.
         	echo "<td> <a href= 'load.php?action=add&id=$theIDRecord[j]'>" . $theRecord[$i] . "</a> </td>";
         }
@@ -34,5 +37,5 @@ while ($theRecord = mysql_fetch_row($records) and ($theIDRecord = mysql_fetch_ro
  }
  echo "</table>";
           	
-}
+
 ?>
