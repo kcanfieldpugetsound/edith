@@ -33,7 +33,6 @@ function continuous(evt)
 	pageX=evt.pageX;//get the value of the 	x and y coordinates for the mouse of the entire webpage
 	pageY=evt.pageY;
 	
-	//console.log("pageX :" + pageX + " pageY : " + pageY + " pathx : " + pathx + " pathy : " + pathy);
 	//cancx.moveTo(pathx,pathy);  //The offset of pathx and pathy originally make a line draw vertically on the canvas 
 }
 function move(evt)
