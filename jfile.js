@@ -2,7 +2,7 @@ var pathx = 0;
 var pathy = 0;
 var color = "black";
 var on = 0;
-var width = 1;
+var width = 2;
 var can = document.getElementById("canvas");
 var cancx = can.getContext("2d");
 function captureMouseup(evt)
@@ -24,12 +24,17 @@ function line(evt)
 function continuous(evt)
 {
 	on =1;
-	pathx=clientX;
-	pathy=clientY;
+	pathx=evt.clientX;//added evt.clientX to actually get the values of the canvas (size now works as expected)
+	pathy=evt.clientY;
 	cancx.beginPath(evt.clientX,evt.clientY);
 	cancx.lineWidth=width;
 	cancx.strokeStyle=color;
-	cancx.moveTo(pathx,pathy);
+	
+	pageX=evt.pageX;//get the value of the 	x and y coordinates for the mouse of the entire webpage
+	pageY=evt.pageY;
+	
+	//console.log("pageX :" + pageX + " pageY : " + pageY + " pathx : " + pathx + " pathy : " + pathy);
+	//cancx.moveTo(pathx,pathy);  //The offset of pathx and pathy originally make a line draw vertically on the canvas 
 }
 function move(evt)
 {

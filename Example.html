@@ -187,10 +187,20 @@
             can.addEventListener("mousedown", continuous, false);
             can.removeEventListener("mousedown", pathStart, false);
             can.removeEventListener("mouseup", line, false);
-            //can.addEventListener("mousedown", continuous, false);
+            can.addEventListener("mousedown", continuous, false);
             can.addEventListener("mouseup", off, false);
             can.addEventListener("mousemove", cont, false);
         }
+		
+		function findMousePosition(e)
+		{
+			if(!e){var e=window.event;}	//if using internet explorer then make the event "window.event"
+			var pageX = e.pageX;		//get the value of the 	x and y coordinates for the mouse of the entire webpage
+			var pageY = e.pageY;	
+		}
+		
+		//document.onclick=findMousePosition;
+		
     </script>
 
 </body>
