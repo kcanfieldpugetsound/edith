@@ -14,11 +14,13 @@ $proName = safe($_POST['projectName']);
 $sql = "INSERT INTO projectCode (pCode) VALUES ('$proCode')";
 $results = mysql_query($sql);
         
-    		if($result){
+    		if($result)
+    		{
           	echo "ERROR!";
       		}
 
-      	else {
+      		else 
+      		{
         		echo "Thanks!";
       		}
 mysql_close();

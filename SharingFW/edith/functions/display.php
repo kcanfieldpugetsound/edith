@@ -20,7 +20,7 @@ $idRecords = mysql_query($selectID, $conn);
 //Create a table to display them nicely
 echo "<table border = '1' cellpadding = 20 bordercolor = white align = center><tr>";
 //The loop to print them out
-while ($theRecord = mysql_fetch_row($records) and ($theIDRecord = mysql_fetch_row($idRecords))
+while ($theRecord = mysql_fetch_row($records) and ($theIDRecord = mysql_fetch_row($idRecords)))
 {
 	echo "<tr>";
 	//Go through each project name
