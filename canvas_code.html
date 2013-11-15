@@ -38,7 +38,7 @@
         var tools = [{'title':'new method', 'jstext':'function newMethod() {'},
                    {'title':'variable', 'jstext':'var'},
                    {'title':'end', 'jstext':'}'},
-                  ]
+                  ];
 
         for (var i = 0; i < tools.length; i++) {
           newRect(startX, startY, tools[i].title);
@@ -49,7 +49,7 @@
           var group = new Kinetic.Group({
             id: id,
             draggable: true,
-          })
+          });
           var rect = new Kinetic.Rect({
             x: startX,
             y: startY,
@@ -76,7 +76,7 @@
           //on dragend, calc the rect has passed the threshold
           group.on("dragend", function() {
             //Sets the threshold and rules below.
-            var dx = this.getX()
+            var dx = this.getX();
             if (dx > 400) {
             //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER
               var id = this.attrs.id;
