@@ -1,0 +1,2 @@
+mediaInput1 = {"functionName" : "jump", "imageName": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "duration": 100, "height": 300}
+mediaInput2 = {"functionName" : "movL", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "distance": 350}
