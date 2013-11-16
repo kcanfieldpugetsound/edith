@@ -11,6 +11,7 @@
     </style>
   </head>
   <body>
+    <noscript>Please enable javascript</noscript>
     <div id="container"></div>
     <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -39,7 +40,7 @@
         var tools = [{'title':'new method', 'jstext':'function newMethod() {'},
                    {'title':'variable', 'jstext':'var'},
                    {'title':'end', 'jstext':'}'},
-                  ]
+                  ];
 
         for (var i = 0; i < tools.length; i++) {
           newRect(startX, startY, tools[i].title);
@@ -50,7 +51,7 @@
           var group = new Kinetic.Group({
             id: id,
             draggable: true,
-          })
+          });
           var rect = new Kinetic.Rect({
             x: startX,
             y: startY,
@@ -75,9 +76,9 @@
           rect.orginalX = x;
           rect.orginalY = y;
           //on dragend, calc the rect has passed the threshold
-          group.on("dragend", function() {
+          group.on("dragend", function test(dx) {
             //Sets the threshold and rules below.
-            var dx = this.getX()
+            //dx = this.getX();
             if (dx > 400) {
             //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER
               var id = this.attrs.id;
