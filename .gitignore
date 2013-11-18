@@ -2,6 +2,7 @@
 *.synctex.gz
 *.aux
 *.log
+*.DS_Store
 =======
 *.acn
 *.acr
