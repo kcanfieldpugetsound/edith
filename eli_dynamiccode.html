@@ -14,7 +14,7 @@
   <div id="container"></div>
   <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script defer="defer">
+  <script defer>
   /* Prompts user input of names*/
   function promptUser(ids) {
     /*global prompt*/
@@ -37,6 +37,8 @@
       return x;
     }
   }
+  
+  var layer; 
   $(function () {
     /*global Kinetic*/
     var stage = new Kinetic.Stage({
@@ -44,7 +46,7 @@
       width: 800,
       height: 800
     });
-    var layer = new Kinetic.Layer();
+    layer = new Kinetic.Layer();
     stage.add(layer);
 
     var line = new Kinetic.Line({
@@ -69,7 +71,8 @@
       var group = new Kinetic.Group({
         id: id,
         draggable: true,
-        listening: true
+        listening: true,
+		name: "box"
       });
       var rect = new Kinetic.Rect({
         x: startX,
@@ -89,7 +92,7 @@
         fontSize: 12,
         fontFamily: 'Calibri',
         stroke: 'black',
-        strokeWidth: 1
+        strokeWidth: 1,
       });
 
       //have the rectangles save its orginal XY
@@ -138,177 +141,9 @@
   });
 
 
-      /*
-      function writeMessage(message) {
-        text.setText(message);
-        layer.draw();
-      }
-      
-      var stage = new Kinetic.Stage({
-        container: 'container',
-        width: 800,
-        height: 800
-      });
-
-      var layer = new Kinetic.Layer();
-
-      //VIKRAMS TEST STUFF
-      
-      var line = new Kinetic.Line({
-        x: 200,
-        y: 0,
-        points: [200, 0, 200,800],
-        stroke: 'red'
-      });
-      layer.add(line);
-
-      var tools = [{'title':'method', 'jstext':'function newMethod() {'},
-                   {'title':'var', 'jstext':'var'},
-                   {'title':'end', 'jstext':'}'},
-                  ]
-      var box = {};
-      var methods = 1;
-      var startX = 20;
-      var startY = 30;
-      for (var i=0; i<tools.length; i++) {
-            box[i] = new Kinetic.Rect({
-            x: startX,
-            y: startY,
-            width: 100,
-            height: 50,
-            fill: '#00D2FF',
-            stroke: 'black',
-            strokeWidth: 3,
-            draggable: true,
-            offset:10,
-          });
-
-
-          startY = startY + 65;
-          layer.add(box[i]);
-       
-          
-      }
-
-      box[0].on('dragend', function() {
-          if (box[0].getAttr('x')>=400) {
-          console.log(tools[0].jstext)
-          }
-        });
-
-      box[1].on('dragend', function() {
-          if (box[1].getAttr('x')>=400) {
-          console.log(tools[1].jstext)
-          }
-        });
-
-      box[2].on('dragend', function() {
-          if (box[2].getAttr('x')>=400) {
-          console.log(tools[2].jstext)
-          }
-        });
-     
-
-      var text = new Kinetic.Text({
-        x: 10,
-        y: 10,
-        fontFamily: 'Calibri',
-        fontSize: 24,
-        text: '',
-        fill: 'black'
-      });
-
-*/
-
-     /* var box = new Kinetic.Rect({
-        x: 15,
-        y: 90,
-        width: 100,
-        height: 50,
-        fill: '#00D2FF',
-        stroke: 'black',
-        strokeWidth: 3,
-        draggable: true,
-        offset:10,
-      });
-
-      var box2= new Kinetic.Rect({
-        x: 15,
-        y: 15,
-        
-        width: 100,
-        height: 50,
-        fill: '#00D2FF',
-        stroke: 'black',
-        strokeWidth: 3,
-        draggable: true,
-        offset:10,
-      });
-      var box3= new Kinetic.Rect({
-        x: 15,
-        y: 165,
-        width: 100,
-        height: 50,
-        fill: '#00D2FF',
-        stroke: 'black',
-        strokeWidth: 3,
-        draggable: true,
-        offset:10
-      });
-
-     
-     var rectangleText = new Kinetic.Text({
-
-        x: 15,
-        y: 10,
-        text: 'test',
-        fontSize: 20,
-        fontFamily: 'Calibri',
-        textFill: 'black'
-
-    });
-
-
-      // write out drag and drop events
-      box.on('dragstart', function() {
-        writeMessage('dragstart');
-      });
-      box.on('dragend', function() {
-        writeMessage('dragend');
-        if (box.getAttr('x')>=400) {
-          console.log("}")
-        };
-      });
-      box2.on('click', function() {
-        writeMessage('dragstart');
-      });
-      box2.on('dragend', function() {
-        writeMessage('dragend');
-        if (box2.getAttr('x')>=400) {
-          console.log("Method(){")
-        };
-
-      });
-      box3.on('click', function() {
-        writeMessage('dragstart');
-      });
-      box3.on('dragend', function() {
-        writeMessage('dragend');
-        if (box2.getAttr('x')>=400) {
-          console.log("Var")
-        };
-        
-      });
-layer.add(line);
-layer.add(text);
-layer.add(box);
-layer.add(box2);
-layer.add(box3);
-
-*/
-
-//stage.add(layer);
-
 </script>
+<script src="sortable.js"></script>
+<p id="demo">Click the button to sort the array.</p>
+    <button onclick="sorter()">SORTER</button>
 </body>
 </html>
