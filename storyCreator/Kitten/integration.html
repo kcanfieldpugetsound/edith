@@ -18,9 +18,9 @@ request = $.ajax({
 });
 */
 
-        $.post( "http://localhost/load.php", 'project_kitten' , function( data ) {
+        $.get( "http://localhost/functions/load.php", 'project_kitten' , function( data ) {
           alert(data);
-        });
+        })
 
         .fail(function() {
                 alert('bad request');
