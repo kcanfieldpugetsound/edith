@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+
+<script>
+
+/*
+request = $.ajax({
+  type: "POST",
+  url: 'http://localhost/load.php,
+  data: 'project_kitten',
+  success: success,
+  dataType: 'json'
+});
+*/
+
+	$.post( "http://localhost/load.php", 'project_kitten' , function( data ) {
+ 	 alert(data);
+	});
+
+	.fail(function() {
+		alert('bad request');
+	});
+
+</script>
+
+</html>
