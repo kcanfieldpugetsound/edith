@@ -53,6 +53,8 @@ H1, H3, H4, H5, H6 {
 	}
 	H3 {
 		background : url(../i/ai5.png) no-repeat 0 7px;
+		color: #000000;
+	
 	}
 	H3, H4, H5, H6 {
 		font-size : 13px;
@@ -99,7 +101,7 @@ article {
 	float : left;
 	height : auto;
 	padding : 0 20px 0 0;
-	width : 490px;
+	width : ;
 	}
 	article p {
 		margin : 0 0 20px 0;
@@ -285,7 +287,7 @@ article ul, aside ul {
 aside {
 	float : right;
 	margin : 0 0 20px 0;
-	width : 200px;
+	width : 25%;
 }
 	
 /* Search Box */
@@ -368,6 +370,25 @@ nav ul {
 	.adspace a img {
 		border : none;
 	}
+
+/* back to top button */
+/* http://www.developerdrive.com/2013/07/using-jquery-to-add-a-dynamic-back-to-top-floating-button-with-smooth-scroll/ */
+.back-to-top {
+	position: fixed;
+	bottom: 2em;
+	right: 0px;
+	text-decoration: none;
+	color: #000000;
+	background-color: rgba(235, 235, 235, 0.80);
+	font-size: 12px;
+	padding: 1em;
+	display: none;
+}
+/* back to top button hover */
+/* http://www.developerdrive.com/2013/07/using-jquery-to-add-a-dynamic-back-to-top-floating-button-with-smooth-scroll/ */
+.back-to-top:hover {
+	background-color: rgba(135, 135, 135, 0.50);
+}
 
 /* Tag Cloud */
 #tagcloud {
