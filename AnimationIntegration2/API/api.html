@@ -16,7 +16,7 @@
 	  	    	<a title="Go to Homepage"><strong>EDITH</strong> Animation API</a>
 	  	    
 	  	    	<strong>EDITH</strong> Animation API
-		    	<p>Each function has an example of the appropriate JSON input, a description of the purpose of the function, and a break down of the inputs.</p>
+		    	<p>Import the Animation library with</br>src="animationBlocks.js"</p>
 			</header>
 		
 		
@@ -116,11 +116,11 @@
 					</code>
 					
 					<a href="#" class=".back-to-top">Back to Top</a>
-				
-					<h4>Rotate</h4>
-					<strong>rotate = {"functionName":"rotate", "imageName":"mario.jpg", "soundName":"null", "duration":"1000", "angle":360, "clockwise":false}</strong>
+
+																				<h4>Move</h4>
+					<strong>move(sprite, dur, x, y, rotateClockwise, degrees)</strong>
 					
-					<p>Description of the Rotate animation</p>
+					<p>This method is a generic animation that will animate over the given paramaters.</p>
 					
 					<code>
 						<table>
@@ -131,35 +131,77 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>functionName</td>
-									<td>string</td>
-									<td>description1</td>
-								</tr>
-								<tr>
-									<td>imageName</td>
-									<td>string</td>
-									<td>description2</td>
-								</tr>
-								<tr>
-									<td>soundName</td>
-									<td>string</td>
-									<td>description3</td>
+									<td>sprite</td>
+									<td>Sprite</td>
+									<td>The sprite to be animated</td>
 								</tr>
 								<tr>
 									<td>duration</td>
 									<td>int</td>
-									<td>description4</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>x</td>
+									<td>int</td>
+									<td>the distance of the movement in the x</td>
+								</tr>
+																<tr>
+									<td>y</td>
+									<td>int</td>
+									<td>the distance of the movement in the y</td>
+								</tr>
+																<tr>
+									<td>rotateClockwise</td>
+									<td>boolean</td>
+									<td>if ture, the roatation will be clockwise otherwise counter clockwise.</td>
+								</tr>
+
+																<tr>
+									<td>degrees</td>
+									<td>int</td>
+									<td>the angle of rotation</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+				
+					<h4>Rotate</h4>
+					<strong>rotate(sprite, dur, angle, clockwise)</strong>
+					
+					<p>This method rotates a sprite either clockwise or counter clockwise</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Key</th>
+									<th>Value</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprite</td>
+									<td>Sprite</td>
+									<td>The sprite to be rotated</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
 								</tr>
 								<tr>
 									<td>angle</td>
 									<td>int</td>
-									<td>description5</td>
+									<td>the angle the sprite will rotate</td>
 								</tr>
 								<tr>
 									<td>clockwise</td>
 									<td>boolean</td>
-									<td>description6</td>
+									<td>if true, the sprite will rotate clockwise</td>
 								</tr>
+
 							</tbody>
 						</table>
 					</code>
@@ -167,8 +209,10 @@
 					<a href="#" class=".back-to-top">Back to Top</a>
 
 					<h4>Jump</h4>
-					<strong>jump = {"functionName":"jump", "imageName":"mario.jpg", "soundName":"smb_jumpsmall.mps", "duration":"100", "height":"150"}</strong>
-					<p>Description of the Jump animation</p>
+					<strong>jump(sprite, dur, height)</strong>
+					
+					<p>This method makes a sprite Jump. This is basically a move up and move down put together to create a jump.</p>
+					
 					<code>
 						<table>
 							<tbody>
@@ -178,36 +222,166 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>functionName</td>
-									<td>string</td>
-									<td>description1</td>
-								</tr>
-								<tr>
-									<td>imageName</td>
-									<td>string</td>
-									<td>description2</td>
-								</tr>
-								<tr>
-									<td>soundName</td>
-									<td>string</td>
-									<td>description3</td>
+									<td>sprite</td>
+									<td>Sprite</td>
+									<td>The sprite to jump</td>
 								</tr>
 								<tr>
 									<td>duration</td>
 									<td>int</td>
-									<td>description4</td>
+									<td>duration of animation in milliseconds</td>
 								</tr>
 								<tr>
 									<td>height</td>
 									<td>int</td>
-									<td>description5</td>
-								</tr>
+									<td>the height of the jump</td>
+
 							</tbody>
 						</table>
 					</code>
 					
 					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+					<h4>Move Left</h4>
+					<strong>movL(sprite, dur, distance)</strong>
 					
+					<p>This method makes a sprite move left.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Key</th>
+									<th>Value</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprite</td>
+									<td>Sprite</td>
+									<td>The sprite to be moved</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>the distance of the movement</td>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+										<h4>Move Right</h4>
+					<strong>movR(sprite, dur, distance)</strong>
+					
+					<p>This method makes a sprite move right.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Key</th>
+									<th>Value</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprite</td>
+									<td>Sprite</td>
+									<td>The sprite to be moved</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>the distance of the movement</td>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+															<h4>Move Up</h4>
+					<strong>movU(sprite, dur, distance)</strong>
+					
+					<p>This method makes a sprite move up.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Key</th>
+									<th>Value</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprite</td>
+									<td>Sprite</td>
+									<td>The sprite to be moved</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>the distance of the movement</td>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+															<h4>Move Down</h4>
+					<strong>movD(sprite, dur, distance)</strong>
+					
+					<p>This method makes a sprite move down.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Key</th>
+									<th>Value</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprite</td>
+									<td>Sprite</td>
+									<td>The sprite to be moved</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>the distance of the movement</td>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+				<!-- 	
 					<h4>Move Right</h4>
 					<strong>moveR = {"functionName":"moveR", "imageName":"mario.jpg", "soundName":"null", "duration":"1000", "distance":"175"}</strong>
 					<p>Description of the moveR animation</p>
@@ -420,7 +594,7 @@
 						</table>
 					</code>
 					
-					<a href="#" class=".back-to-top">Back to Top</a>
+					<a href="#" class=".back-to-top">Back to Top</a> -->
 
 
 					
