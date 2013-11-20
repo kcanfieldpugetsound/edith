@@ -29,6 +29,93 @@
 					<h2>General stuff</h2>
 					<p>How to use this shit</p>
 				-->
+
+				<h4>wrapHTMLCanvasToOcanvas</h4>
+					<strong>oCanvas wrapHTMLCanvasToOcanvas(HTML5canvasID, background)</strong>
+					
+					<p>Wraps an instance of Ocanvas around a HTML 5 canvas. You need to do this in order to create sprites. (see addSprite)</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Key</th>
+									<th>Value</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>HTML5canvasID</td>
+									<td>string</td>
+									<td>You can get this by calling document.getElementById("myCanvas") where "myCanvas is the ID of your HTML5 canvas.</td>
+								</tr>
+								<tr>
+									<td>background</td>
+									<td>string</td>
+									<td>sets the canvas background to the hex value (#FFFFFF is a white background).</td>
+																	<tr>
+									<td>RETURNS</td>
+									<td>oCanvas</td>
+									<td>Returns the oCanvas object. you need this when creating a sprite.</td>
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+									<h4>addSprite</h4>
+					<strong>Sprite addSprite(theOCanvas, image, width, height, xcoord, ycoord)</strong>
+					
+					<p>Adds a sprite onto the ocanvas!</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Key</th>
+									<th>Value</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>theOCanvas</td>
+									<td>string</td>
+									<td>This is returned from wrapHTMLCanvasToOcanvas(HTML5canvasID, background)</td>
+								</tr>
+								<tr>
+									<td>image</td>
+									<td>string</td>
+									<td>The image path to the image for the sprite as a string.</td>
+								</tr>
+								<tr>
+									<td>Width</td>
+									<td>int</td>
+									<td>The width for the sprite.</td>
+								</tr>
+									<tr>
+									<td>height</td>
+									<td>int</td>
+									<td>The height for the sprite.</td>
+								</tr>
+								<tr>
+									<td>xcoord</td>
+									<td>int</td>
+									<td>The x coordinate for the sprite.</td>
+								</tr>
+									<tr>
+									<td>ycoord</td>
+									<td>int</td>
+									<td>The y coordinate for the sprite.</td>
+								</tr>
+								<tr>
+									<td>RETURNS</td>
+									<td>Sprite</td>
+									<td>Returns a sprite object! you can now call animations with this object and that sprite will be animated!</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
 				
 					<h4>Rotate</h4>
 					<strong>rotate = {"functionName":"rotate", "imageName":"mario.jpg", "soundName":"null", "duration":"1000", "angle":360, "clockwise":false}</strong>
