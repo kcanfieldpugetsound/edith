@@ -37,8 +37,7 @@
       return x;
     }
   }
-  
-  var layer; 
+  var layer;
   $(function () {
     /*global Kinetic*/
     var stage = new Kinetic.Stage({
@@ -72,7 +71,7 @@
         id: id,
         draggable: true,
         listening: true,
-		name: "box"
+        name: "box"
       });
       var rect = new Kinetic.Rect({
         x: startX,
@@ -92,7 +91,7 @@
         fontSize: 12,
         fontFamily: 'Calibri',
         stroke: 'black',
-        strokeWidth: 1,
+        strokeWidth: 1
       });
 
       //have the rectangles save its orginal XY
@@ -114,6 +113,7 @@
             var currentRect = groupArray[0];
             var height = currentRect.getHeight();
             currentRect.setSize(text.getWidth() + 30, height);
+            layer.draw();
             text.setListening(false);
             //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
             for (i = 0; i < tools.length; i++) {
