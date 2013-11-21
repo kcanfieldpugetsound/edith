@@ -1,149 +1,156 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-  <title>Visual Editor Demo</title>
-  <style>
-  body {
-    margin: 0px;
-    padding: 0px;
-  }
-  </style>
-</head>
-<body>
-  <p id="demo"></p>
-  <div id="container"></div>
-  <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
-  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script defer>
-  /* Prompts user input of names*/
-  function promptUser(ids) {
-    /*global prompt*/
-    var x;
-    if (ids === "method") {
-      var mname = prompt("Please enter the name of your method", "test");
-      var params = prompt("Please enter the Parameters for your method separated by commas");
-      x = "function " + mname + "(" + params + ") {";
-      console.log(x);
-      return x;
-    }
-    if (ids === "variable") {
-      var varn = prompt("Please enter the name of your variable", "test");
-      x = "var " + varn +  ";";
-      console.log(x);
-      return x;
-    }
-    if (ids === "end method") {
-      x = "}";
-      return x;
-    }
-  }
-  var layer;
-  $(function () {
-    /*global Kinetic*/
-    var stage = new Kinetic.Stage({
-      container: 'container',
-      width: 800,
-      height: 800
-    });
-    layer = new Kinetic.Layer();
-    stage.add(layer);
+	<head>
+		<title>Visual Editor Demo</title>
+		<style>
+			body {
+				margin: 0px;
+				padding: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<p id="demo"></p>
+		<div id="container"></div>
+		<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script defer>
+			/* Prompts user input of names*/
+			function promptUser(ids) {
+				/*global prompt*/
+				var x;
+				if (ids === "method") {
+					var mname = prompt("Please enter the name of your method", "test");
+					var params = prompt("Please enter the Parameters for your method separated by commas");
+					x = "function " + mname + "(" + params + ") {";
+					console.log(x);
+					return x;
+				}
+				if (ids === "variable") {
+					var varn = prompt("Please enter the name of your variable", "test");
+					x = "var " + varn +  ";";
+					console.log(x);
+					return x;
+				}
+				if (ids === "end method") {
+					x = "}";
+					return x;
+				}
+			}
+			var layer;
+			$(function () {
+				/*global Kinetic*/
+				var stage = new Kinetic.Stage({
+					container: 'container',
+					width: 800,
+					height: 800
+				});
+				layer = new Kinetic.Layer();
+				stage.add(layer);
 
-    var line = new Kinetic.Line({
-      x: 400,
-      y: 0,
-      points: [0, 0, 0, 800],
-      stroke: 'red'
-    });
-    layer.add(line);
+				var line = new Kinetic.Line({
+					x: 400,
+					y: 0,
+					points: [0, 0, 0, 800],
+					stroke: 'red'
+				});
+				layer.add(line);
 
-    var startX = 20;
-    var startY = 30;
+				var startX = 20;
+				var startY = 30;
 
-    var tools = [{'title': 'method', 'jstext': ''},
-        {'title': 'variable', 'jstext': ''},
-        {'title': 'end method', 'jstext': '}'}
-        ];
+				var tools = [
+					{'title': 'method', 'jstext': ''},
+					{'title': 'variable', 'jstext': ''},
+					{'title': 'end method', 'jstext': '}'}
+				];
 
-    var i;
+				var i;
 
-    function newRect(x, y, id) {
-      var group = new Kinetic.Group({
-        id: id,
-        draggable: true,
-        listening: true,
-        name: "box"
-      });
-      var rect = new Kinetic.Rect({
-        x: startX,
-        y: startY,
-        width: 100,
-        height: 50,
-        fill: '#00D2FF',
-        stroke: 'black',
-        strokeWidth: 2,
-        offset: 10
-      });
+				function newRect(x, y, id) {
+					//###### STRUCTURE ######
+					var group = new Kinetic.Group({
+						id: id,
+						draggable: true,
+						listening: true,
+						name: "box"
+					});
+					var rect = new Kinetic.Rect({
+						x: startX,
+						y: startY,
+						width: 100,
+						height: 50,
+						fill: '#00D2FF',
+						stroke: 'black',
+						strokeWidth: 2,
+						offset: 10
+					});
+					group.add(rect);
 
-      var simpleText = new Kinetic.Text({
-        x: startX + 10,
-        y: startY + 10,
-        text: id,
-        fontSize: 12,
-        fontFamily: 'Calibri',
-        stroke: 'black',
-        strokeWidth: 1
-      });
+					var simpleText = new Kinetic.Text({
+						x: startX + 10,
+						y: startY + 10,
+						text: id,
+						fontSize: 12,
+						fontFamily: 'Calibri',
+						stroke: 'black',
+						strokeWidth: 1
+					});
+					group.add(simpleText);
 
-      //have the rectangles save its orginal XY
-      rect.orginalX = x;
-      rect.orginalY = y;
-      //on dragend, calc the rect has passed the threshold
-      group.on("dragend", function () {
-        var i;
-        //Sets the threshold and rules below.
-        var dx = this.getX();
-        if (dx + 20 > line.getX()) {
-          //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER
-          var id = this.attrs.id;
-          var groupArray = (this.getChildren()).toArray();
-          var text = groupArray[1];
-          //Only change text, or write to console on first time being dragged over
-          if (text.isListening()) {
-            text.setText(promptUser(id));
-            var currentRect = groupArray[0];
-            var height = currentRect.getHeight();
-            currentRect.setSize(text.getWidth() + 30, height);
-            layer.draw();
-            text.setListening(false);
-            //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
-            for (i = 0; i < tools.length; i++) {
-              if (id === tools[i].title) {
-                if (tools[i].jstext !== '') {
-                  console.log(tools[i].jstext);
-                }
-              }
-            }
-          }
-          // END THAT
-        }
-      });
-      group.add(rect);
-      group.add(simpleText);
-      layer.add(group);
-      layer.draw();
+					//have the rectangles save its orginal XY
+					rect.orginalX = x;
+					rect.orginalY = y;
+					
+					//###### BEHAVIOR ######
+					//on dragend, calc the rect has passed the threshold
+					group.on("dragend", function () {
+						var i;
+						//Sets the threshold and rules below.
+						var dx = this.getX();
+						if (dx + 20 > line.getX()) {
+							//BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER
+							var id = this.attrs.id;
+							var groupArray = (this.getChildren()).toArray();
+							var text = groupArray[1];
+							
+							//Only change text, or write to console on first time being dragged over
+							if (text.isListening()) {
+								text.setText(promptUser(id));
+								var currentRect = groupArray[0];
+								var height = currentRect.getHeight();
+								currentRect.setSize(text.getWidth() + 30, height);
+								layer.draw();
+								text.setListening(false);
+								//Loop through our list again and see what js is associated with whichever tool was dragged over.
+								for (i = 0; i < tools.length; i++) {
+									if (id === tools[i].title) {
+										if (tools[i].jstext !== '') {
+											console.log(tools[i].jstext);
+										}
+									}
+								}
+							}
+						}
+					});//complete dragend behavior
+					
+					layer.add(group);
+					layer.draw();
+					
+					//complete rectangle creation
+				}
 
-    }
+				for (i = 0; i < tools.length; i++) {
+					newRect(startX, startY, tools[i].title);
+					startY = startY + 65;
+				}
+				
+			});
 
-    for (i = 0; i < tools.length; i++) {
-      newRect(startX, startY, tools[i].title);
-      startY = startY + 65;
-    }
-  });
 
-
-</script>
-<script src="sortable.js"></script>
-<p id="demo">Click the button to sort the array.</p>
-    <button onclick="sorter()">SORTER</button>
-</body>
+		</script>
+		<script src="sortable.js"></script>
+		<p id="demo">Click the button to sort the array.</p>
+		<button onclick="sorter()">SORTER</button>
+	</body>
 </html>
