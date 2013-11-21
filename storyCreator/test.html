@@ -1,21 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<canvas id="myCanvas" width="800" height="400" style = "border:solid; position:none"></canvas>
+	
+	
 
-	<script src='objectTest.js' type = 'text/javascript'></script>
-	<script src='VETest.js' type = 'text/javascript'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script src='objectTest.js' type = 'text/javascript'></script>
+	<script src='VETest.js' type = 'text/javascript'></script>
+	<script src='dataRequests.js' type = 'text/javascript'></script>
+	<script src='Animation/animationBlocks.js' type = 'text/javascript'></script>
 
 </head>
 <body id = 'body'>
 <script>
 
+
+
+
+//Possibly make a "selected" sprite that we can determine to be the sprite that we are working with.
+
+
+	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+
+	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, 200, 200);
+	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 100, 120, 400, 200);
+	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, 600, 200);
+	
+	
+	//MOCK UP SPRITE***************************************************************************
+	//var aSprite = addSprite(oCanvasElement, getObject("spriteName").name, getVEMethod('methodName').width, getVEMethod('methodName').height, initialX, initialY) ;
+	//*****************************************************************************************
+	
+	
+	
+	function doSomeAnimations()
+	{
+		// movR(mario, 2000, 500);
+		// movL(mario, 200, 500);
+		move(mario, 2000, 0, 0, true, -360);
+		rotate(luigi, 400, 360);
+		movD(luigi, 100, 50);
+		movL(luigi, 100, 50);
+		movU(luigi, 100, 50);
+		movR(luigi, 100, 50);
+
+		rotate(bowser, 200, 360, true);
+		rotate(bowser, 200, 360, false);
+
+	}
+
+	function pauseSprite()
+	{
+		pauseAnimationsForSprite(mario);
+	}
+	function pauseAll()
+	{
+		pauseAnimationsForEntireScene(oCanvasElement);
+	}
+
+	function delay()
+	{
+		setDelay(mario, 1000);
+	}
+
+
+	
+var time = 0;
 var o = obj['objectName'];			//Retrieve the name of the object
 var f = funct['functionName'];		//Retrieve the name of the function for the object
 
-
-var time = 0;
 
 function reset_time()
 {
@@ -35,13 +90,11 @@ function wait()
 
 function addImage(src, width, height)
 {
-	$("body").append('<audio autoplay> <source src="kittenMeow.mp3" type="audio/mpeg"> </audio>');		//The kitten MEOWS!!!
+		//$("body").append('<audio autoplay> <source src="kitten/kittenMeow.mp3" type="audio/mpeg"> </audio>');		//The kitten MEOWS!!!
 	var img = document.createElement("img");
 	img.src = src;
 	img.width = width;
 	img.height = height;
-
-	//var body = document.getElementById('body');
 	document.body.appendChild(img);
 }
 
@@ -56,6 +109,12 @@ function makeNewObject()
 
 </script>
 
+<p> <button onclick = 'doSomeAnimations()'>Animate</button></p>
+<p> <button onclick = 'pauseAll()'>Pause All</button></p>
+<p> <button onclick = 'pauseSprite()'>Pause Only Mario</button></p>
+<p> <button onclick = 'setDelay()'>delay luigi</button></p>
+
+
 Set a new time:
 <input id = "time" name = "time" type = "text"/>
 <button onclick="reset_time()"> Submit </button>
@@ -63,7 +122,7 @@ Set a new time:
 
 <button onclick="wait()">Try it</button>
 <button onclick="makeNewObject()"> Build new JSON object </button>
-<button onclick="addImage('kitten.png', 300, 300)"> make image </button>
+<button onclick="addImage('kitten/kitten.png', 300, 300)"> make image </button>
 
 </body>
 </html>

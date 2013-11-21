@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-</head>
-
-
-<script>
-
-/*
-request = $.ajax({
-  type: "POST",
-  url: 'http://localhost/load.php,
-  data: 'project_kitten',
-  success: success,
-  dataType: 'json'
-});
-*/
 var theUserName;
 var theObjectName;
 var theObjectMethodName;
@@ -108,8 +89,8 @@ var theObjectMethodName;
 		xmlhttp.open("GET", "display.php?objectMehodName=" + objectMethodName, true);//request the updated VE method for the object
 		xmlhttp.send();//send the request to server php page
 	}
-	
-	
+		
+	/*
         $.get( "http://localhost/functions/load.php", 'project_kitten' , function( data ) {//A test get request
           alert(data);
         })
@@ -118,9 +99,4 @@ var theObjectMethodName;
                 alert('bad request');
         });
 		
-	}
-
-</script>
-
-</html>
-
+	*/
