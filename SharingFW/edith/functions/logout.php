@@ -3,8 +3,7 @@
 	 session_start();
 
       $userStatus = false;
-      if(isset($_SESSION['uname']))
-      {
+      if(isset($_SESSION['uname'])){
          $userStatus=true;
       }
     

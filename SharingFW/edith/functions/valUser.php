@@ -1,6 +1,7 @@
 <?php
 //This is used to validate the form when a new user creates an account.
   //Login to the database and prevent SQL injections.
+  //check two places
   require_once 'dbLogin.php';
   require 'function.php';
   //Grab user info from the form
