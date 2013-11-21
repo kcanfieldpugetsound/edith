@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
 
@@ -18,14 +18,15 @@ request = $.ajax({
 });
 */
 
-	$.post( "http://localhost/load.php", 'project_kitten' , function( data ) {
- 	 alert(data);
-	});
+        $.get( "http://localhost/functions/load.php", 'project_kitten' , function( data ) {
+          alert(data);
+        })
 
-	.fail(function() {
-		alert('bad request');
-	});
+        .fail(function() {
+                alert('bad request');
+        });
 
 </script>
 
 </html>
+
