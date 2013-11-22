@@ -5,7 +5,7 @@ function loadJSON(userName, projectId) {
 		if (data.hasOwnProperty("error")) {
 			console.log("error");
 		} else {
-			return data.jstext;
+			return data;
 		}
 	}
 }
@@ -16,3 +16,4 @@ $.getJSON("updateVisualEditor.php", {userName: userName, projectId: projectId, j
 		alert(data.jstext);
 		myJson = data.jstext;
 	});
+
