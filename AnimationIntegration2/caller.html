@@ -1,0 +1,56 @@
+<script src="animationBlocks.js"></script>
+<canvas id="myCanvas" width="800" height="400" style = "border:solid; position:none"></canvas
+<html><head></head><body>
+		
+	<script>
+	//var theCanvasToDrawOn = document.getElementById("myCanvas");
+	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');
+	var mario = addSprite(oCanvasElement, 'mario.jpg', 100, 100, 200, 200);
+	var luigi = addSprite(oCanvasElement, 'luigi.jpg', 100, 120, 400, 200);
+	var bowser = addSprite(oCanvasElement, 'Bowser.jpg', 100, 100, 600, 200);
+
+
+	function doSomeAnimations()
+	{
+		// movR(mario, 2000, 500);
+		// movL(mario, 200, 500);
+		move(mario, 2000, 0, 0, true, -360);
+		rotate(luigi, 400, 360);
+		movD(luigi, 100, 50);
+		movL(luigi, 100, 50);
+		movU(luigi, 100, 50);
+		movR(luigi, 100, 50);
+
+		rotate(bowser, 200, 360, true);
+		rotate(bowser, 200, 360, false);
+
+	}
+
+	function pauseSprite()
+	{
+		pauseAnimationsForSprite(mario);
+	}
+	function pauseAll()
+	{
+		pauseAnimationsForEntireScene(oCanvasElement);
+	}
+
+	function delay()
+	{
+		setDelay(mario, 1000);
+	}
+
+	</script>
+		
+
+<p> <button onclick = 'doSomeAnimations()'>Animate</button></p>
+<p> <button onclick = 'pauseAll()'>Pause All</button></p>
+<p> <button onclick = 'pauseSprite()'>Pause Only Mario</button></p>
+<p> <button onclick = 'setDelay()'>delay luigi</button></p>
+
+
+</body></html>
+
+
+
+

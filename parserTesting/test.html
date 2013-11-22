@@ -11,7 +11,7 @@
 <p>
 <button style = "width:100px" id = "rotate" onclick = "playAnimation()">Next Animation!</button>
 <p>
-<span id = "1"> mediaInput1 = {"functionName" : "jump", "imageName": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "duration": 100, "height": 50} </span></br>
+<span id = "1"> mediaInput1 = {"functionName" : "move", "imageName": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "duration": 100, "height": 50, "distance":50, "rotation":0, "degrees":0} </span></br>
 <span id = "2"> mediaInput2 = {"functionName" : "jump", "imageName": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "duration": 100, "height": 150}  </span></br>
 <span id = "3">mediaInput3 = {"functionName" : "movR", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "distance": 175}  </span></br>
 <span id = "4">mediaInput4 = {"functionName" : "movL", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "distance": 350}  </span></br>
@@ -47,6 +47,20 @@
 
 <!-- The Animation Blocks -->
 <script>
+
+function move(dur, dist, height, rotate, degrees)
+{
+if(rotate<0)
+  degrees = -degrees;
+image.animate({rotation: rotate*(image.rotation+degrees) , y: height, x:dist},
+  {duration:dur
+    easing:"ease-in-sine",
+    callback:function () {
+      canvas.redraw();
+    }
+  })
+
+}
 
 function sleep(milliseconds) {
 var start = new Date().getTime();
@@ -169,7 +183,7 @@ function movU(dur, height)
       function playContinious()
       {
 
-          if (mediaInput1["functionName"] == "jump") 
+          if (mediaInput1["functionName"] == "move") 
           {
               win = new Audio(mediaInput1["soundName"]);
               win.play();
