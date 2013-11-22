@@ -17,12 +17,12 @@ echo "Creating table 'user'...<br />";
 
 
 // Create the table
-$myQuery = "CREATE TABLE user (userID INT AUTO_INCREMENT,
+$myQuery = "CREATE TABLE user (
 userName VARCHAR(20),
 password      VARCHAR(50),
 email      VARCHAR(100),
 regDate    DATE,
-PRIMARY KEY(userID)
+PRIMARY KEY(userName)
 )AUTO_INCREMENT = 1";
 
 mysql_query($myQuery, $conn)
@@ -34,29 +34,15 @@ mysql_query($myQuery2, $conn);
 echo "Creating table 'project'...<br />";
 
 // Create the table
-$myQuery2 = "CREATE TABLE project (projectID  INT AUTO_INCREMENT,
+$myQuery2 = "CREATE TABLE project (
 projectName VARCHAR(20),
-userID  INT,
-dateCreated  DATE,
-PRIMARY KEY(projectID)
+pCode LONGTEXT,
+userName  VARCHAR(20),
+dateCreated  DATE
 )";   
 mysql_query($myQuery2, $conn)
 or die("Failed to create table " . mysql_error());
 echo "Table created...<br />";
-
-$myQuery3 = "DROP TABLE IF EXISTS projectCode;";
-mysql_query($myQuery3, $conn);
-echo "Creating table 'projectCode'...<br />";
-
-// Create the table
-$myQuery3 = "CREATE TABLE projectCode (projectID  INT AUTO_INCREMENT,
-pCode LONGTEXT,
-PRIMARY KEY(projectID)
-)";   
-
-mysql_query($myQuery3, $conn)
-or die("Failed to create table " . mysql_error());
-echo "Table created...<br />"; 
 
 $myQuery4 = "DROP TABLE IF EXISTS shareProject;";
 mysql_query($myQuery4, $conn);
