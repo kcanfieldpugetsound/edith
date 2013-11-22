@@ -115,22 +115,23 @@ Make a New Object!
 	function exporting(){
 	    var objectArrayName = document.getElementById("ObjectName").value;
 		if(objectArrayName == ""){
-		alert("Please enter a name so we can save the object.");
-		return false;
+			alert("Please enter a name so we can save the object.");
+			return false;
 		}
 	    $.ajax({
-           type: "POST",
-           data: {ObjectArray: savedObjects},
-           url: "functions\save.php"
+           'type': "POST",
+		   'dataType': 'json', 
+           'data': {ObjectArray: savedObjects},
+           'url': "functions\save.php"
         });
         $.ajax({
-           type: "POST",
-           data: {ObjectName: objectArrayName},
-           url: "functions\save.php",
-           success: function(){
+           'type': "POST",
+           'data': {ObjectName: objectArrayName},
+           'url': "functions\save.php",
+           'success': function(){
 				alert("Exported successfully");
             },
-			error: function() {
+			'error': function() {
 				alert("failure");
 			},
         });
