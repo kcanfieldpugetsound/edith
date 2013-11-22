@@ -37,7 +37,9 @@
 					return x;
 				}
 			}
+			
 			var layer;
+			
 			$(function () {
 				/*global Kinetic*/
 				var stage = new Kinetic.Stage({
@@ -98,12 +100,14 @@
 					});
 					group.add(simpleText);
 
-					//have the rectangles save its orginal XY
+					//have the rectangles save its original XY
 					rect.orginalX = x;
 					rect.orginalY = y;
 					
+					
 					//###### BEHAVIOR ######
-					//on dragend, calc the rect has passed the threshold
+					var clone;
+					//on dragend, calculate if the rectangle has passed the threshold
 					group.on("dragend", function () {
 						var i;
 						//Sets the threshold and rules below.
@@ -122,7 +126,7 @@
 								currentRect.setSize(text.getWidth() + 30, height);
 								layer.draw();
 								text.setListening(false);
-								//Loop through our list again and see what js is associated with whichever tool was dragged over.
+								//Loop through our list again and see what is associated with whichever tool was dragged over.
 								for (i = 0; i < tools.length; i++) {
 									if (id === tools[i].title) {
 										if (tools[i].jstext !== '') {
@@ -132,6 +136,8 @@
 								}
 							}
 						}
+						
+						clone = newRect(x,y,id);//create a "clone" of this rectangle
 					});//complete dragend behavior
 					
 					layer.add(group);
