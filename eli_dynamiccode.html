@@ -67,6 +67,12 @@
 					{'title': 'end method', 'jstext': '}'}
 				];
 
+				
+				for (i = 0; i < tools.length; i++) {
+					newRect(startX, startY, tools[i].title);
+					startY = startY + 65;
+				}
+				
 				var i;
 
 				function newRect(x, y, id) {
@@ -136,19 +142,16 @@
 								}
 							}
 						}
-						
-						clone = newRect(x,y,id);//create a "clone" of this rectangle
+						clone = newRect(x,y,id); //create a "clone" of this rectangle
+						//console.log("id: "+id);
+						//console.log("clone id: "+clone.getId());
+						//console.log("clone X: "+clone.getX()+"       clone Y: "+clone.getY());
 					});//complete dragend behavior
 					
 					layer.add(group);
 					layer.draw();
 					
 					//complete rectangle creation
-				}
-
-				for (i = 0; i < tools.length; i++) {
-					newRect(startX, startY, tools[i].title);
-					startY = startY + 65;
 				}
 				
 			});
