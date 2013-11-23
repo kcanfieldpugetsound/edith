@@ -71,6 +71,17 @@ if(!rotateClockwise)
   sprite.targetRotate += degrees;
 }
 
+function wait(sprite, dur)
+{
+      sprite.animate({x: sprite.targetX}, {
+      duration: dur,
+      easing: "ease-in-sine", 
+      queue: "b",//see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+          //canvas.redraw();
+      }
+      });
+}
 
 //animation blocks
 function rotate(sprite, dur, angle, clockwise)
@@ -94,7 +105,7 @@ function jump(sprite, dur, height)
 {
       sprite.animate({y: sprite.targetY - height}, {
       duration: dur,
-      easing: "ease-in-sine",
+      easing: "ease-in-out-elastic",
       queue: "b", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
       }
@@ -123,7 +134,6 @@ function movL(sprite, dur, distance)
       }
       });
       sprite.targetX -= distance;
-
 }
 function movR(sprite, dur, distance)
 {

@@ -5,6 +5,7 @@
 	<script>
 	//var theCanvasToDrawOn = document.getElementById("myCanvas");
 	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');
+	
 	var mario = addSprite(oCanvasElement, 'mario.jpg', 100, 100, 200, 200);
 	var luigi = addSprite(oCanvasElement, 'luigi.jpg', 100, 120, 400, 200);
 	var bowser = addSprite(oCanvasElement, 'Bowser.jpg', 100, 100, 600, 200);
@@ -14,15 +15,23 @@
 	{
 		// movR(mario, 2000, 500);
 		// movL(mario, 200, 500);
-		move(mario, 2000, 0, 0, true, -360);
-		rotate(luigi, 400, 360);
-		movD(luigi, 100, 50);
-		movL(luigi, 100, 50);
-		movU(luigi, 100, 50);
-		movR(luigi, 100, 50);
+		jump(mario, 200, 100);
+		// jump(luigi, 200, 150);
+		// jump(bowser, 200, 200);
 
-		rotate(bowser, 200, 360, true);
-		rotate(bowser, 200, 360, false);
+
+		wait(mario, 2000);
+		jump(mario, 200, 100);
+		// jump(luigi, 200, 200);
+		// jump(bowser, 200, 200);
+		//rotate(luigi, 400, 360);
+		//movD(luigi, 100, 50);
+		//movL(luigi, 100, 50);
+		//movU(luigi, 100, 50);
+		//movR(luigi, 100, 50);
+
+		//rotate(bowser, 200, 360, true);
+		///rotate(bowser, 200, 360, false);
 
 	}
 
