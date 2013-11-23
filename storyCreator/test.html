@@ -17,21 +17,20 @@
 </head>
 <body>
 
-	<div class="animationContainer">
-		<canvas id="myCanvas" width="800"height="400"></canvas>
-	</div>
 	
-	<div class="VEContainer">
-		<canvas id="VECanvas"></canvas>
-	</div>
+		<div class="animationContainer">
+			<canvas id="myCanvas" width="800"height="400"></canvas>
+		</div>
 	
-	<div class="objectContainer">
-		<canvas id="objectCanvas"></canvas>
-	</div>
+		<div class="VEContainer">
+			<canvas id="VECanvas"></canvas>
+		</div>
+	
+		<div class="objectContainer">
+			<canvas id="objectCanvas"></canvas>
+		</div>
+
 <script>
-
-
-
 
 
 	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
@@ -79,13 +78,12 @@
 	
 	
 </script>
-<div id="buttons">
+<div class="buttons">
  <button id="button1" onclick = 'play()'>Play</button>
  <button id="button2" onclick = 'pauseAll()'>Pause</button>
-
-
  <button id="button5" onclick = 'popitup("object_creator/example.html")'>Make Object</button>
 </div>
 
 </body>
+
 </html>

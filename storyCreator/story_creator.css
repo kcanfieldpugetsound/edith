@@ -1,23 +1,27 @@
-html{overflow-y: auto}
+html>body {overflow:scroll; }
 
 body{
 background-color:#525252;
+}
+
+.buttons{
+	position: absolute;
 }
 
 .animationContainer{
 width:800px;
 height:400px;
 border:solid;
-position:fixed;
+position:absolute;
 top:40px;
 }
 
 .VEContainer{
 left:820px;
-width:300px;
+width:400px;
 height:600px;
 border:solid; 
-position: fixed;
+position: absolute;
 top:40px;
 background-color:#20cfd0;
 }
@@ -26,10 +30,12 @@ background-color:#20cfd0;
 width:800px;
 height:400px;
 border:solid;
-position:fixed;
+position:absolute;
 top:450px;
 background-color:#20cfd0;
 }
+
+
 
 .vertical-scroll{
 height:300px;
