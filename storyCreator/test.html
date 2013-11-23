@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<canvas id="myCanvas" width="800" height="400" style = "border:solid; position:none"></canvas>
-	
-	
 
+	<link rel="stylesheet" type="text/css" href="story_creator.css">
+	
+	
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script src='objectTest.js' type = 'text/javascript'></script>
@@ -15,12 +16,22 @@
 
 </head>
 <body id = 'body'>
+
+	<div class="animationContainer">
+		<canvas id="myCanvas" width="800"height="400"></canvas>
+	</div>
+	
+	<div class="VEContainer">
+		<canvas id="VECanvas"></canvas>
+	</div>
+	
+	<div class="objectContainer">
+		<canvas id="objectCanvas"></canvas>
+	</div>
 <script>
 
 
 
-
-//Possibly make a "selected" sprite that we can determine to be the sprite that we are working with.
 
 
 	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
@@ -29,14 +40,7 @@
 	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 100, 120, 400, 200);
 	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, 600, 200);
 	
-	
-	//MOCK UP SPRITE***************************************************************************
-	//var aSprite = addSprite(oCanvasElement, getObject("spriteName").name, getVEMethod('methodName').width, getVEMethod('methodName').height, initialX, initialY) ;
-	//*****************************************************************************************
-	
-	
-	
-	function doSomeAnimations()
+	function play()
 	{
 		// movR(mario, 2000, 500);
 		// movL(mario, 200, 500);
@@ -65,65 +69,23 @@
 	{
 		setDelay(mario, 1000);
 	}
-
-
 	
-var time = 0;
-var o = obj['objectName'];			//Retrieve the name of the object
-var f = funct['functionName'];		//Retrieve the name of the function for the object
-
-
-function reset_time()
-{
-	time = $("#time").val();		//Retrieve the time that the user input
-	time = time*1000;				//Multipy by 1000 to get in ms for the setTimeout function
-}
-
-function myFunction()
-{
-	alert("Hello");
-}
-
-function wait()
-{
-	setTimeout(myFunction, time);		//Pair the user's time with the function they are using it with
-}
-
-function addImage(src, width, height)
-{
-		//$("body").append('<audio autoplay> <source src="kitten/kittenMeow.mp3" type="audio/mpeg"> </audio>');		//The kitten MEOWS!!!
-	var img = document.createElement("img");
-	img.src = src;
-	img.width = width;
-	img.height = height;
-	document.body.appendChild(img);
-}
-
-function makeNewObject() 
-{
-	var newObject = {'objectName': obj['objectName'], 'functionName': funct['functionName'], 'Time': time};		//Create a new object with 
-	$("body").append('<br\><br\> Object: ' + newObject['objectName']);											//the time to make it do something
-	$("body").append('<br\><br\> Function: ' + newObject['functionName']);
-	$("body").append('<br\><br\> Time: ' + newObject['Time']);
-	$("body").append('<br/><br/>');
-}
-
+	function getScreen()
+	{
+		
+		document.getElementById("myCanvas").he = h;
+		document.getElementById("screenWidth") = w;
+	}
+	
+	
 </script>
-
-<p> <button onclick = 'doSomeAnimations()'>Animate</button></p>
-<p> <button onclick = 'pauseAll()'>Pause All</button></p>
-<p> <button onclick = 'pauseSprite()'>Pause Only Mario</button></p>
-<p> <button onclick = 'setDelay()'>delay luigi</button></p>
+<div id="buttons">
+ <button id="button1" onclick = 'play()'>Play</button>
+ <button id="button2" onclick = 'pauseAll()'>Pause</button>
 
 
-Set a new time:
-<input id = "time" name = "time" type = "text"/>
-<button onclick="reset_time()"> Submit </button>
-<br/><br/>
-
-<button onclick="wait()">Try it</button>
-<button onclick="makeNewObject()"> Build new JSON object </button>
-<button onclick="addImage('kitten/kitten.png', 300, 300)"> make image </button>
+ <button id="button5" onclick = 'popitup("object_creator/example.html")'>Make Object</button>
+</div>
 
 </body>
 </html>
