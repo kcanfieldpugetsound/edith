@@ -10,23 +10,34 @@ background-color:#525252;
 
 .animationContainer{
 border:solid;
+border-width: 2px;
+border-color: #242928;
 position:absolute;
-top:4%;
+top:7%;
 }
 
 .objectContainer{
 border:solid;
+border-width: 2px;
+border-color: #242928;
+box-shadow: 3px 3px 10px #1b1b1b;
+float: left;
+border-radius: 5px;
 position:absolute;
-top:62%;
-background-color:#20cfd0;
+top:67%;
+background-color:#838383;
 }
 
 .VEContainer{
-left:57.25%;
+left:58%;
 border:solid; 
+border-width: 2px;
+border-color: #242928;
+box-shadow: 3px 3px 10px #1b1b1b;
+border-radius: 5px;
 position: absolute;
-top:4%;
-background-color:#20cfd0;
+top:7%;
+background-color:#838383;
 }
 
 #buttons{

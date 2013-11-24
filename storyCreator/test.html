@@ -96,7 +96,7 @@
 	VECanvas.width = (window.innerWidth / 2.4);
 	VECanvas.height = (window.innerHeight / 1.08);
 
-	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
 	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
 	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight / 3.75));
@@ -110,11 +110,11 @@
 
 		oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
-		var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
-		var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight/ 3.75));
-		var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
-		VECanvas.width = (window.innerWidth / 2.4);
-		VECanvas.height = (window.innerHeight / 1.08);
+		mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
+		luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight/ 3.75));
+		bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+		// document.getElementsById("container").width = (window.innerWidth / 2.4);
+		// document.getElementsById("container").height = (window.innerHeight / 2.4);
 	}
 	
 	function play()
