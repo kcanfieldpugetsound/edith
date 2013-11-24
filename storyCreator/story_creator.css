@@ -14,18 +14,18 @@ position:absolute;
 top:4%;
 }
 
+.objectContainer{
+border:solid;
+position:absolute;
+top:62%;
+background-color:#20cfd0;
+}
+
 .VEContainer{
 left:57.25%;
 border:solid; 
 position: absolute;
 top:4%;
-background-color:#20cfd0;
-}
-
-.objectContainer{
-border:solid;
-position:absolute;
-top:62%;
 background-color:#20cfd0;
 }
 

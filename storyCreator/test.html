@@ -2,26 +2,34 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="story_creator.css">
+	
+	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src='visualEditor.js' type = 'text/javascript' defer ></script>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-	<script src='objectTest.js' type = 'text/javascript'></script>
-	<script src='VETest.js' type = 'text/javascript'></script>
-	<script src='dataRequests.js' type = 'text/javascript'></script>
-	<script src = 'object_creator/jfile.js' type = 'text/javascript'></script>
-	<script src='Animation/animationBlocks.js' type = 'text/javascript'></script>
+
+	<script src = 'object_creator/jfile.js' type = 'text/javascript' ></script>
+	<script src='Animation/animationBlocks.js' type = 'text/javascript' ></script>
+
 </head>
 <body>
 		<div class="animationContainer">
 			<canvas id="myCanvas" width="800"height="400"></canvas>
 		</div>
-
-		<div class="VEContainer">
-			<canvas id="VECanvas"></canvas>
-		</div>
-	
+		
 		<div class="objectContainer">
 			<canvas id="objectCanvas"></canvas>
 		</div>
+
+		<div class="VEContainer">
+			<div id = "container">
+				<canvas id="VECanvas"></canvas>
+			<div>
+		</div>
+	
+		
 <script>
 	myCanvas.width = (window.innerWidth / 1.8);
 	myCanvas.height = (window.innerHeight / 1.8);
