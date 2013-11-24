@@ -5,7 +5,7 @@
 	
 	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src='visualEditor.js' type = 'text/javascript' defer ></script>
+	<script src='visualEditor.js' type = 'text/javascript'></script>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
@@ -13,14 +13,76 @@
 	<script src = 'object_creator/jfile.js' type = 'text/javascript' ></script>
 	<script src='Animation/animationBlocks.js' type = 'text/javascript' ></script>
 
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="gui.js"> </script>
+
 </head>
+
 <body>
 		<div class="animationContainer">
-			<canvas id="myCanvas" width="800"height="400"></canvas>
+			<canvas id="mainCanvas" width="800"height="400"></canvas>
 		</div>
 		
 		<div class="objectContainer">
-			<canvas id="objectCanvas"></canvas>
+			  	<canvas id="objectCanvas"> </canvas>
+
+				<div id="tabs">
+  					<ul>
+    					<li><a href="#tabs-1">Objects</a></li>
+    					<li><a href="#tabs-2">Methods</a></li>
+  					</ul>
+  				<div id="tabs-1">
+  					<script defer="defer">
+  					var stage = new Kinetic.Stage({
+			        container: 'tabs-1',
+			        width: 578,
+			        height: 200
+			      });
+
+			      var layer = new Kinetic.Layer();
+			      var imageObj = new Image();
+					imageObj.onload = function() {
+					  var image = new Kinetic.Image({
+					    x: 200,
+					    y: 50,
+					    image: imageObj,
+					    width: 100,
+					    height: 100
+					  });
+					};
+					imageObj.src = 'kitten.png';
+
+			      var rect = new Kinetic.Rect({
+			        x: 239,
+			        y: 75,
+			        width: 100,
+			        height: 50,
+			        fill: 'green',
+			        stroke: 'black',
+			        strokeWidth: 4
+			      });
+
+			      var group = new Kinetic.Group({
+			      	draggable: true,
+			      	listening: true,
+			      	name: "box"
+			      });
+
+			      // add the shape to the layer
+			      group.add(imageObj);
+			      group.add(rect);
+			      layer.add(group);
+
+			      // add the layer to the stage
+			      stage.add(layer);
+  			</script>
+  		<div id="tabs-2">
+    		<p>Methods</p>
+  		</div>
+
+  	</div>
+
+  	</div>
 		</div>
 
 		<div class="VEContainer">
@@ -31,35 +93,36 @@
 
 		
 <script>
-	myCanvas.width = (window.innerWidth / 1.8);
-	myCanvas.height = (window.innerHeight / 1.8);
-	VECanvas.width = (window.innerWidth / 2.4);
-	VECanvas.height = (window.innerHeight / 1.08);
+	mainCanvas.width = (window.innerWidth / 1.8);
+	mainCanvas.height = (window.innerHeight / 1.8);
 	objectCanvas.width = (window.innerWidth / 1.8);
 	objectCanvas.height = (window.innerHeight / 2.8);
+	VECanvas.width = (window.innerWidth / 2.4);
+	VECanvas.height = (window.innerHeight / 1.08);
 
-	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
 	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
 	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight / 3.75));
 	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
 
 	window.onresize = function(event) {
-    myCanvas.width = (window.innerWidth / 1.8);
-	myCanvas.height = (window.innerHeight / 1.8);
-	VECanvas.width = (window.innerWidth / 2.4);
-	VECanvas.height = (window.innerHeight / 1.08);
-	objectCanvas.width = (window.innerWidth / 1.8);
-	objectCanvas.height = (window.innerHeight / 2.8);
-	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so 
-	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
-	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight / 3.75));
-	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+    	mainCanvas.width = (window.innerWidth / 1.8);
+		mainCanvas.height = (window.innerHeight / 1.8);
+		objectCanvas.width = (window.innerWidth / 1.8);
+		objectCanvas.height = (window.innerHeight / 2.8);
+
+		oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+
+		mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
+		luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight/ 3.75));
+		bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+		// document.getElementsById("container").width = (window.innerWidth / 2.4);
+		// document.getElementsById("container").height = (window.innerHeight / 2.4);
 	}
 	
 	function play()
 	{
-		var pos = window.innerWidth - myCanvas.width;
 		// movR(mario, 2000, 500);
 		// movL(mario, 200, 500);
 		move(mario, 2000, 0, 0, true, -360);
@@ -86,15 +149,6 @@
 	{
 		setDelay(mario, 1000);
 	}
-	
-	function getScreen()
-	{
-		
-		document.getElementById("myCanvas").he = h;
-		document.getElementById("screenWidth") = w;
-	}
-	
-	
 </script>
 <div class="buttons">
  <button id="button1" onclick = 'play()'>Play</button>
