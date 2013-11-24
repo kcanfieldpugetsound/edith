@@ -9,40 +9,29 @@ background-color:#525252;
 }
 
 .animationContainer{
-width:800px;
-height:400px;
 border:solid;
 position:absolute;
-top:40px;
+top:35px;
 }
 
 .VEContainer{
-left:820px;
-width:400px;
-height:600px;
+right:5px;
 border:solid; 
 position: absolute;
-top:40px;
+top:35px;
 background-color:#20cfd0;
 }
 
 .objectContainer{
-width:800px;
-height:400px;
 border:solid;
 position:absolute;
-top:450px;
+bottom:5px;
 background-color:#20cfd0;
 }
-
-
 
 .vertical-scroll{
 height:300px;
 }
-
-
-
 
 #buttons{
 float:right;
