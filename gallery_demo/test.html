@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="story_creator.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script src='objectTest.js' type = 'text/javascript'></script>
+	<script src='VETest.js' type = 'text/javascript'></script>
+	<script src='dataRequests.js' type = 'text/javascript'></script>
+	<script src = 'object_creator/jfile.js' type = 'text/javascript'></script>
+	<script src='Animation/animationBlocks.js' type = 'text/javascript'></script>
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="gui.js"> </script>
+</head>
+<body>
+		<div class="animationContainer" id = "droppable">
+			<canvas id="myCanvas" width="800"height="400"></canvas>
+		</div>
+
+		<div class="VEContainer">
+			<canvas id="VECanvas"></canvas>
+		</div>
+	
+		<div class="objectContainer">
+			<canvas id="objectCanvas"></canvas>
+			<div id="tabs">
+  					<ul>
+    					<li><a href="#tabs-1">Objects</a></li>
+    					<li><a href="#tabs-2">Methods</a></li>
+  					</ul>
+  				<div id="tabs-1">
+  					<div class = "draggable">
+  						<img src="kitten.png" width="25%" height="25%"/>
+  					</div>
+  					<div class = "draggable">
+  						<img src="mario.jpg" width="100%" height="50%"/>
+ 					</div>
+  					<div class = "draggable">
+  						<img src="luigi.jpg" width="100%" height="50%"/>
+  					</div>
+  		</div>
+  		<div id="tabs-2">
+    		<p>Methods</p>
+  		</div>
+  	</div>
+</div>	
+<script>
+/*
+	myCanvas.width = (window.innerWidth / 1.8);
+	myCanvas.height = (window.innerHeight / 1.8);
+	VECanvas.width = (window.innerWidth / 2.4);
+	VECanvas.height = (window.innerHeight / 1.08);
+	objectCanvas.width = (window.innerWidth / 1.8);
+	objectCanvas.height = (window.innerHeight / 2.8); */
+
+	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+
+	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, 200, 200);
+	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 100, 120, 400, 200);
+	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, 600, 200);
+	
+	function play()
+	{
+		// movR(mario, 2000, 500);
+		// movL(mario, 200, 500);
+		move(mario, 2000, 0, 0, true, -360);
+		rotate(luigi, 400, 360);
+		movD(luigi, 100, 50);
+		movL(luigi, 100, 50);
+		movU(luigi, 100, 50);
+		movR(luigi, 100, 50);
+
+		rotate(bowser, 200, 360, true);
+		rotate(bowser, 200, 360, false);
+
+	}
+
+	function pauseSprite()
+	{
+		pauseAnimationsForSprite(mario);
+	}
+	function pauseAll()
+	{
+		pauseAnimationsForEntireScene(oCanvasElement);
+	}
+
+	function delay()
+	{
+		setDelay(mario, 1000);
+	}
+	
+	function getScreen()
+	{
+		
+		document.getElementById("myCanvas").he = h;
+		document.getElementById("screenWidth") = w;
+	}
+	
+	
+</script>
+<div class="buttons">
+ <button id="button1" onclick = 'play()'>Play</button>
+ <button id="button2" onclick = 'pauseAll()'>Pause</button>
+ <button id="button5" onclick = 'popitup("object_creator/example.html")'>Make Object</button>
+</div>
+
+</body>
+
+</html>
