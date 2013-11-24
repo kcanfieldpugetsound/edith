@@ -5,18 +5,17 @@
 	
 	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src='visualEditor.js' type = 'text/javascript' defer ></script>
+	<script src='visualEditor.js' type = 'text/javascript'></script>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
 	<script src = 'object_creator/jfile.js' type = 'text/javascript' ></script>
 	<script src='Animation/animationBlocks.js' type = 'text/javascript' ></script>
-
 </head>
 <body>
 		<div class="animationContainer">
-			<canvas id="myCanvas" width="800"height="400"></canvas>
+			<canvas id="mainCanvas" width="800"height="400"></canvas>
 		</div>
 		
 		<div class="objectContainer">
@@ -31,35 +30,36 @@
 
 		
 <script>
-	myCanvas.width = (window.innerWidth / 1.8);
-	myCanvas.height = (window.innerHeight / 1.8);
-	VECanvas.width = (window.innerWidth / 2.4);
-	VECanvas.height = (window.innerHeight / 1.08);
+	mainCanvas.width = (window.innerWidth / 1.8);
+	mainCanvas.height = (window.innerHeight / 1.8);
 	objectCanvas.width = (window.innerWidth / 1.8);
 	objectCanvas.height = (window.innerHeight / 2.8);
+	VECanvas.width = (window.innerWidth / 2.4);
+	VECanvas.height = (window.innerHeight / 1.08);
 
-	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
 	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
 	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight / 3.75));
 	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
 
 	window.onresize = function(event) {
-    myCanvas.width = (window.innerWidth / 1.8);
-	myCanvas.height = (window.innerHeight / 1.8);
-	VECanvas.width = (window.innerWidth / 2.4);
-	VECanvas.height = (window.innerHeight / 1.08);
-	objectCanvas.width = (window.innerWidth / 1.8);
-	objectCanvas.height = (window.innerHeight / 2.8);
-	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so 
-	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
-	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight / 3.75));
-	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+    	mainCanvas.width = (window.innerWidth / 1.8);
+		mainCanvas.height = (window.innerHeight / 1.8);
+		objectCanvas.width = (window.innerWidth / 1.8);
+		objectCanvas.height = (window.innerHeight / 2.8);
+
+		oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+
+		var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
+		var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight/ 3.75));
+		var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+		VECanvas.width = (window.innerWidth / 2.4);
+		VECanvas.height = (window.innerHeight / 1.08);
 	}
 	
 	function play()
 	{
-		var pos = window.innerWidth - myCanvas.width;
 		// movR(mario, 2000, 500);
 		// movL(mario, 200, 500);
 		move(mario, 2000, 0, 0, true, -360);
@@ -86,15 +86,6 @@
 	{
 		setDelay(mario, 1000);
 	}
-	
-	function getScreen()
-	{
-		
-		document.getElementById("myCanvas").he = h;
-		document.getElementById("screenWidth") = w;
-	}
-	
-	
 </script>
 <div class="buttons">
  <button id="button1" onclick = 'play()'>Play</button>
