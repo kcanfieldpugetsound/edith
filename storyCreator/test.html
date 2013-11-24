@@ -32,12 +32,26 @@
 
 	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
-	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, 200, 200);
-	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 100, 120, 400, 200);
-	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, 600, 200);
+	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
+	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight / 3.75));
+	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+
+	window.onresize = function(event) {
+    myCanvas.width = (window.innerWidth / 1.8);
+	myCanvas.height = (window.innerHeight / 1.8);
+	VECanvas.width = (window.innerWidth / 2.4);
+	VECanvas.height = (window.innerHeight / 1.08);
+	objectCanvas.width = (window.innerWidth / 1.8);
+	objectCanvas.height = (window.innerHeight / 2.8);
+	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');  //get the OCanvas so 
+	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
+	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight / 3.75));
+	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+	}
 	
 	function play()
 	{
+		var pos = window.innerWidth - myCanvas.width;
 		// movR(mario, 2000, 500);
 		// movL(mario, 200, 500);
 		move(mario, 2000, 0, 0, true, -360);
@@ -49,7 +63,6 @@
 
 		rotate(bowser, 200, 360, true);
 		rotate(bowser, 200, 360, false);
-
 	}
 
 	function pauseSprite()

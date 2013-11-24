@@ -11,26 +11,22 @@ background-color:#525252;
 .animationContainer{
 border:solid;
 position:absolute;
-top:35px;
+top:4%;
 }
 
 .VEContainer{
-right:5px;
+left:57.25%;
 border:solid; 
 position: absolute;
-top:35px;
+top:4%;
 background-color:#20cfd0;
 }
 
 .objectContainer{
 border:solid;
 position:absolute;
-bottom:5px;
+top:62%;
 background-color:#20cfd0;
-}
-
-.vertical-scroll{
-height:300px;
 }
 
 #buttons{
