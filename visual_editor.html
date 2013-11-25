@@ -32,7 +32,15 @@
 
   var tools = [{'title': 'method', 'jstext': ''},
     {'title': 'variable', 'jstext': ''},
-    {'title': 'end method', 'jstext': '}'}
+    {'title': 'end method', 'jstext': '}'},
+    {'title': 'setDelay', 'jstext': ''},
+    {'title': 'rotate', 'jstext': ''},
+    {'title': 'fmove', 'jstext': ''},
+    {'title': 'jump', 'jstext': ''},
+    {'title': 'movR', 'jstext': ''},
+    {'title': 'movL', 'jstext': ''},
+    {'title': 'movU', 'jstext': ''},
+    {'title': 'movD', 'jstext': ''}
     ];
 
 
@@ -57,7 +65,77 @@
       x = "}";
       return x;
     }
+    if (ids === "setDelay") {
+      var sprite = prompt("Please enter the name of your sprite", "");
+      var mills = prompt("Seconds Delayed");
+      x = "setDelay("+sprite+ ","+mills+");";
+      console.log(x);
+      return x;
+      }
+    if (ids === "fmove") {
+      var sprite = prompt("Please enter the name of your sprite");
+      var dur = prompt("Duration of move");
+      var dist = prompt("Distance");
+      var height = prompt("height");
+      var rotateClockwise = prompt("rotateClockwise");
+      var degrees = prompt("degrees");
+      x = "setDelay("+sprite+ ","+dur+ ","+dist+ ","+height+ ","+rotateClockwise+ ","+degrees+");";
+      console.log(x);
+      return x;
+      }
+    if (ids === "rotate") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var angle = prompt("angle");
+      var clockwise = prompt("clockwise");
+      x = "rotate("+sprite+ ","+dur+ ","+angle+ ","+height+ ","+clockwise+");";
+      console.log(x);
+      return x;
+    }
+    if (ids === "jump") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var height = prompt("height");
+      x = "jump("+sprite+ ","+dur+ ","+height+");";
+      console.log(x);
+      return x;
+      }
+    if (ids === "movL") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var distance = prompt("distance");
+      x = "movL("+sprite+ ","+dur+ ","+distance+");";
+      console.log(x);
+      return x;
+      }
+    if (ids === "movR") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var distance = prompt("distance");
+      x = "movLR("+sprite+ ","+dur+ ","+distance+");";
+      console.log(x);
+      return x;
+
+      }
+   if (ids === "movU") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var distance = prompt("distance");
+      x = "movD("+sprite+ ","+dur+ ","+distance+");";
+      console.log(x);
+      return x;
+
+      }
+   if (ids === "movD") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var distance = prompt("distance");
+      x = "movD("+sprite+ ","+dur+ ","+distance+");";
+      console.log(x);
+      return x;
+  	}
   }
+  
   $(function () {
     /*global Kinetic*/
     var stage = new Kinetic.Stage({
