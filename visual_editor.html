@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Visual Editor Demo 2</title>
+  <title>Visual Editor Demo</title>
   <style>
   body {
     margin: 0px;
@@ -15,7 +15,39 @@
   <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script defer>
+<<<<<<< HEAD:visualEditorTest.html
   var UNIVERSAL_MAIN = "";
+=======
+  //styling for list
+  var itemsTopMargin = 20;
+  var itemHeight = 25;
+  var itemX = 430;
+  var itemSpacer = 5;
+  var snapStructure = [];
+  var groupToolbox;
+ 
+  //declaration of variables
+  var i;
+  var startX = 20;
+  var startY = 30;
+  var yPosition;
+  var layer;
+
+  var tools = [{'title': 'method', 'jstext': ''},
+    {'title': 'variable', 'jstext': ''},
+    {'title': 'end method', 'jstext': '}'},
+    {'title': 'setDelay', 'jstext': ''},
+    {'title': 'rotate', 'jstext': ''},
+    {'title': 'fmove', 'jstext': ''},
+    {'title': 'jump', 'jstext': ''},
+    {'title': 'movR', 'jstext': ''},
+    {'title': 'movL', 'jstext': ''},
+    {'title': 'movU', 'jstext': ''},
+    {'title': 'movD', 'jstext': ''}
+    ];
+
+
+>>>>>>> cf834d9ba2ce53438036b28b2df61d6f75954835:visual_editor.html
   /* Prompts user input of names*/
   function promptUser(ids) {
     /*global prompt*/
@@ -63,7 +95,7 @@
       x = "rotate("+sprite+ ","+dur+ ","+angle+ ","+height+ ","+clockwise+");";
       //console.log(x);
       return x;
-      }
+    }
     if (ids === "jump") {
       var sprite = prompt("sprite");
       var dur = prompt("dur");
@@ -105,10 +137,9 @@
       x = "movD("+sprite+ ","+dur+ ","+distance+");";
       //console.log(x);
       return x;
-      }
+  	}
   }
   
-  var layer; 
   $(function () {
     /*global Kinetic*/
     var stage = new Kinetic.Stage({
@@ -119,14 +150,16 @@
     layer = new Kinetic.Layer();
     stage.add(layer);
 
-    var line = new Kinetic.Line({
-      x: 400,
-      y: 0,
-      points: [0, 0, 0, 800],
-      stroke: 'red'
-    });
+		var line = new Kinetic.Line({
+			x: 400,
+			y: 0,
+			points: [0, 0, 0, 800],
+			stroke: 'red'
+		});
+		
     layer.add(line);
 
+<<<<<<< HEAD:visualEditorTest.html
     var startX = 20;
     var startY = 30;
 
@@ -153,10 +186,19 @@
         listening: true,
 		name: "box",
 		jsText: ""
+=======
+    function newRect(xpos, ypos, id) {
+      var groupToolbox = new Kinetic.Group({
+        id: id,
+        draggable: true,
+        listening: true,
+        firstTime: true,
+        name: "box"
+>>>>>>> cf834d9ba2ce53438036b28b2df61d6f75954835:visual_editor.html
       });
       var rect = new Kinetic.Rect({
-        x: startX,
-        y: startY,
+        x: xpos,
+        y: ypos,
         width: 100,
         height: 50,
         fill: '#00D2FF',
@@ -167,14 +209,16 @@
       });
 
       var simpleText = new Kinetic.Text({
-        x: startX + 10,
-        y: startY + 10,
+        x: xpos + 10,
+        y: ypos + 10,
         text: id,
+        kItem: null,
         fontSize: 12,
         fontFamily: 'Calibri',
         stroke: 'black',
-        strokeWidth: 1,
+        strokeWidth: 1
       });
+<<<<<<< HEAD:visualEditorTest.html
 
       //have the rectangles save its orginal XY
       //rect.orginalX = x;
@@ -214,32 +258,101 @@
                 if (tools[i].jstext !== '') {
                   //console.log(tools[i].jstext);
                   //UNIVERSAL_MAIN = UNIVERSAL_MAIN + tools[i].jstext;
+=======
+    
+      //on dragend, calc the rect has passed the threshold
+    var currentRect;
+    var clone;
+    groupToolbox.on('dragstart', function () {
+      this.moveToTop();
+      this.setOpacity(0.50);
+      groupArray = (this.getChildren()).toArray();
+      text = groupArray[1];
+      currentRect = groupArray[0];
+      console.log(currentRect.getX() + ", " + currentRect.getY());
+      clone = newRect(currentRect.getX(), currentRect.getY(), id); //create a "clone" of this rectangle
+      layer.draw();
+    });
 
-                }
+    var text;
+    var groupArray = [];
+    var height;
+    var dx;
+    
+    groupToolbox.on("dblclick", function () {
+      groupArray = (this.getChildren()).toArray();
+      text = groupArray[1];
+      currentRect = groupArray[0];
+      id = this.attrs.id;
+      text.setText(promptUser(id));
+      height = currentRect.getHeight();
+      currentRect.setSize(text.getWidth() + 30, height);
+      this.attrs.firstTime = false;
+      layer.draw();
+    });
+>>>>>>> cf834d9ba2ce53438036b28b2df61d6f75954835:visual_editor.html
+
+    groupToolbox.on("dragend", function () {
+      this.setOpacity(1.00);
+      layer.draw();
+      var i;
+      //Sets the threshold and rules below.
+      dx = this.getX();
+      id = this.attrs.id;
+      groupArray = (this.getChildren()).toArray();
+      text = groupArray[1];
+      currentRect = groupArray[0];
+      //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER the line
+      if (dx + 20 > line.getX()) {
+        //Only change text, or write to console on first time being dragged over
+        if (this.attrs.firstTime === true) {
+          text.setText(promptUser(id));
+          var height = currentRect.getHeight();
+          currentRect.setSize(text.getWidth() + 30, height);
+          this.attrs.firstTime = false;
+          layer.draw();
+        //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
+          for (i = 0; i < tools.length; i++) {
+            if (id === tools[i].title) {
+              if (tools[i].jstext !== '') {
+                console.log(tools[i].jstext);
               }
             }
 */
           }
-          // END THAT
         }
-      });
-      group.add(rect);
-      group.add(simpleText);
-      layer.add(group);
-      layer.draw();
+      } else {
+        groupToolbox.remove();
+        layer.draw();
+      }
+          //console.log("id: "+id);
+          //console.log("clone id: "+clone.getId());
+          //console.log("clone X: "+clone.getX()+"       clone Y: "+clone.getY());
 
-    }
-
+    });
+    groupToolbox.add(rect);
+    groupToolbox.add(simpleText);
+    layer.add(groupToolbox);
+    layer.draw();
+}
     for (i = 0; i < tools.length; i++) {
       newRect(startX, startY, tools[i].title);
       startY = startY + 65;
     }
-  });
+ });
 
 
+<<<<<<< HEAD:visualEditorTest.html
 </script>
 <script src="sortable.js"></script>
 <p id="demo">Click the button to sort the array.</p>
+=======
+  </script>
+
+  <script src="sortable.js"></script>
+  <p id="demo">Click the button to sort the array.</p>
+>>>>>>> cf834d9ba2ce53438036b28b2df61d6f75954835:visual_editor.html
     <button onclick="sorter()">SORTER</button>
-</body>
+  </body>
+
 </html>

@@ -1,8 +1,9 @@
 
 
-function myFunction()
-{
-	for(var i = 0; i< points.length; i++){
+var i;
+
+function myFunction() {
+	for (i = 0; i< points.length; i++){
 	console.log(points[i]);
 	}
 points.sort(function(a,b){return a-b});
