@@ -22,6 +22,7 @@
   var itemSpacer = 5;
   var snapStructure = [];
   var groupToolbox;
+  var UNIVERSAL_MAIN = "";
  
   //declaration of variables
   var i;
@@ -53,23 +54,28 @@
       var params = prompt("Please enter the Parameters for your method separated by commas");
       x = "function " + mname + "(" + params + ") {";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
     }
     if (ids === "variable") {
       var varn = prompt("Please enter the name of your variable", "test");
       x = "var " + varn +  ";";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
     }
     if (ids === "end method") {
       x = "}";
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
+
     }
     if (ids === "setDelay") {
       var sprite = prompt("Please enter the name of your sprite", "");
       var mills = prompt("Seconds Delayed");
       x = "setDelay("+sprite+ ","+mills+");";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
       }
     if (ids === "fmove") {
@@ -81,6 +87,7 @@
       var degrees = prompt("degrees");
       x = "setDelay("+sprite+ ","+dur+ ","+dist+ ","+height+ ","+rotateClockwise+ ","+degrees+");";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
       }
     if (ids === "rotate") {
@@ -90,6 +97,7 @@
       var clockwise = prompt("clockwise");
       x = "rotate("+sprite+ ","+dur+ ","+angle+ ","+height+ ","+clockwise+");";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
     }
     if (ids === "jump") {
@@ -98,6 +106,7 @@
       var height = prompt("height");
       x = "jump("+sprite+ ","+dur+ ","+height+");";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
       }
     if (ids === "movL") {
@@ -106,6 +115,7 @@
       var distance = prompt("distance");
       x = "movL("+sprite+ ","+dur+ ","+distance+");";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
       }
     if (ids === "movR") {
@@ -114,6 +124,7 @@
       var distance = prompt("distance");
       x = "movLR("+sprite+ ","+dur+ ","+distance+");";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
 
       }
@@ -123,6 +134,7 @@
       var distance = prompt("distance");
       x = "movD("+sprite+ ","+dur+ ","+distance+");";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
 
       }
@@ -132,8 +144,10 @@
       var distance = prompt("distance");
       x = "movD("+sprite+ ","+dur+ ","+distance+");";
       console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
   	}
+  console.log(UNIVERSAL_MAIN);
   }
   
   $(function () {
