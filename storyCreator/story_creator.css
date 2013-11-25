@@ -11,10 +11,6 @@ background-color:#525252;
 	top:1%;
 }
 
-.buttons{
-	position: absolute;
-}
-
 .animationContainer{
 border:solid;
 border-width: 2px;
@@ -61,6 +57,6 @@ position:absolute;
 #tabs {
 	top: 0px;
 	position: absolute;
-	width: 99.5%;
-	height: 99.5%;
+	width: 99.25%;
+	height: 97.5%;
 }
