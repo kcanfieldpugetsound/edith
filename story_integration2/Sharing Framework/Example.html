@@ -1,0 +1,189 @@
+<?php
+$userStatus = false;
+  session_start();
+  if(isset($_SESSION['userName'])){
+    $userStatus=true;
+  } 
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+Make a New Object!
+ <title>button demo</title>
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+</head>
+<body>	
+<div>
+	<canvas id= "canvas" height="500" width="500" style="border:2px solid #000000;"></canvas>
+</div>
+<script src = jfile.js></script>
+
+<div id="drawing">
+	Draw a line with a length of: <input type= "text" id= "LineLength">
+	<button onclick="drawLine()" >Draw Line</button><br>
+	Draw a rectangle with height: <input type= "text" id="RecHeight"> width: <input type= "text" id="RecWidth">
+	<button onclick="drawRec()" >Draw Rectangle</button><br>
+	Draw a circle with radius: <input type= "text" id="r">
+	<button onclick="drawCircle()" >Draw Circle</button><br>
+	<id="r">
+	<button onclick="clearCanvas()" >Clear Canvas</button><br>
+	<!--<script type="text/javascript" src="script.js"></script>-->
+	<script> 
+	var savedObjects = new Array();
+	function drawLine()	
+	{	
+		var length = parseInt(document.getElementById("LineLength").value);
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+		ctx.beginPath();
+		ctx.moveTo(100,200)
+		ctx.lineTo(length+100,200);
+		ctx.stroke();
+	}
+	function drawRec()
+	{
+		var height = document.getElementById("RecHeight").value;
+		var width = document.getElementById("RecWidth").value;
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+		ctx.rect(100,100, width, height);
+		ctx.stroke();
+	}
+	function drawCircle()
+	{
+		var r = document.getElementById("r").value;
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+		ctx. beginPath();
+		ctx.arc(250,100,r,0,2*Math.PI);
+		ctx.stroke();
+	}
+	function clearCanvas()
+	{
+		var c=document.getElementById("canvas");
+		var ctx=c.getContext("2d");
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+	}
+	
+	//
+	function saveObject()
+	{	
+		var name = document.getElementById("SaveName").value;
+		if(name == ""){
+		alert("Please enter a name to save the file as.");
+		return false;
+		}
+		
+		var canvas = document.getElementById("canvas");
+		var img = canvas.toDataURL(name + "/png");
+		var imgName = name +".png";
+		var i;
+		for (i = 0; i < savedObjects.length; i++) {
+			if (savedObjects[i][1] == imgName) {
+				savedObjects[i][0] = img;
+				alert("Saved!");
+				return true;
+			}
+		}
+		savedObjects.push([img,imgName]);
+		alert("Saved!");
+		return true;
+	}
+	
+	//testing and debugging function to test that we can load the image onto the canvas.
+	function displayImage() {
+		var testName = document.getElementById("TestName").value;
+		if(testName == ""){
+		alert("Please enter a name so we can load the correct image.");
+		return false;
+		}
+		//go through and find the file with the same name as the inputed one.
+		for (i = 0; i < savedObjects.length; i++) {
+			if (savedObjects[i][1] == testName) {
+			    //if the file is the same name then extract the file source data and put it into the canvas.
+				var canvas = document.getElementsByTagName("canvas")[0];
+				var context = canvas.getContext("2d");
+				var image = new Image();
+				image.src = savedObjects[i][0];
+
+				image.onload = function() {
+					context.drawImage(image, 0, 0);
+				}
+				return true;
+			}
+		}
+		//if the file name was not found then return false.
+		alert("the specific image does not exist.");
+		return false;
+		
+	}
+	
+	function exporting(){
+	    var objectArrayName = document.getElementById("ObjectName").value;
+		if(objectArrayName == ""){
+		alert("Please enter a name so we can save the object.");
+		return false;
+		}
+	    $.ajax({
+           type: "POST",
+           data: {ObjectArray: savedObjects},
+           url: "functions/save.php"
+        });
+        $.ajax({
+           type: "POST",
+           data: {ObjectName: objectArrayName},
+           url: "/functions/save.php",
+           success: function(){
+				alert("Exported successfully");
+            },
+			error: function() {
+				alert("failure");
+			},
+        });
+	
+	}
+
+
+	</script>
+</div>
+
+<div id="radio">
+ <input type="radio" id="radio1" name="radio" onClick = "choice1()"><label for="radio1">Draw Lines</label>
+ <input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Just Fun to Click</label>
+ <input type="radio" id="radio3" name="radio" onClick = "choice3()"><label for="radio3">Free Draw</label>
+</div>
+<script> $( "#radio" ).buttonset(); </script>
+Save file name as: <input type= "text" id= "SaveName">
+<button onclick="saveObject()">Save Piece</button></br>
+Load file of name (ex: "head.png"): <input type= "text" id= "TestName">
+<button onclick="displayImage()">Test Save</button></br>
+
+Save total object as (ex: 'person1'): <input type= "text" id= "ObjectName">
+<!--<div id="myDiv">
+<input type= "text" id= "LineLength"> -->
+<button type="button" onclick="exporting()">Export Complete Character</button>
+
+<script>
+function choice1()
+{
+	can.removeEventListener("mousedown",continuous,false);
+	can.removeEventListener("mouseup",off,false);
+	can.removeEventListener("mousemove",cont,false);
+	can.addEventListener("mousedown",pathStart,false);
+	can.addEventListener("mouseup",line,false);
+}
+function choice3()
+{
+	can.removeEventListener("mousedown",pathStart,false);
+	can.removeEventListener("mouseup",line,false);
+	can.addEventListener("mousedown",continuous,false);
+	can.addEventListener("mouseup",off,false);
+	can.addEventListener("mousemove",cont,false);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+html>body {overflow:scroll; }
+
+body{
+background-color:#525252;
+}
+
+#logo{
+	position: absolute;
+	float: left;
+	width: 30%;
+	top:1%;
+}
+
+.buttons{
+	position: absolute;
+}
+
+.animationContainer{
+border:solid;
+border-width: 2px;
+border-color: #242928;
+position:absolute;
+top:17%;
+}
+
+.objectContainer{
+border:solid;
+border-width: 2px;
+border-color: #242928;
+box-shadow: 3px 3px 10px #1b1b1b;
+float: left;
+border-radius: 5px;
+position:absolute;
+top:77%;
+background-color:#838383;
+}
+
+.VEContainer{
+left:58%;
+border:solid; 
+border-width: 2px;
+border-color: #242928;
+box-shadow: 3px 3px 10px #1b1b1b;
+border-radius: 5px;
+position: absolute;
+top:17%;
+background-color:#838383;
+}
+
+.buttons{
+top: 10%;
+left:18%;
+position:absolute;
+}
+
+
+.draggable {
+	float:right;
+}
+
+#tabs {
+	top: 0px;
+	position: absolute;
+	width: 99.5%;
+	height: 99.5%;
+}
