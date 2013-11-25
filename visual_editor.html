@@ -33,7 +33,7 @@
 
   var tools = [{'title': 'method', 'jstext': ''},
     {'title': 'variable', 'jstext': ''},
-    {'title': 'end method', 'jstext': '}'},
+    {'title': 'end', 'jstext': ''},
     {'title': 'setDelay', 'type': 'predefined', 'jstext': ''},
     {'title': 'rotate', 'type': 'predefined', 'jstext': ''},
     {'title': 'fmove', 'type': 'predefined', 'jstext': ''},
@@ -41,7 +41,10 @@
     {'title': 'movR', 'type': 'predefined', 'jstext': ''},
     {'title': 'movL', 'type': 'predefined', 'jstext': ''},
     {'title': 'movU', 'type': 'predefined', 'jstext': ''},
-    {'title': 'movD', 'type': 'predefined', 'jstext': ''}
+    {'title': 'movD', 'type': 'predefined', 'jstext': ''},
+    {'title': 'if', 'type': 'control', 'jstext': ''},
+    {'title': 'while', 'type': 'control', 'jstext': ''},
+    {'title': 'else', 'type': 'control', 'jstext': ''},
     ];
 
 
@@ -54,28 +57,23 @@
       var params = prompt("Please enter the Parameters for your method separated by commas");
       x = "function " + mname + "(" + params + ") {";
       //console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
     }
     if (ids === "variable") {
       var varn = prompt("Please enter the name of your variable", "test");
       x = "var " + varn +  ";";
-      console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
+      //console.log(x);
       return x;
     }
-    if (ids === "end method") {
+    if (ids === "end") {
       x = "}";
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
-
     }
     if (ids === "setDelay") {
       var sprite = prompt("Please enter the name of your sprite", "");
       var mills = prompt("Seconds Delayed (in milliseconds)");
       x = "setDelay(" + sprite + ", " + mills + ");";
       console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
     }
     if (ids === "fmove") {
@@ -86,8 +84,7 @@
       var rotateClockwise = prompt("Clockwise? (true or false)");
       var degrees = prompt("Degrees");
       x = "fmove (" + sprite + ", " + dur + ", " + dist + ", " + height + ", " + rotateClockwise + ", " + degrees + ");";
-      console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
+      //console.log(x);
       return x;
     }
     if (ids === "rotate") {
@@ -97,8 +94,7 @@
       var height = prompt("Height")
       var clockwise = prompt("Clockwise? (true or false)");
       x = "rotate (" + sprite + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
-      console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
+      //console.log(x);
       return x;
     }
     if (ids === "jump") {
@@ -106,8 +102,7 @@
       var dur = prompt("Duration (in milliseconds)");
       var height = prompt("Height");
       x = "jump ("+sprite+ ", "+dur+ ", "+height+");";
-      console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
+      //console.log(x);
       return x;
     }
     if (ids === "movL") {
@@ -115,8 +110,7 @@
       var dur = prompt("Duration (in milliseconds)");
       var distance = prompt("Distance");
       x = "movL ("+sprite+ ", "+dur+ ", "+distance+");";
-      console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
+      //console.log(x);
       return x;
     }
     if (ids === "movR") {
@@ -124,8 +118,7 @@
       var dur = prompt("Duration (in milliseconds)");
       var distance = prompt("Distance");
       x = "movLR ("+sprite+ ", "+dur+ ", "+distance+");";
-      console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
+      //console.log(x);
       return x;
 
       }
@@ -134,8 +127,7 @@
       var dur = prompt("Duration (in milliseconds)");
       var distance = prompt("Distance");
       x = "movU ("+sprite+ ", "+dur+ ", "+distance+");";
-      console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
+      //console.log(x);
       return x;
 
       }
@@ -144,10 +136,23 @@
       var dur = prompt("Duration (in milliseconds)");
       var distance = prompt("Distance");
       x = "movD ("+sprite+ ", "+dur+ ", "+distance+");";
-      console.log(x);
-      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
+      //console.log(x);
       return x;
   	}
+    if (ids === "if") {
+      var condition = prompt("Please enter the condition");
+      x = "if(" + condition + "){";
+      return x;
+    }
+    if (ids === "while") {
+      var condition = prompt("Please enter the condition");
+      x = "while(" + condition + "){";
+      return x;
+    }
+    if (ids === "else") {
+      x = "else{";
+      return x;
+    }
   console.log(UNIVERSAL_MAIN);
   }
   
@@ -192,7 +197,23 @@
         strokeWidth: 2,
         offset: 10
       });
-    } else {
+    }
+     else if(type == "control"){
+        var rect = new Kinetic.Rect({
+        x: xpos,
+        y: ypos,
+        width: 100,
+        height: 50,
+        fillLinearGradientStartPoint: [-50, -50],
+        fillLinearGradientEndPoint: [50, 50],
+        fillLinearGradientColorStops: [0, 'green', 1, 'yellow'],
+        stroke: 'black',
+        strokeWidth: 2,
+        offset: 10
+      });
+
+    } 
+    else {
       var rect = new Kinetic.Rect({
         x: xpos,
         y: ypos,
