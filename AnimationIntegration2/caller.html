@@ -1,0 +1,92 @@
+<script src="animationBlocks.js"></script>
+	<p><a target="_blank" href = 'API/api.html'>API </a></p>	
+<canvas id="myCanvas" width="800" height="400" style = "border:solid; position:none"></canvas
+<html><head></head><body>
+
+	<script>
+	//var theCanvasToDrawOn = document.getElementById("myCanvas");
+	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');
+	
+	// var mario = addSprite(oCanvasElement, 'mario.jpg', 100, 100, 200, 200);
+	// var luigi = addSprite(oCanvasElement, 'luigi.jpg', 100, 120, 400, 200);
+	// var bowser = addSprite(oCanvasElement, 'Bowser.jpg', 100, 100, 600, 200);
+
+
+	function doSomeAnimations()
+	{
+		doubleJump(mario, 200, 100);
+		wait(mario, 2000);
+		jump(mario, 200, 100);
+	}
+
+	var mario;
+	var luigi;
+	var bowser;
+	function addSpritee()
+	{
+		var spriteName = prompt("Please enter your name","");
+		
+		if(spriteName != null){
+			if(spriteName == "mario"){
+				mario = addSprite(oCanvasElement, 'mario.jpg', 100, 100, 200, 200);
+			}else if(spriteName == 'luigi'){
+				luigi = addSprite(oCanvasElement, 'luigi.jpg', 100, 100, 400, 200);
+			}else if(spriteName == 'bowser'){
+				bowser = addSprite(oCanvasElement, 'bowser.jpg', 100, 100, 600, 200);
+			}
+		}
+		
+	}
+
+	function parse()
+	{
+		var text = "function moveDiagUL(sprite, dur, distance){sprite.animate({x: sprite.targetX - distance , y: sprite.targetY - distance}, {duration: dur, easing: 'ease-in-sine', queue: 'b',}); sprite.targetX -= distance; sprite.targetY -= distance;}function doubleJump(sprite, dur, height){sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b'}); sprite.targetY -= height; sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b' }); sprite.targetY -= height; sprite.animate({y: sprite.targetY+height+height}, { duration: dur, easing: 'ease-in-sine', queue: 'b'}); sprite.targetY += (height + height);}doubleJump(mario,200,100);moveDiagUL(mario, 200, 100);movR(mario, 300, 250);";
+		var stringToParse = "function drift(){movL(mario,200,100);movD(mario,200,100);rotate(mario,200,360,true);}drift();";
+		main(text);
+	}
+
+	function animatieMario()
+	{
+		jump(mario, 200, 100);
+	}
+	function animateLuigi()
+	{
+		movU(luigi, 100, 50);
+		movR(luigi, 100, 50);
+		movD(luigi, 100, 50);
+		movL(luigi, 100, 50);
+	}
+	function animateBowser()
+	{
+		rotate(bowser, 400, 360, true);
+	}
+
+	function animateAll()
+	{
+		animateBowser();
+		animateLuigi();
+		animatieMario();
+	}
+
+	function delay()
+	{
+		setDelay(mario, 1000);
+	}
+
+	</script>
+		
+
+<p> <button onclick = 'addSpritee()'>Add a Sprite</button>    mario, luigi, or bowser</p>
+<p><button onclick = 'animatieMario()'>Animate Mario</button>
+<button onclick = 'animateLuigi()'>Animate Luigi</button>
+<button onclick = 'animateBowser()'>Animate Bowser</button>
+<button onclick = 'animateAll()'>Animate All</button></p>
+<button onclick = 'parse()'>main</button> This method can be called by another group in order to run all of the animation. The String simulates a psuedo 	</br>	var text = "<span style = 'color: red'>function moveDiagUL(sprite, dur, distance)</span>{sprite.animate({x: sprite.targetX - distance , y: sprite.targetY - distance}, {duration: dur, easing: 'ease-in-sine', queue: 'b',}); sprite.targetX -= distance; sprite.targetY -= distance;}<span style = 'color: red'>function doubleJump(sprite, dur, height)</span>{sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b'}); sprite.targetY -= height; sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b' }); sprite.targetY -= height; sprite.animate({y: sprite.targetY+height+height}, { duration: dur, easing: 'ease-in-sine', queue: 'b'}); sprite.targetY += (height + height);}<span style = 'color:blue'>doubleJump(mario,200,100);moveDiagUL(mario, 200, 100);movR(mario, 300, 250);</span>";
+
+
+
+</body></html>
+
+
+
+
