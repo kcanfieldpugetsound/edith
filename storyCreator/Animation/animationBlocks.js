@@ -19,11 +19,13 @@ function addSprite(theOCanvas, image, width, height, xcoord, ycoord)
     width: width,
     height: height,
     origin: { x: "center", y: "center" },
-    image: image
+    image: image,
     });
 
     // add the sprite onto the canvas
     theOCanvas.canvas.addChild(theOCanvas.image);
+
+        theOCanvas.image.dragAndDrop();
 
     //set the targets to the current XY location
     theOCanvas.image.targetX = xcoord;
