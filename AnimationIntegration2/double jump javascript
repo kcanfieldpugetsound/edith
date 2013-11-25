@@ -27,5 +27,5 @@ function doubleJump(sprite, dur, height)
       callback: function () {
       }
   });  
-      sprite.targetY += height;
+      sprite.targetY += (height + height);
 }
