@@ -15,9 +15,6 @@
   <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script defer>
-<<<<<<< HEAD:visualEditorTest.html
-  var UNIVERSAL_MAIN = "";
-=======
   //styling for list
   var itemsTopMargin = 20;
   var itemHeight = 25;
@@ -25,6 +22,7 @@
   var itemSpacer = 5;
   var snapStructure = [];
   var groupToolbox;
+  var UNIVERSAL_MAIN = "";
  
   //declaration of variables
   var i;
@@ -47,7 +45,6 @@
     ];
 
 
->>>>>>> cf834d9ba2ce53438036b28b2df61d6f75954835:visual_editor.html
   /* Prompts user input of names*/
   function promptUser(ids) {
     /*global prompt*/
@@ -56,24 +53,29 @@
       var mname = prompt("Please enter the name of your method", "test");
       var params = prompt("Please enter the Parameters for your method separated by commas");
       x = "function " + mname + "(" + params + ") {";
-      //console.log(x);
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
     }
     if (ids === "variable") {
       var varn = prompt("Please enter the name of your variable", "test");
       x = "var " + varn +  ";";
-      //console.log(x);
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
     }
     if (ids === "end method") {
       x = "}";
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
+
     }
     if (ids === "setDelay") {
       var sprite = prompt("Please enter the name of your sprite", "");
       var mills = prompt("Seconds Delayed");
       x = "setDelay("+sprite+ ","+mills+");";
-      //console.log(x);
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
       }
     if (ids === "fmove") {
@@ -83,8 +85,9 @@
       var height = prompt("height");
       var rotateClockwise = prompt("rotateClockwise");
       var degrees = prompt("degrees");
-      x = "fmove("+sprite+ ","+dur+ ","+dist+ ","+height+ ","+rotateClockwise+ ","+degrees+");";
-      //console.log(x);
+      x = "setDelay("+sprite+ ","+dur+ ","+dist+ ","+height+ ","+rotateClockwise+ ","+degrees+");";
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
       }
     if (ids === "rotate") {
@@ -93,7 +96,8 @@
       var angle = prompt("angle");
       var clockwise = prompt("clockwise");
       x = "rotate("+sprite+ ","+dur+ ","+angle+ ","+height+ ","+clockwise+");";
-      //console.log(x);
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
     }
     if (ids === "jump") {
@@ -101,7 +105,8 @@
       var dur = prompt("dur");
       var height = prompt("height");
       x = "jump("+sprite+ ","+dur+ ","+height+");";
-      //console.log(x);
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
       }
     if (ids === "movL") {
@@ -109,15 +114,17 @@
       var dur = prompt("dur");
       var distance = prompt("distance");
       x = "movL("+sprite+ ","+dur+ ","+distance+");";
-      //console.log(x);
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
       }
     if (ids === "movR") {
       var sprite = prompt("sprite");
       var dur = prompt("dur");
       var distance = prompt("distance");
-      x = "movR("+sprite+ ","+dur+ ","+distance+");";
-      //console.log(x);
+      x = "movLR("+sprite+ ","+dur+ ","+distance+");";
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
 
       }
@@ -125,8 +132,9 @@
       var sprite = prompt("sprite");
       var dur = prompt("dur");
       var distance = prompt("distance");
-      x = "movU("+sprite+ ","+dur+ ","+distance+");";
-      //console.log(x);
+      x = "movD("+sprite+ ","+dur+ ","+distance+");";
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
 
       }
@@ -135,9 +143,11 @@
       var dur = prompt("dur");
       var distance = prompt("distance");
       x = "movD("+sprite+ ","+dur+ ","+distance+");";
-      //console.log(x);
+      console.log(x);
+      UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
   	}
+  console.log(UNIVERSAL_MAIN);
   }
   
   $(function () {
@@ -159,42 +169,14 @@
 		
     layer.add(line);
 
-<<<<<<< HEAD:visualEditorTest.html
-    var startX = 20;
-    var startY = 30;
-
-    var tools = [{'title': 'method', 'jstext': ''},
-        {'title': 'variable', 'jstext': ''},
-        {'title': 'end method', 'jstext': ''},
-        {'title': 'setDelay', 'jstext': ''},
-        {'title': 'rotate', 'jstext': ''},
-        {'title': 'fmove', 'jstext': ''},
-        {'title': 'jump', 'jstext': ''},
-        {'title': 'movR', 'jstext': ''},
-        {'title': 'movL', 'jstext': ''},
-        {'title': 'movU', 'jstext': ''},
-        {'title': 'movD', 'jstext': ''}
-
-        ];
-
-    var i;
-
-    function newRect(x, y, id) {
-      var group = new Kinetic.Group({
-        id: id,
-        draggable: true,
-        listening: true,
-		name: "box",
-		jsText: ""
-=======
     function newRect(xpos, ypos, id) {
       var groupToolbox = new Kinetic.Group({
         id: id,
         draggable: true,
         listening: true,
         firstTime: true,
-        name: "box"
->>>>>>> cf834d9ba2ce53438036b28b2df61d6f75954835:visual_editor.html
+        name: "box",
+        jsText: ""
       });
       var rect = new Kinetic.Rect({
         x: xpos,
@@ -203,7 +185,6 @@
         height: 50,
         fill: '#00D2FF',
         stroke: 'black',
-        name: 'thistest',
         strokeWidth: 2,
         offset: 10
       });
@@ -218,47 +199,6 @@
         stroke: 'black',
         strokeWidth: 1
       });
-<<<<<<< HEAD:visualEditorTest.html
-
-      //have the rectangles save its orginal XY
-      //rect.orginalX = x;
-      //rect.orginalY = y;
-      //on dragend, calc the rect has passed the threshold
-      group.on("dragend", function () {
-        var i;
-        //Sets the threshold and rules below.
-        var dx = this.getX();
-        if (dx + 20 > line.getX()) {
-          //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER
-          var id = this.attrs.id;
-          var groupArray = (this.getChildren()).toArray();
-          var text = groupArray[1];
-          if(this.getName()=== "sortable"){
-          	
-          	//var y = this.getY();
-          	console.log(this.getY());
-          	//var groupY = groupArray[0].setY(y);
-          	//console.log(groupArray[0].getY());
-          }
-          //Only change text, or write to console on first time being dragged over
-          if (text.isListening()) {
-            this.setName("sortable");//sets the selected group to be sorted in the sorted function
-            var jsText = promptUser(id);// prompts the user to get attributes
-            this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
-            text.setText(jsText); // sets the text on group
-            console.log(this.getAttr('jsText')); // double check
-            var currentRect = groupArray[0];
-            var height = currentRect.getHeight();
-            currentRect.setSize(text.getWidth() + 30, height);
-            text.setListening(false);
-            //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
-/*
-            for (i = 0; i < tools.length; i++) {
-              if (id === tools[i].title) {
-                if (tools[i].jstext !== '') {
-                  //console.log(tools[i].jstext);
-                  //UNIVERSAL_MAIN = UNIVERSAL_MAIN + tools[i].jstext;
-=======
     
       //on dragend, calc the rect has passed the threshold
     var currentRect;
@@ -269,7 +209,6 @@
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
       currentRect = groupArray[0];
-      console.log(currentRect.getX() + ", " + currentRect.getY());
       clone = newRect(currentRect.getX(), currentRect.getY(), id); //create a "clone" of this rectangle
       layer.draw();
     });
@@ -290,7 +229,6 @@
       this.attrs.firstTime = false;
       layer.draw();
     });
->>>>>>> cf834d9ba2ce53438036b28b2df61d6f75954835:visual_editor.html
 
     groupToolbox.on("dragend", function () {
       this.setOpacity(1.00);
@@ -306,7 +244,11 @@
       if (dx + 20 > line.getX()) {
         //Only change text, or write to console on first time being dragged over
         if (this.attrs.firstTime === true) {
-          text.setText(promptUser(id));
+          this.setName("sortable");//sets the selected group to be sorted in the sorted function
+          var jsText = promptUser(id);// prompts the user to get attributes
+          this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
+          text.setText(jsText); // sets the text on group
+          console.log(this.getAttr('jsText')); // double check
           var height = currentRect.getHeight();
           currentRect.setSize(text.getWidth() + 30, height);
           this.attrs.firstTime = false;
@@ -318,7 +260,6 @@
                 console.log(tools[i].jstext);
               }
             }
-*/
           }
         }
       } else {
@@ -342,16 +283,10 @@
  });
 
 
-<<<<<<< HEAD:visualEditorTest.html
-</script>
-<script src="sortable.js"></script>
-<p id="demo">Click the button to sort the array.</p>
-=======
   </script>
 
   <script src="sortable.js"></script>
   <p id="demo">Click the button to sort the array.</p>
->>>>>>> cf834d9ba2ce53438036b28b2df61d6f75954835:visual_editor.html
     <button onclick="sorter()">SORTER</button>
   </body>
 

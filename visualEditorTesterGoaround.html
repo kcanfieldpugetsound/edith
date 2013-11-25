@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Visual Editor Demo 2</title>
+  <style>
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+  </style>
+</head>
+<body>
+  <p id="demo"></p>
+  <div id="container"></div>
+  <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script defer>
+  var UNIVERSAL_MAIN = "";
+  /* Prompts user input of names*/
+  function promptUser(ids) {
+    /*global prompt*/
+    var x;
+    if (ids === "method") {
+      var mname = prompt("Please enter the name of your method", "test");
+      var params = prompt("Please enter the Parameters for your method separated by commas");
+      x = "function " + mname + "(" + params + ") {";
+      //console.log(x);
+      return x;
+    }
+    if (ids === "variable") {
+      var varn = prompt("Please enter the name of your variable", "test");
+      x = "var " + varn +  ";";
+      //console.log(x);
+      return x;
+    }
+    if (ids === "end method") {
+      x = "}";
+      return x;
+    }
+    if (ids === "setDelay") {
+      var sprite = prompt("Please enter the name of your sprite", "");
+      var mills = prompt("Seconds Delayed");
+      x = "setDelay("+sprite+ ","+mills+");";
+      //console.log(x);
+      return x;
+      }
+    if (ids === "fmove") {
+      var sprite = prompt("Please enter the name of your sprite");
+      var dur = prompt("Duration of move");
+      var dist = prompt("Distance");
+      var height = prompt("height");
+      var rotateClockwise = prompt("rotateClockwise");
+      var degrees = prompt("degrees");
+      x = "fmove("+sprite+ ","+dur+ ","+dist+ ","+height+ ","+rotateClockwise+ ","+degrees+");";
+      //console.log(x);
+      return x;
+      }
+    if (ids === "rotate") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var angle = prompt("angle");
+      var clockwise = prompt("clockwise");
+      x = "rotate("+sprite+ ","+dur+ ","+angle+ ","+height+ ","+clockwise+");";
+      //console.log(x);
+      return x;
+      }
+    if (ids === "jump") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var height = prompt("height");
+      x = "jump("+sprite+ ","+dur+ ","+height+");";
+      //console.log(x);
+      return x;
+      }
+    if (ids === "movL") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var distance = prompt("distance");
+      x = "movL("+sprite+ ","+dur+ ","+distance+");";
+      //console.log(x);
+      return x;
+      }
+    if (ids === "movR") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var distance = prompt("distance");
+      x = "movR("+sprite+ ","+dur+ ","+distance+");";
+      //console.log(x);
+      return x;
+
+      }
+   if (ids === "movU") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var distance = prompt("distance");
+      x = "movU("+sprite+ ","+dur+ ","+distance+");";
+      //console.log(x);
+      return x;
+
+      }
+   if (ids === "movD") {
+      var sprite = prompt("sprite");
+      var dur = prompt("dur");
+      var distance = prompt("distance");
+      x = "movD("+sprite+ ","+dur+ ","+distance+");";
+      //console.log(x);
+      return x;
+      }
+  }
+  
+  var layer; 
+  $(function () {
+    /*global Kinetic*/
+    var stage = new Kinetic.Stage({
+      container: 'container',
+      width: 800,
+      height: 800
+    });
+    layer = new Kinetic.Layer();
+    stage.add(layer);
+
+    var line = new Kinetic.Line({
+      x: 400,
+      y: 0,
+      points: [0, 0, 0, 800],
+      stroke: 'red'
+    });
+    layer.add(line);
+
+    var startX = 20;
+    var startY = 30;
+
+    var tools = [{'title': 'method', 'jstext': ''},
+        {'title': 'variable', 'jstext': ''},
+        {'title': 'end method', 'jstext': ''},
+        {'title': 'setDelay', 'jstext': ''},
+        {'title': 'rotate', 'jstext': ''},
+        {'title': 'fmove', 'jstext': ''},
+        {'title': 'jump', 'jstext': ''},
+        {'title': 'movR', 'jstext': ''},
+        {'title': 'movL', 'jstext': ''},
+        {'title': 'movU', 'jstext': ''},
+        {'title': 'movD', 'jstext': ''}
+
+        ];
+
+    var i;
+
+    function newRect(x, y, id) {
+      var group = new Kinetic.Group({
+        id: id,
+        draggable: true,
+        listening: true,
+		name: "box",
+		jsText: ""
+      });
+      var rect = new Kinetic.Rect({
+        x: startX,
+        y: startY,
+        width: 100,
+        height: 50,
+        fill: '#00D2FF',
+        stroke: 'black',
+        name: 'thistest',
+        strokeWidth: 2,
+        offset: 10
+      });
+
+      var simpleText = new Kinetic.Text({
+        x: startX + 10,
+        y: startY + 10,
+        text: id,
+        fontSize: 12,
+        fontFamily: 'Calibri',
+        stroke: 'black',
+        strokeWidth: 1,
+      });
+
+      //have the rectangles save its orginal XY
+      //rect.orginalX = x;
+      //rect.orginalY = y;
+      //on dragend, calc the rect has passed the threshold
+      group.on("dragend", function () {
+        var i;
+        //Sets the threshold and rules below.
+        var dx = this.getX();
+        if (dx + 20 > line.getX()) {
+          //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER
+          var id = this.attrs.id;
+          var groupArray = (this.getChildren()).toArray();
+          var text = groupArray[1];
+          if(this.getName()=== "sortable"){
+          	
+          	//var y = this.getY();
+          	console.log(this.getY());
+          	//var groupY = groupArray[0].setY(y);
+          	//console.log(groupArray[0].getY());
+          }
+          //Only change text, or write to console on first time being dragged over
+          if (text.isListening()) {
+            this.setName("sortable");//sets the selected group to be sorted in the sorted function
+            var jsText = promptUser(id);// prompts the user to get attributes
+            this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
+            text.setText(jsText); // sets the text on group
+            console.log(this.getAttr('jsText')); // double check
+            var currentRect = groupArray[0];
+            var height = currentRect.getHeight();
+            currentRect.setSize(text.getWidth() + 30, height);
+            text.setListening(false);
+            //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
+/*
+            for (i = 0; i < tools.length; i++) {
+              if (id === tools[i].title) {
+                if (tools[i].jstext !== '') {
+                  //console.log(tools[i].jstext);
+                  //UNIVERSAL_MAIN = UNIVERSAL_MAIN + tools[i].jstext;
+
+                }
+              }
+            }
+*/
+          }
+          // END THAT
+        }
+      });
+      group.add(rect);
+      group.add(simpleText);
+      layer.add(group);
+      layer.draw();
+
+    }
+
+    for (i = 0; i < tools.length; i++) {
+      newRect(startX, startY, tools[i].title);
+      startY = startY + 65;
+    }
+  });
+
+
+</script>
+<script src="sortable.js"></script>
+<p id="demo">Click the button to sort the array.</p>
+    <button onclick="sorter()">SORTER</button>
+</body>
+</html>

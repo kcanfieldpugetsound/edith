@@ -21,7 +21,7 @@ function sorter()
 		var rectGhost = (shape.getChildren()).toArray();
         var rect = rectGhost[0];
         console.log(rect.getY());
-		orderPairing.push({id:shape.getId(), yPos: rect.getY(), jsText: shape.getAttr('jsText')}); // pushes both attr. of the things in the box class
+		orderPairing.push({id:shape.getId(), yPos: shape.getY(), jsText: shape.getAttr('jsText')}); // pushes both attr. of the things in the box class
 		});
 	
 	//console.log("length of array " + orderPairing.length);// how many things are in the array
