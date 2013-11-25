@@ -25,8 +25,10 @@
 			id : 'defaultL',
 			});
             canvas.add(bg);
+        var mousedownB = false;
+        var fpoints = new Array();
+        var fpath;
         </script>
-        <script src=j file.js></script>
         
         
         <div id="drawing">
@@ -60,8 +62,10 @@
             <br>Draw a circle with radius:
             <input type="text" id="r">
             <button onclick="drawCircle()">Draw Circle</button>
-            <br>
-            <id="r">
+            </br>
+            Upload Image: <input type = "text" id = "imageName"> <button onclick = "uploadImage()">upload</button>
+            </br>
+			<id="r">
                 <button onclick="clearCanvas()">Clear Canvas</button>
                 <br>
                 <!--<script type="text/javascript" src="script.js"></script>-->
@@ -131,6 +135,30 @@
                         currentLayer.destroyChildren();
                         currentLayer.clear();
                     }
+                    
+                    function uploadImage() {
+                    var name = document.getElementById("imageName").value;
+                     if (name == "") {
+                            alert("Please enter a name to load the image as.");
+                            return false;
+                    }
+
+                    currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                    var imageObj = new Image(); 
+                    imageObj.onload = function() {
+                        var uploaded = new Kinetic.Image({
+                            x:100,
+                            y:100,
+                            image: imageObj,
+                            width:100,
+                            height:100,
+                            draggable: true
+                        });
+                         currentLayer.add(uploaded);
+                        canvas.add(currentLayer);
+                    }
+                    imageObj.src = name;
+                }
 
 
                     function saveObject() {
@@ -209,19 +237,45 @@
                             });
 					}
 							
-					function addLayer(){
-						var option = document.createElement("option");
-						option.text = document.getElementById("newLayer").value;
-						option.value = document.getElementById("newLayer").value;
-						var select = document.getElementById("currentLayerSet");
-						select.appendChild(option);
+							function addLayer(){
+								var option = document.createElement("option");
+								option.text = document.getElementById("newLayer").value;
+								option.value = document.getElementById("newLayer").value;
+								var select = document.getElementById("currentLayerSet");
+								select.appendChild(option);
 								
-						var temp = new Kinetic.Layer({
-						id : (document.getElementById("newLayer").value),
-						});
-						canvas.add(temp);		
-					}
-					
+								var temp = new Kinetic.Layer({
+								id : (document.getElementById("newLayer").value),
+								});
+								canvas.add(temp);
+								
+							}
+				 function draw (evt){
+				     mousedownB = true;
+                        fpoints.push(evt.clientX - 10,evt.clientY -90);
+                    }
+                 function move(evt){
+                     if(mousedownB){
+                        fpoints.push(evt.clientX - 10);
+                        fpoints.push(evt.clientY - 90);
+                        bg.add(fpath);
+                        canvas.add(bg);
+                        console.log(fpath);}
+                    }
+                    function drawfinal()
+                {
+                    var color =  document.getElementById("shapeColor").value;
+                    currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                    fpath = new Kinetic.Line({
+                            points: fpoints,
+                            stroke: color,
+                            strokeWidth: 5,
+                            draggable: true
+                            });
+                    currentLayer.add(fpath);
+                    canvas.add(currentLayer);
+                    mousedownB = false; fpoints = new Array();
+                }
                 </script>
         </div>
 
@@ -253,19 +307,17 @@
 
         <script>
             function choice1() {
-                canvas.off("mousedown", continuous, false);
-                canvas.off("mouseup", off, false);
-                canvas.off("mousemove", cont, false);
-                canvas.on("mousedown", pathStart, false);
-                canvas.on("mouseup", line, false);
+                document.getElementById('container').removeEventListener("mousedown", draw, false);
+                document.getElementById('container').removeEventListener("mouseup", drawfinal, false);
+                document.getElementById('container').removeEventListener("mouseout", drawfinal, false);
+                document.getElementById('container').removeEventListener('mousemove', move ,false);
             }
-
+//free draw bug when dragging off canvas, worse bug when adding trycatch block to fix bug
             function choice3() {
-                canvas.off("mousedown", pathStart, false);
-                canvas.off("mouseup", line, false);
-                canvas.on("mousedown", continuous, false);
-                canvas.on("mouseup", off, false);
-                canvas.on("mousemove", cont, false);
+                //document.getElementById('container').addEventListener("mousedown", draw, false);
+                //document.getElementById('container').addEventListener("mouseup", drawfinal, false);
+                //document.getElementById('container').addEventListener("mouseout", drawfinal, false);
+                //document.getElementById('container').addEventListener('mousemove', move ,false);
             }
         </script>
 
