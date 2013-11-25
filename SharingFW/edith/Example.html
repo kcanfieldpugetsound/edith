@@ -1,13 +1,4 @@
-<?php
-$userStatus = false;
-  session_start();
-  if(isset($_SESSION['userName'])){
-    $userStatus=true;
-  } 
-?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 <head>
 Make a New Object!
  <title>button demo</title>
@@ -124,22 +115,24 @@ Make a New Object!
 	function exporting(){
 	    var objectArrayName = document.getElementById("ObjectName").value;
 		if(objectArrayName == ""){
-		alert("Please enter a name so we can save the object.");
-		return false;
+			alert("Please enter a name so we can save the object.");
+			return false;
 		}
 	    $.ajax({
-           type: "POST",
-           data: {ObjectArray: savedObjects},
-           url: "functions/save.php"
+           'type': "POST",
+		   'dataType': 'json', 
+           'data': {ObjectArray: savedObjects},
+           'url': "functions/save.php"
         });
         $.ajax({
-           type: "POST",
-           data: {ObjectName: objectArrayName},
-           url: "/functions/save.php",
-           success: function(){
+           'type': "POST",
+           'dataType': 'json',
+           'data': {ObjectName: objectArrayName},
+           'url': "functions/save.php",
+           'success': function(){
 				alert("Exported successfully");
             },
-			error: function() {
+			'error': function() {
 				alert("failure");
 			},
         });

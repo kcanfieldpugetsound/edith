@@ -19,7 +19,7 @@
 				<form name = "codeInfo" id = "codeInfo" method = "post" action = "/edith/functions/save.php">
           	project name:<input type = "text" size = "25" name = "projectName" id="projectName" /></br>
             <textarea name="code" id="code" style="width: 870px; height: 200px;"></textarea>
-         		<input type="submit" value="Go!">
+         		<input type="submit" value="Save!">
 				</form>
         	</div>
         </div>
