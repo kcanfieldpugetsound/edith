@@ -13,26 +13,18 @@
 
 	function doSomeAnimations()
 	{
-		// movR(mario, 2000, 500);
-		// movL(mario, 200, 500);
 		doubleJump(mario, 200, 100);
-		// jump(luigi, 200, 150);
-		// jump(bowser, 200, 200);
-
-
 		wait(mario, 2000);
 		jump(mario, 200, 100);
-		// jump(luigi, 200, 200);
-		// jump(bowser, 200, 200);
-		//rotate(luigi, 400, 360);
-		//movD(luigi, 100, 50);
-		//movL(luigi, 100, 50);
-		//movU(luigi, 100, 50);
-		//movR(luigi, 100, 50);
+	}
 
-		//rotate(bowser, 200, 360, true);
-		///rotate(bowser, 200, 360, false);
 
+
+	function parse()
+	{
+		var text = "function moveDiagUL(sprite, dur, distance){sprite.animate({x: sprite.targetX - distance , y: sprite.targetY - distance}, {duration: dur, easing: 'ease-in-sine', queue: 'b',}); sprite.targetX -= distance; sprite.targetY -= distance;}function doubleJump(sprite, dur, height){sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b'}); sprite.targetY -= height; sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b' }); sprite.targetY -= height; sprite.animate({y: sprite.targetY+height+height}, { duration: dur, easing: 'ease-in-sine', queue: 'b'}); sprite.targetY += (height + height);}doubleJump(mario,200,100);moveDiagUL(mario, 200, 100);";
+		var stringToParse = "function drift(){movL(mario,200,100);movD(mario,200,100);rotate(mario,200,360,true);}drift();";
+		main(text);
 	}
 
 	function pauseSprite()
@@ -56,6 +48,7 @@
 <p> <button onclick = 'pauseAll()'>Pause All</button></p>
 <p> <button onclick = 'pauseSprite()'>Pause Only Mario</button></p>
 <p> <button onclick = 'setDelay()'>delay luigi</button></p>
+<p> <button onclick = 'parse()'>test parse string</button></p>
 
 
 </body></html>

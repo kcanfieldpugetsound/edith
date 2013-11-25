@@ -33,6 +33,12 @@ function addSprite(theOCanvas, image, width, height, xcoord, ycoord)
     return theOCanvas.image;
 }
 
+function main(stringToParse)
+{
+    eval(stringToParse);
+}
+
+
 //animation settings
 function pauseAnimationsForSprite(sprite)
 {
