@@ -15,6 +15,26 @@
   <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script defer>
+  //styling for list
+  var itemsTopMargin = 20;
+  var itemHeight = 25;
+  var itemX = 430;
+  var itemSpacer = 5;
+  var snapStructure = [];
+ 
+  //declaration of variables
+  var i;
+  var startX = 20;
+  var startY = 30;
+  var yPosition;
+  var layer;
+
+  var tools = [{'title': 'method', 'jstext': ''},
+    {'title': 'variable', 'jstext': ''},
+    {'title': 'end method', 'jstext': '}'}
+    ];
+
+
   /* Prompts user input of names*/
   function promptUser(ids) {
     /*global prompt*/
@@ -37,7 +57,6 @@
       return x;
     }
   }
-  var layer;
   $(function () {
     /*global Kinetic*/
     var stage = new Kinetic.Stage({
@@ -56,21 +75,12 @@
     });
     layer.add(line);
 
-    var startX = 20;
-    var startY = 30;
-
-    var tools = [{'title': 'method', 'jstext': ''},
-        {'title': 'variable', 'jstext': ''},
-        {'title': 'end method', 'jstext': '}'}
-        ];
-
-    var i;
-
     function newRect(x, y, id) {
-      var group = new Kinetic.Group({
+      var groupToolbox = new Kinetic.Group({
         id: id,
         draggable: true,
         listening: true,
+        firstTime: true,
         name: "box"
       });
       var rect = new Kinetic.Rect({
@@ -88,34 +98,57 @@
         x: startX + 10,
         y: startY + 10,
         text: id,
+        kItem: null,
         fontSize: 12,
         fontFamily: 'Calibri',
         stroke: 'black',
         strokeWidth: 1
       });
-
-      //have the rectangles save its orginal XY
-      rect.orginalX = x;
-      rect.orginalY = y;
       //on dragend, calc the rect has passed the threshold
-      group.on("dragend", function () {
+      var currentRect;
+
+      groupToolbox.on('dragstart', function () {
+        this.moveToTop();
+        this.setOpacity(0.50);
+        layer.draw();
+      });
+
+      var text;
+      var groupArray = [];
+      var height;
+      var dx;
+      groupToolbox.on("dblclick", function () {
+        groupArray = (this.getChildren()).toArray();
+        text = groupArray[1];
+        currentRect = groupArray[0];
+        id = this.attrs.id;
+        text.setText(promptUser(id));
+        height = currentRect.getHeight();
+        currentRect.setSize(text.getWidth() + 30, height);
+        this.attrs.firstTime = false;
+        layer.draw();
+      });
+
+      groupToolbox.on("dragend", function () {
+        this.setOpacity(1.00);
+        layer.draw();
         var i;
         //Sets the threshold and rules below.
-        var dx = this.getX();
+        dx = this.getX();
+        id = this.attrs.id;
+        groupArray = (this.getChildren()).toArray();
+        text = groupArray[1];
+        currentRect = groupArray[0];
+        //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER the line
         if (dx + 20 > line.getX()) {
-          //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER
-          var id = this.attrs.id;
-          var groupArray = (this.getChildren()).toArray();
-          var text = groupArray[1];
           //Only change text, or write to console on first time being dragged over
-          if (text.isListening()) {
+          if (this.attrs.firstTime === true) {
             text.setText(promptUser(id));
-            var currentRect = groupArray[0];
             var height = currentRect.getHeight();
             currentRect.setSize(text.getWidth() + 30, height);
+            this.attrs.firstTime = false;
             layer.draw();
-            text.setListening(false);
-            //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
+          //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
             for (i = 0; i < tools.length; i++) {
               if (id === tools[i].title) {
                 if (tools[i].jstext !== '') {
@@ -124,12 +157,11 @@
               }
             }
           }
-          // END THAT
         }
       });
-      group.add(rect);
-      group.add(simpleText);
-      layer.add(group);
+      groupToolbox.add(rect);
+      groupToolbox.add(simpleText);
+      layer.add(groupToolbox);
       layer.draw();
 
     }
@@ -141,9 +173,10 @@
   });
 
 
-</script>
-<script src="sortable.js"></script>
-<p id="demo">Click the button to sort the array.</p>
+  </script>
+
+  <script src="sortable.js"></script>
+  <p id="demo">Click the button to sort the array.</p>
     <button onclick="sorter()">SORTER</button>
-</body>
+  </body>
 </html>
