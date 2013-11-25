@@ -34,14 +34,14 @@
   var tools = [{'title': 'method', 'jstext': ''},
     {'title': 'variable', 'jstext': ''},
     {'title': 'end method', 'jstext': '}'},
-    {'title': 'setDelay', 'jstext': ''},
-    {'title': 'rotate', 'jstext': ''},
-    {'title': 'fmove', 'jstext': ''},
-    {'title': 'jump', 'jstext': ''},
-    {'title': 'movR', 'jstext': ''},
-    {'title': 'movL', 'jstext': ''},
-    {'title': 'movU', 'jstext': ''},
-    {'title': 'movD', 'jstext': ''}
+    {'title': 'setDelay', 'type': 'predefined', 'jstext': ''},
+    {'title': 'rotate', 'type': 'predefined', 'jstext': ''},
+    {'title': 'fmove', 'type': 'predefined', 'jstext': ''},
+    {'title': 'jump', 'type': 'predefined', 'jstext': ''},
+    {'title': 'movR', 'type': 'predefined', 'jstext': ''},
+    {'title': 'movL', 'type': 'predefined', 'jstext': ''},
+    {'title': 'movU', 'type': 'predefined', 'jstext': ''},
+    {'title': 'movD', 'type': 'predefined', 'jstext': ''}
     ];
 
 
@@ -169,7 +169,7 @@
 		
     layer.add(line);
 
-    function newRect(xpos, ypos, id) {
+    function newRect(xpos, ypos, id, type) {
       var groupToolbox = new Kinetic.Group({
         id: id,
         draggable: true,
@@ -177,16 +177,33 @@
         firstTime: true,
         name: "box"
       });
+      if (type == "predefined") {
       var rect = new Kinetic.Rect({
         x: xpos,
         y: ypos,
         width: 100,
         height: 50,
-        fill: '#00D2FF',
+        fillLinearGradientStartPoint: [-50, -50],
+        fillLinearGradientEndPoint: [50, 50],
+        fillLinearGradientColorStops: [0, 'red', 1, 'yellow'],
         stroke: 'black',
         strokeWidth: 2,
         offset: 10
       });
+    } else {
+      var rect = new Kinetic.Rect({
+        x: xpos,
+        y: ypos,
+        width: 100,
+        height: 50,
+        fillLinearGradientStartPoint: [-50, -50],
+        fillLinearGradientEndPoint: [50, 50],
+        fillLinearGradientColorStops: [0, 'pink', 1, 'orange'],
+        stroke: 'black',
+        strokeWidth: 2,
+        offset: 10
+      });
+    } 
 
       var simpleText = new Kinetic.Text({
         x: xpos + 10,
@@ -209,7 +226,7 @@
       text = groupArray[1];
       currentRect = groupArray[0];
       console.log(currentRect.getX() + ", " + currentRect.getY());
-      clone = newRect(currentRect.getX(), currentRect.getY(), id); //create a "clone" of this rectangle
+      clone = newRect(currentRect.getX(), currentRect.getY(), id, type); //create a "clone" of this rectangle
       layer.draw();
     });
 
@@ -273,7 +290,7 @@
     layer.draw();
 }
     for (i = 0; i < tools.length; i++) {
-      newRect(startX, startY, tools[i].title);
+      newRect(startX, startY, tools[i].title, tools[i].type);
       startY = startY + 65;
     }
  });
