@@ -123,6 +123,38 @@ function jump(sprite, dur, height)
       sprite.targetY += height;
 }
 
+function doubleJump(sprite, dur, height)
+{
+      sprite.animate({y: sprite.targetY - height}, {
+      duration: dur,
+      easing: "ease-in-out-elastic",
+      queue: "b", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+      }
+  });
+       sprite.targetY -= height;
+
+       
+      sprite.animate({y: sprite.targetY - height}, {
+      duration: dur,
+      easing: "ease-in-out-elastic",
+      queue: "b", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+      }
+  });
+       sprite.targetY -= height;
+      
+      // now we need to go back down...
+      sprite.animate({y: sprite.targetY+height+height}, {
+      duration: dur,
+      easing: "ease-in-sine",
+      queue: "b", //see http://ocanvas.org/docs/Animation/animate
+      callback: function () {
+      }
+  });  
+      sprite.targetY += (height + height);
+}
+
 function movL(sprite, dur, distance)
 {
       sprite.animate({x: sprite.targetX - distance }, {
