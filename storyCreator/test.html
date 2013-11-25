@@ -107,6 +107,31 @@
 			   imageObj3.src = 'luigi.jpg';
 
 
+			   var imageObj5;
+			  function addImage(src)
+			  {
+			  	 imageObj5 = new Image();
+					imageObj5.onload = function() {
+					  var image5 = new Kinetic.Image({
+					    x: 510,
+					    y: 50,
+					    image: imageObj5,
+					    width: 100,
+					    height: 100,
+					    listening: true
+					  });
+				 layer2.add(image5);
+				 stage.add(layer2);
+				 image5.on('dblclick', function() {
+        			 addSprite(getCanvas(), imageObj5, 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+      				});
+			  };
+			  imageObj5.src = src;
+			}
+
+
+
+
 
   			</script>
   		<div id="tabs-2">
