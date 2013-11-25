@@ -1,0 +1,273 @@
+<html>
+
+    <head>Make a New Object!
+        <title>Object Creation: Int. 2</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.4.min.js"></script>
+
+    </head>
+    
+       </br> To build a new character either draw or create shapes. New shapes can be arranged by dragging them to your prefered location.
+       </br> When you are finished building your character, name and export it to use in your story!
+
+    <body>
+        <div id='container'>
+        </div>
+        <script>
+            var canvas = new Kinetic.Stage({
+                    container: 'container',
+                    width: 500,
+                    height: 500
+                });
+            var bg = new Kinetic.Layer({
+			id : 'defaultL',
+			});
+            canvas.add(bg);
+        </script>
+        <script src=j file.js></script>
+        
+        
+        <div id="drawing">
+       Specify Color: <select id = "shapeColor">
+                      <option value="black">Black</option>
+                      <option value="red">Red</option>
+                      <option value="magenta">Magenta</option>
+                      <option value="orange">Orange</option>
+                      <option value="yellow">Yellow</option>
+                      <option value="green">Green</option>
+                      <option value="blue">Blue</option>
+                      <option value="teal">Teal</option>
+                      <option value="purple">Purple</option>
+                      <option value="white">White</option>
+                      <option value="pink">Pink</option>
+                      <option value="gray">Gray</option>
+                      <option value="brown">Brown</option>
+                      <option value="crimson">Crimson</option>
+                      <option value="gold">Gold</option>
+                    </select></br>
+			Specify layer: <select id = "currentLayerSet" onchange = "changePriority(this.value)">
+                      <option value="defaultL">Default Layer</option>
+                    </select></br>
+            Draw a line with a length of:
+            <input type="text" id="LineLength">
+            <button onclick="drawLine()">Draw Line</button>
+            <br>Draw a rectangle with height:
+            <input type="text" id="RecHeight">width:
+            <input type="text" id="RecWidth">
+            <button onclick="drawRec()">Draw Rectangle</button>
+            <br>Draw a circle with radius:
+            <input type="text" id="r">
+            <button onclick="drawCircle()">Draw Circle</button>
+            <br>
+            <id="r">
+                <button onclick="clearCanvas()">Clear Canvas</button>
+                <br>
+                <!--<script type="text/javascript" src="script.js"></script>-->
+                <script>
+                var savedObjects = new Array();
+				var currentLayer;
+				
+				function changePriority(layer){
+					currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+					canvas.add(currentLayer);
+				}
+
+                function drawLine() {
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        var length = parseInt(document.getElementById("LineLength").value);
+                        var color = document.getElementById("shapeColor").value;
+                        var points = new Array();
+                        points.push(100,50,100+ length,50);
+                        var line = new Kinetic.Line({
+                                points: points,
+                                stroke: color,
+                                strokeWidth : 5,
+                                draggable: true
+                            });
+                        currentLayer.add(line);
+                        canvas.add(currentLayer);
+                }
+                    
+            	function drawRec()
+            	{
+					currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+            	    var height = parseInt(document.getElementById("RecHeight").value);
+            	    var width = parseInt(document.getElementById("RecWidth").value);
+            	    var color = document.getElementById("shapeColor").value;
+            		var rec = new Kinetic.Rect({
+            			x : 0,
+            			y : 100,
+            			height : height,
+            			width : width,
+            			stroke : color,
+            			fill: color,
+            			strokeWidth : 1,
+            			draggable : true
+            		});
+            		currentLayer.add(rec);
+            		canvas.add(currentLayer);
+            	}
+
+                    function drawCircle() {
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        var color = document.getElementById("shapeColor").value;
+                        var circle = new Kinetic.Circle({
+                            x: 100,
+                            y: 100,
+                            radius: parseInt(document.getElementById("r").value),
+                            fill: color,
+                            stroke: color,
+                            strokeWidth: 4,
+                            draggable: true
+                        });
+                        currentLayer.add(circle);
+                        canvas.add(currentLayer);
+                    }
+
+                    function clearCanvas() {
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        currentLayer.destroyChildren();
+                        currentLayer.clear();
+                    }
+
+
+                    function saveObject() {
+                        var name = document.getElementById("SaveName").value;
+                        if (name == "") {
+                            alert("Please enter a name to save the file as.");
+                            return false;
+                        }
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        var img = currentLayer.toDataURL();
+                        var imgName = name + ".png";
+                        var i;
+                        for (i = 0; i < savedObjects.length; i++) {
+                            if (savedObjects[i][1] == imgName) {
+                                savedObjects[i][0] = img;
+                                alert("Saved!");
+                                return true;
+                            }
+                        }
+                        savedObjects.push([img, imgName]);
+                        alert("Saved!");
+                        return true;
+                    }
+
+                     //testing and debugging function to test that we can load the image onto the canvas.
+
+                    function displayImage() {
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        var testName = document.getElementById("TestName").value;
+                        if (testName == "") {
+                            alert("Please enter a name so we can load the correct image.");
+                            return false;
+                        }
+                        //go through and find the file with the same name as the inputed one.
+                        for (i = 0; i < savedObjects.length; i++) {
+                            if (savedObjects[i][1] == testName) {
+                                //if the file is the same name then extract the file source data and put it into the canvas.
+                                var context = currentLayer.getContext("2d");
+                                var image = new Image();
+                                image.src = savedObjects[i][0];
+
+                                image.onload = function() {
+                                    context.drawImage(image, 0, 0);
+                                }
+                                return true;
+                            }
+                        }
+                        //if the file name was not found then return false.
+                        alert("the specific image does not exist.");
+                        return false;
+
+                    }
+
+                    function exporting() {
+                        var objectArrayName = document.getElementById("ObjectName").value;
+                        if (objectArrayName == "") {
+                            alert("Please enter a name so we can save the object.");
+                            return false;
+                        }
+                        $.ajax({
+                                type: "POST",
+                                data: {
+                                    ObjectArray: savedObjects
+                                },
+                                url: "functions\save.php"
+                            });
+                        $.ajax({
+                                type: "POST",
+                                data: {
+                                    ObjectName: objectArrayName
+                                },
+                                url: "functions\save.php",
+                                success: function() {
+                                    alert("Exported successfully");
+                                }
+                            });
+					}
+							
+					function addLayer(){
+						var option = document.createElement("option");
+						option.text = document.getElementById("newLayer").value;
+						option.value = document.getElementById("newLayer").value;
+						var select = document.getElementById("currentLayerSet");
+						select.appendChild(option);
+								
+						var temp = new Kinetic.Layer({
+						id : (document.getElementById("newLayer").value),
+						});
+						canvas.add(temp);		
+					}
+					
+                </script>
+        </div>
+
+        <div id="radio">
+            <input type="radio" id="radio1" name="radio" onClick="choice1()">
+            <label for="radio1">Draw Lines</label>
+            <input type="radio" id="radio3" name="radio" onClick="choice3()">
+            <label for="radio3">Free Draw</label>
+        </div>
+        <script>
+            $("#radio").buttonset();
+        </script>
+		
+		Add a new layer(layer name):
+		<input type="text" id="newLayer">
+        <button onclick="addLayer()">Add new Layer</button></br>
+		
+		Save file name as:
+        <input type="text" id="SaveName">
+        <button onclick="saveObject()">Save Piece</button>
+
+        </br>Load file of name (ex: "head.png"):
+        <input type="text" id="TestName">
+        <button onclick="displayImage()">Load Piece</button>
+
+        </br>Save total object as (ex: 'person1'):
+        <input type="text" id="ObjectName">
+        <button type="button" onclick="exporting()">Export Complete Character</button>
+
+        <script>
+            function choice1() {
+                canvas.off("mousedown", continuous, false);
+                canvas.off("mouseup", off, false);
+                canvas.off("mousemove", cont, false);
+                canvas.on("mousedown", pathStart, false);
+                canvas.on("mouseup", line, false);
+            }
+
+            function choice3() {
+                canvas.off("mousedown", pathStart, false);
+                canvas.off("mouseup", line, false);
+                canvas.on("mousedown", continuous, false);
+                canvas.on("mouseup", off, false);
+                canvas.on("mousemove", cont, false);
+            }
+        </script>
+
+    </body>
+</html>
