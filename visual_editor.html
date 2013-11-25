@@ -53,7 +53,7 @@
       var mname = prompt("Please enter the name of your method", "test");
       var params = prompt("Please enter the Parameters for your method separated by commas");
       x = "function " + mname + "(" + params + ") {";
-      console.log(x);
+      //console.log(x);
       UNIVERSAL_MAIN = UNIVERSAL_MAIN + x;
       return x;
     }
@@ -261,7 +261,11 @@
       id = this.attrs.id;
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
+
       currentRect = groupArray[0];
+      console.log(this.getY() + currentRect.getY()); // double check
+
+
       //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER the line
       if (dx + 20 > line.getX()) {
         //Only change text, or write to console on first time being dragged over
@@ -270,7 +274,7 @@
           var jsText = promptUser(id);// prompts the user to get attributes
           this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
           text.setText(jsText); // sets the text on group
-          console.log(this.getAttr('jsText')); // double check
+          
           var height = currentRect.getHeight();
           currentRect.setSize(text.getWidth() + 30, height);
           this.attrs.firstTime = false;
@@ -279,11 +283,12 @@
           for (i = 0; i < tools.length; i++) {
             if (id === tools[i].title) {
               if (tools[i].jstext !== '') {
-                console.log(tools[i].jstext);
+                //console.log(tools[i].jstext);
               }
             }
           }
         }
+      sorter();
       } else {
         groupToolbox.remove();
         layer.draw();

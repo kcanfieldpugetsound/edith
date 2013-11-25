@@ -20,8 +20,8 @@ function sorter()
 	layer.get('.sortable').each(function(shape){
 		var rectGhost = (shape.getChildren()).toArray();
         var rect = rectGhost[0];
-        console.log(rect.getY());
-		orderPairing.push({id:shape.getId(), yPos: shape.getY(), jsText: shape.getAttr('jsText')}); // pushes both attr. of the things in the box class
+        //console.log(rect.getY());
+		orderPairing.push({id:shape.getId(), yPos: shape.getY() + rect.getY(), jsText: shape.getAttr('jsText')}); // pushes both attr. of the things in the box class
 		});
 	
 	//console.log("length of array " + orderPairing.length);// how many things are in the array
@@ -43,7 +43,7 @@ function sorter()
 		
 	lookUp(yPoints, orderPairing);
 	console.log(orderedString);
-	console.log("trial over");
+	//console.log("trial over");
 	
 	}
 	
@@ -58,7 +58,7 @@ function sorter()
 		if (hash[i].yPos === arrayOfY[limit]){
 			//console.log(orderedString);
 			orderedString = orderedString + hash[i].jsText;
-			console.log( i + " thing " + hash[i].jsText + " y - "+ hash[i].yPos);
+			//console.log( i + " thing " + hash[i].jsText + " y - "+ hash[i].yPos);
 			limit++;
 		}
 	}
