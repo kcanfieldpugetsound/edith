@@ -11,6 +11,48 @@
     </style>
   </head>
   <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src ="qunit.js"></script>
+    <script src ="tests.js"></script>
+    <script>
+    //attributes
+    var startX = 20;
+    var startY = 30;
+    var width = 100;
+    var height = 50;
+    //testing startX 
+    test("startX", function() {
+      for(var i = 0; i < 100; i++) {
+        startX = 5*i - 100;
+        ok(startX + 100 < 400 && startX > 0); //not across the line & left boundary  
+    }
+    });
+    //testing startY
+    test("startY", function() {
+      for(var i = 0; i < 200; i++) {
+        startY = 5*i - 100;
+        ok(startY + 170 < 800 && startY > 0); //lower and upper bound    
+    }
+    });
+
+    //testing width
+    test("width", function() {
+    for(var i = 0; i< 100; i++) {
+      width = 5*i -100;
+      ok(20 + width < 400 && width > 0); //not across the line
+    }
+    });
+
+    //testing height
+    test("height", function() {
+    for(var i = 0; i< 100; i++) {
+      height = 5*i -100;
+      ok(height < 65 && height > 0); //no overlap
+    }
+    });
+    </script>
+
     <div id="container"></div>
     <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -39,7 +81,7 @@
         var tools = [{'title':'new method', 'jstext':'function newMethod() {'},
                    {'title':'variable', 'jstext':'var'},
                    {'title':'end', 'jstext':'}'},
-                  ]
+                  ];
 
         for (var i = 0; i < tools.length; i++) {
           newRect(startX, startY, tools[i].title);
@@ -50,7 +92,7 @@
           var group = new Kinetic.Group({
             id: id,
             draggable: true,
-          })
+          });
           var rect = new Kinetic.Rect({
             x: startX,
             y: startY,
@@ -73,11 +115,11 @@
 
           //have the rectangles save its orginal XY
           rect.orginalX = x;
-          rect.orginalY = y;
+          rect.orginalY = y; 
           //on dragend, calc the rect has passed the threshold
           group.on("dragend", function() {
             //Sets the threshold and rules below.
-            var dx = this.getX()
+            var dx = this.getX();
             if (dx > 400) {
             //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER
               var id = this.attrs.id;
