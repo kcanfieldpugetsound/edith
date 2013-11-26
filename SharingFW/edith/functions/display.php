@@ -18,7 +18,7 @@ $uname = $_SESSION['userName'];
 $selectName = mysql_query("SELECT projectName FROM project WHERE userName = '$uname'")  or die (mysql_error());
 
 //Create a table to display them nicely
-echo "<table border = '1' cellpadding = 20 bordercolor = white align = center><tr>";
+echo "<table border = '1' cellpadding = 15 bordercolor = white align = center><tr>";
 //The loop to print them out
 //while($theRecord = mysql_fetch_row($selectName)){
 

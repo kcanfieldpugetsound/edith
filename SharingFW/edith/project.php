@@ -15,13 +15,20 @@
 	</head>
 	<body>
 		<div class = "contentBox2">
-			<div id = "contentHeader">
-				<form name = "codeInfo" id = "codeInfo" method = "post" action = "/edith/functions/save.php">
-          	project name:<input type = "text" size = "25" name = "projectName" id="projectName" /></br>
-            <textarea name="code" id="code" style="width: 870px; height: 200px;"></textarea>
-         		<input type="submit" value="Save!">
-				</form>
-        	</div>
+    <?php
+        if($userStatus){
+          echo "<div id = 'contentHeader'>
+        <form name = 'codeInfo' id = 'codeInfo' method = 'post' action = '/edith/functions/save.php'>
+            project name:<input type = 'text' size = '25' name = 'projectName' id='projectName' /></br>
+            <textarea name='code' id='code' style='width: 870px; height: 200px;'></textarea>
+            <input type='submit' value='Save!''>
+        </form>
+          </div>";
+        }
+        else{
+          echo "Please login to create a project";
+        }
+      ?>
         </div>
    </body>
 </html>
