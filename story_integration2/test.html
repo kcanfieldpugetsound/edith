@@ -160,12 +160,12 @@
 <script>
 	mainCanvas.width = (window.innerWidth / 1.8);
 	mainCanvas.height = (window.innerHeight / 1.8);
-	objectCanvas.width = (window.innerWidth / 1.8);
+	objectCanvas.width = (window.innerWidth / 1.84);
 	objectCanvas.height = (window.innerHeight / 2.9);
 	//objectCanvas.width = 800;
 	//objectCanvas.height = 200;
 	VECanvas.width = (window.innerWidth / 2.4);
-	// VECanvas.height = (window.innerHeight / 1.05);
+	VECanvas.height = (window.innerHeight / 1.05);
 
 	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
@@ -176,7 +176,7 @@
 	window.onresize = function(event) {
     	mainCanvas.width = (window.innerWidth / 1.8);
 		mainCanvas.height = (window.innerHeight / 1.8);
-		objectCanvas.width = (window.innerWidth / 1.8);
+		objectCanvas.width = (window.innerWidth / 1.84);
 		objectCanvas.height = (window.innerHeight / 2.8);
 
 		oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
