@@ -148,7 +148,7 @@
 
 
 																				<h4>Move</h4>
-					<strong>move(sprite, dur, x, y, rotateClockwise, degrees)</strong>
+					<strong>move(sprites, dur, x, y, rotateClockwise, degrees)</strong>
 					
 					<p>This method is a generic animation that will animate over the given paramaters.</p>
 					
@@ -161,9 +161,9 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>sprite</td>
-									<td>Sprite</td>
-									<td>The sprite to be animated</td>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The Array of sprites to be animated</td>
 								</tr>
 								<tr>
 									<td>duration</td>
@@ -200,9 +200,9 @@
 
 
 					<h4>Wait</h4>
-					<strong>wait(sprite, dur)</strong>
+					<strong>wait(sprites, dur)</strong>
 					
-					<p>This method is basically a blocking call that will make the sprite wait for the given duration.</p>
+					<p>This method is basically a blocking call that will make the array of sprites wait for the given duration.</p>
 					
 					<code>
 						<table>
@@ -213,8 +213,8 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>sprite</td>
-									<td>Sprite</td>
+									<td>sprites</td>
+									<td>Sprite[]</td>
 									<td>The sprite to wait (blocking)</td>
 								</tr>
 								<tr>
@@ -229,9 +229,9 @@
 					<a href="#" class=".back-to-top">Back to Top</a>
 				
 					<h4>Rotate</h4>
-					<strong>rotate(sprite, dur, angle, clockwise)</strong>
+					<strong>rotate(sprites, dur, angle, clockwise)</strong>
 					
-					<p>This method rotates a sprite either clockwise or counter clockwise</p>
+					<p>This method rotates the array of sprites either clockwise or counter clockwise.</p>
 					
 					<code>
 						<table>
@@ -242,9 +242,9 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>sprite</td>
-									<td>Sprite</td>
-									<td>The sprite to be rotated</td>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be rotated</td>
 								</tr>
 								<tr>
 									<td>duration</td>
@@ -269,9 +269,9 @@
 					<a href="#" class=".back-to-top">Back to Top</a>
 
 					<h4>Jump</h4>
-					<strong>jump(sprite, dur, height)</strong>
+					<strong>jump(sprites, dur, height)</strong>
 					
-					<p>This method makes a sprite Jump. This is basically a move up and move down put together to create a jump.</p>
+					<p>This method makes an array of sprites jump. This is basically a move up and move down put together to create a jump.</p>
 					
 					<code>
 						<table>
@@ -282,9 +282,9 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>sprite</td>
-									<td>Sprite</td>
-									<td>The sprite to jump</td>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to jump</td>
 								</tr>
 								<tr>
 									<td>duration</td>
@@ -304,9 +304,9 @@
 
 
 					<h4>Move Left</h4>
-					<strong>movL(sprite, dur, distance)</strong>
+					<strong>movL(sprites, dur, distance)</strong>
 					
-					<p>This method makes a sprite move left.</p>
+					<p>This method makes an array of sprites move left.</p>
 					
 					<code>
 						<table>
@@ -317,9 +317,9 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>sprite</td>
-									<td>Sprite</td>
-									<td>The sprite to be moved</td>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be moved to the left</td>
 								</tr>
 								<tr>
 									<td>duration</td>
@@ -338,9 +338,9 @@
 					<a href="#" class=".back-to-top">Back to Top</a>
 
 										<h4>Move Right</h4>
-					<strong>movR(sprite, dur, distance)</strong>
+					<strong>movR(sprites, dur, distance)</strong>
 					
-					<p>This method makes a sprite move right.</p>
+					<p>This method makes an array of sprites move right.</p>
 					
 					<code>
 						<table>
@@ -351,9 +351,9 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>sprite</td>
-									<td>Sprite</td>
-									<td>The sprite to be moved</td>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be moved to the right</td>
 								</tr>
 								<tr>
 									<td>duration</td>
@@ -373,9 +373,9 @@
 
 
 															<h4>Move Up</h4>
-					<strong>movU(sprite, dur, distance)</strong>
+					<strong>movU(sprites, dur, distance)</strong>
 					
-					<p>This method makes a sprite move up.</p>
+					<p>This method makes an array of sprites move up.</p>
 					
 					<code>
 						<table>
@@ -386,9 +386,9 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>sprite</td>
-									<td>Sprite</td>
-									<td>The sprite to be moved</td>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be moved up</td>
 								</tr>
 								<tr>
 									<td>duration</td>
@@ -407,9 +407,9 @@
 					<a href="#" class=".back-to-top">Back to Top</a>
 
 															<h4>Move Down</h4>
-					<strong>movD(sprite, dur, distance)</strong>
+					<strong>movD(sprites, dur, distance)</strong>
 					
-					<p>This method makes a sprite move down.</p>
+					<p>This method makes an array of sprites move down.</p>
 					
 					<code>
 						<table>
@@ -420,9 +420,9 @@
 									<th>Description</th>
 								</tr>
 								<tr>
-									<td>sprite</td>
-									<td>Sprite</td>
-									<td>The sprite to be moved</td>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be moved down/td>
 								</tr>
 								<tr>
 									<td>duration</td>
