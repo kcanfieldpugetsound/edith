@@ -59,27 +59,34 @@ function setDelay(sprite, mills)
 }
 
 
-function move(sprite, dur, dist, height, rotateClockwise, degrees)
+function move(sprites, dur, dist, height, rotateClockwise, degrees)
 {
+  for(var i=0;i<sprites.length;i++)
+  {
+      
 if(!rotateClockwise)
 {
   degrees = -degrees;
 }
-  sprite.animate({rotation: sprite.targetRotate+degrees , y: sprite.targetY - height, x: sprite.targetX + dist},
+  sprites[i].animate({rotation: sprites[i].targetRotate+degrees , y: sprites[i].targetY - height, x: sprites[i].targetX + dist},
   {duration:dur,
     easing:"ease-in-sine",
     queue: "b",
     callback:function () {
     }
   });
-  sprite.targetY -= height;
-  sprite.targetX += dist;
-  sprite.targetRotate += degrees;
+  sprites[i].targetY -= height;
+  sprites[i].targetX += dist;
+  sprites[i].targetRotate += degrees;
+}
 }
 
-function wait(sprite, dur)
+
+function wait(sprites, dur)
 {
-      sprite.animate({x: sprite.targetX}, {
+  for(var i=0;i<sprites.length;i++)
+  {
+      sprites[i].animate({x: sprites[i].targetX}, {
       duration: dur,
       easing: "ease-in-sine", 
       queue: "b",//see http://ocanvas.org/docs/Animation/animate
@@ -87,16 +94,20 @@ function wait(sprite, dur)
           //canvas.redraw();
       }
       });
+    }
 }
 
+
 //animation blocks
-function rotate(sprite, dur, angle, clockwise)
+function rotate(sprites, dur, angle, clockwise)
 {
+  for(var i=0;i<sprites.length;i++)
+  {
       if(!clockwise)
       {
           angle = -angle;
       }
-      sprite.animate({rotation: sprite.targetRotate + angle}, {
+      sprites[i].animate({rotation: sprites[i].targetRotate + angle}, {
       duration: dur,
       easing: "ease-in-sine", 
       queue: "b",//see http://ocanvas.org/docs/Animation/animate
@@ -104,66 +115,75 @@ function rotate(sprite, dur, angle, clockwise)
           //canvas.redraw();
       }
       });
-      sprite.targetRotate += angle;
+      sprites[i].targetRotate += angle;
+    }
 }
 
-function jump(sprite, dur, height)
+function jump(sprites, dur, height)
 {
-      sprite.animate({y: sprite.targetY - height}, {
+  for(var i=0;i<sprites.length;i++)
+  {
+      sprites[i].animate({y: sprites[i].targetY - height}, {
       duration: dur,
       easing: "ease-in-out-elastic",
       queue: "b", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
       }
   });
-       sprite.targetY -= height;
+       sprites[i].targetY -= height;
       
       // now we need to go back down...
-      sprite.animate({y: sprite.targetY+height}, {
+      sprites[i].animate({y: sprites[i].targetY+height}, {
       duration: dur,
       easing: "ease-in-sine",
       queue: "b", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
       }
   });  
-      sprite.targetY += height;
+      sprites[i].targetY += height;
+    }
 }
 
-function doubleJump(sprite, dur, height)
+function doubleJump(sprites, dur, height)
 {
-      sprite.animate({y: sprite.targetY - height}, {
+  for(var i=0;i<sprites.length;i++)
+  {
+      sprites[i].animate({y: sprites[i].targetY - height}, {
       duration: dur,
       easing: "ease-in-out-elastic",
       queue: "b", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
       }
   });
-       sprite.targetY -= height;
+       sprites[i].targetY -= height;
 
        
-      sprite.animate({y: sprite.targetY - height}, {
+      sprites[i].animate({y: sprites[i].targetY - height}, {
       duration: dur,
       easing: "ease-in-out-elastic",
       queue: "b", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
       }
   });
-       sprite.targetY -= height;
+       sprites[i].targetY -= height;
       
       // now we need to go back down...
-      sprite.animate({y: sprite.targetY+height+height}, {
+      sprites[i].animate({y: sprites[i].targetY+height+height}, {
       duration: dur,
       easing: "ease-in-sine",
       queue: "b", //see http://ocanvas.org/docs/Animation/animate
       callback: function () {
       }
   });  
-      sprite.targetY += (height + height);
+      sprites[i].targetY += (height + height);
+    }
 }
 
-function movL(sprite, dur, distance)
+function movL(sprites, dur, distance)
 {
-      sprite.animate({x: sprite.targetX - distance }, {
+  for(var i=0;i<sprites.length;i++)
+  {
+      sprites[i].animate({x: sprites[i].targetX - distance }, {
       duration: dur,
       easing: "ease-in-sine", 
       queue: "b",//see http://ocanvas.org/docs/Animation/animate
@@ -171,11 +191,15 @@ function movL(sprite, dur, distance)
           //canvas.redraw();
       }
       });
-      sprite.targetX -= distance;
+      sprites[i].targetX -= distance;
+    }
 }
-function movR(sprite, dur, distance)
+
+function movR(sprites, dur, distance)
 {
-      sprite.animate({x: sprite.targetX + distance}, {
+  for(var i=0;i<sprites.length;i++)
+  {
+      sprites[i].animate({x: sprites[i].targetX + distance}, {
       duration: dur,
       easing: "ease-in-sine", 
       queue: "b",//see http://ocanvas.org/docs/Animation/animate
@@ -183,12 +207,16 @@ function movR(sprite, dur, distance)
           //canvas.redraw();
       }
       });
-      sprite.targetX += distance;
+      sprites[i].targetX += distance;
+    }
 
 }
-function movD(sprite, dur, height)
+
+function movD(sprites, dur, height)
 {
-      sprite.animate({y: sprite.targetY + height }, {
+  for(var i=0;i<sprites.length;i++)
+  {
+      sprites[i].animate({y: sprites[i].targetY + height }, {
       duration: dur,
       easing: "ease-in-sine", 
       queue: "b",//see http://ocanvas.org/docs/Animation/animate
@@ -196,12 +224,17 @@ function movD(sprite, dur, height)
           //canvas.redraw();
       }
       });
-      sprite.targetY += height;
+      sprites[i].targetY += height;
+    }
 
 }
-function movU(sprite, dur, height)
+
+
+function movU(sprites, dur, height)
 {
-      sprite.animate({y: sprite.targetY - height }, {
+  for(var i=0;i<sprites.length;i++)
+  {
+      sprites[i].animate({y: sprites[i].targetY - height }, {
       duration: dur,
       easing: "ease-in-sine", 
       queue: "b",//see http://ocanvas.org/docs/Animation/animate
@@ -209,8 +242,10 @@ function movU(sprite, dur, height)
           //canvas.redraw();
       }
       });
-      sprite.targetY -= height;
+      sprites[i].targetY -= height;
+    }
 }
+
 
 
       function playContinious()

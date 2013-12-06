@@ -7,9 +7,9 @@
 	//var theCanvasToDrawOn = document.getElementById("myCanvas");
 	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');
 	
-	// var mario = addSprite(oCanvasElement, 'mario.jpg', 100, 100, 200, 200);
-	// var luigi = addSprite(oCanvasElement, 'luigi.jpg', 100, 120, 400, 200);
-	// var bowser = addSprite(oCanvasElement, 'Bowser.jpg', 100, 100, 600, 200);
+	 var mario = addSprite(oCanvasElement, 'mario.jpg', 100, 100, 200, 200);
+	 var luigi = addSprite(oCanvasElement, 'luigi.jpg', 100, 120, 400, 200);
+	 var bowser = addSprite(oCanvasElement, 'Bowser.jpg', 100, 100, 600, 200);
 
 
 	function doSomeAnimations()
@@ -22,6 +22,7 @@
 	var mario;
 	var luigi;
 	var bowser;
+	
 	function addSpritee()
 	{
 		var spriteName = prompt("Please enter your name","");
@@ -42,8 +43,10 @@
 	{
 		var text = "function moveDiagUL(sprite, dur, distance){sprite.animate({x: sprite.targetX - distance , y: sprite.targetY - distance}, {duration: dur, easing: 'ease-in-sine', queue: 'b',}); sprite.targetX -= distance; sprite.targetY -= distance;}function doubleJump(sprite, dur, height){sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b'}); sprite.targetY -= height; sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b' }); sprite.targetY -= height; sprite.animate({y: sprite.targetY+height+height}, { duration: dur, easing: 'ease-in-sine', queue: 'b'}); sprite.targetY += (height + height);}doubleJump(mario,200,100);moveDiagUL(mario, 200, 100);movR(mario, 300, 250);";
 		var stringToParse = "function drift(){movL(mario,200,100);movD(mario,200,100);rotate(mario,200,360,true);}drift();";
-		main(text);
+				main(text);
 	}
+
+
 
 	function animatieMario()
 	{
@@ -63,9 +66,12 @@
 
 	function animateAll()
 	{
-		animateBowser();
-		animateLuigi();
-		animatieMario();
+		var sprites = [];
+		//animateBowser();
+		//animateLuigi();
+		//animatieMario();
+		rotate(sprites,300,360,true,true, 360);
+
 	}
 
 	function delay()
