@@ -214,14 +214,15 @@
 
                     function exporting() {
                         var objectArrayName = document.getElementById("ObjectName").value;
-                        if (objectArrayName == "") {
-                            alert("Please enter a name so we can save the object.");
+                        if (objectArrayName.length <1 || objectArrayName.length>16) {
+                            alert("Please enter a name between 1 and 15 characters long.");
                             return false;
                         }
+						var savedObjectsString = JSON.stringify(savedObjects, null, 2);
                         $.ajax({
                                 type: "POST",
                                 data: {
-                                    ObjectArray: savedObjects
+                                    ObjectArray: savedObjectsString
                                 },
                                 url: "functions\save.php"
                             });
