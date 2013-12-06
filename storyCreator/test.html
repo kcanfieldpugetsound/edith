@@ -162,10 +162,8 @@
 	mainCanvas.height = (window.innerHeight / 1.8);
 	objectCanvas.width = (window.innerWidth / 1.8);
 	objectCanvas.height = (window.innerHeight / 2.9);
-	//objectCanvas.width = 800;
-	//objectCanvas.height = 200;
 	VECanvas.width = (window.innerWidth / 2.4);
-	// VECanvas.height = (window.innerHeight / 1.05);
+	VECanvas.height = (window.innerHeight / 1.05);
 
 	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
@@ -223,10 +221,11 @@
 	}
 </script>
 <div class="buttons">
- <button id="button1" onclick = 'play()'>Play</button>
- <button id="button2" onclick = 'pauseAll()'>Pause</button>
- <button id="button3" onclick = 'popitup("object_creator/example.html")'>Make Object</button>
- <button id="button4" onClick = 'save("objectName")'>Save</button>
+
+ <button class="buttons.clickable" id="button1" onclick = 'play()'>Play</button>
+ <button class="buttons.clickable" id="button2" onclick = 'pauseAll()'>Pause</button>
+ <button class="buttons.clickable" id="button3" onclick = 'popitup("object_creator/example.html")'>Make Object</button>
+ <button class="buttons.clickable" id="button4" onClick = 'save("objectName")'>Save</button>
 </div>
 
 </body>

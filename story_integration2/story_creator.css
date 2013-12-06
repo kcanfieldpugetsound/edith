@@ -67,8 +67,56 @@ top:17%;
 .buttons{
 	top: 10%;
 	left:17%;
-	position:absolute;
+	position:relative;
 }
+.clickable{
+/*	top: 10%;
+	left:17%;*/
+	position:absolute;
+	-moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bef3fa), color-stop(1, #7ee3e6) );
+	background:-moz-linear-gradient( center top, #bef3fa 5%, #7ee3e6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bef3fa', endColorstr='#7ee3e6');
+	background-color:#bef3fa;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #528ecc;
+}
+.clickable:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7ee3e6), color-stop(1, #bef3fa) );
+	background:-moz-linear-gradient( center top, #7ee3e6 5%, #bef3fa 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7ee3e6', endColorstr='#bef3fa');
+	background-color:#7ee3e6;
+}.clickable:active {
+	position:relative;
+	top:1px;
+}
+
 
 
 .draggable {
