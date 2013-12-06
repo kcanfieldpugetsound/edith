@@ -43,6 +43,7 @@ border-radius: 5px;
 position:absolute;
 top:77%;
 background-color:#838383;
+overflow: scroll;
 }
 
 .VEContainer{
