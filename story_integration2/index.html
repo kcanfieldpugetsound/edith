@@ -154,10 +154,7 @@
 	mainCanvas.height = (window.innerHeight / 1.8);
 	objectCanvas.width = (window.innerWidth / 1.8);
 	objectCanvas.height = (window.innerHeight / 2.9);
-	//objectCanvas.width = 800;
-	//objectCanvas.height = 200;
 	VECanvas.width = (window.innerWidth / 2.4);
-	// VECanvas.height = (window.innerHeight / 1.05);
 
 	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
@@ -187,15 +184,12 @@
 	
 	function play()
 	{
-		// movR(mario, 2000, 500);
-		// movL(mario, 200, 500);
 		move(mario, 2000, 0, 0, true, -360);
 		rotate(luigi, 400, 360);
 		movD(luigi, 100, 50);
 		movL(luigi, 100, 50);
 		movU(luigi, 100, 50);
 		movR(luigi, 100, 50);
-
 		rotate(bowser, 200, 360, true);
 		rotate(bowser, 200, 360, false);
 	}
@@ -213,12 +207,34 @@
 	{
 		setDelay(mario, 1000);
 	}
+	
+	/**
+	/	Loads the information that the load.php page gives
+	**/
+	function load(){
+	//$.get("load.php", function(data, status){//issue a get request for the php page 'load.php"  
+	//		alert("Data: " + data + " Status: " + status);
+	//	});
+		$.ajax({
+				url: 'load.php', //use the load php page to get the stuff from the database
+				type: 'GET',	//get the information from the php page (the stuff that is echo in the php file);
+				success: function(data) { //if it worked alert the data
+					alert(data);
+				},
+				error: function(){//if it failed say it failed
+					alert("Request Failed");
+				}
+		});
+	}
+	
+	
 </script>
 <div class="buttons">
  <button id="button1" onclick = 'play()'>Play</button>
  <button id="button2" onclick = 'pauseAll()'>Pause</button>
  <button id="button3" onclick = 'popitup("object_creator/example.html")'>Make Object</button>
  <button id="button4" onClick = 'save("objectName")'>Save</button>
+ <button id="button5" onClick = 'load()'>Load</button>
 </div>
 
 </body>

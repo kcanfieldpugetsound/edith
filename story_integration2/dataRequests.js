@@ -1,16 +1,9 @@
-var theUserName;
 var theObjectName;
 var theObjectMethodName;
 
 
-	function getProject(userName)//get the project from the database using the userName
-	{
-		if (userName=="")//if userName is empty then there is no project assosciated
-		{
-			theUserName = "";
-			return;
-		}
-		
+	function getProject()
+	{	
 		if (window.XMLHttpRequest)//requesting from IE7, Firefox, Chrome, Opera, Safari
 		{
 			xmlhttp=new XMLHttpRequest();
