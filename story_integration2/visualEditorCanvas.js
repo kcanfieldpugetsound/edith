@@ -141,9 +141,9 @@
   $(function () {
     /*global Kinetic*/
     var stage = new Kinetic.Stage({
-      container: 'container',
-      width: window.innerWidth / 2.4,
-      height:window.innerHeight / 1.08
+      container: 'container1',
+      width: 800,
+      height:1000
     });
     layer = new Kinetic.Layer();
     stage.add(layer);

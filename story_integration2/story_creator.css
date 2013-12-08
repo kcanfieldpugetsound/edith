@@ -53,6 +53,7 @@ background: -webkit-linear-gradient(top, #ffffff 0%,#d7e0e0 100%); /* Chrome10+,
 background: -o-linear-gradient(top, #ffffff 0%,#d7e0e0 100%); /* Opera 11.10+ */
 background: -ms-linear-gradient(top, #ffffff 0%,#d7e0e0 100%); /* IE10+ */
 background: linear-gradient(to bottom, #ffffff 0%,#d7e0e0 100%); /* W3C */
+
 left:58%;
 border:solid; 
 border-width: 2px;
@@ -66,8 +67,8 @@ overflow: scroll;
 
 #container{
 position: relative;
- width: 300;
- height: 500;
+ width: 800;
+ height: 400;
 
 }
 
