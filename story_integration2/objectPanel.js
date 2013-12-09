@@ -69,7 +69,7 @@
 
 	}
 
-	function getGlowingImages()
+	function getGlowingObjects()
 	{
 		return glow;
 	}
