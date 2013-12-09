@@ -32,10 +32,6 @@
 			  	<canvas id="objectCanvas"> </canvas>
 
 				<div id="tabs">
-  					<ul>
-    					<li><a href="#tabs-1">Objects</a></li>
-    					<li><a href="#tabs-2">Methods</a></li>
-  					</ul>
   				<div id="tabs-1">
   					<script defer="defer">
   					var stage = new Kinetic.Stage({
@@ -55,7 +51,9 @@
 					    image: imageObj,
 					    width: 100,
 					    height: 100,
-					    listening: true
+					    listening: true,
+					    filter: Kinetic.Filters.Brighten,
+         				filterBrightness: 0
 					  });
 
 					 var image2 = new Kinetic.Image({
@@ -64,7 +62,9 @@
 					    image: imageObj2,
 					    width: 100,
 					    height: 100,
-					    listening: true
+					    listening: true,
+					    filter: Kinetic.Filters.Brighten,
+         				filterBrightness: 0
 					  });
 
 					var image3 = new Kinetic.Image({
@@ -73,7 +73,9 @@
 					    image: imageObj3,
 					    width: 100,
 					    height: 100,
-					    listening: true
+					    listening: true,
+					    filter: Kinetic.Filters.Brighten,
+         				filterBrightness: 0
 					  });
 
 			      var rect = new Kinetic.Rect({
@@ -99,6 +101,56 @@
 			      image3.on('dblclick', function() {
         			 addSprite(getCanvas(), 'luigi.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
       				});
+
+
+			     var glow = [];
+
+			      image.on('click', function() {
+			      	if(glow.indexOf(image) >= 0)
+			      	{
+			      		var x = glow.indexOf(image);
+			      		glow.splice(x, 1);
+			      		image.setFilterBrightness(0);
+			      		layer2.batchDraw();
+			      	}
+			      	else {
+			      		glow.push(image);
+			      		image.setFilterBrightness(100);
+			      		layer2.batchDraw();
+			      	}
+			      });
+
+			     image2.on('click', function() {
+			     	if(glow.indexOf(image2) >= 0)
+			      	{
+			      		var x = glow.indexOf(image2);
+			      		glow.splice(x, 1);
+			      		image2.setFilterBrightness(0);
+			      		layer2.batchDraw();
+			      	}
+			      	else {
+			      		image2.setFilterBrightness(100);
+			      		layer2.batchDraw();
+			      		glow.push(image2);
+			      	}
+			      });
+
+			     image3.on('click', function() {
+			     	if(glow.indexOf(image3) >= 0)
+			      	{
+			      		var x = glow.indexOf(image3);
+			      		glow.splice(x, 1);
+			      		image3.setFilterBrightness(0);
+			      		layer2.batchDraw();
+			      	}
+			      	else
+			      	{
+			      		glow.push(image3);
+			      		image3.setFilterBrightness(100);
+			      		layer2.batchDraw();
+			      	}
+			      });
+
 
 				  layer2.add(image);
 			      layer2.add(image2);
@@ -133,9 +185,6 @@
 			  imageObj5.src = src;
 			}
   			</script>
-  		<div id="tabs-2">
-    		<p>Methods</p>
-  		</div>
 
   	</div>
 
