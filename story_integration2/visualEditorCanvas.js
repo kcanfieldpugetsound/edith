@@ -5,8 +5,7 @@
   var itemSpacer = 5;
   var snapStructure = [];
   var groupToolbox;
-  var UNIVERSAL_MAIN = "";
- 
+  var UNIVERSAL_MAIN = ""; 
   //declaration of variables
   var i;
   var startX = 20;
@@ -53,72 +52,64 @@
       return x;
     }
     if (ids === "setDelay") {
-      var sprite = prompt("Please enter the name of your sprite", "");
       var mills = prompt("Seconds Delayed (in milliseconds)");
-      x = "setDelay(" + sprite + ", " + mills + ");";
+      x = "setDelay(" + getGlowingObjects() + ", " + mills + ");";
       //console.log(x);
       return x;
     }
     if (ids === "fmove") {
-      var sprite = prompt("Please enter the name of your sprite");
       var dur = prompt("Duration (in milliseconds)");
       var dist = prompt("Distance");
       var height = prompt("Height");
       var rotateClockwise = prompt("Clockwise? (true or false)");
       var degrees = prompt("Degrees");
-      x = "fmove (" + sprite + ", " + dur + ", " + dist + ", " + height + ", " + rotateClockwise + ", " + degrees + ");";
+      x = "fmove (" + getGlowingObjects() + ", " + dur + ", " + dist + ", " + height + ", " + rotateClockwise + ", " + degrees + ");";
       //console.log(x);
       return x;
     }
     if (ids === "rotate") {
-      var sprite = prompt("Please enter the name of your sprite");
       var dur = prompt("Duration (in milliseconds)");
       var angle = prompt("Angle");
       var height = prompt("Height")
       var clockwise = prompt("Clockwise? (true or false)");
-      x = "rotate (" + sprite + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
+      x = "rotate (" + getGlowingObjects + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
       //console.log(x);
       return x;
     }
     if (ids === "jump") {
-      var sprite = prompt("Please enter the name of your sprite");
       var dur = prompt("Duration (in milliseconds)");
       var height = prompt("Height");
-      x = "jump ("+sprite+ ", "+dur+ ", "+height+");";
+      x = "jump ("+ getGlowingObjects() + ", "+dur+ ", "+height+");";
       //console.log(x);
       return x;
     }
     if (ids === "movL") {
-      var sprite = prompt("Please enter the name of your sprite");
       var dur = prompt("Duration (in milliseconds)");
       var distance = prompt("Distance");
-      x = "movL ("+sprite+ ", "+dur+ ", "+distance+");";
+      x = "movL ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
       //console.log(x);
       return x;
     }
     if (ids === "movR") {
-      var sprite = prompt("Please enter the name of your sprite");
       var dur = prompt("Duration (in milliseconds)");
       var distance = prompt("Distance");
-      x = "movLR ("+sprite+ ", "+dur+ ", "+distance+");";
+      x = "movLR ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
       //console.log(x);
       return x;
 
       }
    if (ids === "movU") {
-      var sprite = prompt("Please enter the name of your sprite");
       var dur = prompt("Duration (in milliseconds)");
       var distance = prompt("Distance");
-      x = "movU ("+sprite+ ", "+dur+ ", "+distance+");";
+      x = "movU ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
       //console.log(x);
       return x;
 
       }
    if (ids === "movD") {
-      var sprite = prompt("Please enter the name of your sprite");
       var dur = prompt("Duration (in milliseconds)");
       var distance = prompt("Distance");
-      x = "movD ("+sprite+ ", "+dur+ ", "+distance+");";
+      x = "movD ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
       //console.log(x);
       return x;
   	}
