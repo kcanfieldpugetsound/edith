@@ -43,7 +43,9 @@ function check(form)/*function to check userid & password*/
  /*the following code checkes whether the entered userid and password are matching*/
  if(form.username.value == "test" && form.password.value == "test")
   {
-    window.open('test.html')/*opens the target page while Id & password matches*/
+    // window.open('test.html', '_self')/*opens the target page while Id & password matches*/
+    var myWindow = window.open("","_self");
+	myWindow.document.write('test.html');
   }
  else
  {
