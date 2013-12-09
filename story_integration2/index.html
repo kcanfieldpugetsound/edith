@@ -65,10 +65,7 @@
 
 	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
-	var mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
-	var luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight / 3.75));
-	var bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
-
+	
 	window.onresize = function(event) {
     	mainCanvas.width = (window.innerWidth / 1.8);
 		mainCanvas.height = (window.innerHeight / 1.8);
@@ -78,41 +75,11 @@
 		VECanvas.height = (window.innerHeight/1.06);
 
 		oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
-
-		mario = addSprite(oCanvasElement, 'Animation/mario.jpg', 100, 100, (window.innerWidth / 7.5), (window.innerHeight / 3.75));
-		luigi = addSprite(oCanvasElement, 'Animation/luigi.jpg', 90, 100, (window.innerWidth / 3.75), (window.innerHeight/ 3.75));
-		bowser = addSprite(oCanvasElement, 'Animation/Bowser.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
 	}
 
 	function getCanvas()
 	{
 		return oCanvasElement;
-	}
-	
-	function play()
-	{
-		move(mario, 2000, 0, 0, true, -360);
-		rotate(luigi, 400, 360);
-		movD(luigi, 100, 50);
-		movL(luigi, 100, 50);
-		movU(luigi, 100, 50);
-		movR(luigi, 100, 50);
-		rotate(bowser, 200, 360, true);
-		rotate(bowser, 200, 360, false);
-	}
-
-	function pauseSprite()
-	{
-		pauseAnimationsForSprite(mario);
-	}
-	function pauseAll()
-	{
-		pauseAnimationsForEntireScene(oCanvasElement);
-	}
-
-	function delay()
-	{
-		setDelay(mario, 1000);
 	}
 	
 	/**
@@ -154,7 +121,7 @@
 </script>
 <div class="buttons">
  <button id="button1" onclick = 'main(UNIVERSAL_MAIN)'>Play</button>
- <button id="button2" onclick = 'pauseAll()'>Pause</button>
+ <!-- <button id="button2" onclick = 'wait()'>Pause</button> -->
  <button id="button3" onclick = 'popitup("../object_creator_integration_2/ObjectCreation.html")'>Make Object</button>
  <button id="button4" onClick = 'save()'>Save</button>
  <button id="button5" onClick = 'load()'>Load</button>
