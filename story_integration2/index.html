@@ -42,150 +42,191 @@
 			    height: 300
 			    });
 
-			    var layer2 = new Kinetic.Layer();
-			    var imageObj = new Image();
-			    var imageObj2 = new Image();
-			    var imageObj3 = new Image();
-				imageObj.onload = function() {
-					var image = new Kinetic.Image({
-					x: 10,
-					y: 50,
-					image: imageObj,
-					width: 100,
-					height: 100,
-					listening: true,
-					filter: Kinetic.Filters.Brighten,
-         			filterBrightness: 0
-					});
-
-					var image2 = new Kinetic.Image({
-					x: 110,
-					y: 50,
-					image: imageObj2,
-					width: 100,
-					height: 100,
-					listening: true,
-					filter: Kinetic.Filters.Brighten,
-         			filterBrightness: 0
-					});
-
-					var image3 = new Kinetic.Image({
-					x: 210,
-					y: 50,
-					image: imageObj3,
-					width: 100,
-					height: 100,
-					listening: true,
-					filter: Kinetic.Filters.Brighten,
-         			filterBrightness: 0
-					});
-
-			      	var rect = new Kinetic.Rect({
-			        x: 310,
-			        y: 50,
-			        width: 100,
-			        height: 50,
-			        fill: 'green',
-			        stroke: 'black',
-			        strokeWidth: 4,
-			        listening: true
-			      	});
-
-			      	image.on('dblclick', function() {
-        				addSprite(getCanvas(), 'kitten.png', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
-
-      				});
-
-			      	image2.on('dblclick', function() {
-        				addSprite(getCanvas(), 'mario.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
-      				});
-
-			      	image3.on('dblclick', function() {
-        				 addSprite(getCanvas(), 'luigi.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
-      				});
-
-
+			     var layer2 = new Kinetic.Layer();
 			     var glow = [];
+			 //    var imageObj = new Image();
+			 //    var imageObj2 = new Image();
+			 //    var imageObj3 = new Image();
+				// imageObj.onload = function() {
+				// 	var image = new Kinetic.Image({
+				// 	x: 10,
+				// 	y: 50,
+				// 	image: imageObj,
+				// 	width: 100,
+				// 	height: 100,
+				// 	listening: true,
+				// 	filter: Kinetic.Filters.Brighten,
+    //      			filterBrightness: 0
+				// 	});
 
-			      image.on('click', function() {
-			      	if(glow.indexOf(image) >= 0)
-			      	{
-			      		var x = glow.indexOf(image);
-			      		glow.splice(x, 1);
-			      		image.setFilterBrightness(0);
-			      		layer2.batchDraw();
-			      	}
-			      	else {
-			      		glow.push(image);
-			      		image.setFilterBrightness(100);
-			      		layer2.batchDraw();
-			      	}
-			      });
+				// 	var image2 = new Kinetic.Image({
+				// 	x: 110,
+				// 	y: 50,
+				// 	image: imageObj2,
+				// 	width: 100,
+				// 	height: 100,
+				// 	listening: true,
+				// 	filter: Kinetic.Filters.Brighten,
+    //      			filterBrightness: 0
+				// 	});
 
-			     image2.on('click', function() {
-			     	if(glow.indexOf(image2) >= 0)
-			      	{
-			      		var x = glow.indexOf(image2);
-			      		glow.splice(x, 1);
-			      		image2.setFilterBrightness(0);
-			      		layer2.batchDraw();
-			      	}
-			      	else {
-			      		image2.setFilterBrightness(100);
-			      		layer2.batchDraw();
-			      		glow.push(image2);
-			      	}
-			      });
+				// 	var image3 = new Kinetic.Image({
+				// 	x: 210,
+				// 	y: 50,
+				// 	image: imageObj3,
+				// 	width: 100,
+				// 	height: 100,
+				// 	listening: true,
+				// 	filter: Kinetic.Filters.Brighten,
+    //      			filterBrightness: 0
+				// 	});
 
-			     image3.on('click', function() {
-			     	if(glow.indexOf(image3) >= 0)
-			      	{
-			      		var x = glow.indexOf(image3);
-			      		glow.splice(x, 1);
-			      		image3.setFilterBrightness(0);
-			      		layer2.batchDraw();
-			      	}
-			      	else
-			      	{
-			      		glow.push(image3);
-			      		image3.setFilterBrightness(100);
-			      		layer2.batchDraw();
-			      	}
-			      });
+			 //      	var rect = new Kinetic.Rect({
+			 //        x: 310,
+			 //        y: 50,
+			 //        width: 100,
+			 //        height: 50,
+			 //        fill: 'green',
+			 //        stroke: 'black',
+			 //        strokeWidth: 4,
+			 //        listening: true
+			 //      	});
 
+			 //      	image.on('dblclick', function() {
+    //     				addSprite(getCanvas(), 'kitten.png', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
 
-				  layer2.add(image);
-			      layer2.add(image2);
-			      layer2.add(image3);
-			      // add the layer to the stage
-			      stage.add(layer2);
-			  };
-			   imageObj.src = 'kitten.png';
-			   imageObj2.src = 'mario.jpg';
-			   imageObj3.src = 'luigi.jpg';
+    //   				});
+
+			 //      	image2.on('dblclick', function() {
+    //     				addSprite(getCanvas(), 'mario.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+    //   				});
+
+			 //      	image3.on('dblclick', function() {
+    //     				 addSprite(getCanvas(), 'luigi.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+    //   				});
 
 
-			   var imageObj5;
-			  function addImage(src)
+			 //     var glow = [];
+
+			 //      image.on('click', function() {
+			 //      	if(glow.indexOf(image) >= 0)
+			 //      	{
+			 //      		var x = glow.indexOf(image);
+			 //      		glow.splice(x, 1);
+			 //      		image.setFilterBrightness(0);
+			 //      		layer2.batchDraw();
+			 //      	}
+			 //      	else {
+			 //      		glow.push(image);
+			 //      		image.setFilterBrightness(100);
+			 //      		layer2.batchDraw();
+			 //      	}
+			 //      });
+
+			 //     image2.on('click', function() {
+			 //     	if(glow.indexOf(image2) >= 0)
+			 //      	{
+			 //      		var x = glow.indexOf(image2);
+			 //      		glow.splice(x, 1);
+			 //      		image2.setFilterBrightness(0);
+			 //      		layer2.batchDraw();
+			 //      	}
+			 //      	else {
+			 //      		image2.setFilterBrightness(100);
+			 //      		layer2.batchDraw();
+			 //      		glow.push(image2);
+			 //      	}
+			 //      });
+
+			 //     image3.on('click', function() {
+			 //     	if(glow.indexOf(image3) >= 0)
+			 //      	{
+			 //      		var x = glow.indexOf(image3);
+			 //      		glow.splice(x, 1);
+			 //      		image3.setFilterBrightness(0);
+			 //      		layer2.batchDraw();
+			 //      	}
+			 //      	else
+			 //      	{
+			 //      		glow.push(image3);
+			 //      		image3.setFilterBrightness(100);
+			 //      		layer2.batchDraw();
+			 //      	}
+			 //      });
+
+
+				//   layer2.add(image);
+			 //      layer2.add(image2);
+			 //      layer2.add(image3);
+			 //      // add the layer to the stage
+			 //      stage.add(layer2);
+			 //  };
+			 //   imageObj.src = 'kitten.png';
+			 //   imageObj2.src = 'mario.jpg';
+			 //   imageObj3.src = 'luigi.jpg';
+
+
+			 //  var imageObj5;
+
+			// var imgs = [];
+			var curImgs = [];
+			  function addImage(src, theX, theY)
 			  {
-			  	 imageObj5 = new Image();
-					imageObj5.onload = function() {
-					  var image5 = new Kinetic.Image({
-					    x: 510,
-					    y: 50,
-					    image: imageObj5,
+			  		var imgObj = new Image();
+					imgObj.onload = function() {
+					  var img = new Kinetic.Image({
+					    x: theX,
+					    y: theY,
+					    image: imgObj,
 					    width: 100,
 					    height: 100,
-					    listening: true
+					    listening: true,
+					    filter: Kinetic.Filters.Brighten,
+         				filterBrightness: 0
 					  });
-				 layer2.add(image5);
-				 stage.add(layer2);
-				 image5.on('dblclick', function() {
-        			 addSprite(getCanvas(), imageObj5, 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
-      				});
-			  };
-			  imageObj5.src = src;
+
+					layer2.add(img);
+				 	stage.add(layer2);
+
+				 	img.on('click', function() {
+			      	if(glow.indexOf(img) >= 0)
+			      	{
+			      		var x = glow.indexOf(img);
+			      		glow.splice(x, 1);
+			      		img.setFilterBrightness(0);
+			      		layer2.batchDraw();
+			      	}
+			      	else {
+			      		glow.push(img);
+			      		img.setFilterBrightness(100);
+			      		layer2.batchDraw();
+			      	}
+			      });
+
+				};
+				imgObj.src = src;
+			    console.log(imgObj.src);
 			}
+
+			var imgs = ["mario.jpg", "luigi.jpg", "kitten.png", "mario.jpg", "luigi.jpg", "mario.jpg"];
+
+			var x = 100;
+			var y = 50;
+			for(var i = 0; i < imgs.length; i++)
+			{
+			  addImage(imgs[i], x, y);
+			  if(x > 300)
+			  {
+			  	x = 100;
+			  	y += 100;
+			  }
+			  else
+			  {
+			  x += 100;
+			  }
+			}
+
+
   			</script>
 
   		</div>
