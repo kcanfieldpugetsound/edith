@@ -1,4 +1,3 @@
-
 //styling for list
   var itemsTopMargin = 20;
   var itemHeight = 25;
@@ -47,45 +46,53 @@
 		degrees,
 		angle,
 		condition;
+		
     if (ids === "method") {
       mname = prompt("Please enter the name of your method", "test");
       params = prompt("Please enter the Parameters for your method separated by commas");
       x = "function " + mname + "(" + params + ") {";
+		return x;
     }
+	
     if (ids === "variable") {
       varn = prompt("Please enter the name of your variable", "test");
       x = "var " + varn +  ";";
       return x;
     }
+	
     if (ids === "end") {
       x = "}";
       return x;
     }
+	
     if (ids === "setDelay") {
       sprite = prompt("Please enter the name of your sprite", "");
       mills = prompt("Seconds Delayed (in milliseconds)");
       x = "setDelay(" + sprite + ", " + mills + ");";
       return x;
     }
+	
     if (ids === "fmove") {
       sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
       dist = prompt("Distance");
       height = prompt("Height");
-      rotateClockwise = prompt("Clockwise? (true or false)");
+      clockwise = prompt("Clockwise? (true or false)");
       degrees = prompt("Degrees");
-      x = "fmove (" + sprite + ", " + dur + ", " + dist + ", " + height + ", " + rotateClockwise + ", " + degrees + ");";
+      x = "fmove (" + sprite + ", " + dur + ", " + dist + ", " + height + ", " + clockwise + ", " + degrees + ");";
       return x;
     }
+	
     if (ids === "rotate") {
       sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
       angle = prompt("Angle");
-      height = prompt("Height")
+      height = prompt("Height");
       clockwise = prompt("Clockwise? (true or false)");
       x = "rotate (" + sprite + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
       return x;
     }
+	
     if (ids === "jump") {
       sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
@@ -93,6 +100,7 @@
       x = "jump ("+sprite+ ", "+dur+ ", "+height+");";
       return x;
     }
+	
     if (ids === "movL") {
       sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
@@ -100,6 +108,7 @@
       x = "movL ("+sprite+ ", "+dur+ ", "+dist+");";
       return x;
     }
+	
     if (ids === "movR") {
       sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
@@ -107,6 +116,7 @@
       x = "movLR ("+sprite+ ", "+dur+ ", "+dist+");";
       return x;
       }
+	  
    if (ids === "movU") {
       sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
@@ -114,6 +124,7 @@
       x = "movU ("+sprite+ ", "+dur+ ", "+dist+");";
       return x;
       }
+	  
    if (ids === "movD") {
       sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
@@ -121,24 +132,28 @@
       x = "movD ("+sprite+ ", "+dur+ ", "+dist+");";
       return x;
   	}
+	
     if (ids === "if") {
       condition = prompt("Please enter the condition");
       x = "if(" + condition + "){";
       return x;
     }
+	
     if (ids === "while") {
       condition = prompt("Please enter the condition");
       x = "while(" + condition + "){";
       return x;
     }
+	
     if (ids === "else") {
       x = "else{";
       return x;
     }
-  }
+  }//end promptUser method
   
   $(function () {
     /*global Kinetic*/
+	//sets up stage and working layer of kinetic canvas
     var stage = new Kinetic.Stage({
       container: 'container1',
       width: 800,
@@ -147,17 +162,17 @@
     layer = new Kinetic.Layer();
     stage.add(layer);
 
+	//creates and draws dividing line btwn tools and working area
 		var line = new Kinetic.Line({
 			x: 400,
 			y: 0,
-
 			points: [0, 0, 0, 1000],
 			stroke: 'red'
-
 		});
-		
     layer.add(line);
 
+	//creates and draws draggable tools' rectangle and text
+	//defines drag/drop/double click actions
     function newRect(xpos, ypos, id, type) {
       var groupToolbox = new Kinetic.Group({
         id: id,
@@ -166,9 +181,16 @@
         firstTime: true,
         name: "box",
         jsText: ""
-      });
+		}),
+	  rect,
+	  simpleText,
+	  currentRect,
+	  clone,
+	  groupArray;
+	  
+	  //create rect if its behavior is predefined
       if (type == "predefined") {
-      var rect = new Kinetic.Rect({
+      rect = new Kinetic.Rect({
         x: xpos,
         y: ypos,
         width: 100,
@@ -181,8 +203,9 @@
         offset: 10
       });
     }
+	  //create rect if its behavior is that of control ("while," "else," "if," etc)
      else if(type == "control"){
-        var rect = new Kinetic.Rect({
+        rect = new Kinetic.Rect({
         x: xpos,
         y: ypos,
         width: 100,
@@ -196,8 +219,9 @@
       });
 
     } 
+ //default drawing for rect
     else {
-      var rect = new Kinetic.Rect({
+      rect = new Kinetic.Rect({
         x: xpos,
         y: ypos,
         width: 100,
@@ -211,7 +235,8 @@
       });
     } 
 
-      var simpleText = new Kinetic.Text({
+	 //text to display on draggable
+      simpleText = new Kinetic.Text({
         x: xpos + 10,
         y: ypos + 10,
         text: id,
@@ -222,45 +247,35 @@
         strokeWidth: 1
       });
     
-      //on dragend, calc the rect has passed the threshold
-    var currentRect;
-    var clone;
+	 //for any rect, defines action on dragstart
     groupToolbox.on('dragstart', function () {
       this.moveToTop();
       this.setOpacity(0.50);
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
       currentRect = groupArray[0];
-
-  
-
       clone = newRect(currentRect.getX(), currentRect.getY(), id, type); //create a "clone" of this rectangle
 
       layer.draw();
     });
 
-    var text;
-    var groupArray = [];
-    var height;
-    var dx;
-    
+	//for any rect, allows users to change variable names on double click
     groupToolbox.on("dblclick", function () {
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
       currentRect = groupArray[0];
       id = this.attrs.id;
-      text.setText(promptUser(id));
+      text.setText(promptUser(id)); //changes text on draggables to text from user prompt
       height = currentRect.getHeight();
       currentRect.setSize(text.getWidth() + 30, height);
       this.attrs.firstTime = false;
       layer.draw();
     });
 
+	//for any rect, prompts user for draggable attr
     groupToolbox.on("dragend", function () {
       this.setOpacity(1.00);
       layer.draw();
-      var i;
-      //Sets the threshold and rules below.
       dx = this.getX();
       id = this.attrs.id;
       groupArray = (this.getChildren()).toArray();
@@ -270,7 +285,7 @@
       //console.log(this.getY() + currentRect.getY()); // double check
 
 
-      //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER the line
+	  //BELOW: When draggable is dragged from tool area into work area
       if (dx + 20 > line.getX()) {
         //Only change text, or write to console on first time being dragged over
         if (this.attrs.firstTime === true) {
@@ -283,30 +298,19 @@
           currentRect.setSize(text.getWidth() + 30, height);
           this.attrs.firstTime = false;
           layer.draw();
-        //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
-          for (i = 0; i < tools.length; i++) {
-            if (id === tools[i].title) {
-              if (tools[i].jstext !== '') {
-                //console.log(tools[i].jstext);
-              }
-            }
-          }
         }
       sorter();
       } else {
         groupToolbox.remove();
         layer.draw();
       }
-          //console.log("id: "+id);
-          //console.log("clone id: "+clone.getId());
-          //console.log("clone X: "+clone.getX()+"       clone Y: "+clone.getY());
-
     });
     groupToolbox.add(rect);
     groupToolbox.add(simpleText);
     layer.add(groupToolbox);
     layer.draw();
 }
+	//put the rectangle draggables in the tool area
     for (i = 0; i < tools.length; i++) {
       newRect(startX, startY, tools[i].title, tools[i].type);
       startY = startY + 65;
