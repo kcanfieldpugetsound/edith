@@ -1,3 +1,4 @@
+
 //styling for list
   var itemsTopMargin = 20;
   var itemHeight = 25;
@@ -8,7 +9,6 @@
   var UNIVERSAL_MAIN = "";
  
   //declaration of variables
-  var i;
   var startX = 20;
   var startY = 30;
   var yPosition;
@@ -27,25 +27,34 @@
     {'title': 'movD', 'type': 'predefined', 'jstext': ''},
     {'title': 'if', 'type': 'control', 'jstext': ''},
     {'title': 'while', 'type': 'control', 'jstext': ''},
-    {'title': 'else', 'type': 'control', 'jstext': ''},
+    {'title': 'else', 'type': 'control', 'jstext': ''}
     ];
 
 
   /* Prompts user input of names*/
   function promptUser(ids) {
     /*global prompt*/
-    var x;
+	var x,
+		mname,
+		params,
+		varn,
+		sprite,
+		mills,
+		dur,
+		dist,
+		height,
+		clockwise,
+		degrees,
+		angle,
+		condition;
     if (ids === "method") {
-      var mname = prompt("Please enter the name of your method", "test");
-      var params = prompt("Please enter the Parameters for your method separated by commas");
+      mname = prompt("Please enter the name of your method", "test");
+      params = prompt("Please enter the Parameters for your method separated by commas");
       x = "function " + mname + "(" + params + ") {";
-      //console.log(x);
-      return x;
     }
     if (ids === "variable") {
-      var varn = prompt("Please enter the name of your variable", "test");
+      varn = prompt("Please enter the name of your variable", "test");
       x = "var " + varn +  ";";
-      //console.log(x);
       return x;
     }
     if (ids === "end") {
@@ -53,82 +62,72 @@
       return x;
     }
     if (ids === "setDelay") {
-      var sprite = prompt("Please enter the name of your sprite", "");
-      var mills = prompt("Seconds Delayed (in milliseconds)");
+      sprite = prompt("Please enter the name of your sprite", "");
+      mills = prompt("Seconds Delayed (in milliseconds)");
       x = "setDelay(" + sprite + ", " + mills + ");";
-      //console.log(x);
       return x;
     }
     if (ids === "fmove") {
-      var sprite = prompt("Please enter the name of your sprite");
-      var dur = prompt("Duration (in milliseconds)");
-      var dist = prompt("Distance");
-      var height = prompt("Height");
-      var rotateClockwise = prompt("Clockwise? (true or false)");
-      var degrees = prompt("Degrees");
+      sprite = prompt("Please enter the name of your sprite");
+      dur = prompt("Duration (in milliseconds)");
+      dist = prompt("Distance");
+      height = prompt("Height");
+      rotateClockwise = prompt("Clockwise? (true or false)");
+      degrees = prompt("Degrees");
       x = "fmove (" + sprite + ", " + dur + ", " + dist + ", " + height + ", " + rotateClockwise + ", " + degrees + ");";
-      //console.log(x);
       return x;
     }
     if (ids === "rotate") {
-      var sprite = prompt("Please enter the name of your sprite");
-      var dur = prompt("Duration (in milliseconds)");
-      var angle = prompt("Angle");
-      var height = prompt("Height")
-      var clockwise = prompt("Clockwise? (true or false)");
+      sprite = prompt("Please enter the name of your sprite");
+      dur = prompt("Duration (in milliseconds)");
+      angle = prompt("Angle");
+      height = prompt("Height")
+      clockwise = prompt("Clockwise? (true or false)");
       x = "rotate (" + sprite + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
-      //console.log(x);
       return x;
     }
     if (ids === "jump") {
-      var sprite = prompt("Please enter the name of your sprite");
-      var dur = prompt("Duration (in milliseconds)");
-      var height = prompt("Height");
+      sprite = prompt("Please enter the name of your sprite");
+      dur = prompt("Duration (in milliseconds)");
+      height = prompt("Height");
       x = "jump ("+sprite+ ", "+dur+ ", "+height+");";
-      //console.log(x);
       return x;
     }
     if (ids === "movL") {
-      var sprite = prompt("Please enter the name of your sprite");
-      var dur = prompt("Duration (in milliseconds)");
-      var distance = prompt("Distance");
-      x = "movL ("+sprite+ ", "+dur+ ", "+distance+");";
-      //console.log(x);
+      sprite = prompt("Please enter the name of your sprite");
+      dur = prompt("Duration (in milliseconds)");
+      dist = prompt("Distance");
+      x = "movL ("+sprite+ ", "+dur+ ", "+dist+");";
       return x;
     }
     if (ids === "movR") {
-      var sprite = prompt("Please enter the name of your sprite");
-      var dur = prompt("Duration (in milliseconds)");
-      var distance = prompt("Distance");
-      x = "movLR ("+sprite+ ", "+dur+ ", "+distance+");";
-      //console.log(x);
+      sprite = prompt("Please enter the name of your sprite");
+      dur = prompt("Duration (in milliseconds)");
+      dist = prompt("Distance");
+      x = "movLR ("+sprite+ ", "+dur+ ", "+dist+");";
       return x;
-
       }
    if (ids === "movU") {
-      var sprite = prompt("Please enter the name of your sprite");
-      var dur = prompt("Duration (in milliseconds)");
-      var distance = prompt("Distance");
-      x = "movU ("+sprite+ ", "+dur+ ", "+distance+");";
-      //console.log(x);
+      sprite = prompt("Please enter the name of your sprite");
+      dur = prompt("Duration (in milliseconds)");
+      dist = prompt("Distance");
+      x = "movU ("+sprite+ ", "+dur+ ", "+dist+");";
       return x;
-
       }
    if (ids === "movD") {
-      var sprite = prompt("Please enter the name of your sprite");
-      var dur = prompt("Duration (in milliseconds)");
-      var distance = prompt("Distance");
-      x = "movD ("+sprite+ ", "+dur+ ", "+distance+");";
-      //console.log(x);
+      sprite = prompt("Please enter the name of your sprite");
+      dur = prompt("Duration (in milliseconds)");
+      dist = prompt("Distance");
+      x = "movD ("+sprite+ ", "+dur+ ", "+dist+");";
       return x;
   	}
     if (ids === "if") {
-      var condition = prompt("Please enter the condition");
+      condition = prompt("Please enter the condition");
       x = "if(" + condition + "){";
       return x;
     }
     if (ids === "while") {
-      var condition = prompt("Please enter the condition");
+      condition = prompt("Please enter the condition");
       x = "while(" + condition + "){";
       return x;
     }
