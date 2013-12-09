@@ -13,7 +13,7 @@ body{
 	height: 100%;
 	margin:0;
 	padding: 0;
-	width: auto;
+	width: 80%;
 	background-attachment: fixed;
 }
 
@@ -41,7 +41,7 @@ box-shadow: 3px 3px 10px #1b1b1b;
 /*float: left;*/
 border-radius: 5px;
 position:absolute;
-top:77%;
+top:75%;
 background-color:#838383;
 overflow: scroll;
 }
@@ -54,7 +54,7 @@ background: -o-linear-gradient(top, #ffffff 0%,#d7e0e0 100%); /* Opera 11.10+ */
 background: -ms-linear-gradient(top, #ffffff 0%,#d7e0e0 100%); /* IE10+ */
 background: linear-gradient(to bottom, #ffffff 0%,#d7e0e0 100%); /* W3C */
 
-left:58%;
+left:57%;
 border:solid; 
 border-width: 2px;
 border-color: #242928;
@@ -74,7 +74,7 @@ position: relative;
 
 .buttons{
 	top: 10%;
-	left:17%;
+	left:20%;
 	position:relative;
 }
 .clickable{
