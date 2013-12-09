@@ -21,12 +21,13 @@
 </head>
 
 <body>
-		<div id="logo">
-			<img src="EdithLogoName.png" width=50% height=50% >
-		</div>
-		<div class="animationContainer">
-			<canvas id="mainCanvas" width="800"height="400"></canvas>
-		</div>
+	<div id="logo">
+		<img src="EdithLogoName.png" width=50% height=50% >
+	</div>
+
+	<div class="animationContainer">
+		<canvas id="mainCanvas"></canvas>
+	</div>
 		
 		<div class="objectContainer">
 			  	<canvas id="objectCanvas"> </canvas>
@@ -78,7 +79,51 @@
          				filterBrightness: 0
 					  });
 
-			      var rect = new Kinetic.Rect({
+	<div class="objectContainer">
+		<canvas id="objectCanvas"> </canvas>
+
+		<div id="tabs">
+  			<div id="tabs-1">
+  				<script defer="defer">
+  				var stage = new Kinetic.Stage({
+			    container: 'tabs-1',
+			    width: 540,
+			    height: 300
+			    });
+
+			    var layer2 = new Kinetic.Layer();
+			    var imageObj = new Image();
+			    var imageObj2 = new Image();
+			    var imageObj3 = new Image();
+				imageObj.onload = function() {
+					var image = new Kinetic.Image({
+					x: 10,
+					y: 50,
+					image: imageObj,
+					width: 100,
+					height: 100,
+					listening: true
+					});
+
+					var image2 = new Kinetic.Image({
+					x: 110,
+					y: 50,
+					image: imageObj2,
+					width: 100,
+					height: 100,
+					listening: true
+					});
+
+					var image3 = new Kinetic.Image({
+					x: 210,
+					y: 50,
+					image: imageObj3,
+					width: 100,
+					height: 100,
+					listening: true
+					});
+
+			      	var rect = new Kinetic.Rect({
 			        x: 310,
 			        y: 50,
 			        width: 100,
@@ -87,19 +132,19 @@
 			        stroke: 'black',
 			        strokeWidth: 4,
 			        listening: true
-			      });
+			      	});
 
-			      image.on('dblclick', function() {
-        			addSprite(getCanvas(), 'kitten.png', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+			      	image.on('dblclick', function() {
+        				addSprite(getCanvas(), 'kitten.png', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
 
       				});
 
-			      image2.on('dblclick', function() {
-        			addSprite(getCanvas(), 'mario.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+			      	image2.on('dblclick', function() {
+        				addSprite(getCanvas(), 'mario.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
       				});
 
-			      image3.on('dblclick', function() {
-        			 addSprite(getCanvas(), 'luigi.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
+			      	image3.on('dblclick', function() {
+        				 addSprite(getCanvas(), 'luigi.jpg', 100, 100, (window.innerWidth / 2.5), (window.innerHeight / 3.75));
       				});
 
 
@@ -186,15 +231,20 @@
 			}
   			</script>
 
-  	</div>
+  		</div>
 
   	</div>
 		</div>
 
 		<div class="VEContainer">
-			<div id="container">
-				<canvas id="VECanvas"></canvas>
+
+			<canvas id = "VECanvas"></canvas>
+
+			<div id= 'tabs'>
+			<div id='container1'>
+				
 			</div>
+		</div>
 		</div>
 
 		
@@ -203,10 +253,8 @@
 	mainCanvas.height = (window.innerHeight / 1.8);
 	objectCanvas.width = (window.innerWidth / 1.8);
 	objectCanvas.height = (window.innerHeight / 2.9);
-	//objectCanvas.width = 800;
-	//objectCanvas.height = 200;
 	VECanvas.width = (window.innerWidth / 2.4);
-	// VECanvas.height = (window.innerHeight / 1.05);
+	VECanvas.height = (window.innerHeight/1.06);
 
 	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
@@ -236,15 +284,12 @@
 	
 	function play()
 	{
-		// movR(mario, 2000, 500);
-		// movL(mario, 200, 500);
 		move(mario, 2000, 0, 0, true, -360);
 		rotate(luigi, 400, 360);
 		movD(luigi, 100, 50);
 		movL(luigi, 100, 50);
 		movU(luigi, 100, 50);
 		movR(luigi, 100, 50);
-
 		rotate(bowser, 200, 360, true);
 		rotate(bowser, 200, 360, false);
 	}
@@ -262,12 +307,50 @@
 	{
 		setDelay(mario, 1000);
 	}
+	
+	/**
+	/	Loads the information that the load.php page gives
+	**/
+	function load(){
+	//$.get("load.php", function(data, status){//issue a get request for the php page 'load.php"  
+	//		alert("Data: " + data + " Status: " + status);
+	//	});
+		$.ajax({
+				url: 'Sharing Framework/edith/functions/load.php', //use the load php page to get the stuff from the database
+				type: 'GET',	//get the information from the php page (the stuff that is echo in the php file);
+				success: function(data) { //if it worked alert the data
+					alert(data);
+				},
+				error: function(){//if it failed say it failed
+					alert("Request Failed");
+				}
+		});
+	}
+	/**
+	/Save the information for save.php to put to the server's database
+	/
+	**/
+	function save(){
+		$.ajax({
+				url: 'Sharing Framework/edith/functions/save.php',
+				type: 'POST',
+				data: {code: "the_Project_code_here", projectName: "the_projectName_here"}, //update what the project code and name are
+				success: function(){
+						console.log("Succsessful post!");
+				},
+				error: function(){
+						console.log("Failed post!");
+				}
+		});
+	}
+	
 </script>
 <div class="buttons">
  <button id="button1" onclick = 'play()'>Play</button>
  <button id="button2" onclick = 'pauseAll()'>Pause</button>
  <button id="button3" onclick = 'popitup("object_creator/example.html")'>Make Object</button>
- <button id="button4" onClick = 'save("objectName")'>Save</button>
+ <button id="button4" onClick = 'save()'>Save</button>
+ <button id="button5" onClick = 'load()'>Load</button>
 </div>
 
 </body>
