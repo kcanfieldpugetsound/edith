@@ -226,14 +226,30 @@
 				}
 		});
 	}
-	
+	/**
+	/Save the information for save.php to put to the server's database
+	/
+	**/
+	function save(){
+		$.ajax({
+				url: 'Sharing Framework/edith/functions/save.php',
+				type: 'POST',
+				data: {code: "the_Project_code_here", projectName: "the_projectName_here"}, //update what the project code and name are
+				success: function(){
+						console.log("Succsessful post!");
+				},
+				error: function(){
+						console.log("Failed post!");
+				}
+		});
+	}
 	
 </script>
 <div class="buttons">
  <button id="button1" onclick = 'play()'>Play</button>
  <button id="button2" onclick = 'pauseAll()'>Pause</button>
  <button id="button3" onclick = 'popitup("object_creator/example.html")'>Make Object</button>
- <button id="button4" onClick = 'save("objectName")'>Save</button>
+ <button id="button4" onClick = 'save()'>Save</button>
  <button id="button5" onClick = 'load()'>Load</button>
 </div>
 
