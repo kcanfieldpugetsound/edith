@@ -211,8 +211,10 @@
 	window.onresize = function(event) {
     	mainCanvas.width = (window.innerWidth / 1.8);
 		mainCanvas.height = (window.innerHeight / 1.8);
-		objectCanvas.width = (window.innerWidth / 1.8);
-		objectCanvas.height = (window.innerHeight / 2.8);
+		objectCanvas.width = (window.innerWidth / 1.825);
+		objectCanvas.height = (window.innerHeight / 2.7);
+		VECanvas.width = (window.innerWidth / 2.4);
+		VECanvas.height = (window.innerHeight/1.06);
 
 		oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
 
