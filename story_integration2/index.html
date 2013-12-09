@@ -29,55 +29,6 @@
 		<canvas id="mainCanvas"></canvas>
 	</div>
 		
-		<div class="objectContainer">
-			  	<canvas id="objectCanvas"> </canvas>
-
-				<div id="tabs">
-  				<div id="tabs-1">
-  					<script defer="defer">
-  					var stage = new Kinetic.Stage({
-			        container: 'tabs-1',
-			        width: 540,
-			        height: 200
-			      });
-
-			      var layer2 = new Kinetic.Layer();
-			      var imageObj = new Image();
-			      var imageObj2 = new Image();
-			      var imageObj3 = new Image();
-					imageObj.onload = function() {
-					  var image = new Kinetic.Image({
-					    x: 10,
-					    y: 50,
-					    image: imageObj,
-					    width: 100,
-					    height: 100,
-					    listening: true,
-					    filter: Kinetic.Filters.Brighten,
-         				filterBrightness: 0
-					  });
-
-					 var image2 = new Kinetic.Image({
-					    x: 110,
-					    y: 50,
-					    image: imageObj2,
-					    width: 100,
-					    height: 100,
-					    listening: true,
-					    filter: Kinetic.Filters.Brighten,
-         				filterBrightness: 0
-					  });
-
-					var image3 = new Kinetic.Image({
-					    x: 210,
-					    y: 50,
-					    image: imageObj3,
-					    width: 100,
-					    height: 100,
-					    listening: true,
-					    filter: Kinetic.Filters.Brighten,
-         				filterBrightness: 0
-					  });
 
 	<div class="objectContainer">
 		<canvas id="objectCanvas"> </canvas>
@@ -102,7 +53,9 @@
 					image: imageObj,
 					width: 100,
 					height: 100,
-					listening: true
+					listening: true,
+					filter: Kinetic.Filters.Brighten,
+         			filterBrightness: 0
 					});
 
 					var image2 = new Kinetic.Image({
@@ -111,7 +64,9 @@
 					image: imageObj2,
 					width: 100,
 					height: 100,
-					listening: true
+					listening: true,
+					filter: Kinetic.Filters.Brighten,
+         			filterBrightness: 0
 					});
 
 					var image3 = new Kinetic.Image({
@@ -120,7 +75,9 @@
 					image: imageObj3,
 					width: 100,
 					height: 100,
-					listening: true
+					listening: true,
+					filter: Kinetic.Filters.Brighten,
+         			filterBrightness: 0
 					});
 
 			      	var rect = new Kinetic.Rect({
