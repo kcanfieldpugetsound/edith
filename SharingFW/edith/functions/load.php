@@ -17,7 +17,6 @@ $query = mysql_query("SELECT pCode FROM project WHERE userName = '$uName' AND pr
 $result = mysql_fetch_array($query);
 
 
-
-echo($result[0]);
+echo(json_encode($result));
 
 ?>
