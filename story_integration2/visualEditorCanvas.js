@@ -5,16 +5,20 @@
   var itemSpacer = 5;
   var snapStructure = [];
   var groupToolbox;
+  var tabMenu;
   var UNIVERSAL_MAIN = "";
+  var tab = "control";
  
   //declaration of variables
   var i;
   var startX = 20;
-  var startY = 30;
+  var startY = 80;
   var yPosition;
   var layer;
 
-  var tools = [{'title': 'method', 'jstext': ''},
+  var tools = [
+
+    {'title': 'method', 'jstext': ''},
     {'title': 'variable', 'jstext': ''},
     {'title': 'end', 'jstext': ''},
     {'title': 'setDelay', 'type': 'predefined', 'jstext': ''},
@@ -28,7 +32,20 @@
     {'title': 'if', 'type': 'control', 'jstext': ''},
     {'title': 'while', 'type': 'control', 'jstext': ''},
     {'title': 'else', 'type': 'control', 'jstext': ''},
+    {'title': 'method', 'type': 'tab', 'jstext': ''},
+    {'title': 'predefined', 'type': 'tab', 'jstext': ''},
+    {'title': 'control', 'type': 'tab', 'jstext': ''},
     ];
+
+    var methodBox = [];
+    var predefinedBox = [];
+    var controlBox = [];
+    var tabBox = [];
+
+    methodBox = tools.slice(0,3);
+    predefinedBox = tools.slice(3,11);
+    controlBox = tools.slice(11,14);
+    tabBox = tools.slice(14,17);
 
 
   /* Prompts user input of names*/
@@ -139,17 +156,22 @@
   }
   
   $(function () {
+
     /*global Kinetic*/
+
     var stage = new Kinetic.Stage({
       container: 'container1',
-      width: 800,
+      width: 600,
       height:1000
+
     });
+
     layer = new Kinetic.Layer();
+
     stage.add(layer);
 
 		var line = new Kinetic.Line({
-			x: 400,
+			x: 200,
 			y: 0,
 
 			points: [0, 0, 0, 1000],
@@ -157,9 +179,69 @@
 
 		});
 		
+
     layer.add(line);
 
+
+    function newTab (xpos, ypos, id, type){
+      
+
+      var tabMenu = new Kinetic.Group({
+        id: id,
+        draggable: false,
+        listening: true,
+        firstTime: true,
+        name: "box",
+        jsText: ""
+      });
+
+        var rect =  new Kinetic.Rect({
+        x: xpos,
+        y: ypos,
+        width: 40,
+        height: 10,
+        stroke: 'black',
+        strokeWidth: 2,
+        offset: 10,
+        name: 'tab',
+        });
+
+        
+
+        var simpleText = new Kinetic.Text({
+        x: xpos + 10,
+        y: ypos + 10,
+        text: id,
+        kItem: null,
+        fontSize: 12,
+        fontFamily: 'Calibri',
+        stroke: 'black',
+        strokeWidth: 1
+      });
+
+      
+      tabMenu.on("click", function () {
+        console.log(tabMenu.getId());
+        console.log(tab);
+        tab = tabMenu.getId();
+        tabSwitcher();
+        layer.draw();
+    });
+
+      tabMenu.add(rect);
+      tabMenu.add(simpleText);
+      layer.add(tabMenu);
+      layer.draw();
+
+      tabMaker();
+
+    }
+
+   
+
     function newRect(xpos, ypos, id, type) {
+
+
       var groupToolbox = new Kinetic.Group({
         id: id,
         draggable: true,
@@ -168,6 +250,7 @@
         name: "box",
         jsText: ""
       });
+
       if (type == "predefined") {
       var rect = new Kinetic.Rect({
         x: xpos,
@@ -182,6 +265,8 @@
         offset: 10
       });
     }
+
+
      else if(type == "control"){
         var rect = new Kinetic.Rect({
         x: xpos,
@@ -198,6 +283,7 @@
 
     } 
     else {
+
       var rect = new Kinetic.Rect({
         x: xpos,
         y: ypos,
@@ -294,13 +380,11 @@
           }
         }
       sorter();
-      } else {
+      } 
+      else {
         groupToolbox.remove();
         layer.draw();
       }
-          //console.log("id: "+id);
-          //console.log("clone id: "+clone.getId());
-          //console.log("clone X: "+clone.getX()+"       clone Y: "+clone.getY());
 
     });
     groupToolbox.add(rect);
@@ -308,8 +392,46 @@
     layer.add(groupToolbox);
     layer.draw();
 }
-    for (i = 0; i < tools.length; i++) {
-      newRect(startX, startY, tools[i].title, tools[i].type);
-      startY = startY + 65;
+
+
+    function tabMaker(){
+
+      var horOffset; 
+
+      var tabNames = ["method", "predefined", "control"];
+
+    for (i = 0; i < tabBox.length; i++) {
+
+
+      //console.log("going into the loop to make tabs");
+      horOffset = (i * 50) + 10;
+      newTab(horOffset, 10, tabBox[i].title, tabBox[i].type);
+      //console.log(tabBox[i].title);
+      }
+
     }
+
+
+    function tabSwitcher(){
+      if (tab == "method"){
+        for (i = 0; i < methodBox.length; i++) {
+        newRect(startX, startY, methodBox[i].title, methodBox[i].type);
+        startY = startY + 65;
+        }
+      }
+      if (tab == "predefined"){
+        for (i = 0; i < predefinedBox.length; i++) {
+        newRect(startX, startY, predefinedBox[i].title, predefinedBox[i].type);
+        startY = startY + 65;
+        }
+      }
+      if (tab == "control"){
+        for (i = 0; i < controlBox.length; i++) {
+        newRect(startX, startY, controlBox[i].title, controlBox[i].type);
+        startY = startY + 65;
+        }
+      }
+    }
+    
+
  });
