@@ -1,182 +1,261 @@
-var groupToolbox;
-var UNIVERSAL_MAIN = "";
-var startX = 20;
-var startY = 30;
-var layer;
-var text;
-var height;
-var jsText;
-var dx;
+//styling for list
+  var itemsTopMargin = 20;
+  var itemHeight = 25;
+  var itemX = 430;
+  var itemSpacer = 5;
+  var snapStructure = [];
+  var groupToolbox;
+  var UNIVERSAL_MAIN = ""; 
+  //declaration of variables
+  var i;
+  var startX = 20;
+  var startY = 30;
+  var yPosition;
+  var layer;
+  var varRegex = /^[\w.-]+$/; //allows letters, digits and underscore. (Technically, should add $ as acceptable for JS var name.)
+  var methodRegex = /^[\w.-]+$/; 
+  var letterRegex = /^[a-zA-Z]+$/;
+  var numberRegex = /^\d+$/; //allow only numeric input
 
-var tools = [{'title': 'method', 'jstext': ''},
-  {'title': 'variable', 'jstext': ''},
-  {'title': 'end', 'jstext': ''},
-  {'title': 'setDelay', 'type': 'predefined', 'jstext': ''},
-  {'title': 'rotate', 'type': 'predefined', 'jstext': ''},
-  {'title': 'fmove', 'type': 'predefined', 'jstext': ''},
-  {'title': 'jump', 'type': 'predefined', 'jstext': ''},
-  {'title': 'movR', 'type': 'predefined', 'jstext': ''},
-  {'title': 'movL', 'type': 'predefined', 'jstext': ''},
-  {'title': 'movU', 'type': 'predefined', 'jstext': ''},
-  {'title': 'movD', 'type': 'predefined', 'jstext': ''},
-  {'title': 'if', 'type': 'control', 'jstext': ''},
-  {'title': 'while', 'type': 'control', 'jstext': ''},
-  {'title': 'else', 'type': 'control', 'jstext': ''}
-  ];
+  var tools = [{'title': 'method', 'jstext': ''},
+    {'title': 'variable', 'jstext': ''},
+    {'title': 'end', 'jstext': ''},
+    {'title': 'setDelay', 'type': 'predefined', 'jstext': ''},
+    {'title': 'rotate', 'type': 'predefined', 'jstext': ''},
+    {'title': 'fmove', 'type': 'predefined', 'jstext': ''},
+    {'title': 'jump', 'type': 'predefined', 'jstext': ''},
+    {'title': 'movR', 'type': 'predefined', 'jstext': ''},
+    {'title': 'movL', 'type': 'predefined', 'jstext': ''},
+    {'title': 'movU', 'type': 'predefined', 'jstext': ''},
+    {'title': 'movD', 'type': 'predefined', 'jstext': ''},
+    {'title': 'if', 'type': 'control', 'jstext': ''},
+    {'title': 'while', 'type': 'control', 'jstext': ''},
+    {'title': 'else', 'type': 'control', 'jstext': ''},
+    ];
 
 
-/* Prompts user input of names*/
-function promptUser(ids) {
-  /*global prompt, getGlowingObjects*/
-  var x,
-    mname,
-    params,
-    varn,
-    sprite,
-    mills,
-    dur,
-    dist,
-    height,
-    clockwise,
-    degrees,
-    angle,
-    condition,
-    rotateClockwise;
+  /* Prompts user input of names*/
+  function promptUser(ids) {
+    /*global prompt*/
+    var x;
+    if (ids === "method") {
+      var mname = prompt("Please enter the name of your method", "");
+      while ( letterRegex.test(mname) == false){
+        alert("Enter a method name (use only letters)")
+        mname = prompt("Please enter the name of your method", "");
+      }
+      var params = prompt("Please enter the Parameters for your method separated by commas");
+      x = "function " + mname + "(" + params + ") {";
+      //console.log(x);
+      return x;
+    }
 
-  if (ids === "method") {
-    mname = prompt("Please enter the name of your method", "test");
-    params = prompt("Please enter the Parameters for your method separated by commas");
-    x = "function " + mname + "(" + params + ") {";
-    return x;
+    if (ids === "variable") {
+      var varn = prompt("Please enter the name of your variable", "");
+      while ( letterRegex.test(varn) == false){
+        alert("Use only letters.")
+        varn = prompt("Please enter the name of your variable", "");
+      }
+      x = "var " + varn +  ";";
+      //console.log(x);
+      return x;
+    }
+
+    if (ids === "end") {
+      x = "}";
+      return x;
+    }
+
+    if (ids === "setDelay") {
+      var mills = prompt("Seconds Delayed (in milliseconds)");
+      while (numberRegex.test(mills) == false){
+        alert("Please input numbers only.")
+        mills = prompt("Please enter the seconds delayed", "");
+        }
+      x = "setDelay(" + getGlowingObjects() + ", " + mills + ");";
+      //console.log(x);
+      return x;
+    }
+
+    if (ids === "fmove") {
+      var dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
+      var dist = prompt("Distance");
+      while (numberRegex.test(dist) == false){
+        alert("Please input numbers only.")
+        dist = prompt("Please enter the distance", "");
+        }
+      var height = prompt("Height");
+      while (numberRegex.test(height) == false){
+        alert("Please input numbers only.")
+        height = prompt("Please enter the height", "");
+        }
+      var rotateClockwise = prompt("Clockwise? (true or false)");
+      var degrees = prompt("Degrees");
+      while (numberRegex.test(degrees) == false){
+        alert("Please input numbers only.")
+        degrees = prompt("Please enter the degrees", "");
+        }
+      x = "fmove (" + getGlowingObjects() + ", " + dur + ", " + dist + ", " + height + ", " + rotateClockwise + ", " + degrees + ");";
+      //console.log(x);
+      return x;
+    }
+
+    if (ids === "rotate") {
+      var dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
+      var angle = prompt("Angle");
+      while (numberRegex.test(angle) == false){
+        alert("Please input numbers only.")
+        angle = prompt("Please enter the angle", "");
+        }
+      var height = prompt("Height")
+      while (numberRegex.test(height) == false){
+        alert("Please input numbers only.")
+        height = prompt("Please enter the height", "");
+        }
+      var clockwise = prompt("Clockwise? (true or false)");
+      x = "rotate (" + getGlowingObjects + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
+      //console.log(x);
+      return x;
+    }
+
+    if (ids === "jump") {
+      var dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
+      var height = prompt("Height");
+      while (numberRegex.test(height) == false){
+        alert("Please input numbers only.")
+        height = prompt("Please enter the height", "");
+        }
+      x = "jump ("+ getGlowingObjects() + ", "+dur+ ", "+height+");";
+      //console.log(x);
+      return x;
+    }
+
+    if (ids === "movL") {
+      var dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
+      var distance = prompt("Distance");
+      while (numberRegex.test(distance) == false){
+        alert("Please input numbers only.")
+        distance = prompt("Please enter the distance", "");
+        }
+      x = "movL ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
+      //console.log(x);
+      return x;
+    }
+
+    if (ids === "movR") {
+      var dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
+      var distance = prompt("Distance");
+      while (numberRegex.test(distance) == false){
+        alert("Please input numbers only.")
+        distance = prompt("Please enter the distance", "");
+        }
+      x = "movLR ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
+      //console.log(x);
+      return x;
+      }
+
+   if (ids === "movU") {
+      var dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
+      var distance = prompt("Distance");
+      while (numberRegex.test(distance) == false){
+        alert("Please input numbers only.")
+        distance = prompt("Please enter the distance", "");
+        }
+      x = "movU ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
+      //console.log(x);
+      return x;
+      }
+
+   if (ids === "movD") {
+      var dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
+      var distance = prompt("Distance");
+      while (numberRegex.test(distance) == false){
+        alert("Please input numbers only.")
+        distance = prompt("Please enter the distance", "");
+        }
+      x = "movD ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
+      //console.log(x);
+      return x;
+  	}
+
+    if (ids === "if") {
+      var condition = prompt("Please enter the condition");
+      x = "if(" + condition + "){";
+      return x;
+    }
+
+    if (ids === "while") {
+      var condition = prompt("Please enter the condition");
+      x = "while(" + condition + "){";
+      return x;
+    }
+
+    if (ids === "else") {
+      x = "else{";
+      return x;
+    }
   }
+  
+  $(function () {
+    /*global Kinetic*/
+    var stage = new Kinetic.Stage({
+      container: 'container1',
+      width: 800,
+      height:1000
+    });
+    layer = new Kinetic.Layer();
+    stage.add(layer);
 
-  if (ids === "variable") {
-    varn = prompt("Please enter the name of your variable", "test");
-    x = "var " + varn +  ";";
-    return x;
-  }
+		var line = new Kinetic.Line({
+			x: 400,
+			y: 0,
 
-  if (ids === "end") {
-    x = "}";
-    return x;
-  }
+			points: [0, 0, 0, 1000],
+			stroke: 'red'
 
-  if (ids === "setDelay") {
-    mills = prompt("Seconds Delayed (in milliseconds)");
-    x = "setDelay(" + getGlowingObjects() + ", " + mills + ");";
-    return x;
-  }
+		});
+		
+    layer.add(line);
 
-  if (ids === "fmove") {
-    dur = prompt("Duration (in milliseconds)");
-    dist = prompt("Distance");
-    height = prompt("Height");
-    rotateClockwise = prompt("Clockwise? (true or false)");
-    degrees = prompt("Degrees");
-    x = "fmove (" + getGlowingObjects() + ", " + dur + ", " + dist + ", " + height + ", " + rotateClockwise + ", " + degrees + ");";
-    return x;
-  }
-
-  if (ids === "rotate") {
-    dur = prompt("Duration (in milliseconds)");
-    angle = prompt("Angle");
-    height = prompt("Height");
-    clockwise = prompt("Clockwise? (true or false)");
-    x = "rotate (" + getGlowingObjects + ", " + dur + ", " + angle + ", " + height + ", " + clockwise + ");";
-    return x;
-  }
-
-  if (ids === "jump") {
-    dur = prompt("Duration (in milliseconds)");
-    height = prompt("Height");
-    x = "jump (" + getGlowingObjects() + ", " + dur + ", " + height + ");";
-    return x;
-  }
-
-  if (ids === "movL") {
-    dur = prompt("Duration (in milliseconds)");
-    dist = prompt("Distance");
-    x = "movL (" + getGlowingObjects() + ", " + dur + ", " + dist + ");";
-    return x;
-  }
-
-  if (ids === "movR") {
-    dur = prompt("Duration (in milliseconds)");
-    dist = prompt("Distance");
-    x = "movR (" + getGlowingObjects() + ", " + dur + ", " + dist + ");";
-    return x;
-  }
-
-  if (ids === "movU") {
-    dur = prompt("Duration (in milliseconds)");
-    dist = prompt("Distance");
-    x = "movU (" + getGlowingObjects() + ", " + dur + ", " + dist + ");";
-    return x;
-  }
-  if (ids === "movD") {
-    dur = prompt("Duration (in milliseconds)");
-    dist = prompt("Distance");
-    x = "movD (" + getGlowingObjects() + ", " + dur + ", " + dist + ");";
-    return x;
-  }
-
-  if (ids === "if") {
-    condition = prompt("Please enter the condition");
-    x = "if(" + condition + "){";
-    return x;
-  }
-
-  if (ids === "while") {
-    condition = prompt("Please enter the condition");
-    x = "while(" + condition + "){";
-    return x;
-  }
-
-  if (ids === "else") {
-    x = "else{";
-    return x;
-  }
-} //end promptUser method
-
-$(function () {
-  /*global Kinetic*/
-//sets up stage and working layer of kinetic canvas
-  var stage = new Kinetic.Stage({
-    container: 'container1',
-    width: 800,
-    height: 1000
-  });
-  layer = new Kinetic.Layer();
-  stage.add(layer);
-
-//creates and draws dividing line btwn tools and working area
-  var line = new Kinetic.Line({
-    x: 200,
-    y: 0,
-    points: [0, 0, 0, 1000],
-    stroke: 'red'
-  });
-  layer.add(line);
-
-//creates and draws draggable tools' rectangle and text
-//defines drag/drop/double click actions
-  function newRect(xpos, ypos, id, type) {
-    var groupToolbox = new Kinetic.Group({
-      id: id,
-      draggable: true,
-      listening: true,
-      firstTime: true,
-      name: "box",
-      jsText: ""
-    }),
-      rect,
-      simpleText,
-      currentRect,
-      clone,
-      groupArray;
-  //create rect if its behavior is predefined
-    if (type === "predefined") {
-      rect = new Kinetic.Rect({
+    function newRect(xpos, ypos, id, type) {
+      var groupToolbox = new Kinetic.Group({
+        id: id,
+        draggable: true,
+        listening: true,
+        firstTime: true,
+        name: "box",
+        jsText: ""
+      });
+      if (type == "predefined") {
+      var rect = new Kinetic.Rect({
         x: xpos,
         y: ypos,
         width: 100,
@@ -188,8 +267,9 @@ $(function () {
         strokeWidth: 2,
         offset: 10
       });
-    } else if (type === "control") { //create rect if its behavior is that of control ("while," "else," "if," etc)
-      rect = new Kinetic.Rect({
+    }
+     else if(type == "control"){
+        var rect = new Kinetic.Rect({
         x: xpos,
         y: ypos,
         width: 100,
@@ -201,8 +281,10 @@ $(function () {
         strokeWidth: 2,
         offset: 10
       });
-    } else { //default drawing for rect
-      rect = new Kinetic.Rect({
+
+    } 
+    else {
+      var rect = new Kinetic.Rect({
         x: xpos,
         y: ypos,
         width: 100,
@@ -214,80 +296,106 @@ $(function () {
         strokeWidth: 2,
         offset: 10
       });
-    }
+    } 
 
- //text to display on draggable
-    simpleText = new Kinetic.Text({
-      x: xpos + 10,
-      y: ypos + 10,
-      text: id,
-      kItem: null,
-      fontSize: 12,
-      fontFamily: 'Calibri',
-      stroke: 'black',
-      strokeWidth: 1
-    });
-    //for any rect, defines action on dragstart
+      var simpleText = new Kinetic.Text({
+        x: xpos + 10,
+        y: ypos + 10,
+        text: id,
+        kItem: null,
+        fontSize: 12,
+        fontFamily: 'Calibri',
+        stroke: 'black',
+        strokeWidth: 1
+      });
+    
+      //on dragend, calc the rect has passed the threshold
+    var currentRect;
+    var clone;
     groupToolbox.on('dragstart', function () {
       this.moveToTop();
       this.setOpacity(0.50);
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
       currentRect = groupArray[0];
+
+  
+
       clone = newRect(currentRect.getX(), currentRect.getY(), id, type); //create a "clone" of this rectangle
+
       layer.draw();
     });
-    //for any rect, allows users to change variable names on double click
+
+    var text;
+    var groupArray = [];
+    var height;
+    var dx;
+    
     groupToolbox.on("dblclick", function () {
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
       currentRect = groupArray[0];
       id = this.attrs.id;
-      text.setText(promptUser(id)); //changes text on draggables to text from user prompt
+      text.setText(promptUser(id));
       height = currentRect.getHeight();
       currentRect.setSize(text.getWidth() + 30, height);
       this.attrs.firstTime = false;
       layer.draw();
     });
 
-    //for any rect, prompts user for draggable attr
     groupToolbox.on("dragend", function () {
       this.setOpacity(1.00);
       layer.draw();
+      var i;
+      //Sets the threshold and rules below.
       dx = this.getX();
       id = this.attrs.id;
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
+
       currentRect = groupArray[0];
-      //BELOW: When draggable is dragged from tool area into work area
+      //console.log(this.getY() + currentRect.getY()); // double check
+
+
+      //BELOW DO WHAT YOU DO WHEN SOMETHING GETS DRAGGED OVER the line
       if (dx + 20 > line.getX()) {
         //Only change text, or write to console on first time being dragged over
         if (this.attrs.firstTime === true) {
           this.setName("sortable");//sets the selected group to be sorted in the sorted function
-          jsText = promptUser(id);// prompts the user to get attributes
-          this.setAttr('jsText', jsText);// sets the input from above and gives it to the group that is selected
+          var jsText = promptUser(id);// prompts the user to get attributes
+          this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
           text.setText(jsText); // sets the text on group
-          height = currentRect.getHeight();
+          
+          var height = currentRect.getHeight();
           currentRect.setSize(text.getWidth() + 30, height);
           this.attrs.firstTime = false;
           layer.draw();
+        //In this example, I loop through our list again and see what javascript is associated with our whichever tool was dragged over.
+          for (i = 0; i < tools.length; i++) {
+            if (id === tools[i].title) {
+              if (tools[i].jstext !== '') {
+                //console.log(tools[i].jstext);
+              }
+            }
+          }
         }
-        /*global sorter*/
-        sorter();
+      sorter();
       } else {
         groupToolbox.remove();
         layer.draw();
       }
+          //console.log("id: "+id);
+          //console.log("clone id: "+clone.getId());
+          //console.log("clone X: "+clone.getX()+"       clone Y: "+clone.getY());
+
     });
     groupToolbox.add(rect);
     groupToolbox.add(simpleText);
     layer.add(groupToolbox);
     layer.draw();
-  }
-  //put the rectangle draggables in the tool area
-  var i;
-  for (i = 0; i < tools.length; i++) {
-    newRect(startX, startY, tools[i].title, tools[i].type);
-    startY = startY + 65;
-  }
-});
+}
+    for (i = 0; i < tools.length; i++) {
+      newRect(startX, startY, tools[i].title, tools[i].type);
+      startY = startY + 65;
+    }
+ });
