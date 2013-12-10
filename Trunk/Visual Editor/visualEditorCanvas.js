@@ -10,6 +10,8 @@
   var i;
   var startX = 20;
   var startY = 30;
+  var newX = 300
+  var newY = 50 
   var yPosition;
   var layer;
   var varRegex = /^[\w.-]+$/; //allows letters, digits and underscore. (Technically, should add $ as acceptable for JS var name.)
@@ -32,7 +34,6 @@
     {'title': 'while', 'type': 'control', 'jstext': ''},
     {'title': 'else', 'type': 'control', 'jstext': ''},
     ];
-
 
   /* Prompts user input of names*/
   function promptUser(ids) {
@@ -384,22 +385,30 @@
           }
         }
       sorter();
+      for (var i; i<sortArray.length; i++) {
+          newRect(newX, newY, sortArray[i][1], sortArray[i][0]);
+          newY = newY + 65;
+      } 
       } else {
         groupToolbox.remove();
         layer.draw();
       }
+
           //console.log("id: "+id);
           //console.log("clone id: "+clone.getId());
           //console.log("clone X: "+clone.getX()+"       clone Y: "+clone.getY());
-
     });
     groupToolbox.add(rect);
     groupToolbox.add(simpleText);
     layer.add(groupToolbox);
     layer.draw();
-}
+}   
+
     for (i = 0; i < tools.length; i++) {
       newRect(startX, startY, tools[i].title, tools[i].type);
       startY = startY + 65;
     }
+
  });
+
+    

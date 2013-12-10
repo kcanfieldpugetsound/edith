@@ -1,7 +1,7 @@
 
 
 var i;
-
+var sortArray = [];
 function myFunction() {
 	for (i = 0; i< points.length; i++){
 	console.log(points[i]);
@@ -15,6 +15,7 @@ x.innerHTML=points;
 var orderedString;
 function sorter()
 {
+	sortArray = [];
 	orderedString = "";
 	var orderPairing = []; // the hash map
 	layer.get('.sortable').each(function(shape){
@@ -57,7 +58,9 @@ function sorter()
 		
 		if (hash[i].yPos === arrayOfY[limit]){
 			//console.log(orderedString);
+			sortArray[i] = [hash[i].id, hash[i].jsText];
 			orderedString = orderedString + hash[i].jsText;
+			UNIVERSAL_MAIN = orderedString;
 			//console.log( i + " thing " + hash[i].jsText + " y - "+ hash[i].yPos);
 			limit++;
 		}
