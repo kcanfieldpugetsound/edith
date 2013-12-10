@@ -12,6 +12,8 @@
   var yPosition;
   var layer;
   var tab = "method";
+  var stage;
+  var line;
   
 
   var tools = [{'title': 'method', 'jstext': ''},
@@ -47,6 +49,19 @@
     controlBox = tools.slice(11,14);
     tabBox = tools.slice(14,17);
     mainBox = tools.slice(17,19);
+
+  var newX = 220;
+    var newY = 20;
+    function cleanUp(sort) {
+      newY = 20;
+      layer.get('.sortable').each(function(shape){
+        //shape.destroy();
+      });
+      for (var i = 0; i<sort.length; i++) {
+        newRect(newX, newY, sort[i][1], "predefined");
+        newY = newY + 70;
+      }
+    }
 
 
   /* Prompts user input of names*/
@@ -230,10 +245,151 @@
     }
   }//end promptUser method
   
+
+  function newRect(xpos, ypos, id, type) {
+      var groupToolbox = new Kinetic.Group({
+        id: id,
+        draggable: true,
+        listening: true,
+        firstTime: true,
+        name: "box",
+        jsText: ""
+    }),
+    rect,
+    simpleText,
+    currentRect,
+    clone,
+    groupArray;
+    
+    //create rect if its behavior is predefined
+      if (type == "predefined") {
+      rect = new Kinetic.Rect({
+        x: xpos,
+        y: ypos,
+        width: 100,
+        height: 50,
+        fillLinearGradientStartPoint: [-50, -50],
+        fillLinearGradientEndPoint: [50, 50],
+        fillLinearGradientColorStops: [0, 'red', 1, 'yellow'],
+        stroke: 'black',
+        strokeWidth: 2,
+        offset: 10
+      });
+    }
+    //create rect if its behavior is that of control ("while," "else," "if," etc)
+     else if(type == "control"){
+        rect = new Kinetic.Rect({
+        x: xpos,
+        y: ypos,
+        width: 100,
+        height: 50,
+        fillLinearGradientStartPoint: [-50, -50],
+        fillLinearGradientEndPoint: [50, 50],
+        fillLinearGradientColorStops: [0, 'green', 1, 'yellow'],
+        stroke: 'black',
+        strokeWidth: 2,
+        offset: 10
+      });
+
+    } 
+ //default drawing for rect
+    else {
+      rect = new Kinetic.Rect({
+        x: xpos,
+        y: ypos,
+        width: 100,
+        height: 50,
+        fillLinearGradientStartPoint: [-50, -50],
+        fillLinearGradientEndPoint: [50, 50],
+        fillLinearGradientColorStops: [0, 'pink', 1, 'orange'],
+        stroke: 'black',
+        strokeWidth: 2,
+        offset: 10
+      });
+    } 
+
+   //text to display on draggable
+      simpleText = new Kinetic.Text({
+        x: xpos + 10,
+        y: ypos + 10,
+        text: id,
+        kItem: null,
+        fontSize: 12,
+        fontFamily: 'Calibri',
+        stroke: 'black',
+        strokeWidth: 1
+      });
+    
+   //for any rect, defines action on dragstart
+    groupToolbox.on('dragstart', function () {
+      this.moveToTop();
+      this.setOpacity(0.50);
+      groupArray = (this.getChildren()).toArray();
+      text = groupArray[1];
+      currentRect = groupArray[0];
+      clone = newRect(currentRect.getX(), currentRect.getY(), id, type); //create a "clone" of this rectangle
+
+      layer.draw();
+    });
+
+  //for any rect, allows users to change variable names on double click
+    groupToolbox.on("dblclick", function () {
+      groupArray = (this.getChildren()).toArray();
+      text = groupArray[1];
+      currentRect = groupArray[0];
+      id = this.attrs.id;
+      text.setText(promptUser(id)); //changes text on draggables to text from user prompt
+      height = currentRect.getHeight();
+      currentRect.setSize(text.getWidth() + 30, height);
+      this.attrs.firstTime = false;
+      layer.draw();
+    });
+
+  //for any rect, prompts user for draggable attr
+    groupToolbox.on("dragend", function () {
+      this.setOpacity(1.00);
+      layer.draw();
+      dx = this.getX();
+      id = this.attrs.id;
+      groupArray = (this.getChildren()).toArray();
+      text = groupArray[1];
+
+      currentRect = groupArray[0];
+      //console.log(this.getY() + currentRect.getY()); // double check
+
+
+    //BELOW: When draggable is dragged from tool area into work area
+      if (dx + 20 > line.getX()) {
+        //Only change text, or write to console on first time being dragged over
+        if (this.attrs.firstTime === true) {
+          this.setName("sortable");//sets the selected group to be sorted in the sorted function
+          var jsText = promptUser(id);// prompts the user to get attributes
+          this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
+          text.setText(jsText); // sets the text on group
+          
+          var height = currentRect.getHeight();
+          currentRect.setSize(text.getWidth() + 30, height);
+          this.attrs.firstTime = false;
+          layer.draw();
+        }
+      sorter();
+      } else {
+        groupToolbox.remove();
+        layer.draw();
+      }
+    });
+    groupToolbox.add(rect);
+    groupToolbox.add(simpleText);
+    layer.add(groupToolbox);
+    layer.draw();
+
+}
+
+
   $(function () {
     /*global Kinetic*/
 	//sets up stage and working layer of kinetic canvas
-    var stage = new Kinetic.Stage({
+    stage = new Kinetic.Stage({
       container: 'container1',
       width: 550,
       height:1000
@@ -242,7 +398,7 @@
     stage.add(layer);
 
 	//creates and draws dividing line btwn tools and working area
-		var line = new Kinetic.Line({
+		line = new Kinetic.Line({
 			x: 200,
 			y: 0,
 			points: [0, 0, 0, 1000],
@@ -251,7 +407,8 @@
     layer.add(line);
     tabSwitcher();
 
-      function mainMethodRect (xpos, ypos, id, type){
+    /*
+    function mainMethodRect (xpos, ypos, id, type){
     
 
       var mainBracket = new Kinetic.Group({
@@ -316,8 +473,7 @@
         layer.draw();
   
       }
-
-
+      */
 
     function newTab (xpos, ypos, id, type){
       
@@ -388,143 +544,7 @@
 
 	//creates and draws draggable tools' rectangle and text
 	//defines drag/drop/double click actions
-    function newRect(xpos, ypos, id, type) {
-      var groupToolbox = new Kinetic.Group({
-        id: id,
-        draggable: true,
-        listening: true,
-        firstTime: true,
-        name: "box",
-        jsText: ""
-		}),
-	  rect,
-	  simpleText,
-	  currentRect,
-	  clone,
-	  groupArray;
-	  
-	  //create rect if its behavior is predefined
-      if (type == "predefined") {
-      rect = new Kinetic.Rect({
-        x: xpos,
-        y: ypos,
-        width: 100,
-        height: 50,
-        fillLinearGradientStartPoint: [-50, -50],
-        fillLinearGradientEndPoint: [50, 50],
-        fillLinearGradientColorStops: [0, 'red', 1, 'yellow'],
-        stroke: 'black',
-        strokeWidth: 2,
-        offset: 10
-      });
-    }
-	  //create rect if its behavior is that of control ("while," "else," "if," etc)
-     else if(type == "control"){
-        rect = new Kinetic.Rect({
-        x: xpos,
-        y: ypos,
-        width: 100,
-        height: 50,
-        fillLinearGradientStartPoint: [-50, -50],
-        fillLinearGradientEndPoint: [50, 50],
-        fillLinearGradientColorStops: [0, 'green', 1, 'yellow'],
-        stroke: 'black',
-        strokeWidth: 2,
-        offset: 10
-      });
-
-    } 
- //default drawing for rect
-    else {
-      rect = new Kinetic.Rect({
-        x: xpos,
-        y: ypos,
-        width: 100,
-        height: 50,
-        fillLinearGradientStartPoint: [-50, -50],
-        fillLinearGradientEndPoint: [50, 50],
-        fillLinearGradientColorStops: [0, 'pink', 1, 'orange'],
-        stroke: 'black',
-        strokeWidth: 2,
-        offset: 10
-      });
-    } 
-
-	 //text to display on draggable
-      simpleText = new Kinetic.Text({
-        x: xpos + 10,
-        y: ypos + 10,
-        text: id,
-        kItem: null,
-        fontSize: 12,
-        fontFamily: 'Calibri',
-        stroke: 'black',
-        strokeWidth: 1
-      });
     
-	 //for any rect, defines action on dragstart
-    groupToolbox.on('dragstart', function () {
-      this.moveToTop();
-      this.setOpacity(0.50);
-      groupArray = (this.getChildren()).toArray();
-      text = groupArray[1];
-      currentRect = groupArray[0];
-      clone = newRect(currentRect.getX(), currentRect.getY(), id, type); //create a "clone" of this rectangle
-
-      layer.draw();
-    });
-
-	//for any rect, allows users to change variable names on double click
-    groupToolbox.on("dblclick", function () {
-      groupArray = (this.getChildren()).toArray();
-      text = groupArray[1];
-      currentRect = groupArray[0];
-      id = this.attrs.id;
-      text.setText(promptUser(id)); //changes text on draggables to text from user prompt
-      height = currentRect.getHeight();
-      currentRect.setSize(text.getWidth() + 30, height);
-      this.attrs.firstTime = false;
-      layer.draw();
-    });
-
-	//for any rect, prompts user for draggable attr
-    groupToolbox.on("dragend", function () {
-      this.setOpacity(1.00);
-      layer.draw();
-      dx = this.getX();
-      id = this.attrs.id;
-      groupArray = (this.getChildren()).toArray();
-      text = groupArray[1];
-
-      currentRect = groupArray[0];
-      //console.log(this.getY() + currentRect.getY()); // double check
-
-
-	  //BELOW: When draggable is dragged from tool area into work area
-      if (dx + 20 > line.getX()) {
-        //Only change text, or write to console on first time being dragged over
-        if (this.attrs.firstTime === true) {
-          this.setName("sortable");//sets the selected group to be sorted in the sorted function
-          var jsText = promptUser(id);// prompts the user to get attributes
-          this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
-          text.setText(jsText); // sets the text on group
-          
-          var height = currentRect.getHeight();
-          currentRect.setSize(text.getWidth() + 30, height);
-          this.attrs.firstTime = false;
-          layer.draw();
-        }
-      sorter();
-      } else {
-        groupToolbox.remove();
-        layer.draw();
-      }
-    });
-    groupToolbox.add(rect);
-    groupToolbox.add(simpleText);
-    layer.add(groupToolbox);
-    layer.draw();
-}
 
 
     function tabMaker(){

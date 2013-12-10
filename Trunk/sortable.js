@@ -61,6 +61,7 @@ function sorter()
 			sortArray[i] = [hash[i].id, hash[i].jsText];
 			orderedString = orderedString + hash[i].jsText;
 			UNIVERSAL_MAIN = orderedString;
+			cleanUp(sortArray);
 			//console.log( i + " thing " + hash[i].jsText + " y - "+ hash[i].yPos);
 			limit++;
 		}
