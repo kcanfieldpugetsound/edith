@@ -86,7 +86,7 @@
 	**/
 	function popitupObj(url)
 	{
-		newwindow=window.open(url, 'kineticExample.html', 'status = 1', 'scrollbars =1', 'height = 100', 'width = 300');
+		newwindow=window.open(url, 'object_creator/ObjectCreation.html', 'status = 1', 'scrollbars =1', 'height = 100', 'width = 300');
 		if(window.focus){
 			newwindow.focus()
 		}
@@ -138,7 +138,7 @@
 <div class="buttons">
  <button id="button1" onclick = 'main(UNIVERSAL_MAIN)'>Play</button>
  <!-- <button id="button2" onclick = 'wait()'>Pause</button> -->
- <button id="button3" onclick = 'popitupObj("../object_creator_integration_3/kineticExample.html")'>Make Object</button>
+ <button id="button3" onclick = 'popitupObj("object_creator/ObjectCreation.html")'>Make Object</button>
  <button id="button4" onClick = 'save()'>Save</button>
  <button id="button5" onClick = 'loadProject()'>Load</button>
   <a href = "Sharing Framework/edith/functions/display.php" >Display Projects </a>
