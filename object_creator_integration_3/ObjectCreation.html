@@ -287,22 +287,13 @@
                         $.ajax({
                                 type: "POST",
                                 data: {
-                                    code: sendingArray
+                                    code: sendingArray,
+									projectName: objectArrayName
                                 },
                                 url: "functions\save.php"
-                            });
-                        $.ajax({
-                                type: "POST",
-                                data: {
-                                    projectName: objectArrayName
-                                },
-                                url: "functions\save.php",
-                                success: function() {
+								success: function() {
                                     alert("Exported successfully");
                                 }
-							/*	error: function(){
-									alert("error");
-								}*/
                             });
 					}
 							
