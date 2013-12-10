@@ -94,43 +94,33 @@
 		return false;
 	}
 	
+	var projectCode = [];
+	
 	/**
-	/	Loads the information that the load.php page gives
+	/Load the pCode (THE ACTUAL DATA THAT WE WANT THAT IS A JSON) and then parse the information in order to manipulate the object images
+	/
 	**/
-	function load(projectId){
-	//$.get("load.php", function(data, status){//issue a get request for the php page 'load.php"  
-	//		alert("Data: " + data + " Status: " + status);
-	//	});
-		$.ajax({
-				url: 'functions/load.php', //use the load php page to get the stuff from the database
-				type: 'GET',	//get the information from the php page (the stuff that is echo in the php file);
-				data: id = "testName",
-				success: function(data) { //if it worked alert the data
-					alert(data);
-				},
-				error: function(){//if it failed say it failed
-					alert("Request Failed");
-				}
+	function loadProject() {
+		var projectId = prompt("Please enter the name of your project:");
+		$.getJSON("functions/load.php", {id:projectId}, function(data) {
+			$("#theText").html(data.pCode);
+			projectCode = JSON.parse(data); //get the JSON from sharing and turn it into the array
+			console.log(data);
 		});
 	}
-	
-	
-	function loadProject(projectId) {
-	$.getJSON("functions/load.php", {id:projectId}, function(data) {
-		$("#theText").html(data.pCode);
-		alert(data);
-	});
-}
 
 	/**
 	/Save the information for save.php to put to the server's database
-	/
+	/"code:" This needs to be the updated JSON that we are using
 	**/
 	function save(){
+	var projectId = prompt("Please enter the name of the project you are saving to:");
+	
 		$.ajax({
 				url: 'Sharing Framework/edith/functions/save.php',
 				type: 'POST',
-				data: {code: "the_Project_code_here", projectName: "the_projectName_here"}, //update what the project code and name are
+				data: {code: "the_Project_code_here", projectName: projectId}, //update what the project code (The json that we want to save) and name are
+				dataType: JSON,
 				success: function(){
 						console.log("Succsessful post!");
 				},
@@ -146,7 +136,7 @@
  <!-- <button id="button2" onclick = 'wait()'>Pause</button> -->
  <button id="button3" onclick = 'popitupObj("../object_creator_integration_3/kineticExample.html")'>Make Object</button>
  <button id="button4" onClick = 'save()'>Save</button>
- <button id="button5" onClick = 'loadProject("testName")'>Load</button>
+ <button id="button5" onClick = 'loadProject()'>Load</button>
 </div>
 
 </body>
