@@ -1,9 +1,9 @@
 
 
 function myFunction()
-{
+{	UNIVERSAL_MAIN="";
 	for(var i = 0; i< points.length; i++){
-	console.log(points[i]);
+	UNIVERSAL_MAIN.push(points[i]);
 	}
 points.sort(function(a,b){return a-b});
 var x=document.getElementById("demo");

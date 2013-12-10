@@ -235,7 +235,7 @@
     stage.add(layer);
 
 		var line = new Kinetic.Line({
-			x: 400,
+			x: 200,
 			y: 0,
 
 			points: [0, 0, 0, 1000],
@@ -336,10 +336,14 @@
       text = groupArray[1];
       currentRect = groupArray[0];
       id = this.attrs.id;
-      text.setText(promptUser(id));
-      height = currentRect.getHeight();
+      this.setName("sortable");
+      var jsText = promptUser(id);// prompts the user to get attributes
+      this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
+      text.setText(jsText); // sets the text on group
+      var height = currentRect.getHeight();
       currentRect.setSize(text.getWidth() + 30, height);
       this.attrs.firstTime = false;
+      sorter();
       layer.draw();
     });
 
