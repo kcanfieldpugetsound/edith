@@ -1,9 +1,11 @@
  <html>
 
     <head>
+	<header>
     <center>
     Make a New Object!
     </center>
+	</header>
         <title>Object Creation: Int. 2</title>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -11,13 +13,12 @@
         <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.4.min.js"></script>
         <link rel="stylesheet" type="text/css" href="ObjectCreationStyleSheet.css">
     </head>   
-    <header>
-      </br> To build a new character either draw or create shapes. New shapes can be arranged by dragging them to your prefered location.
-      </br> When you are finished building your character, name and export it to use in your story!
-      </br> To rotate an object on the canvas, double click and specify the degress of rotation.
-   </header>
+    
     <center>
     <body>
+	
+		</br><button type="button" onclick="helpPopUp(helpPopUp.html)">Need Help?</button>
+		
         <div id='container'>
         </div>
         <script>
@@ -79,7 +80,7 @@
             <label> Upload Image: </label>
             <input type= "file" id = "imageLoader"  accept="image/gif, image/jpeg, image/png" /> </br>
         
-            <button type="button" onclick="exporting()">Export the Object</button></br>
+            <button type="button" onclick="exporting()">Export the Object</button>
 			<button type="button" onclick="saveAllObject()">Save all Objects</button> <!--For Ajax?-->
             
             <id="r">
@@ -494,6 +495,16 @@
                 wipeListeners();
                 scale = true; 
             }
+            	
+		function helpPopUp(url)
+            {
+	            newwindow=window.open(url, "helpPopUp.html", "height = 400, width = 400";
+	            if(window.focus){
+	            	newwindow.focus()
+            	}
+            	return false;
+            }
+            
         </script>
 
     </body>
