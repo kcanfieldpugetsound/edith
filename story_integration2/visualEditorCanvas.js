@@ -223,7 +223,7 @@
 
 	//creates and draws dividing line btwn tools and working area
 		var line = new Kinetic.Line({
-			x: 400,
+			x: 200,
 			y: 0,
 			points: [0, 0, 0, 1000],
 			stroke: 'red'
