@@ -278,7 +278,7 @@
                     }
 
                     function exporting() {
-                        var objectArrayName = document.getElementById("ObjectName").value;
+                        var objectArrayName = prompt("Please enter the name to export the object as. I.e. 'Person');
 						var sendingArray = JSON.stringify(savedObjects);
                         if (objectArrayName == "") {
                             alert("Please enter a name so we can save the object.");
