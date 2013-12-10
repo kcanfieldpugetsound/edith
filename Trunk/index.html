@@ -12,8 +12,7 @@
 
 	<script src = 'object_creator/jfile.js' type = 'text/javascript' ></script>
 	<script src='Animation/animationBlocks.js' type = 'text/javascript' ></script>
-	
-	<script src= 'dataRequests.js' type = 'text/javascript'></script>
+
 
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	<script src="gui.js"> </script>
@@ -102,16 +101,21 @@
 	**/
 	function loadProject() {
 		var projectId = prompt("Please enter the name of your project:");
+		
 		$.getJSON("functions/load.php", {id:projectId}, function(data) {
 			$("#theText").html(data.pCode);
-			projectCode = JSON.parse(data); //get the JSON from sharing and turn it into the array
+			
+			//projectCode = JSON.parse(data); //get the JSON from sharing and turn it into the array
+			
+			//figure out how to undo the stringify
+			
 			console.log(data);
 		});
 	}
 
 	/**
 	/Save the information for save.php to put to the server's database
-	/"code:" This needs to be the updated JSON that we are using
+	/"code:" This needs to be the updated JSON that we are using for everything
 	**/
 	function save(){
 	var projectId = prompt("Please enter the name of the project you are saving to:");
@@ -137,7 +141,9 @@
  <button id="button3" onclick = 'popitupObj("../object_creator_integration_3/kineticExample.html")'>Make Object</button>
  <button id="button4" onClick = 'save()'>Save</button>
  <button id="button5" onClick = 'loadProject()'>Load</button>
+  <a href = "Sharing Framework/edith/functions/display.php" >Display Projects </a>
 </div>
+
 
 </body>
 
