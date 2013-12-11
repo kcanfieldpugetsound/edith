@@ -258,6 +258,7 @@
                         var img = currentLayer.toDataURL();
                         var imgName = name + ".png";
                         var i;
+                                                        console.log(img);
                         for (i = 0; i < savedObjects.length; i++) {
                             if (savedObjects[i][1] == imgName) {
                                 savedObjects[i][0] = img;
