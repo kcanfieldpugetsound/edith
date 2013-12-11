@@ -27,6 +27,7 @@
     {'title': 'movL', 'type': 'predefined', 'jstext': ''},
     {'title': 'movU', 'type': 'predefined', 'jstext': ''},
     {'title': 'movD', 'type': 'predefined', 'jstext': ''},
+    {'title': 'addSprite', 'type': 'predefined', 'jstext': ''},
     {'title': 'if', 'type': 'control', 'jstext': ''},
     {'title': 'while', 'type': 'control', 'jstext': ''},
     {'title': 'else', 'type': 'control', 'jstext': ''},
@@ -45,10 +46,10 @@
     var mainBox = [];
 
     methodBox = tools.slice(0,3);
-    predefinedBox = tools.slice(3,11);
-    controlBox = tools.slice(11,14);
-    tabBox = tools.slice(14,17);
-    mainBox = tools.slice(17,19);
+    predefinedBox = tools.slice(3,12);
+    controlBox = tools.slice(12,15);
+    tabBox = tools.slice(15,18);
+    mainBox = tools.slice(18,20);
 
   var newX = 220;
   var newY = 20;
@@ -79,15 +80,33 @@
 		clockwise,
 		degrees,
 		angle,
-		condition;
+		condition,
+    canvas,
+    width,
+    xpos,
+    ypos;
 		
+
+    
+
     if (ids === "method") {
       mname = prompt("Please enter the name of your method", "test");
       params = prompt("Please enter the Parameters for your method separated by commas");
       x = "function " + mname + "(" + params + ") {";
 		return x;
     }
-	
+
+	 if (ids === "addSprite") {
+      canvas = prompt("Please enter the name of your canvas");
+      sprite = prompt("Please enter the name of your sprite");
+      width = prompt("Please enter the width");
+      height = prompt("Please enter the Height");
+      xpos= prompt("Please enter the X postion");
+      ypos= prompt("Please enter the Y postion");
+      x = "addSprite (" + canvas +","+ sprite + ", " + width + ", " + height + ", " + xpos + ", " + ypos + ");";
+    return x;
+    }
+
     if (ids === "variable") {
       varn = prompt("Please enter the name of your variable", "test");
       x = "var " + varn +  ";";
