@@ -1,9 +1,10 @@
 
 
-function myFunction()
-{	UNIVERSAL_MAIN="";
-	for(var i = 0; i< points.length; i++){
-	UNIVERSAL_MAIN.push(points[i]);
+var i;
+var sortArray = [];
+function myFunction() {
+	for (i = 0; i< points.length; i++){
+	console.log(points[i]);
 	}
 points.sort(function(a,b){return a-b});
 var x=document.getElementById("demo");
@@ -11,12 +12,17 @@ x.innerHTML=points;
 }
 
 
-
+var orderedString;
 function sorter()
 {
+	sortArray = [];
+	orderedString = "";
 	var orderPairing = []; // the hash map
-	layer.get('.box').each(function(shape){
-		orderPairing.push({id:shape.getId(), yPos: shape.getY()}); // pushes both attr. of the things in the box class
+	layer.get('.sortable').each(function(shape){
+		var rectGhost = (shape.getChildren()).toArray();
+        var rect = rectGhost[0];
+        //console.log(rect.getY());
+		orderPairing.push({id:shape.getId(), yPos: shape.getY() + rect.getY(), jsText: shape.getAttr('jsText')}); // pushes both attr. of the things in the box class
 		});
 	
 	//console.log("length of array " + orderPairing.length);// how many things are in the array
@@ -37,7 +43,8 @@ function sorter()
 		
 		
 	lookUp(yPoints, orderPairing);
-	console.log("trial over");
+	console.log(orderedString);
+	//console.log("trial over");
 	
 	}
 	
@@ -50,7 +57,13 @@ function sorter()
 	for(var i = 0; i< arrayOfY.length; i++){
 		
 		if (hash[i].yPos === arrayOfY[limit]){
-			console.log( i + " thing " + hash[i].id + " y - "+ hash[i].yPos);
+			//console.log(orderedString);
+			sortArray[i] = [hash[i].id, hash[i].jsText];
+			orderedString = orderedString + hash[i].jsText;
+			UNIVERSAL_MAIN = "";
+			UNIVERSAL_MAIN = orderedString;
+			cleanUp(sortArray);
+			//console.log( i + " thing " + hash[i].jsText + " y - "+ hash[i].yPos);
 			limit++;
 		}
 	}

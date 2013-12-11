@@ -51,17 +51,17 @@
     mainBox = tools.slice(17,19);
 
   var newX = 220;
-    var newY = 20;
-    function cleanUp(sort) {
-      newY = 20;
-      layer.get('.sortable').each(function(shape){
-        //shape.destroy();
-      });
-      for (var i = 0; i<sort.length; i++) {
-        newRect(newX, newY, sort[i][1], "predefined");
-        newY = newY + 70;
-      }
+  var newY = 20;
+  function cleanUp(sort) {
+    newY = 20;
+    layer.get('.sortable').each(function(shape){
+      //shape.destroy();
+    });
+    for (var i = 0; i<sort.length; i++) {
+      newRect(newX, newY, sort[i][1], "predefined");
+      newY = newY + 70;
     }
+  }
 
 
   /* Prompts user input of names*/
@@ -244,6 +244,8 @@
       return x;
     }
   }//end promptUser method
+
+
   
 
   function newRect(xpos, ypos, id, type) {
@@ -359,7 +361,7 @@
 
 
     //BELOW: When draggable is dragged from tool area into work area
-      if (dx + 20 > line.getX()) {
+      if (dx + 10 > line.getX()) {
         //Only change text, or write to console on first time being dragged over
         if (this.attrs.firstTime === true) {
           this.setName("sortable");//sets the selected group to be sorted in the sorted function
