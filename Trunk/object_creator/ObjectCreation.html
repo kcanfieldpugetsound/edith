@@ -17,7 +17,7 @@
     <center>
     <body>
 	
-		</br><button type="button" onclick="helpPopUp(helpPopUp.html)">Need Help?</button>
+		<button type="button" onclick='helpUp("helpPopUp.html")'>Need Help?</button>
 		
         <div id='container'>
         </div>
@@ -496,15 +496,15 @@
                 wipeListeners();
                 scale = true; 
             }
-            	
-		function helpPopUp(url)
+            
+			function helpUp(url)
             {
-	            newwindow=window.open(url, "helpPopUp.html", "height = 400, width = 400";
+	            newwindow=window.open(url, "helpPopUp.html", "status = 1, scrollbars = 1, height = 400, width = 400");
 	            if(window.focus){
 	            	newwindow.focus()
             	}
             	return false;
-            }
+            }			
             
         </script>
 
