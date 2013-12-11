@@ -1,9 +1,4 @@
-//styling for list
-  var itemsTopMargin = 20;
-  var itemHeight = 25;
-  var itemX = 430;
-  var itemSpacer = 5;
-  var snapStructure = [];
+
   var groupToolbox;
   var UNIVERSAL_MAIN = ""; 
   //declaration of variables
@@ -14,6 +9,12 @@
   var tab = "method";
   var stage;
   var line;
+  var text;
+  var loadedBlock;
+  var varRegex = /^[\w.-]+$/; //allows letters, digits and underscore. (Technically, should add $ as acceptable for JS var name.)
+  var methodRegex = /^[\w.-]+$/; 
+  var letterRegex = /^[a-zA-Z]+$/;
+  var numberRegex = /^\d+$/; //allow only numeric input
   
 
   var tools = [{'title': 'method', 'jstext': ''},
@@ -44,6 +45,7 @@
     var controlBox = [];
     var tabBox = [];
     var mainBox = [];
+    var json = "";
 
     methodBox = tools.slice(0,3);
     predefinedBox = tools.slice(3,12);
@@ -52,18 +54,24 @@
     mainBox = tools.slice(18,20);
 
   var newX = 220;
-  var newY = 20;
+  var newY = 70;
   function cleanUp(sort) {
-    newY = 20;
-    layer.get('.sortable').each(function(shape){
-      //shape.destroy();
-    });
-    for (var i = 0; i<sort.length; i++) {
-      newRect(newX, newY, sort[i][1], "predefined");
-      newY = newY + 70;
-    }
+    json = JSON.stringify(sort);
   }
 
+  function loadBlocks(notarray) {
+    layer.get('.sortable').each(function(shape){
+        shape.destroy();
+    });
+    array = JSON.parse(notarray);
+    for(var i = 0; i < array.length; i++) {
+      var yPos = i + 1;
+      loadedBlock = newRect(newX, newY * yPos, array[i][0], "predefined", true, array[i][1]);
+      loadedBlock.setName("sortable");
+      loadedBlock.setAttr('jsText',array[i][1]);
+    }
+    sorter();
+  }
 
   /* Prompts user input of names*/
   function promptUser(ids) {
@@ -86,193 +94,201 @@
     xpos,
     ypos;
 		
-
-    
-
     if (ids === "method") {
-      mname = prompt("Please enter the name of your method", "test");
+      mname = prompt("Please enter the name of your method", "");
+      while ( letterRegex.test(mname) == false){
+        alert("Enter a method name (use only letters)")
+        mname = prompt("Please enter the name of your method", "");
+      }
       params = prompt("Please enter the Parameters for your method separated by commas");
       x = "function " + mname + "(" + params + ") {";
-		return x;
-    }
-
-	 if (ids === "addSprite") {
-      canvas = prompt("Please enter the name of your canvas");
-      sprite = prompt("Please enter the name of your sprite");
-      width = prompt("Please enter the width");
-      height = prompt("Please enter the Height");
-      xpos= prompt("Please enter the X postion");
-      ypos= prompt("Please enter the Y postion");
-      x = "addSprite (" + canvas +","+ sprite + ", " + width + ", " + height + ", " + xpos + ", " + ypos + ");";
-    return x;
+      //console.log(x);
+      return x;
     }
 
     if (ids === "variable") {
-      varn = prompt("Please enter the name of your variable", "test");
+      varn = prompt("Please enter the name of your variable", "");
+      while ( letterRegex.test(varn) == false){
+        alert("Use only letters.")
+        varn = prompt("Please enter the name of your variable", "");
+      }
       x = "var " + varn +  ";";
+      //console.log(x);
       return x;
     }
-	
+
     if (ids === "end") {
       x = "}";
       return x;
     }
-	
+
     if (ids === "setDelay") {
-
-      sprite = prompt("Please enter the name of your sprite", "");
       mills = prompt("Seconds Delayed (in milliseconds)");
-      x = "setDelay(" + sprite + ", " + mills + ");";
-
-      var mills = prompt("Seconds Delayed (in milliseconds)");
+      while (numberRegex.test(mills) == false){
+        alert("Please input numbers only.")
+        mills = prompt("Please enter the seconds delayed", "");
+        }
       x = "setDelay(" + getGlowingObjects() + ", " + mills + ");";
       //console.log(x);
-
       return x;
     }
-	
-    if (ids === "fmove") {
 
-      sprite = prompt("Please enter the name of your sprite");
+    if (ids === "fmove") {
       dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
       dist = prompt("Distance");
+      while (numberRegex.test(dist) == false){
+        alert("Please input numbers only.")
+        dist = prompt("Please enter the distance", "");
+        }
       height = prompt("Height");
+      while (numberRegex.test(height) == false){
+        alert("Please input numbers only.")
+        height = prompt("Please enter the height", "");
+        }
       clockwise = prompt("Clockwise? (true or false)");
       degrees = prompt("Degrees");
-      x = "fmove (" + sprite + ", " + dur + ", " + dist + ", " + height + ", " + clockwise + ", " + degrees + ");";
-
-      var dur = prompt("Duration (in milliseconds)");
-      var dist = prompt("Distance");
-      var height = prompt("Height");
-      var rotateClockwise = prompt("Clockwise? (true or false)");
-      var degrees = prompt("Degrees");
-      x = "fmove (" + getGlowingObjects() + ", " + dur + ", " + dist + ", " + height + ", " + rotateClockwise + ", " + degrees + ");";
+      while (numberRegex.test(degrees) == false){
+        alert("Please input numbers only.")
+        degrees = prompt("Please enter the degrees", "");
+        }
+      x = "fmove (" + getGlowingObjects() + ", " + dur + ", " + dist + ", " + height + ", " + clockwise + ", " + degrees + ");";
       //console.log(x);
-
       return x;
     }
-	
+
     if (ids === "rotate") {
-
-      sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
       angle = prompt("Angle");
-      height = prompt("Height");
+      while (numberRegex.test(angle) == false){
+        alert("Please input numbers only.")
+        angle = prompt("Please enter the angle", "");
+        }
+      height = prompt("Height")
+      while (numberRegex.test(height) == false){
+        alert("Please input numbers only.")
+        height = prompt("Please enter the height", "");
+        }
       clockwise = prompt("Clockwise? (true or false)");
-      x = "rotate (" + sprite + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
-
-      var dur = prompt("Duration (in milliseconds)");
-      var angle = prompt("Angle");
-      var height = prompt("Height")
-      var clockwise = prompt("Clockwise? (true or false)");
       x = "rotate (" + getGlowingObjects + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
       //console.log(x);
-
       return x;
     }
-	
+
     if (ids === "jump") {
-
-      sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
       height = prompt("Height");
-      x = "jump ("+sprite+ ", "+dur+ ", "+height+");";
-
-      var dur = prompt("Duration (in milliseconds)");
-      var height = prompt("Height");
+      while (numberRegex.test(height) == false){
+        alert("Please input numbers only.")
+        height = prompt("Please enter the height", "");
+        }
       x = "jump ("+ getGlowingObjects() + ", "+dur+ ", "+height+");";
       //console.log(x);
-
       return x;
     }
-	
+
     if (ids === "movL") {
-
-      sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
       dist = prompt("Distance");
-      x = "movL ("+sprite+ ", "+dur+ ", "+dist+");";
-
-      var dur = prompt("Duration (in milliseconds)");
-      var distance = prompt("Distance");
-      x = "movL ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
+      while (numberRegex.test(distance) == false){
+        alert("Please input numbers only.")
+        distance = prompt("Please enter the distance", "");
+        }
+      x = "movL ("+ getGlowingObjects() + ", "+dur+ ", "+dist+");";
       //console.log(x);
-
       return x;
     }
-	
+
     if (ids === "movR") {
-
-      sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
       dist = prompt("Distance");
-      x = "movLR ("+sprite+ ", "+dur+ ", "+dist+");";
-
-      var dur = prompt("Duration (in milliseconds)");
-      var distance = prompt("Distance");
-      x = "movLR ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
+      while (numberRegex.test(distance) == false){
+        alert("Please input numbers only.")
+        distance = prompt("Please enter the distance", "");
+        }
+      x = "movLR ("+ getGlowingObjects() + ", "+dur+ ", "+dist+");";
       //console.log(x);
-
       return x;
       }
-	  
+
    if (ids === "movU") {
-
-      sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
       dist = prompt("Distance");
-      x = "movU ("+sprite+ ", "+dur+ ", "+dist+");";
-
-      var dur = prompt("Duration (in milliseconds)");
-      var distance = prompt("Distance");
-      x = "movU ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
+      while (numberRegex.test(distance) == false){
+        alert("Please input numbers only.")
+        distance = prompt("Please enter the distance", "");
+        }
+      x = "movU ("+ getGlowingObjects() + ", "+dur+ ", "+dist+");";
       //console.log(x);
-
       return x;
       }
-	  
+
    if (ids === "movD") {
-
-      sprite = prompt("Please enter the name of your sprite");
       dur = prompt("Duration (in milliseconds)");
+      while (numberRegex.test(dur) == false){
+        alert("Please input numbers only.")
+        dur = prompt("Please enter the duration", "");
+        }
       dist = prompt("Distance");
-      x = "movD ("+sprite+ ", "+dur+ ", "+dist+");";
-
-      var dur = prompt("Duration (in milliseconds)");
-      var distance = prompt("Distance");
-      x = "movD ("+ getGlowingObjects() + ", "+dur+ ", "+distance+");";
+      while (numberRegex.test(distance) == false){
+        alert("Please input numbers only.")
+        distance = prompt("Please enter the distance", "");
+        }
+      x = "movD ("+ getGlowingObjects() + ", "+dur+ ", "+dist+");";
       //console.log(x);
-
       return x;
-  	}
-	
+    }
+
     if (ids === "if") {
       condition = prompt("Please enter the condition");
       x = "if(" + condition + "){";
       return x;
     }
-	
+
     if (ids === "while") {
       condition = prompt("Please enter the condition");
       x = "while(" + condition + "){";
       return x;
     }
-	
+
     if (ids === "else") {
       x = "else{";
       return x;
     }
-  }//end promptUser method
-
+  }
 
   
 
-  function newRect(xpos, ypos, id, type) {
+  function newRect(xpos, ypos, id, type, unclone, subtext) {
       var groupToolbox = new Kinetic.Group({
         id: id,
         draggable: true,
         listening: true,
         firstTime: true,
+        noclone: unclone,
         name: "box",
         jsText: ""
     }),
@@ -333,7 +349,7 @@
       simpleText = new Kinetic.Text({
         x: xpos + 10,
         y: ypos + 10,
-        text: id,
+        text: subtext,
         kItem: null,
         fontSize: 12,
         fontFamily: 'Calibri',
@@ -346,10 +362,10 @@
       this.moveToTop();
       this.setOpacity(0.50);
       groupArray = (this.getChildren()).toArray();
-      text = groupArray[1];
       currentRect = groupArray[0];
-      clone = newRect(currentRect.getX(), currentRect.getY(), id, type); //create a "clone" of this rectangle
-
+      if (this.attrs.noclone === false) {
+        clone = newRect(currentRect.getX(), currentRect.getY(), id, type, false, id); //create a "clone" of this rectangle
+      }
       layer.draw();
     });
 
@@ -357,8 +373,10 @@
     groupToolbox.on("dblclick", function () {
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
+      console.log(groupArray[1]);
       currentRect = groupArray[0];
       id = this.attrs.id;
+      console.log(id);
       text.setText(promptUser(id)); //changes text on draggables to text from user prompt
       height = currentRect.getHeight();
       currentRect.setSize(text.getWidth() + 30, height);
@@ -370,32 +388,38 @@
     groupToolbox.on("dragend", function () {
       this.setOpacity(1.00);
       layer.draw();
-      dx = this.getX();
+      dx = this.getAbsolutePosition().x;
+
       id = this.attrs.id;
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
-
       currentRect = groupArray[0];
       //console.log(this.getY() + currentRect.getY()); // double check
-
-
     //BELOW: When draggable is dragged from tool area into work area
-      if (dx + 10 > line.getX()) {
+      console.log(this.getPosition().x);
+      if (dx + 50 > line.getAbsolutePosition().x) {
         //Only change text, or write to console on first time being dragged over
         if (this.attrs.firstTime === true) {
           this.setName("sortable");//sets the selected group to be sorted in the sorted function
           var jsText = promptUser(id);// prompts the user to get attributes
           this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
           text.setText(jsText); // sets the text on group
-          
           var height = currentRect.getHeight();
           currentRect.setSize(text.getWidth() + 30, height);
           this.attrs.firstTime = false;
           layer.draw();
         }
       sorter();
+
       } else {
-        groupToolbox.remove();
+        if(this.attrs.noclone === true) {
+          if(this.getX() < -20) {
+            groupToolbox.remove();
+            sorter();
+          }
+        } else if (dx + 50 < line.getX()){
+          groupToolbox.remove();
+        }
         layer.draw();
       }
     });
@@ -403,7 +427,7 @@
     groupToolbox.add(simpleText);
     layer.add(groupToolbox);
     layer.draw();
-
+    return groupToolbox;
 }
 
 
@@ -497,9 +521,6 @@
       */
 
     function newTab (xpos, ypos, id, type){
-      
-
-
       var tabMenu = new Kinetic.Group({
         id: id,
         draggable: false,
@@ -539,7 +560,7 @@
       
       tabMenu.on("click", function () {
 
-        console.log("remove");
+        //console.log("remove");
         layer.get('.box').each(function(shape){
         shape.destroy();
         });
@@ -569,24 +590,11 @@
 
 
     function tabMaker(){
-
       var horOffset; 
-
-      //var tabNames = ["method", "predefined", "control"];
-
-    for (i = 0; i < tabBox.length; i++) {
-
-      console.log("going into the loop to make tabs");
-      horOffset = (i * 55) + 40;
-      newTab(horOffset, 10, tabBox[i].title, tabBox[i].type);
-      //console.log(tabBox[i].title);
+      for (i = 0; i < tabBox.length; i++) {
+        horOffset = (i * 55) + 40;
+        newTab(horOffset, 10, tabBox[i].title, tabBox[i].type);
       }
-
-      mainMethodRect(250,20,"function main{",mainBox[0].type);
-
-      //console.log(mainBox[1].title);
-      mainMethodRect(250,200,"}",mainBox[1].type);
-
     }
 
 
@@ -594,22 +602,21 @@
         startX = 55;
         startY = 90;
 
-
-      if (tab == "method"){
+      if (tab === "method"){
         for (i = 0; i < methodBox.length; i++) {
-        newRect(startX, startY, methodBox[i].title, methodBox[i].type);
+        newRect(startX, startY, methodBox[i].title, methodBox[i].type, false, methodBox[i].title);
         startY = startY + 65;
         }
       }
       if (tab == "predefined"){
         for (i = 0; i < predefinedBox.length; i++) {
-        newRect(startX, startY, predefinedBox[i].title, predefinedBox[i].type);
+        newRect(startX, startY, predefinedBox[i].title, predefinedBox[i].type, false, predefinedBox[i].title);
         startY = startY + 65;
         }
       }
       if (tab == "control"){
         for (i = 0; i < controlBox.length; i++) {
-        newRect(startX, startY, controlBox[i].title, controlBox[i].type);
+        newRect(startX, startY, controlBox[i].title, controlBox[i].type, false, controlBox[i].title);
         startY = startY + 65;
         }
       }

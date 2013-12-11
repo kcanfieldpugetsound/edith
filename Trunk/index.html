@@ -91,6 +91,7 @@
 	/
 	**/
 	function loadProject() {
+		loadBlocks(json);
 		var projectId = prompt("Please enter the name of your project:");
 		
 		$.getJSON("functions/load.php", {id:projectId}, function(data) {
@@ -102,15 +103,14 @@
 				addImage(projectCode[j][0], 300, 150); //get the value out of the two dimensional array at the right spot (the value is the key of the array)
 				//[["data:image/png;base64,i...kc43N5BAAAAAElFTkSuQmCC", "yo.png"], ["data:image/png;base64,i...8lYvwAAAABJRU5ErkJggg==", "lol.png"]]   Just a sample
 			}
-			
 		//	addImageArray(Object.values(projectCode));
-			/* 
+			 
 			for(var j=0; j<Object.keys(projectCode).length; j++){
 				addImage(Object.keys(unstringified)[j], 300, 150);
 				console.log(unstringified["bob"]);
-			} */
+			} 
 			//figure out how to undo the stringify
-			console.log(data);
+		//	console.log(data);
 		});
 	}
 
@@ -119,12 +119,15 @@
 	/"code:" This needs to be the updated JSON that we are using for everything
 	**/
 	function save(){
+	if(sorter()) {
+		cleanUp(sortArray);
+	}
 	var projectId = prompt("Please enter the name of the project you are saving to:");
 	
 		$.ajax({
 				url: 'Sharing Framework/edith/functions/save.php',
 				type: 'POST',
-				data: {code: "the_Project_code_here", projectName: projectId}, //update what the project code (The json that we want to save) and name are
+				data: {code: json, projectName: projectId}, //update what the project code (The json that we want to save) and name are
 				dataType: JSON,
 				success: function(){
 						console.log("Succsessful post!");

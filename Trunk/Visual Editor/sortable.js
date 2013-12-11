@@ -1,7 +1,7 @@
 
 
 var i;
-var sortArray = [];
+var sortArray = {};
 function myFunction() {
 	for (i = 0; i< points.length; i++){
 	console.log(points[i]);
@@ -22,6 +22,7 @@ function sorter()
 		var rectGhost = (shape.getChildren()).toArray();
         var rect = rectGhost[0];
         //console.log(rect.getY());
+        console.log(shape);
 		orderPairing.push({id:shape.getId(), yPos: shape.getY() + rect.getY(), jsText: shape.getAttr('jsText')}); // pushes both attr. of the things in the box class
 		});
 	
@@ -45,24 +46,24 @@ function sorter()
 	lookUp(yPoints, orderPairing);
 	console.log(orderedString);
 	//console.log("trial over");
-	
-	}
+	return true;	
+}
 	
 	
 	function lookUp(arrayOfY, hash){
+	UNIVERSAL_MAIN = "";	
+
 	var limit = 0; //goes through each one of the sorted y lengths
 	
 	while(limit < arrayOfY.length){
-		
 	for(var i = 0; i< arrayOfY.length; i++){
 		
 		if (hash[i].yPos === arrayOfY[limit]){
 			//console.log(orderedString);
 			sortArray[i] = [hash[i].id, hash[i].jsText];
 			orderedString = orderedString + hash[i].jsText;
-			UNIVERSAL_MAIN = "";
+			
 			UNIVERSAL_MAIN = orderedString;
-			cleanUp(sortArray);
 			//console.log( i + " thing " + hash[i].jsText + " y - "+ hash[i].yPos);
 			limit++;
 		}
