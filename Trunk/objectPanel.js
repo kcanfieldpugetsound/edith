@@ -1,4 +1,4 @@
-		var stage = new Kinetic.Stage({
+		var objectStage = new Kinetic.Stage({
 	    container: 'tabs-1',
 	    width: 540,
 	    height: 300
@@ -25,7 +25,7 @@
 			  });
 
 			layer2.add(img);
-		 	stage.add(layer2);
+		 	objectStage.add(layer2);
 
 		 	img.on('click', function() {
 	      	if(glow.indexOf(img) >= 0)
