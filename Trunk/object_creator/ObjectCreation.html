@@ -326,25 +326,16 @@
                             alert("Please enter a name so we can save the object.");
                             return false;
                         }
-                        $.ajax({
+                         $.ajax({
                                 type: "POST",
                                 data: {
-                                    code: sendingArray
+                                    code: sendingArray,
+									projectName: objectArrayName
                                 },
-                                url: "functions\save.php"
-                            });
-                        $.ajax({
-                                type: "POST",
-                                data: {
-                                    projectName: objectArrayName
-                                },
-                                url: "functions\save.php",
-                                success: function() {
+                                url: "functions/save.php",
+								success: function() {
                                     alert("Exported successfully");
                                 }
-							/*	error: function(){
-									alert("error");
-								}*/
                             });
 					}
 							
