@@ -44,21 +44,6 @@ mysql_query($myQuery2, $conn)
 or die("Failed to create table " . mysql_error());
 echo "Table created...<br />";
 
-$myQuery3 = "DROP TABLE IF EXISTS objectCreator;";
-mysql_query($myQuery2, $conn);
-echo "Creating table 'objectCreator'...<br />";
-
-// Create the table
-$myQuery3 = "CREATE TABLE objectCreator (
-objectName VARCHAR(20),
-array LONGTEXT,
-userName  VARCHAR(20),
-dateCreated  DATE
-)";   
-mysql_query($myQuery3, $conn)
-or die("Failed to create table " . mysql_error());
-echo "Table created...<br />";
-
 $myQuery4 = "DROP TABLE IF EXISTS shareProject;";
 mysql_query($myQuery4, $conn);
 echo "Creating table 'shareProject'...<br />";
