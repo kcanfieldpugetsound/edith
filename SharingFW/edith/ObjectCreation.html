@@ -1,9 +1,11 @@
-<html>
+ <html>
 
     <head>
+	<header>
     <center>
     Make a New Object!
     </center>
+	</header>
         <title>Object Creation: Int. 2</title>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -11,17 +13,16 @@
         <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.4.min.js"></script>
         <link rel="stylesheet" type="text/css" href="ObjectCreationStyleSheet.css">
     </head>   
-    <header>
-      </br> To build a new character either draw or create shapes. New shapes can be arranged by dragging them to your prefered location.
-      </br> When you are finished building your character, name and export it to use in your story!
-      </br> To rotate an object on the canvas, double click and specify the degress of rotation.
-   </header>
+    
     <center>
     <body>
+	
+		<button type="button" onclick='helpUp("helpPopUp.html")'>Need Help?</button>
+		
         <div id='container'>
         </div>
         <script>
-		var layerArray = new Array();
+		var layerArray = new Array();//for ajax?
 		
         var canvas = new Kinetic.Stage({
              container: 'container',
@@ -32,11 +33,13 @@
 		id : 'defaultL',
 		});
         canvas.add(bg);
-		layerArray.push(bg);
+		layerArray.push(bg);//for ajax?
         var mousedownB = false;
         var fpoints = new Array();
         var fpath;
         var destroyRB = false;
+        var rotate = false;
+        var scale = false;
         </script>
         
         
@@ -58,7 +61,7 @@
                       <option value="brown">Brown</option>
                       <option value="crimson">Crimson</option>
                       <option value="gold">Gold</option>
-                    </select></br>
+                    </select>
 			Specify layer: <select id = "currentLayerSet" onchange = "changePriority(this.value)">
                       <option value="defaultL">Default Layer</option>
                     </select></br>
@@ -77,8 +80,8 @@
             <label> Upload Image: </label>
             <input type= "file" id = "imageLoader"  accept="image/gif, image/jpeg, image/png" /> </br>
         
-            <button type="button" onclick="exporting()">Export the Object</button></br>
-			<button type="button" onclick="saveAllObject()">Save all Object</button>
+            <button type="button" onclick="exporting()">Export the Object</button>
+			<button type="button" onclick="saveAllObject()">Save all Objects</button> <!--For Ajax?-->
             
             <id="r">
     
@@ -98,16 +101,44 @@
 					layerArray.push(currentLayer);
 				}
 				
-				function enableRotate(obj)
+				 function scaleO(obj)
                 {
-                    obj.on('dblclick', function() {
-                            var degree = prompt("Please enter the rotation degrees", "50");
-                            degree = parseInt(degree);
+                    if(scale)
+                    {
+                        var scaleM = prompt("scale", "2");
+                        var sInt = parseInt(scaleM);
+                        if(scaleM == sInt)
+                        {
+                            if(sInt < 0)
+                                sInt = obj.getScaleX() / sInt;
+                            else sInt = obj.getScaleX() * sInt;
+                            obj.setScale(Math.abs(sInt));
+                            currentLayer.draw();
+                        }
+                        else
+                        {
+                            alert("please enter an integer so that we can scale");
+                        }
+                            
+                        
+                    }
+                }
+
+                function rotateO(obj)
+                {
+                    if(rotate) {
+                        var degree = prompt("Please enter the rotation degrees", "50");
+                        var degreeInt = parseInt(degree);
+                        if(degree == degreeInt)
+                        {
                             obj.rotateDeg(degree);
                             currentLayer.draw();
-                        });
-
+                        }
+                        else 
+                            alert("please enter an integer so that we can rotate.");
+                    }
                 }
+				
 
                 function drawLine() {
 						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
@@ -124,9 +155,10 @@
                                 draggable: true
                             });
                             
-                        enableRotate(line);
                         line.on('click', function() {
                             removeShape(this);
+                            rotateO(this);
+                            scaleO(this);
                         });
                         currentLayer.add(line);
                         canvas.add(currentLayer);
@@ -149,9 +181,11 @@
             			draggable : true
             		});
             		
-            		enableRotate(rec);
-            		rec.on('click', function() {
+            	rec.on('click', function() {
                             removeShape(this);
+                            rotateO(this);
+                            scaleO(this);
+
                         });
             		currentLayer.add(rec);
             		canvas.add(currentLayer);
@@ -171,6 +205,7 @@
                         });
                         circle.on('click', function() {
                             removeShape(this);
+                            scaleO(this);
                         });
                         currentLayer.add(circle);
                         canvas.add(currentLayer);
@@ -198,7 +233,11 @@
                                     draggable: true
                                 });
 
-                                enableRotate(uploaded);
+                                uploaded.on('click', function() {
+                                    removeShape(this);
+                                    scaleO(this);
+                                    rotateO(this);
+                                });
 
                                 currentLayer.add(uploaded);
                                 canvas.add(currentLayer);
@@ -219,6 +258,7 @@
                         var img = currentLayer.toDataURL();
                         var imgName = name + ".png";
                         var i;
+                                                        console.log(img);
                         for (i = 0; i < savedObjects.length; i++) {
                             if (savedObjects[i][1] == imgName) {
                                 savedObjects[i][0] = img;
@@ -259,6 +299,8 @@
                                 });
                                 image.on('click', function() {
                                     removeShape(this);
+                                    scaleO(this);//new
+                                    rotateO(this);//new
                                 });
                                 currentLayer.add(x);
                                 canvas.add(currentLayer);
@@ -287,13 +329,22 @@
                         $.ajax({
                                 type: "POST",
                                 data: {
-                                    ObjectArray: sendingArray,
-									ObjectName: objectArrayName
+                                    code: sendingArray
                                 },
-                                url: "functions/ObjectSave.php",
-								success: function() {
+                                url: "functions\save.php"
+                            });
+                        $.ajax({
+                                type: "POST",
+                                data: {
+                                    projectName: objectArrayName
+                                },
+                                url: "functions\save.php",
+                                success: function() {
                                     alert("Exported successfully");
                                 }
+							/*	error: function(){
+									alert("error");
+								}*/
                             });
 					}
 							
@@ -313,18 +364,18 @@
 							}
 				 function draw (evt){
 				     mousedownB = true;
-                        fpoints.push(evt.clientX - 10,evt.clientY -90);
+                        fpoints.push(evt.layerX,evt.lYarye);
                     }
                  function move(evt){
                      if(mousedownB){
-                        var tx = evt.clientX - 10;
+                        var tx = evt.layerX;
                         if(tx > canvas.width)
                         {fpoints.push(canvas.width);}
                         else if(tx < 0)
                         {fpoints.push(0);}
                         else
                         {fpoints.push(tx);}
-                        var ty = evt.clientY - 90;
+                        var ty = evt.layerY;
                         if(ty > canvas.height)
                         {fpoints.push(canvas.height);}
                         else if(ty < 0)
@@ -345,17 +396,23 @@
                             strokeWidth: 5,
                             draggable: true
                             });
+                    fpath.on('click', function() {
+                        removeShape(this);
+                        rotateO(this);
+                        scaleO(this);
+                    });
                     currentLayer.add(fpath);
                     canvas.add(currentLayer);
                     mousedownB = false; fpoints = new Array();}
                 }
+                
                 function removeShape(shape)
                 {
                     if(destroyRB == true)
                     {
+                        var cl = shape.getParent();
                         shape.destroy();
-                        currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
-                        canvas.add(currentLayer);
+                        canvas.add(cl);
                     }
                 }
                 
@@ -394,6 +451,10 @@
             <label for="radio2">Delete Shape</label>
             <input type="radio" id="radio3" name="radio" onClick="choice3()">
             <label for="radio3">Free Draw</label>
+			<input type="radio" id="radio4" name="radio" onClick="choice4()">
+            <label for="radio4">Rotate</label>
+            <input type="radio" id="radio5" name="radio" onClick="choice5()">
+            <label for="radio5">Scale</label>
 
         </div>
         <script>
@@ -408,6 +469,8 @@
                 document.getElementById('container').removeEventListener("mouseout", drawfinal, false);
                 document.getElementById('container').removeEventListener('mousemove', move ,false);
                 destroyRB = false;
+                rotate = false;
+                scale = false;
             }
             function choice1() {
             wipeListeners();
@@ -424,6 +487,25 @@
                 document.getElementById('container').addEventListener("mouseout", drawfinal, false);
                 document.getElementById('container').addEventListener('mousemove', move ,false);
             }
+			 function choice4() {
+                wipeListeners();
+                rotate = true; 
+
+            }
+            function choice5() {
+                wipeListeners();
+                scale = true; 
+            }
+            
+			function helpUp(url)
+            {
+	            newwindow=window.open(url, "helpPopUp.html", "status = 1, scrollbars = 1, height = 400, width = 400");
+	            if(window.focus){
+	            	newwindow.focus()
+            	}
+            	return false;
+            }			
+            
         </script>
 
     </body>

@@ -24,17 +24,19 @@
 
        			setcookie("uname", $_SESSION['userName'], time()+60*60*24);
         		setcookie("password", $_SESSION['password'], time()+60*60*24);
-        		header("location:/edith/loginPage.php");
+        		header("location:/edith/index.html");
 			}
 			
 			//Inform password is wrong and send back to beginning
 			else {
-				echo "<div>wrong password!</div>";
+				header("location:/edith/loginpage.html");
+
 			}
 		}
 		//Inform username is wrong and send back to beginning
 		else {
-			echo "<div>wrong username!</div>";
+			header("location:/edith/loginpage.html");
+
 		} 
 
 ?>

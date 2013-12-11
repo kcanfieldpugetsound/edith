@@ -1,8 +1,4 @@
-<?php  
-    function redirect() {
-    header('location:index.php');
-}
-?>
+
 <!-- 
 Code deirved from:
 http://www.daniweb.com/web-development/javascript-dhtml-ajax/code/330933/a-simple-html-login-page-using-javascript
@@ -29,16 +25,9 @@ Edith
 <div id="wrapper">
 <form name="login" class="login" id = "login" method = "post" action = "/edith/functions/login.php">
 	<div class="header">
-	<?php
-
-    if($_GET['msg'])
-    { 
-    	echo $_GET['msg'];
-}
-
-?> 
 	<h1> Welcome to Edith!</h1>
 	<span>Please sign in to get started creating your totally awesome story.</span>
+	<p class="errors"><?php if (!empty($_SESSION['error_message']) echo $_SESSION['error_message']; ?></p>
 </div>
 <div class="content">
 	<input class="input username" type="text" name = "userName" id="userName" placeholder="Username"/>

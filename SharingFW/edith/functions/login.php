@@ -36,6 +36,7 @@
 		//Inform username is wrong and send back to beginning
 		else {
 			header("location:/edith/loginpage.html");
+
 		} 
 
 ?>
