@@ -84,36 +84,29 @@
 		return false;
 	}
 	
-	var projectCode = [];
-	
+	var projectCode = [];	
 	/**
 	/Load the pCode (THE ACTUAL DATA THAT WE WANT THAT IS A JSON) and then parse the information in order to manipulate the object images
 	/
 	**/
 	function loadProject() {
 		loadBlocks(json);
-		var projectId = prompt("Please enter the name of your project:");
+		var objectName = prompt("Please enter the name of your project:");
 		
-		$.getJSON("functions/load.php", {id:projectId}, function(data) {
-			$("#theText").html(data.pCode);
+		$.getJSON("functions/load.php", {id:objectName}, function(data) {
 			
-			projectCode = JSON.parse(data); //get the JSON from sharing and turn it into the array
+			makeString = JSON.stringify(data);
+			console.log(makeString);
+			unstring = JSON.parse(makeString);
+			console.log(unstring);
+			//addImage(unstring[0][0], 300, 150);		
 			
-			for(var j = 0; j<projectCode.length; j++){//go through the list of 
-				addImage(projectCode[j][0], 300, 150); //get the value out of the two dimensional array at the right spot (the value is the key of the array)
-				//[["data:image/png;base64,i...kc43N5BAAAAAElFTkSuQmCC", "yo.png"], ["data:image/png;base64,i...8lYvwAAAABJRU5ErkJggg==", "lol.png"]]   Just a sample
-			}
-		//	addImageArray(Object.values(projectCode));
-			 
-			for(var j=0; j<Object.keys(projectCode).length; j++){
-				addImage(Object.keys(unstringified)[j], 300, 150);
-				console.log(unstringified["bob"]);
-			} 
-			//figure out how to undo the stringify
-		//	console.log(data);
+			//projectCode = JSON.parse(data); //get the JSON from sharing and turn it into the array
+			//for(var j = 0; j<data.length; j++){//go through the list of 
+			//	addImage(data[j][0], 300, 150); //get the value out of the two dimensional array at the right spot (the value is the key of the array)
+			//}
 		});
 	}
-
 	/**
 	/Save the information for save.php to put to the server's database
 	/"code:" This needs to be the updated JSON that we are using for everything
@@ -136,11 +129,6 @@
 						console.log("Failed post!");
 				}
 		});
-	}
-	function glowingObjects(){
-		var glowingObjects = getGlowingObjects();
-		console.log(glowingObjects);
-	
 	}
 	
 	function loadThatThing(){
@@ -170,7 +158,6 @@
  <button id="button4" onClick = 'save()'>Save</button>
  <button id="button5" onClick = 'loadProject()'>Load</button>
   <button id="button6" onClick = 'loadThatThing()'>Load Circle</button>
-  <button id="button7" onClick = 'glowingObjects()'> Glow</button>
   <a href = "Sharing Framework/edith/functions/display.php" >Display Projects </a>
 </div>
 
