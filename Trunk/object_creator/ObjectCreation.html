@@ -403,9 +403,13 @@
                 {
                     if(destroyRB == true)
                     {
+                        //Adding confirm box
+                        var r = confirm("Are you sure you want to delete this shape?");
+                        if (r == true) {
                         var cl = shape.getParent();
                         shape.destroy();
                         canvas.add(cl);
+                        }
                     }
                 }
                 
