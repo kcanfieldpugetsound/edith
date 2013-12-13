@@ -1,0 +1,74 @@
+%@author Brandon Roberts, Nate Olderman, Billy Rathje, DJ Maguddayao, Kyle Dybdal
+%@date 9/23/13
+
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+
+
+
+
+\begin{document}
+
+%-------------------------------------------------------------------------------------------------------------
+% TITLE PAGE
+%-------------------------------------------------------------------------------------------------------------
+
+\begin{titlepage}
+	\vspace*{\fill} %leave out given verticle space in a document
+	\begin{center}
+		{\Huge Story Creator Final Report}\\ [0.5cm]	%make title huge and have .5cm space in between
+		{\Large Brandon Roberts, Nate Olderman, Billy Rathje, DJ Maguddayao, Kyle Dybdal}\\[0.4cm]
+		\today %put the date that the data is compiled
+	\end{center}
+	\vspace*{\fill}
+\end{titlepage}
+
+%-------------------------------------------------------------------------------------------------------------
+% PROJECT SUMMARY
+%-------------------------------------------------------------------------------------------------------------
+\section{Project Summary}
+The Story Creator module is used to combine the Sharing Framework, Object Creator, Visual Editor and Animation module in order to create a holistic view of Edith in a dynamic webpage. \\
+
+The Story Creator will be directed to a login page that will prompt them for their username and password.  If they do not have an account they may create one in the link that says "Create Account."  In the case that they have already have an account they will be directed to the main Edith page where they will be able to create a "story." To do this they will click on objects(this makes them glow and puts them into an array for Visual Editor), give the objects animations by manipulating the selected object in the Visual Editor canvas, and create ways to interact with their story by manipulating other objects. By doing this, students will be able to learn how relationships among objects work in programming. \\
+
+The Story Creator Module designed the Edith main page, login page, and sign up page.  A large portion of time spent by the Story Creator module went into the creation of the three major canvas' on the page that were for the Animation, Object, and Visual Editor Modules.  These were created and formatted correctly for what each team needed.  The Visual Editor and Object Creator module implement a Kinetic canvas while the Animation team utilize an OCanvas.  The canvas for Objects was directly implemented in order for objects saved to the Sharing Framework to be displayed in the canvas.  The Story Creator module also added the functionality of clicking on the objects to make them glow and put them into an array for the Visual Editor module to implement.   
+
+
+%-------------------------------------------------------------------------------------------------------------
+% DEVELOPMENT PROCEDURES
+%-------------------------------------------------------------------------------------------------------------
+\section{Development Procedures}
+
+
+%-------------------------------------------------------------------------------------------------------------
+% REQUIREMENTS EVALUATION
+%-------------------------------------------------------------------------------------------------------------
+\section{Requirements Evaluation}
+
+
+%-------------------------------------------------------------------------------------------------------------
+% SYSTEM DESIGN AND ARCHITECTURE
+%-------------------------------------------------------------------------------------------------------------
+\section{System Design and Architecture}
+
+
+%-------------------------------------------------------------------------------------------------------------
+% INDIVIDUAL REFLECTIONS
+%-------------------------------------------------------------------------------------------------------------
+\section{Individual Reflections}
+
+\subsection{Brandon Roberts}
+Edith was a challenge from start to finish.  I believe that the most voluminous issue was directly organizational.  When we began this project we believed that we had an idea of what each team was doing, but in fact we had no clue what "Story Creator" actually meant.  We had a description of our module that included things like "allows the user to specify animations and other events" and "utilize the Visual Editor to specify actions performed by objects provided by the Object Creator."  This was completely fine to begin with and made sense but unfortunately the project did not end up functioning in this way.  This meant that time and time again the Story Creator module had to modify/completely scrap large portions of code simply because it would not function correctly with other groups.  One large issue we had tied back to the fact that "This module is the least able to function as a stand-alone system."  There were times when we learned that the Object Creator module was changing how they save objects, Animation was changing how they interacted with the sprites, Visual Editor changed how they displayed and moved functions, and the Sharing Framework changed how the tables were set up in the database and what we needed to do in order to retrieve information.  This all comes together to show that it is difficult to be the final piece of the puzzle.  \\
+
+I also encountered many issues with retrieving objects(sprites) from the database and displaying them inside the object panel.  I will take some very useful database debugging and a much better knowledge of Ajax with me.  I have also learned a great deal about databases and php as well as javascript.  These three things together will be very useful in the future because of how prevalent they are in the field of web development and computer science. \\
+
+In order to complete the project I originally attempted to implement the use cases in my requirements document.  That quickly became outdated so I started to use the "adapter" design patter to try and piece together the other groups software.  If restarting on this project I would attempt to have a long session with other groups to go through what they planned on doing and how we could put it together.  A large problem was that many pieces could not be put together in the way that individual groups  had originally designed.  If I were to continue on this project I would add functionality to actually work.
+
+
+%-------------------------------------------------------------------------------------------------------------
+% GLOSSARY AND REFERENCES 
+%-------------------------------------------------------------------------------------------------------------
+\section{Glossary and References}
+
+
+\end{document}
