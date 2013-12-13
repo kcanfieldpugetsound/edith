@@ -1,0 +1,24 @@
+<html>
+<head>
+<script>
+
+function popitupObj(url)
+{
+	newwindow=window.open(url, 'kineticExample.html', 'status = 1', 'scrollbars =1', 'height = 100', 'width = 300');
+	if(window.focus){
+		newwindow.focus()
+	}
+	return false;
+}
+
+</script>
+
+</head>
+<body>
+
+<a href = 'kineticExample.html' onclick="return popitupObj('kineticExample.html')">
+Create Object
+</a>
+
+</body>
+</html>

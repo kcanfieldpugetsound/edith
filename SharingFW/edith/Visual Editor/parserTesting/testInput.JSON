@@ -1,0 +1,11 @@
+mediaInput1 = {"functionName" : "jump", "imageName": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "duration": 100, "height": 50}
+mediaInput2 = {"functionName" : "jump", "imageName": "mario.jpg", "soundName": "smb_jumpsmall.mp3", "duration": 100, "height": 150}
+mediaInput3 = {"functionName" : "movR", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "distance": 175}
+mediaInput4 = {"functionName" : "movL", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "distance": 350}
+mediaInput5 = {"functionName" : "longJump", "imageName": "mario.jpg", "soundName": "null", "duration": 200, "distance": 350, "height": 85}
+mediaInput6 = {"functionName" : "movD", "imageName": "mario.jpg", "soundName": "null", "duration": 100, "height": 150}
+mediaInput7 = {"functionName" : "movL", "imageName": "mario.jpg", "soundName": "null", "duration": 100, "distance": 175}
+mediaInput8 = {"functionName" : "movU", "imageName": "mario.jpg", "soundName": "null", "duration": 100, "height": 150}
+mediaInput9 = {"functionName" : "rotate", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "angle": 360, "clockwise": true}
+mediaInput10 = {"functionName" : "rotate", "imageName": "mario.jpg", "soundName": "null", "duration": 1000, "angle": 360, "clockwise": false}
+

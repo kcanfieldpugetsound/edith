@@ -1,0 +1,24 @@
+<html>
+<head>
+<script>
+
+function popitup(url)
+{
+	newwindow=window.open(url, "ObjectCreation.html", "location = 1, status = 1, height = 600, width = 900");
+	if(window.focus){
+		newwindow.focus()
+	}
+	return false;
+}
+
+</script>
+
+</head>
+<body>
+
+<a href = 'ObjectCreation.html' onclick="return popitup('ObjectCreation.html')">
+Create Object
+</a>
+
+</body>
+</html>
