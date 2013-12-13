@@ -21,13 +21,13 @@ body{
 	font-weight:300;
 	text-align: left;
 	text-decoration: none;
-	height: 500px;
+	height: 600px;
 }
 
 #logo{
 
 left:50%;
-top:50%;
+top:40%;
 margin:-260px 0 0 -150px;
 /*border:1px solid #000;*/
 position:fixed;
@@ -45,7 +45,7 @@ position:fixed;
 
 #wrapper{	
 	left:50%;
-	top:50%;
+	top:40%;
   	width: 350px;
 	height: 400px;
 	margin: -110px 0 0 -170px;
@@ -113,7 +113,7 @@ position:fixed;
 }
 
 /* Second input field */
-.login .content .password, .login .content .pass-icon {
+.login .content .password, .login .content .pass-icon, .login .content .email {
 	margin-top: 25px;
 }
 
@@ -163,9 +163,11 @@ position:fixed;
 	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
 }
 
-/* Login button */
+
+/*sign up button */
 .login .footer .button {
 	float:right;
+	left:90%;
 	padding: 11px 25px;
 	
 	font-family: 'Roboto Slab', serif;
@@ -178,7 +180,6 @@ position:fixed;
 	border: 1px solid #46b3d3;
 	border-radius: 5px;
 	cursor: pointer;
-	
 	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
 	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
 	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
@@ -204,8 +205,8 @@ position:fixed;
 	-webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
 }
 
-/* Register button */
-.login .footer .register {
+/* Cancel button */
+.login .footer .cancel {
 	display: block;
 	float: right;
 	padding: 10px;
@@ -222,11 +223,11 @@ position:fixed;
 	text-shadow: 0px 1px 0 rgba(256,256,256,0.5);
 }
 
-.login .footer .register:hover {
+.login .footer .cancel:hover {
 	color: #3f9db8;
 }
 
-.login .footer .register:focus {
+.login .footer .cancel:focus {
 	position: relative;
 	bottom: -1px;
 }
