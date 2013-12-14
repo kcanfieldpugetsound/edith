@@ -102,17 +102,19 @@ This process can be simplified to a series of 4 steps:
 \item Animate the sprites with the provided animation functions.\\
 \end{itemize}
 
+Below is a System state diagram that shows a sample implementation.\\
+
 \begin{figure}
 \caption{Figure 1. System State Diagram}
   \centering
     \includegraphics[scale=.3]{animation-statediagram.png}
     \caption*{After creating an HTML5 canvas user calls the wrapHTMLCanvasToOCanvas() to create oCanvas object. At this point sprites and instructions can be added to be displayed on the canvas object.}
-    \end{figure}
+\end{figure}
+    
 
+ \newpage
+Our animation functions include a generic animate function and a series of pre-defined animations created by our group. The generic function is called move() and can animate a sprite in any combination of the x-axis, y-axis, and z-axis (rotation). This function is intended to be used for simple animations but also allows the flexibility for the programmer to call a series of move functions to create a more complex animation. Our pre-defined animations include jump, double jump, move left, move right, move up, and move down which can be called in addition to the generic move. The main content behind all of the animation functions is a animation block provided by the oCanvas library. This animation block allows for many optional parameters that can be used to produce different effects. Some of the effects that we utilized are easing functions, duration time, and animation queues. \\ 
 
-Our animation functions include a generic animate function and a series of pre-defined animations created by our group. The generic function is called move() and can animate a sprite in any combination of the x-axis, y-axis, and z-axis (rotation). This function is intended to be used for simple animations but also allows the flexibility for the programmer to call a series of move functions to create a more complex animation. Our pre-defined animations include jump, double jump, move left, move right, move up, and move down which can be called in addition to the generic move.\\
-
-The main content behind all of the animation functions is a animation block provided by the oCanvas library. This animation block allows for many optional parameters that can be used to produce different effects....
 \section{\emph{Individual Reflections}}
 \subsection{Eric Lund}
 \begin{changemargin}{1cm}{0cm} 
