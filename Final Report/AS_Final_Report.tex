@@ -3,6 +3,7 @@
 \documentclass[12pt]{article}
 \usepackage{titlesec}
 \usepackage{graphicx}
+\usepackage[labelformat=empty]{caption}
 \titleformat{\section}[block]{\bfseries}{\thesection.}{1em}{} 
 \titleformat{\subsection}[block]{\hspace{2em}}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}[block]{\hspace{2em}}{\subsubsection}{1em}{}
@@ -101,7 +102,13 @@ This process can be simplified to a series of 4 steps:
 \item Animate the sprites with the provided animation functions.\\
 \end{itemize}
 
-\includegraphics[scale=.3]{animation-statediagram.png}\\
+\begin{figure}
+\caption{Figure 1. System State Diagram}
+  \centering
+    \includegraphics[scale=.3]{animation-statediagram.png}
+    \caption*{After creating an HTML5 canvas user calls the wrapHTMLCanvasToOCanvas() to create oCanvas object. At this point sprites and instructions can be added to be displayed on the canvas object.}
+    \end{figure}
+
 
 Our animation functions include a generic animate function and a series of pre-defined animations created by our group. The generic function is called move() and can animate a sprite in any combination of the x-axis, y-axis, and z-axis (rotation). This function is intended to be used for simple animations but also allows the flexibility for the programmer to call a series of move functions to create a more complex animation. Our pre-defined animations include jump, double jump, move left, move right, move up, and move down which can be called in addition to the generic move.\\
 
