@@ -278,6 +278,12 @@
       x = "else{";
       return x;
     }
+
+    if (ids === "addSprite") {
+      var object = getGlowingObjects();
+      x = getGlowingObjects();
+      return x;
+    }
   }
 
   
