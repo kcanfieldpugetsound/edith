@@ -56,8 +56,38 @@ Brandon was responsible for helping the Object Creator module and Sharing Framew
 % REQUIREMENTS EVALUATION
 %-------------------------------------------------------------------------------------------------------------
 \section{Requirements Evaluation}
+\subsection{Functional Requirements}
+\begin{itemize}
+\item "Navigate Story Files" - The story teller will have the ability to start a new story file, save a story, and close a story.\ 
+This is a helpful requirement because it allows the entire story to be able to function.  This enables the story teller to begin their story and come back to it later.  We were not able to complete the "close a story" option.  The current story is set as a project and is loaded from the sharing framework.  The option to close a story was not completely necessary in the end because the user still has the option to make a new story and begin it.
+
+\item "Start a new story file" - The story teller will select an option to create a new story.\
+The option to start a new story is not available.  This requirement was not defined well because the "starting a new story file" does not specify if the old one is saved or if there is an option to use pieces from the previous story.
+
+\item "Save a story" - The story teller selects the option to save the story.  A representation of the story and its objects, scripts, and settings is sent to the Sharing Framework.\
+This was a very helpful requirement because it allows a previous story to be loaded onto the screen after being saved.  It was very effective because it was a great way for ajax to be used in order to retrieve necessary information from the database.
+
+\item "Close a story" -  The user selects an option to close the story.  The story is removed from the story editor and animations, scripts, and objects associated with the story are cleared from their respective editors.\
+The ability to close a story is not an option.  This requirement seemed unnecessary because the story teller can load a separate story without closing an old one.  At the end of the process closing a story did not seem very important.
+
+\item "Create an object" - Storyteller will go to the Object Creator screen. Storyteller will select an option to create an object.  Storyteller will use the mouse to drag the object. Storyteller will choose where to place the object. Storyteller will drop the object in that place.\
 
 
+\item "Remove an object" - selects an option to delete objects. User selects the object to delete. The object disappears  from the scene.
+\item "Move an object" - User selects an option to move objects. User drags the object from its original location to a new one. (This is not an animation)
+\item "Develop or edit a script" - Storyteller interacts with the visual editor to develop a new script. Storyteller selects a specific action which is an individual script (All of the scripts interact a main loop).
+\item "Delete a script" - User interacts with the visual editor to delete a script.
+\item "Save an object or script" - The user wants to save an object or script for reuse. A representation of the object or script is saved.
+\item "Animate an object" -  User selects a script from the visual editor. User drags or otherwise attaches the script to an object in the scene.
+\item "Play story" - Storyteller selects a "play scene" option. The story plays for the storyteller in the animation viewer at the beginning.
+\item "Share a story" - User selects a "publish story option." The story is converted to a representation that the sharing framework can read. The story representation is sent to the sharing framework so that it can share the scene.
+\end{itemize}
+
+\subsection{Non-Functional Requirements}
+\begin{itemize}
+\item "Ease of Use" - 	The number of errors made by experienced users may differ significantly from those made by first-time or novice user. An experienced user should make no more than 3-5 errors per hour. While there is some complexity to the story editor, an experienced user should not have trouble knowing which options to choose to add objects or play the scene.
+
+\end{itemize}
 %-------------------------------------------------------------------------------------------------------------
 % SYSTEM DESIGN AND ARCHITECTURE
 %-------------------------------------------------------------------------------------------------------------
@@ -84,5 +114,8 @@ In order to complete the project I originally attempted to implement the use cas
 %-------------------------------------------------------------------------------------------------------------
 \section{Glossary and References}
 
+\begin{itemize}
+\item Script:  A small program made in the visual editor that controls the object or scene event to be displayed.
+\end{itemize}
 
 \end{document}

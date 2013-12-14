@@ -96,11 +96,11 @@
 		$.getJSON("functions/load.php", {id:objectName}, function(data) {
 			var unstring = JSON.parse(data.pCode);
 			//console.log("After Parsing with database data -------------"+unstring);
-			//addImage(unstring[0][0], 300, 150);		
+			addImage(unstring[0][0], 300, 150);		
 			
-			for(var j = 0; j<data.length; j++){//go through the list of 
-				addImage(unstring[0][0], 300, 150);		 //get the value out of the two dimensional array at the right spot (the value is the key of the array)
-			}
+			//for(var j = 0; j<data.length; j++){//go through the list of 
+			//	addImage(unstring[0][0], 300, 150);		 //get the value out of the two dimensional array at the right spot (the value is the key of the array)
+			//}
 		});
 	}
 	/**
