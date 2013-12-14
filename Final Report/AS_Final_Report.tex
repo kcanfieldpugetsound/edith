@@ -115,6 +115,13 @@ Below is a System state diagram that shows a sample implementation.\\
  \newpage
 Our animation functions include a generic animate function and a series of pre-defined animations created by our group. The generic function is called move() and can animate a sprite in any combination of the x-axis, y-axis, and z-axis (rotation). This function is intended to be used for simple animations but also allows the flexibility for the programmer to call a series of move functions to create a more complex animation. Our pre-defined animations include jump, double jump, move left, move right, move up, and move down which can be called in addition to the generic move. The main content behind all of the animation functions is a animation block provided by the oCanvas library. This animation block allows for many optional parameters that can be used to produce different effects. Some of the effects that we utilized are easing functions, duration time, and animation queues. \\ 
 
+
+\begin{figure}
+\caption{Figure 2. Animation System API}
+  \centering
+    \includegraphics[scale=.3]{api-screenshot.png}
+    \caption*{All animation methods are documented in an accessible API.}
+\end{figure}
 \section{\emph{Individual Reflections}}
 \subsection{Eric Lund}
 \begin{changemargin}{1cm}{0cm} 
