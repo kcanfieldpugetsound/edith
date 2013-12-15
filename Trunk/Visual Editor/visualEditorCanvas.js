@@ -362,9 +362,11 @@
         stroke: 'black',
         strokeWidth: 1
       });
+      console.log(".....");
     
    //for any rect, defines action on dragstart
     groupToolbox.on('dragstart', function () {
+   		console.log(".....");
       this.moveToTop();
       this.setOpacity(0.50);
       groupArray = (this.getChildren()).toArray();
