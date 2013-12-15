@@ -21,16 +21,15 @@ body{
 	font-weight:300;
 	text-align: left;
 	text-decoration: none;
-	height: 800px;
 }
 
 #logo{
 
 left:50%;
 top:40%;
-margin:-260px 0 0 -150px;
+margin:-240px 0 0 -150px;
 /*border:1px solid #000;*/
-position:fixed;
+position:absolute;
 }
 
 #bunny{
@@ -40,7 +39,7 @@ left:50%;
 top:50%;
 margin:-260px 0 0 -200px;
 /*border:1px solid #000;*/
-position:fixed;
+position:absolute;
 }
 
 #wrapper{	
@@ -49,7 +48,7 @@ position:fixed;
   	width: 350px;
 	height: 400px;
 	margin: -110px 0 0 -170px;
-	position:fixed;
+	position:absolute;
 }
 
 .login{
@@ -114,7 +113,7 @@ position:fixed;
 
 /* Second input field */
 .login .content .password, .login .content .pass-icon, .login .content .email {
-	margin-top: 25px;
+	margin-top: 15px;
 }
 
 .login .content .input:hover {
