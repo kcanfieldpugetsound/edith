@@ -22,7 +22,9 @@
   var finalSpriteArray = new Array();
   var arrayOfFinalSprites = new Array();
   var spriteIndex;
-  
+  var selectedSprites = new Array();
+  var counter = 0;
+  //spritesToAnimate[0] = "hi";
 
   var tools = [{'title': 'method', 'jstext': ''},
     {'title': 'variable', 'jstext': ''},
@@ -101,6 +103,10 @@
     xpos,
     ypos;
 
+   // var ghostElement = deepCopy(oCanvasElement);
+
+
+
     //addSprite(oCanvasElement, "mario.jpg",100,100,100,100);
     function loadUpSpritesToAnimate()
     {
@@ -123,6 +129,7 @@
                   finalSpriteArray.push(imagesOnCanvas[spriteIndex]);                
               }
       }
+      arrayOfImagesToAnimate = [];
     }
 
     if (ids === "method") {
@@ -161,9 +168,10 @@
         }
       loadUpSpritesToAnimate();
       arrayOfFinalSprites.push(finalSpriteArray);
+      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
       finalSpriteArray = [];
-      var spritesToAnimate = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "wait(" + "arrayOfFinalSprites[arrayOfFinalSprites.length-1]" + ", " + mills + ");";
+      x = "wait(" + "selectedSprites["+counter+"]" + ", " + mills + ");";
+      counter++;
       //console.log(x);
       return x;
      
@@ -194,9 +202,10 @@
               loadUpSpritesToAnimate();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
-      var spritesToAnimate = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "move (" + "arrayOfFinalSprites[arrayOfFinalSprites.length-1]" + ", " + dur + ", " + dist + ", " + height + ", " + clockwise + ", " + degrees + ");";
+      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+      x = "move (" + "selectedSprites["+counter+"]" + ", " + dur + ", " + dist + ", " + height + ", " + clockwise + ", " + degrees + ");";
       //console.log(x);
+      counter++;
       finalSpriteArray = [];
 
       return x;
@@ -219,8 +228,9 @@
       loadUpSpritesToAnimate();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
-      var spritesToAnimate = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "rotate (" + "arrayOfFinalSprites[arrayOfFinalSprites.length-1]" + ", " + dur + ", " + angle + ", "+clockwise+");";
+      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+      x = "rotate (" + "selectedSprites["+counter+"]" + ", " + dur + ", " + angle + ", "+clockwise+");";
+      counter++;
       return x;
     }
 
@@ -238,9 +248,10 @@
               loadUpSpritesToAnimate();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
-      var spritesToAnimate = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "jump ("+ "arrayOfFinalSprites[arrayOfFinalSprites.length-1]" + ", "+dur+ ", "+height+");";
+      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+      x = "jump ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+height+");";
       //console.log(x);
+      counter++;
       return x;
     }
 
@@ -258,9 +269,10 @@
               loadUpSpritesToAnimate();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
-      var spritesToAnimate = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "movL ("+ "arrayOfFinalSprites[arrayOfFinalSprites.length-1]" + ", "+dur+ ", "+dist+");";
+      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+      x = "movL ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
       //console.log(x);
+      counter++;
       return x;
     }
 
@@ -278,9 +290,10 @@
               loadUpSpritesToAnimate();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
-      var spritesToAnimate = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "movR ("+ "arrayOfFinalSprites[arrayOfFinalSprites.length-1]" + ", "+dur+ ", "+dist+");";
+      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+      x = "movR ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
       //console.log(x);
+      counter++;
       return x;
       }
 
@@ -298,9 +311,10 @@
               loadUpSpritesToAnimate();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
-      var spritesToAnimate = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "movU ("+ "arrayOfFinalSprites[arrayOfFinalSprites.length-1]" + ", "+dur+ ", "+dist+");";
+      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+      x = "movU ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
       //console.log(x);
+      counter++;
       return x;
       }
 
@@ -318,9 +332,10 @@
               loadUpSpritesToAnimate();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
-      var spritesToAnimate = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "movD ("+ "arrayOfFinalSprites[arrayOfFinalSprites.length-1]" + ", "+dur+ ", "+dist+");";
+      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+      x = "movD ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
       //console.log(x);
+      counter++;
       return x;
     }
 
@@ -350,6 +365,7 @@
         height = getGlowingObjects()[i].attrs.height;
         x = x + "addSprite (oCanvasElement," + "'" + getGlowingObjects()[i].attrs.name + "', " + width + ", " + height + ", " + xpos + ", " + ypos + ");\n";
         addedSprites.push(getGlowingObjects()[i].attrs.name);
+        //addSprite(oCanvasElement, getGlowingObjects()[i].attrs.name, width, height, xpos, ypos);
       }     
       return x;
     }
