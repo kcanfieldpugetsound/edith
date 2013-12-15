@@ -16,18 +16,20 @@ function wrapHTMLCanvasToOcanvas(HTML5canvasID, background) {
 This method adds a sprtie onto the oCanvas object. See wrapHTMLCanvasToOcanvas() to get an
 oCanvas object.
 */
-function addSprite(theOCanvas, image, width, height, xcoord, ycoord) {
+function addSprite(theOCanvas, image, imageWidth, imageHeight, xcoord, ycoord) {
     //add the sprite with the location and directory
+
+
     theOCanvas.image = theOCanvas.canvas.display.image({
         x: xcoord,
         y: ycoord,
-        width: width,
-        height: height,
+        width: imageWidth,
+        height: imageHeight,
         origin: {
             x: "center",
             y: "center"
         },
-        image: image
+        image: image,
     });
 
     // add the sprite onto the canvas
@@ -44,8 +46,12 @@ function addSprite(theOCanvas, image, width, height, xcoord, ycoord) {
 /*
 The main method that parses a String to JavaScript code. 
 */
-function main(stringToParse) {
+function animationMain(stringToParse) {
+    stringToParse += "main();"
+    alert(stringToParse);
+    // var validString = "function ericsTest(){addSprite(oCanvasElement,'mario.jpg',100,100,100,100);}ericsTest();";
     eval(stringToParse);
+   // arrayOfFinalSprites = [];
 }
 
 

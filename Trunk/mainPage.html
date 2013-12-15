@@ -53,7 +53,9 @@
 	VECanvas.width = (window.innerWidth / 2.4);
 	VECanvas.height = (window.innerHeight/1.06);
 
+
 	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+	//addSprite(oCanvasElement, "mario.jpg",100,100,100,100);
 
 	
 	window.onresize = function(event) {
@@ -65,6 +67,7 @@
 		VECanvas.height = (window.innerHeight/1.06);
 
 		oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+		//addSprite(oCanvasElement, "mario.jpg",100,100,100,100);
 	}
 
 	function getCanvas()
@@ -129,7 +132,7 @@
 	
 </script>
 <div class="buttons">
- <button id="button1" onclick = 'main(UNIVERSAL_MAIN)'>Play</button>
+ <button id="button1" onclick = 'animationMain(UNIVERSAL_MAIN)'>Play</button>
  <!-- <button id="button2" onclick = 'wait()'>Pause</button> -->
  <button id="button3" onclick = 'popitupObj("object_creator/ObjectCreation.html")'>Make Object</button>
  <button id="button4" onClick = 'save()'>Save</button>
