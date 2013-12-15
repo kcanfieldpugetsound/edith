@@ -21,16 +21,16 @@ body{
 	font-weight:300;
 	text-align: left;
 	text-decoration: none;
-	height: 500px;
+	/*height: 500px;*/
 }
 
 #logo{
 
 left:50%;
 top:50%;
-margin:-260px 0 0 -150px;
+margin:-240px 0 0 -150px;
 /*border:1px solid #000;*/
-position:fixed;
+position:absolute;
 }
 
 #bunny{
@@ -49,7 +49,7 @@ position:fixed;
   	width: 350px;
 	height: 400px;
 	margin: -110px 0 0 -170px;
-	position:fixed;
+	position:absolute;
 }
 
 .login{
