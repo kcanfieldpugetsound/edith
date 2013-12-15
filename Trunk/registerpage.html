@@ -6,7 +6,7 @@ http://www.daniweb.com/web-development/javascript-dhtml-ajax/code/330933/a-simpl
 
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="loginstyle.css">
+	<link rel="stylesheet" type="text/css" href="registerstyle.css">
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="/favicon.ico">
 <title>
@@ -24,15 +24,18 @@ Edith
 <div id="wrapper">
 <form name="login" class="login">
 	<div class="header">
-	<h1> Welcome to Edith!</h1>
-	<span>Please sign in to get started creating your totally awesome story.</span>
+	<h1> Welcome, newcomer!</h1>
+	<span>Choose a username and password, then hit Sign Up to start making stories</span>
 </div>
 <div class="content">
 	<input class="input username" type="text" name="username" placeholder="Username"/>
 	<input type="password" name="password" class="input password" placeholder="Password"/>
+	<input type="password" name="confirm password" class="input confirm password" placeholder="Confirm Password"/>
+	<input type="text" name="email" class="input email" placeholder="Email (Optional)"/>
+<!-- 	<input type="text" name="email" class="email" placeholder="Email (optional)"/> -->
 	<div class="footer">
-		<input type="submit" name="submit" value="Login" class="button" onclick="check(this.form)"/>
-		<input type="submit" name="submit" value="Register" class="register" />
+		<input type="submit" name="submit" value="Sign Up!" class="button" onclick="check(this.form)"/> <!-- should bring user to main page-->
+		<input type="submit" name="submit" value="Cancel" class="cancel" /> <!-- should bring user back to login -->
 		</div>
 </form>
 </div>
