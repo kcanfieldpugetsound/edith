@@ -177,7 +177,7 @@
         height = prompt("Please enter the height", "");
         }
       clockwise = prompt("Clockwise? (true or false)");
-      x = "rotate (" + getGlowingObjects + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
+      x = "rotate (" + getGlowingObjects() + ", " + dur + ", " + angle + ", "+height+ ", "+clockwise+");";
       //console.log(x);
       return x;
     }
@@ -280,8 +280,14 @@
     }
 
     if (ids === "addSprite") {
-      var object = getGlowingObjects();
-      x = getGlowingObjects();
+      x = "";
+      for (var i = 0; i < getGlowingObjects().length; i ++) {
+        xpos = getGlowingObjects()[i].attrs.x;
+        ypos = getGlowingObjects()[i].attrs.y;
+        width = getGlowingObjects()[i].attrs.width;
+        height = getGlowingObjects()[i].attrs.height;
+        x = x + "addSprite (" + oCanvasElement + ", " + getGlowingObjects()[i].attrs.name + ", " + width + ", " + height + ", " + xpos + ", " + ypos + ");\n";
+      }      
       return x;
     }
   }

@@ -15,13 +15,15 @@
 %-------------------------------------------------------------------------------------------------------------
 
 \begin{titlepage}
-	\vspace*{\fill} %leave out given verticle space in a document
-	\begin{center}
-		{\Huge Story Creator Final Report}\\ [0.5cm]	%make title huge and have .5cm space in between
-		{\Large Brandon Roberts, Nate Olderman, Billy Rathje, DJ Maguddayao, Kyle Dybdal}\\[0.4cm]
-		\today %put the date that the data is compiled
-	\end{center}
-	\vspace*{\fill}
+        \vspace*{\fill} %leave out given verticle space in a document
+        \begin{center}
+                {\Huge Story Creator Final Report}\\ [0.5cm]        
+                
+                %make title huge and have .5cm space in between
+                {\Large Brandon Roberts, Nate Olderman, Billy Rathje, DJ Maguddayao, Kyle Dybdal}\\[0.4cm]
+                \today %put the date that the data is compiled
+        \end{center}
+        \vspace*{\fill}
 \end{titlepage}
 
 %-------------------------------------------------------------------------------------------------------------
@@ -110,7 +112,11 @@ This was achieved through the use of ajax communicating with the PHP on the serv
 
 \subsection{Non-Functional Requirements}
 \begin{itemize}
+<<<<<<< HEAD
+\item "Ease of Use" - The number of errors made by experienced users may differ significantly from those made by first-time or novice user. An experienced user should make no more than 3-5 errors per hour. While there is some complexity to the story editor, an experienced user should not have trouble knowing which options to choose to add objects or play the scene.
+=======
 \item "Ease of Use" - 	The number of errors made by experienced users may differ significantly from those made by first-time or novice user. An experienced user should make no more than 3-5 errors per hour. While there is some complexity to the story editor, an experienced user should not have trouble knowing which options to choose to add objects or play the scene.
+>>>>>>> ebfabc9cb7e29d6b65ced837092ae4827c4e0817
 \ We never performed any studies to quantify the number of errors made when using Edith, although this could be future work for the project. Judging from anecdotal evidence, it appeared that the system was relatively easy to use (with some instruction from the various teams) during integration demos. Since most of the teams were using parts of Edith designed relatively recently, they could be considered "novice users." Their general ability to learn and use the system readily suggests that Edith is relatively simple for novices to learn. In the sense that this nonfunctional requirement is specific, it is a useful requirement, but in the sense that testing it involves procedures that we never did, it may have been too difficult a requirement to adhere to effectively.
 
 \end{itemize}
@@ -118,6 +124,31 @@ This was achieved through the use of ajax communicating with the PHP on the serv
 % SYSTEM DESIGN AND ARCHITECTURE
 %-------------------------------------------------------------------------------------------------------------
 \section{System Design and Architecture}
+
+\subsection{High-Level Architecture}
+The story creator module of Edith is responsible for connecting the various other modules to each other and the user. This is mainly done through the design, layout, and functions of the webpages. The first page the user sees would be the login page. Here we designed a page for people who have already registered to type in their username and password. From there it gets passed to the sharing module which checks to see if they already have an account, and if the username and password is correct. The user can also choose to 
+
+\subsection{Low-Level Walkthrough}
+
+Resizing code and server-interfacing code appears in a script on the main Story Creator webpage, "mainpage.html." The object panel is relatively independent from the webpage so its code appears in a seperate file, objectPanel.js, which the webpage imports. There is also login code in the pages "index.html" and "registerpage.html." This walthrough will first address the code in "mainpage.html," then it will address the code in "objectPanel.js," then it will address "index.html" and "reigsterpage.html." \\
+
+"mainpage.html" \\
+
+Mainpage.html starts with a series of imports. The page imports the kineticjs canvas library, jquery, jquery ui visual editor's canvas javascript code, visual editor's sortable javascript code (for sorting visual code blocks in the visual editor canvas), object creator's javascript code, and animation team's javascript code. \\
+
+Next, we set up the page's basic layout in html. We start by making a div regions for the heading/logo, the main animation canvas, the object browser, and the visual editor canvas. We import the "objectPanel.js" script in this section as well. \\
+
+The next part of the page is an embedded javascript. The script first handles page sizing by setting height and width variables for each canvas. There is a function that does this again each time the page is resized so that the canvases resize relative to the overall page size. Sizing is handled by setting canvases to various ratios of the window's current width or height, which is found with the javascript parameters window.innerWidth and window.innerHeight. \\
+
+The next part of the script consists of three functions: \\
+
+1) The function "popitupObjc(url)" creates a new window when given the url for a page. This is used to open the object creation page in a new window. Next is the variable declaration, projectCode, an array which stores the JSON representation of the currently open project (or an empty array if no project is open/if a project fails to open). 2) The function loadProject() makes an ajax get request to Sharing Framework's file load.php to get the project json associated with an id. Upon a successful get request, the function obtains the variable 'unstring', a json representation of the project, which is parsed into an array using JSON.parse. The function then loops over this array to add each object to the object browser. 3) \\
+
+"objectPanel.js" \\
+
+"index.html" \\
+
+"registerpage.html" \\
 
 
 
@@ -144,6 +175,9 @@ If I were to start this project over again the very first thing I would make sur
 If I were to continue on working on this project I would work with other groups in order to get rid of repetitive code and hopefully make it so the code runs more efficiently. The next thing I would want to add to the project would be to have the object names above each object on the object canvas. This isn't something that is necessary but it seems like it would be a nice touch. I would also want to implement a better tutorial system that would point to various elements of the main page and explain how to use them.
 
 \subsection{Kyle Dybdal}
+<<<<<<< HEAD
+Edith was a lesson in communication, patience, and flexibility. How we initially assumed the final project to work ended up being very different from what the website ended up being. 
+=======
 Edith was a lesson in communication, patience, and flexibility. How we initially assumed the final project to work ended up being very different from what the website ended up being.\\
 
 I think the biggest challenge we faced was a lack of familiarity with the technologies we were using. None of us had ever used javascript, HTML, CSS, or PHP before. This meant that most of our time was spent learning (read: fighting with) languages that were brand new to us rather than actually implementing a project. For example, we encountered a bug while implementing save/load functionality. This bug was mainly  due to an error reading and parsing JSON objects. This was a fairly trivial bug that we wouldn't have encountered if we had had more experience with JSON and ajax. Another area in which this lack of familiarity came into play was when it came to communicating and coordinating with other groups. Because we didn't know how the technologies worked, we didn't know what we were supposed to provide for other teams or what they were supposed to provide for us.\\
@@ -155,7 +189,9 @@ The process started out as a more traditional waterfall approach. We began by wr
 If I were to start this project over again, I would have waited a few years until I had enough experience with web languages under my belt to attempt such an endeavor. In all seriousness, I would have practiced with the technologies a lot more before ever attempting to implement anything. The lack of familiarity hampered every step, from requirements planning to actual implementation. If I were to continue working on it, I would love to make everything feel much more intuitive. Edith is fairly hard to use at this stage, and I would love to make it as approachable as possible. If our goal is introducing people to programming, making that introduction prohibitively complicated defeats its original purpose.
 
 
+>>>>>>> ebfabc9cb7e29d6b65ced837092ae4827c4e0817
 
+\subsection{Billy Rathje}
 
 %-------------------------------------------------------------------------------------------------------------
 % GLOSSARY AND REFERENCES 

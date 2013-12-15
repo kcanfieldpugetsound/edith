@@ -17,6 +17,7 @@
 			    x: theX,
 			    y: theY,
 			    image: imgObj,
+			    name: src,
 			    width: 100,
 			    height: 100,
 			    listening: true,
