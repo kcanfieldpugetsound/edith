@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="story_creator.css">
+	
+	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src='Visual Editor/visualEditorCanvas.js' type = 'text/javascript'></script>
+	<script src='Visual Editor/sortable.js' type = 'text/javascript'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+	<script src = 'object_creator/jfile.js' type = 'text/javascript' ></script>
+	<script src='Animation/animationBlocks.js' type = 'text/javascript' ></script>
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="gui.js"> </script>
+
+</head>
+
+<body>
+	<div id="logo">
+		<img src="EdithLogoName.png" width=50% height=50% >
+	</div>
+
+	<div class="animationContainer">
+		<canvas id="mainCanvas"></canvas>
+	</div>
+		
+	<div class="objectContainer">
+		<canvas id="objectCanvas"> </canvas>
+
+		<div id="tabs">
+  			<div id="tabs-1">
+  				<script src = "objectPanel.js" defer="defer" type="text/javascript"></script>
+			</div>
+		</div>
+	</div>
+
+		<div class="VEContainer">
+			<canvas id = "VECanvas"></canvas>
+			
+			<div id= 'tabs'>
+				<div id='container1'>	</div>
+			</div>
+		</div>
+
+<script>
+	mainCanvas.width = (window.innerWidth / 1.8);
+	mainCanvas.height = (window.innerHeight / 1.8);
+	objectCanvas.width = (window.innerWidth / 1.825);
+	objectCanvas.height = (window.innerHeight / 2.7);
+	VECanvas.width = (window.innerWidth / 2.4);
+	VECanvas.height = (window.innerHeight/1.06);
+
+	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+
+	
+	window.onresize = function(event) {
+    	mainCanvas.width = (window.innerWidth / 1.8);
+		mainCanvas.height = (window.innerHeight / 1.8);
+		objectCanvas.width = (window.innerWidth / 1.825);
+		objectCanvas.height = (window.innerHeight / 2.7);
+		VECanvas.width = (window.innerWidth / 2.4);
+		VECanvas.height = (window.innerHeight/1.06);
+
+		oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
+	}
+
+	function getCanvas()
+	{
+		return oCanvasElement;
+	}
+	
+	/**
+	Used to call the object creation pop-up window.
+	**/
+	function popitupObj(url)
+	{
+		newwindow=window.open(url, "object_creator/ObjectCreation.html", "status = 1, scrollbars =1, height = 600, width = 900");
+		if(window.focus){
+			newwindow.focus()
+		}
+		return false;
+	}
+	
+	var projectCode = [];	
+	/**
+	/Load the pCode (THE ACTUAL DATA THAT WE WANT THAT IS A JSON) and then parse the information in order to manipulate the object images
+	/
+	**/
+	function loadProject() {
+		//loadBlocks(json);
+		var objectName = prompt("Please enter the name of your project:");
+		
+		$.getJSON("functions/load.php", {id:objectName}, function(data) {
+			var unstring = JSON.parse(data.pCode);
+			//console.log("After Parsing with database data -------------"+unstring);
+			addImage(unstring[0][0], 300, 150);		
+			
+			//for(var j = 0; j<data.length; j++){//go through the list of 
+			//	addImage(unstring[0][0], 300, 150);		 //get the value out of the two dimensional array at the right spot (the value is the key of the array)
+			//}
+		});
+	}
+	/**
+	/Save the information for save.php to put to the server's database
+	/"code:" This needs to be the updated JSON that we are using for everything
+	**/
+	function save(){
+	if(sorter()) {
+		cleanUp(sortArray);
+	}
+	var projectId = prompt("Please enter the name of the project you are saving to:");
+	
+		$.ajax({
+				url: 'Sharing Framework/edith/functions/save.php',
+				type: 'POST',
+				data: {code: json, projectName: projectId}, //update what the project code (The json that we want to save) and name are
+				dataType: JSON,
+				success: function(){
+						console.log("Succsessful post!");
+				},
+				error: function(){
+						console.log("Failed post!");
+				}
+		});
+	}
+	
+</script>
+<div class="buttons">
+ <button id="button1" onclick = 'main(UNIVERSAL_MAIN)'>Play</button>
+ <!-- <button id="button2" onclick = 'wait()'>Pause</button> -->
+ <button id="button3" onclick = 'popitupObj("object_creator/ObjectCreation.html")'>Make Object</button>
+ <button id="button4" onClick = 'save()'>Save</button>
+ <button id="button5" onClick = 'loadProject()'>Load</button>
+  <button id="button6" onClick = 'loadThatThing()'>Load Circle</button>
+  <a href = "Sharing Framework/edith/functions/display.php" >Display Projects </a>
+</div>
+
+
+</body>
+
+</html>
