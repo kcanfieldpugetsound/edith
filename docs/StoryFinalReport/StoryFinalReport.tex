@@ -59,7 +59,7 @@ Nate was responsible for how the various canvases were drawn on the Edith main p
 
 Brandon was responsible for helping the Object Creator module and Sharing Framework gain access to the database with javascript.  This included writing load and save functions for the main page that sent and retrieved data.  Brandon was also in charge of porting the Visual Editor code and the Object Creator code so that it would function on the main page.  Finally Brandon was in charge of loading data from the database in order to draw objects on the object canvas that were clickable.  \\
 
-Kyle was responsible for much of the design of the website. This process started with making a website mockup, and then designing a logo and color scheme. Lots of work was done with HTML and CSS, putting together the general layout of the page. The goal of the design was to be minimalist and out of the way, keeping as clean of a workspace as possible. He also created the login and registration page.
+Kyle was responsible for much of the design of the website. This process started with making a website mockup, and then designing a logo and color scheme. Lots of work was done with HTML and CSS, putting together the general layout of the page. The goal of the design was to be minimalist and out of the way, keeping as clean of a workspace as possible. He also created the login and registration page. \\
 
 
 Billy was responsible for designing, styling, and implementing the object browser panel. He wrote the code for displaying objects in a grid, adding objects individually and from an array, and for sizing/positioning objects. He also worked on CSS styling for the object panel. He implemented a Kinetic JS canvas so that the panel could display objects. He also implemented the "glow" or highlighting functionality which highlights objects and places highlighted objects in an array that the Visual Editor accesses through an accessor method. He worked on some of the data retrieval code (particularly for displaying objects designed in the Object Creation panel) as well as server setup/testing. He also contributed to some of the page layout/design.
@@ -111,16 +111,10 @@ This was achieved through the use of ajax communicating with the PHP on the serv
 \end{itemize}
 
 \subsection{Non-Functional Requirements}
+
 \begin{itemize}
-<<<<<<< HEAD
-\item "Ease of Use" - The number of errors made by experienced users may differ significantly from those made by first-time or novice user. An experienced user should make no more than 3-5 errors per hour. While there is some complexity to the story editor, an experienced user should not have trouble knowing which options to choose to add objects or play the scene.
-=======
-<<<<<<< HEAD
-\item "Ease of Use" - The number of errors made by experienced users may differ significantly from those made by first-time or novice user. An experienced user should make no more than 3-5 errors per hour. While there is some complexity to the story editor, an experienced user should not have trouble knowing which options to choose to add objects or play the scene.
-=======
+
 \item "Ease of Use" - 	The number of errors made by experienced users may differ significantly from those made by first-time or novice user. An experienced user should make no more than 3-5 errors per hour. While there is some complexity to the story editor, an experienced user should not have trouble knowing which options to choose to add objects or play the scene.
->>>>>>> ebfabc9cb7e29d6b65ced837092ae4827c4e0817
->>>>>>> b64d0534cdb3916e40cf45d4baa1ecf2b205d932
 \ We never performed any studies to quantify the number of errors made when using Edith, although this could be future work for the project. Judging from anecdotal evidence, it appeared that the system was relatively easy to use (with some instruction from the various teams) during integration demos. Since most of the teams were using parts of Edith designed relatively recently, they could be considered "novice users." Their general ability to learn and use the system readily suggests that Edith is relatively simple for novices to learn. In the sense that this nonfunctional requirement is specific, it is a useful requirement, but in the sense that testing it involves procedures that we never did, it may have been too difficult a requirement to adhere to effectively.
 
 \end{itemize}
@@ -129,19 +123,16 @@ This was achieved through the use of ajax communicating with the PHP on the serv
 %-------------------------------------------------------------------------------------------------------------
 \section{System Design and Architecture}
 
-<<<<<<< HEAD
-=======
 \subsection{High-Level Architecture}
 The story creator module of Edith is responsible for connecting the various other modules to each other and the user. This is mainly done through the design, layout, and functions of the webpages. The first page the user sees would be the login page. Here we designed a page for people who have already registered to type in their username and password. From there it gets passed to the sharing module which checks to see if they already have an account, and if the username and password is correct. The user can also choose to 
 
->>>>>>> b64d0534cdb3916e40cf45d4baa1ecf2b205d932
 \subsection{Low-Level Walkthrough}
 
-Resizing code and server-interfacing code appears in a script on the main Story Creator webpage, "mainpage.html." The object panel is relatively independent from the webpage so its code appears in a seperate file, objectPanel.js, which the webpage imports. There is also login code in the pages "index.html" and "registerpage.html." This walthrough will first address the code in "mainpage.html," then it will address the code in "objectPanel.js," then it will address "index.html" and "reigsterpage.html." \\
+Resizing code and server-interfacing code appears in a script on the main Story Creator webpage, "mainpage.html." The object panel is relatively independent from the webpage so its code appears in a seperate file, objectPanel.js, which the webpage imports. There is also login code in the pages "index.html" and "registerpage.html." This walthrough will first address the code in "mainpage.html," then it will address the code in "objectPanel.js," then it will address "index.html" and "registerpage.html." \\
 
 "mainpage.html" \\
 
-Mainpage.html starts with a series of imports. The page imports the kineticjs canvas library, jquery, jquery ui visual editor's canvas javascript code, visual editor's sortable javascript code (for sorting visual code blocks in the visual editor canvas), object creator's javascript code, and animation team's javascript code. \\
+"Mainpage.html" starts with a series of imports. The page imports the kineticjs canvas library, jquery, jquery ui visual editor's canvas javascript code, visual editor's sortable javascript code (for sorting visual code blocks in the visual editor canvas), object creator's javascript code, and animation team's javascript code. \\
 
 Next, we set up the page's basic layout in html. We start by making a div regions for the heading/logo, the main animation canvas, the object browser, and the visual editor canvas. We import the "objectPanel.js" script in this section as well. \\
 
@@ -149,19 +140,27 @@ The next part of the page is an embedded javascript. The script first handles pa
 
 The next part of the script consists of three functions: \\
 
-1) The function "popitupObjc(url)" creates a new window when given the url for a page. This is used to open the object creation page in a new window. Next is the variable declaration, projectCode, an array which stores the JSON representation of the currently open project (or an empty array if no project is open/if a project fails to open). 2) The function loadProject() makes an ajax get request to Sharing Framework's file load.php to get the project json associated with an id. Upon a successful get request, the function obtains the variable 'unstring', a json representation of the project, which is parsed into an array using JSON.parse. The function then loops over this array to add each object to the object browser. 3) \\
+1) The function "popitupObjc(url)" creates a new window when given the url for a page. This is used to open the object creation page in a new window. Next is the variable declaration, projectCode, an array which stores the JSON representation of the currently open project (or an empty array if no project is open/if a project fails to open). 2) The function loadProject() makes an ajax get request to Sharing Framework's file load.php to get the project json associated with an id. Upon a successful get request, the function obtains the variable 'unstring', a json representation of the project, which is parsed into an array using JSON.parse. The function then loops over this array to add each object to the object browser. 3) Lastly, the function "save()" saves the project asynchronously to the server. It prompts the user for a project name and then performs an ajax post request to the server with the parameter 'projectName' tied to the name it prompted the user for and the parameter 'code' tied to the json code for the entire project made in the visual editor. \\
+
+The bottom of the page has several buttons, which are linked to these functions. There is also a play button that is linked to the animation team's main method. \\
 
 "objectPanel.js" \\
+
+"objectPanel.js" provides all of the javascript code for the object browser panel. The code sets up a kinetic js canvas for the image browser and also provides functions for adding images and an array of images (downloaded from the server) to the object browser panel. \\
+
+The script first sets up the kinetic canvas. It makes a kinetic canvas, sizes it, and adds it to the div container for the object browser canvas. Then it does some variable initializations. It makes a new kinetic layer on which to add images called "layer2;" the '2' is appended to avoid conflicts with other teams that named their kinetic layer 'layer'. Then the array 'glow', which stores highlighted images, is initialized. The highlighted images are ones that are being programmed in the visual editor. The array curImgs is initialized to hold all images currently in the object browser. \\
+
+The majority of the code is for the function addImage(src, theX, theY). Add image is a helper function that adds an image to the object browser panel of source 'src' at position ('theX', 'theY'). The function is called from a loop in addImageArray to add images to the object browser or could also be called from outside either to manually add a single object or to test object addition. \\
+
+AddImage() makes a new javascript image and assigns it the source corresponding to parameter 'src'. It also gives the image an onload function that deals with kinetic js functionality. This function adds the object to the kinetic layer and gives it various callback functions to be called on click. The image is first assigned properties like width and height as well as the brighten filter, which allows it to glow/brighten on click. The image is then added to the kinetic layer, which is added to the kinetic stage. The image is then assigned callback functions that highlight and unhighlight it onlick. These functions also add or remove the image to the glow array, which stores currently highlighted images, depending on whether or not the image is currently highlighted. \\
+
+addImageArray(theArray) calls addImage for each image in an array. It handles row and column layout by calling addImage at appropriate x and y coordinates using counters. \\
+
+getGlowingObjects() is an accessor function provided primarily so that the visual editor team can retrieve the objects that are currently highlighted to assign functions to them. It returns the array 'glow'. \\
 
 "index.html" \\
 
 "registerpage.html" \\
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b64d0534cdb3916e40cf45d4baa1ecf2b205d932
 
 %-------------------------------------------------------------------------------------------------------------
 % INDIVIDUAL REFLECTIONS
@@ -185,25 +184,19 @@ If I were to start this project over again the very first thing I would make sur
 If I were to continue on working on this project I would work with other groups in order to get rid of repetitive code and hopefully make it so the code runs more efficiently. The next thing I would want to add to the project would be to have the object names above each object on the object canvas. This isn't something that is necessary but it seems like it would be a nice touch. I would also want to implement a better tutorial system that would point to various elements of the main page and explain how to use them.
 
 \subsection{Kyle Dybdal}
-<<<<<<< HEAD
+
 Edith was a lesson in communication, patience, and flexibility. How we initially assumed the final project to work ended up being very different from what the website ended up being. 
-=======
-<<<<<<< HEAD
-Edith was a lesson in communication, patience, and flexibility. How we initially assumed the final project to work ended up being very different from what the website ended up being. 
-=======
+
 Edith was a lesson in communication, patience, and flexibility. How we initially assumed the final project to work ended up being very different from what the website ended up being.\\
 
 I think the biggest challenge we faced was a lack of familiarity with the technologies we were using. None of us had ever used javascript, HTML, CSS, or PHP before. This meant that most of our time was spent learning (read: fighting with) languages that were brand new to us rather than actually implementing a project. For example, we encountered a bug while implementing save/load functionality. This bug was mainly  due to an error reading and parsing JSON objects. This was a fairly trivial bug that we wouldn't have encountered if we had had more experience with JSON and ajax. Another area in which this lack of familiarity came into play was when it came to communicating and coordinating with other groups. Because we didn't know how the technologies worked, we didn't know what we were supposed to provide for other teams or what they were supposed to provide for us.\\
 
-From this project, I will take away the importance of communication with the other teams/individuals working on a project. In a situation where everyone's responsibilities are not completely clear, it becomes imperative that you can always confirm your expectations with someone else. That way, you aren't left trying to fit a three prong plug an a two prong outlet, so to speak. I've also learned a lot about Git, HTML & CSS, and how to implement good design principles. I've also learned that beauty(or functionality) is most definitely in the eye of the beholder, and that one must be willing to compromise in during the design process.\\
+From this project, I will take away the importance of communication with the other teams/individuals working on a project. In a situation where everyone's responsibilities are not completely clear, it becomes imperative that you can always confirm your expectations with someone else. That way, you aren't left trying to fit a three prong plug an a two prong outlet, so to speak. I've also learned a lot about Git, HTML and CSS, and how to implement good design principles. I've also learned that beauty(or functionality) is most definitely in the eye of the beholder, and that one must be willing to compromise in during the design process.\\
 
 The process started out as a more traditional waterfall approach. We began by writing very clear and specific requirements, moved on to the design step, and then everything fell apart when it came to the actual implementation. At that point, development more resembled that of an Agile process. We would have objectives that we wanted to complete for a given week, and requirements would change based on how the other teams changed their own implementation. In terms of design, I tried my best to follow Shneiderman's rules of UI design.\\
 
 If I were to start this project over again, I would have waited a few years until I had enough experience with web languages under my belt to attempt such an endeavor. In all seriousness, I would have practiced with the technologies a lot more before ever attempting to implement anything. The lack of familiarity hampered every step, from requirements planning to actual implementation. If I were to continue working on it, I would love to make everything feel much more intuitive. Edith is fairly hard to use at this stage, and I would love to make it as approachable as possible. If our goal is introducing people to programming, making that introduction prohibitively complicated defeats its original purpose.
 
-
->>>>>>> ebfabc9cb7e29d6b65ced837092ae4827c4e0817
->>>>>>> b64d0534cdb3916e40cf45d4baa1ecf2b205d932
 
 \subsection{Billy Rathje}
 
