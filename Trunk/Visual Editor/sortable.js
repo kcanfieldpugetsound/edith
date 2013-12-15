@@ -22,7 +22,7 @@ function sorter()
 		var rectGhost = (shape.getChildren()).toArray();
         var rect = rectGhost[0];
         //console.log(rect.getY());
-        console.log(shape);
+        //console.log(shape);
 		orderPairing.push({id:shape.getId(), yPos: shape.getY() + rect.getY(), jsText: shape.getAttr('jsText')}); // pushes both attr. of the things in the box class
 		});
 	
