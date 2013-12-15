@@ -1,3 +1,4 @@
+
 %@author Brandon Roberts, Nate Olderman, Billy Rathje, DJ Maguddayao, Kyle Dybdal
 %@date 9/23/13
 
@@ -44,24 +45,81 @@ We began with the functionality of receiving JSON objects, adding a time to them
 
 Our process was effective at developing functioning software but very ineffective because we created software that was never used or even thrown away.  We mostly implemented console log testing and used JSHint.  Our program works because the main page displays all canvases as well as allowing the other modules to function correctly on them.  The object panel at the bottom of the screen also displays the objects correctly.  Console log testing was effective for showing us how the page interprets the information that we were displaying.  JSHint was effective at showing us syntax errors in our code.  At times console log testing was ineffective at pointing out why our code was not functioning.  \\
 
+Because of how collaborative our process model was, we also made frequent use of pair programming. We did the majority of programming together as a group, and while individuals often wrote sections of code, we would each look at each others’ code either as it was being written or immediately after. This helped both to catch bugs and to ensure that everybody understood the entire code base. \\
+
+We did both formal testing and informal testing throughout the process of putting together the project. Formal testing involved static analysis and unit tests designed by another group. These helped resolve bugs, but our project specifications changed drastically after testing, so we employed frequent informal testing as an adjunct. This formal testing involved printing and manually interrogating the state of all data structures we produced. Because story creator passes data to multiple teams, ensuring that data structures such as the array that holds highlighted objects are working correctly is imperative. We typically investigated the state of these data structures with multiple conditions (often looking closely at boundary conditions like zero items, several items, one items) to ensure that they worked correctly. However, since the majority of our work involved designing the central website, the vast majority of testing involved simply viewing the website to make sure that it displayed properly. There is no direct way to test, for example, whether object images fail to load except through manual investigation. We frequently examined our interface carefully and by hand to ensure it displayed well, looked to the browser debug console for hidden (or sometimes clear) errors, and tested the website in several browsers and configurations (relatively simple because we all use different browser configurations) to ensure that the implementation was robust. \\
+
+
+
 The following responsibilities are based on the components of the final product: \\
 
 Nate was responsible for how the various canvases were drawn on the Edith main page as well as their relative sizes to the window. He implemented the canvas' resizing capability whenever the webpage window is resized. He also worked on various bug fixes, clean-up of antiquated code, and implementation of many small functionalities (ie. button method calls). He helped implement the functionality of getting objects from the object creation page into the object canvas below the main canvas. He then wrote and implemented the tutorial on the webpage. \\
 
 Brandon was responsible for helping the Object Creator module and Sharing Framework gain access to the database with javascript.  This included writing load and save functions for the main page that sent and retrieved data.  Brandon was also in charge of porting the Visual Editor code and the Object Creator code so that it would function on the main page.  Finally Brandon was in charge of loading data from the database in order to draw objects on the object canvas that were clickable.  \\
 
+Kyle was responsible for much of the design of the website. This process started with making a website mockup, and then designing a logo and color scheme. Lots of work was done with HTML and CSS, putting together the general layout of the page. The goal of the design was to be minimalist and out of the way, keeping as clean of a workspace as possible. He also created the login and registration page.
+
+
+Billy was responsible for designing, styling, and implementing the object browser panel. He wrote the code for displaying objects in a grid, adding objects individually and from an array, and for sizing/positioning objects. He also worked on CSS styling for the object panel. He implemented a Kinetic JS canvas so that the panel could display objects. He also implemented the "glow" or highlighting functionality which highlights objects and places highlighted objects in an array that the Visual Editor accesses through an accessor method. He worked on some of the data retrieval code (particularly for displaying objects designed in the Object Creation panel) as well as server setup/testing. He also contributed to some of the page layout/design.
 
 
 %-------------------------------------------------------------------------------------------------------------
 % REQUIREMENTS EVALUATION
 %-------------------------------------------------------------------------------------------------------------
 \section{Requirements Evaluation}
+\subsection{Functional Requirements}
+\begin{itemize}
+\item "Navigate Story Files" - The story teller will have the ability to start a new story file, save a story, and close a story.\ 
+This is a helpful requirement because it allows the entire story to be able to function.  This enables the story teller to begin their story and come back to it later.  We were not able to complete the "close a story" option.  The current story is set as a project and is loaded from the sharing framework.  The option to close a story was not completely necessary in the end because the user still has the option to make a new story and begin it.
 
+\item "Start a new story file" - The story teller will select an option to create a new story.\
+The option to start a new story is not available.  This requirement was not defined well because the "starting a new story file" does not specify if the old one is saved or if there is an option to use pieces from the previous story.
 
+\item "Save a story" - The story teller selects the option to save the story.  A representation of the story and its objects, scripts, and settings is sent to the Sharing Framework.\
+This was a very helpful requirement because it allows a previous story to be loaded onto the screen after being saved.  It was very effective because it was a great way for ajax to be used in order to retrieve necessary information from the database.
+
+\item "Close a story" -  The user selects an option to close the story.  The story is removed from the story editor and animations, scripts, and objects associated with the story are cleared from their respective editors.\
+The ability to close a story is not an option.  This requirement seemed unnecessary because the story teller can load a separate story without closing an old one.  At the end of the process closing a story did not seem very important.
+
+\item "Create an object" - Storyteller will go to the Object Creator screen. Storyteller will select an option to create an object.  Storyteller will use the mouse to drag the object. Storyteller will choose where to place the object. Storyteller will drop the object in that place.\ The ability to create objects and add them to the scene is fundamental to making edith a functioning visual programming system. As a result, this requirement was very important, although it would have been helpful to split it into two requirements, one for making objects and one for adding objects, since these both ended up being complicated functions designed by different teams. The final implementation worked such that an object was created in the object creation window designed by the Object team. When finished, this was uploaded to the server and added to the object browser through an ajax call to the server from the main page designed by the Story Creation team. Adding objects to the canvas is done programmatically within the code made by the Visual Editor team. In the visual editor panel is a function addObject() which adds an object to the animation window. As a result, there was no need to use a drag and drop interface to move objects to the canvas. The Visual Editing team decided on this option in order to allow objects to be added as part of an animation; with the drag-and-drop approach, objects would have had to be present at the start of the animation to appear in the story.
+
+\item "Remove an object" - selects an option to delete objects. User selects the object to delete. The object disappears  from the scene.
+\ This function is not present in the final implementation. It was originally intended to be used with the previous functional requirement so that if an object was dragged onto the animation canvas it could be removed from the canvas. Since objects are no longer dragged onto the canvas, there is no need for a remove feature. This functional requirement would have been useful had we kept the old implementation, but it is no longer necessary. If we had broken up the previous functional requirement into two functional requirements, we might have been able to decrease the ambiguity surrounding what it means to "remove" an object. We do not need a feature to remove objects from the animation canvas, but removing objects from the object browser might have been a nice feature. If we had decoupled the previous requirement into create an object and add an object to scene, we might have thought to have added functional requirements for remove object and  remove object from scene. "Remove object" may have been a nice feature for the final implementation.
+
+\item "Move an object" - User selects an option to move objects. User drags the object from its original location to a new one. (This is not an animation)
+\ Since the ability to drag and drop objects (see last two requirements) is no longer part of the final implementation, there was no need to implement the "move an object" functional requirement. It would have been used to position objects using drag-and-drop on the animation canvas. Instead, this functionality is handled via parameters in the Visual Editor's addObject() function. This approach is similar, and is probably better for teaching users early on how to program using function parameters. The old requirement would have been useful, however, had we kept the drag-and-drop approach.
+
+\item "Develop or edit a script" - Storyteller interacts with the visual editor to develop a new script. Storyteller selects a specific action which is an individual script (All of the scripts interact a main loop).
+\ The ability to develop or edit a script is central to the final version of Edith. Creating an animation centers around using the visual editor to develop scripts that animate objects as well as a main method that calls these scripts. This requirement was met. The Visual Editing team developed a visual programming interface for writing functions, loops, conditionals, and program logic which can be combined together into scripts. The Visual Editor assigns scripts to objects that are highlighted in the object panel designed by the Story Creation team; if no object is highlighted, the script is not used for any particular object (like a global/scene wide function) or is part of the main method. The implementation of this requirement changed somewhat over time. Initially the Story Creation team was going to assign time values to functions made in the Visual Editor, but timing is so essential to visual editor functions and scripts that Visual Editor incorporated timing parameters into the Visual Editor interface.
+
+\item "Delete a script" - User interacts with the visual editor to delete a script.
+\ In the final version of Edith there is no ability to delete a full script since there is no interface displaying full scripts. However, this functional requirement can be achieved; a user could interact with teh visual editor to delete all the code for a single object or for an entire story, then save the story to record the deletions. There are options to delete functions and other program logic from the Visual Editor panel. This is done simply by dragging function/logic/programming blocks out of the right half of the panel. The functional requirement was useful because the functionality it proposes is present in the final version of Edith. However, it may have been better in retrospect to have used a finer level of granularity in descrbing the functionality and discussed deleting individual logic/object/functions.
+
+\item "Save an object or script" - The user wants to save an object or script for reuse. A representation of the object or script is saved.\
+We were able to save objects for reuse by having js functions "grab" the object exported by the Object Creator module. We did not implement saving of scripts individually; scripts must be produced on the fly for each new project. However, this appears to be something that would fall under Visual Editor's responsibilities rather than our own.
+
+\item "Animate an object" -  User selects a script from the visual editor. User drags or otherwise attaches the script to an object in the scene.\
+This requirement changed over time due to changes in the interaction with and responsibilities of the Visual Editor module. Animation was achieved by having standard functions that apply to all objects that take the target object as a parameter. The Storyteller can highlight multiple objects for a function in the visual editor to act upon.
+
+\item "Play story" - Storyteller selects a "play scene" option. The story plays for the storyteller in the animation viewer at the beginning.\
+%Can we play a story yet?%
+
+\item "Share a story" - User selects a "publish story option." The story is converted to a representation that the sharing framework can read. The story representation is sent to the sharing framework so that it can share the scene.
+This was achieved through the use of ajax communicating with the PHP on the server set up by the sharing team. The project is saved as a JSON object, which can then be loaded again.
+\end{itemize}
+
+\subsection{Non-Functional Requirements}
+\begin{itemize}
+\item "Ease of Use" - 	The number of errors made by experienced users may differ significantly from those made by first-time or novice user. An experienced user should make no more than 3-5 errors per hour. While there is some complexity to the story editor, an experienced user should not have trouble knowing which options to choose to add objects or play the scene.
+\ We never performed any studies to quantify the number of errors made when using Edith, although this could be future work for the project. Judging from anecdotal evidence, it appeared that the system was relatively easy to use (with some instruction from the various teams) during integration demos. Since most of the teams were using parts of Edith designed relatively recently, they could be considered "novice users." Their general ability to learn and use the system readily suggests that Edith is relatively simple for novices to learn. In the sense that this nonfunctional requirement is specific, it is a useful requirement, but in the sense that testing it involves procedures that we never did, it may have been too difficult a requirement to adhere to effectively.
+
+\end{itemize}
 %-------------------------------------------------------------------------------------------------------------
 % SYSTEM DESIGN AND ARCHITECTURE
 %-------------------------------------------------------------------------------------------------------------
 \section{System Design and Architecture}
+
+
 
 
 %-------------------------------------------------------------------------------------------------------------
@@ -85,11 +143,15 @@ Personally I mostly applied the iterative software development technique. I trie
 If I were to start this project over again the very first thing I would make sure to do differently would be to communicate more with other groups during the requirements specification stage in order to catch the similarities in our requirements. I would also do a lot more research and teach myself more about javascript, JSON, and Ajax earlier on in the semester. \\
 If I were to continue on working on this project I would work with other groups in order to get rid of repetitive code and hopefully make it so the code runs more efficiently. The next thing I would want to add to the project would be to have the object names above each object on the object canvas. This isn't something that is necessary but it seems like it would be a nice touch. I would also want to implement a better tutorial system that would point to various elements of the main page and explain how to use them.
 
-
+\subsection{Kyle Dybdal}
+Edith was a lesson in communication, patience, and flexibility. How we initially assumed the final project to work ended up being very different from what the website ended up being. 
 %-------------------------------------------------------------------------------------------------------------
 % GLOSSARY AND REFERENCES 
 %-------------------------------------------------------------------------------------------------------------
 \section{Glossary and References}
 
+\begin{itemize}
+\item Script:  A small program made in the visual editor that controls the object or scene event to be displayed.
+\end{itemize}
 
 \end{document}
