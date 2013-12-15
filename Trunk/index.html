@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="story_creator.css">
+	
 	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src='Visual Editor/visualEditorCanvas.js' type = 'text/javascript'></script>
@@ -24,9 +25,6 @@
 
 	<div class="animationContainer">
 		<canvas id="mainCanvas"></canvas>
-		<div id = 'tabs'>
-			<div id = 'container2'></div>
-		</div>
 	</div>
 		
 	<div class="objectContainer">
@@ -92,18 +90,18 @@
 	/
 	**/
 	function loadProject() {
-		loadBlocks(json);
-		// var objectName = prompt("Please enter the name of your project:");
+		//loadBlocks(json);
+		var objectName = prompt("Please enter the name of your project:");
 		
-		// $.getJSON("functions/load.php", {id:objectName}, function(data) {
-		// 	var unstring = JSON.parse(data.pCode);
-		// 	//console.log("After Parsing with database data -------------"+unstring);
-		// 	addImage(unstring[0][0], 300, 150);		
+		$.getJSON("functions/load.php", {id:objectName}, function(data) {
+			var unstring = JSON.parse(data.pCode);
+			//console.log("After Parsing with database data -------------"+unstring);
+			addImage(unstring[0][0], 300, 150);		
 			
-		// 	//for(var j = 0; j<data.length; j++){//go through the list of 
-		// 	//	addImage(unstring[0][0], 300, 150);		 //get the value out of the two dimensional array at the right spot (the value is the key of the array)
-		// 	//}
-		// });
+			//for(var j = 0; j<data.length; j++){//go through the list of 
+			//	addImage(unstring[0][0], 300, 150);		 //get the value out of the two dimensional array at the right spot (the value is the key of the array)
+			//}
+		});
 	}
 	/**
 	/Save the information for save.php to put to the server's database
@@ -113,20 +111,20 @@
 	if(sorter()) {
 		cleanUp(sortArray);
 	}
-	// var projectId = prompt("Please enter the name of the project you are saving to:");
+	var projectId = prompt("Please enter the name of the project you are saving to:");
 	
-	// 	$.ajax({
-	// 			url: 'Sharing Framework/edith/functions/save.php',
-	// 			type: 'POST',
-	// 			data: {code: json, projectName: projectId}, //update what the project code (The json that we want to save) and name are
-	// 			dataType: JSON,
-	// 			success: function(){
-	// 					console.log("Succsessful post!");
-	// 			},
-	// 			error: function(){
-	// 					console.log("Failed post!");
-	// 			}
-	// 	});
+		$.ajax({
+				url: 'Sharing Framework/edith/functions/save.php',
+				type: 'POST',
+				data: {code: json, projectName: projectId}, //update what the project code (The json that we want to save) and name are
+				dataType: JSON,
+				success: function(){
+						console.log("Succsessful post!");
+				},
+				error: function(){
+						console.log("Failed post!");
+				}
+		});
 	}
 	
 </script>

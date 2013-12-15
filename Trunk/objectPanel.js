@@ -17,7 +17,6 @@
 			    x: theX,
 			    y: theY,
 			    image: imgObj,
-			    name: src,
 			    width: 100,
 			    height: 100,
 			    listening: true,
@@ -25,27 +24,27 @@
  				filterBrightness: 0
 			  });
 
-				layer2.add(img);
-		 		objectStage.add(layer2);
+			layer2.add(img);
+		 	objectStage.add(layer2);
 
-			 	img.on('click', function() {
-		      		console.log("Click!");
-		      		if(glow.indexOf(img) >= 0)
-		      		{
-		      			var x = glow.indexOf(img);
-		      			glow.splice(x, 1);
-		      			img.setFilterBrightness(0);
-		      			layer2.batchDraw();
-		      		}
-		      		else {
-		      			glow.push(img);
-		      			img.setFilterBrightness(100);
-		      			layer2.batchDraw();
-		      		}
-		      	});
-			};
+		 	img.on('click', function() {
+	      	if(glow.indexOf(img) >= 0)
+	      	{
+	      		var x = glow.indexOf(img);
+	      		glow.splice(x, 1);
+	      		img.setFilterBrightness(0);
+	      		layer2.batchDraw();
+	      	}
+	      	else {
+	      		glow.push(img);
+	      		img.setFilterBrightness(100);
+	      		layer2.batchDraw();
+	      	}
+	      });
+
+		};
 		imgObj.src = src;
-	    //console.log(imgObj.src);
+	    console.log(imgObj.src);
 	}
 
 	var imgs = ["mario.jpg", "luigi.jpg", "kitten.png", "mario.jpg", "luigi.jpg", "mario.jpg"];
