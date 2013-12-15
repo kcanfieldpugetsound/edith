@@ -57,15 +57,10 @@ Nate was responsible for how the various canvases were drawn on the Edith main p
 
 Brandon was responsible for helping the Object Creator module and Sharing Framework gain access to the database with javascript.  This included writing load and save functions for the main page that sent and retrieved data.  Brandon was also in charge of porting the Visual Editor code and the Object Creator code so that it would function on the main page.  Finally Brandon was in charge of loading data from the database in order to draw objects on the object canvas that were clickable.  \\
 
-<<<<<<< HEAD
 Kyle was responsible for much of the design of the website. This process started with making a website mockup, and then designing a logo and color scheme. Lots of work was done with HTML and CSS, putting together the general layout of the page. The goal of the design was to be minimalist and out of the way, keeping as clean of a workspace as possible. He also created the login and registration page.
 
 
-=======
 Billy was responsible for designing, styling, and implementing the object browser panel. He wrote the code for displaying objects in a grid, adding objects individually and from an array, and for sizing/positioning objects. He also worked on CSS styling for the object panel. He implemented a Kinetic JS canvas so that the panel could display objects. He also implemented the "glow" or highlighting functionality which highlights objects and places highlighted objects in an array that the Visual Editor accesses through an accessor method. He worked on some of the data retrieval code (particularly for displaying objects designed in the Object Creation panel) as well as server setup/testing. He also contributed to some of the page layout/design.
-
-\\
->>>>>>> 70c27ea1704a32f284fcbec5659c86eb326ab640
 
 
 %-------------------------------------------------------------------------------------------------------------
@@ -98,7 +93,7 @@ The ability to close a story is not an option.  This requirement seemed unnecess
 \ The ability to develop or edit a script is central to the final version of Edith. Creating an animation centers around using the visual editor to develop scripts that animate objects as well as a main method that calls these scripts. This requirement was met. The Visual Editing team developed a visual programming interface for writing functions, loops, conditionals, and program logic which can be combined together into scripts. The Visual Editor assigns scripts to objects that are highlighted in the object panel designed by the Story Creation team; if no object is highlighted, the script is not used for any particular object (like a global/scene wide function) or is part of the main method. The implementation of this requirement changed somewhat over time. Initially the Story Creation team was going to assign time values to functions made in the Visual Editor, but timing is so essential to visual editor functions and scripts that Visual Editor incorporated timing parameters into the Visual Editor interface.
 
 \item "Delete a script" - User interacts with the visual editor to delete a script.
-<<<<<<< HEAD
+\ In the final version of Edith there is no ability to delete a full script since there is no interface displaying full scripts. However, this functional requirement can be achieved; a user could interact with teh visual editor to delete all the code for a single object or for an entire story, then save the story to record the deletions. There are options to delete functions and other program logic from the Visual Editor panel. This is done simply by dragging function/logic/programming blocks out of the right half of the panel. The functional requirement was useful because the functionality it proposes is present in the final version of Edith. However, it may have been better in retrospect to have used a finer level of granularity in descrbing the functionality and discussed deleting individual logic/object/functions.
 
 \item "Save an object or script" - The user wants to save an object or script for reuse. A representation of the object or script is saved.\
 We were able to save objects for reuse by having js functions "grab" the object exported by the Object Creator module. We did not implement saving of scripts individually; scripts must be produced on the fly for each new project. However, this appears to be something that would fall under Visual Editor's responsibilities rather than our own.
@@ -108,13 +103,7 @@ This requirement changed over time due to changes in the interaction with and re
 
 \item "Play story" - Storyteller selects a "play scene" option. The story plays for the storyteller in the animation viewer at the beginning.\
 %Can we play a story yet?%
-=======
-\ In the final version of Edith there is no ability to delete a full script since there is no interface displaying full scripts. However, this functional requirement can be achieved; a user could interact with teh visual editor to delete all the code for a single object or for an entire story, then save the story to record the deletions. There are options to delete functions and other program logic from the Visual Editor panel. This is done simply by dragging function/logic/programming blocks out of the right half of the panel. The functional requirement was useful because the functionality it proposes is present in the final version of Edith. However, it may have been better in retrospect to have used a finer level of granularity in descrbing the functionality and discussed deleting individual logic/object/functions.
 
-\item "Save an object or script" - The user wants to save an object or script for reuse. A representation of the object or script is saved.
-\item "Animate an object" -  User selects a script from the visual editor. User drags or otherwise attaches the script to an object in the scene.
-\item "Play story" - Storyteller selects a "play scene" option. The story plays for the storyteller in the animation viewer at the beginning.
->>>>>>> 70c27ea1704a32f284fcbec5659c86eb326ab640
 \item "Share a story" - User selects a "publish story option." The story is converted to a representation that the sharing framework can read. The story representation is sent to the sharing framework so that it can share the scene.
 This was achieved through the use of ajax communicating with the PHP on the server set up by the sharing team. The project is saved as a JSON object, which can then be loaded again.
 \end{itemize}
@@ -129,6 +118,8 @@ This was achieved through the use of ajax communicating with the PHP on the serv
 % SYSTEM DESIGN AND ARCHITECTURE
 %-------------------------------------------------------------------------------------------------------------
 \section{System Design and Architecture}
+
+
 
 
 %-------------------------------------------------------------------------------------------------------------
