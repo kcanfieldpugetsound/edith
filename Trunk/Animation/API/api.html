@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Edith Animation API</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="OWMX-1 - FREE HTML5 AND CSS3 TEMPLATE Geek-only friendly, W3C-compliant, CSS3- and HTML5-based website template with a Creative Commons Attribution-Share Alike 3.0 Unported License.">
+		<meta name="robots" content="index,follow,noarchive">
+		<link rel="stylesheet" href="s/a.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="a">
+		
+			<header>
+	  	    	
+	  	    	<a title="Go to Homepage"><strong>EDITH</strong> Animation API</a>
+	  	    
+	  	    	<strong>EDITH</strong> Animation API
+		    	<p>Import the Animation library with</br>src="animationBlocks.js"</p>
+			</header>
+		
+		
+			<div id="b">
+		    	 <!--
+		    	 <article>
+					<h1>USAGE DESCRIPTION OF WEBSITE</h1>
+					<img src="i/image-1.png" alt="#" height="75" width="75"/>
+					
+					<h2>General stuff</h2>
+					<p>How to use this shit</p>
+				-->
+
+
+				<h4>wrapHTMLCanvasToOcanvas</h4>
+					<strong>oCanvas wrapHTMLCanvasToOcanvas(HTML5canvasID, background)</strong>
+					
+					<p>Wraps an instance of Ocanvas around a HTML 5 canvas. You need to do this in order to create sprites. (see addSprite)</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>HTML5canvasID</td>
+									<td>string</td>
+									<td>You can get this by calling document.getElementById("myCanvas") where "myCanvas is the ID of your HTML5 canvas.</td>
+								</tr>
+								<tr>
+									<td>background</td>
+									<td>string</td>
+									<td>sets the canvas background to the hex Type (#FFFFFF is a white background).</td>
+																	<tr>
+									<td>RETURNS</td>
+									<td>oCanvas</td>
+									<td>Returns the oCanvas object. you need this when creating a sprite.</td>
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+									<h4>addSprite</h4>
+					<strong>Sprite addSprite(theOCanvas, image, width, height, xcoord, ycoord)</strong>
+					
+					<p>Adds a sprite onto the ocanvas!</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>theOCanvas</td>
+									<td>string</td>
+									<td>This is returned from wrapHTMLCanvasToOcanvas(HTML5canvasID, background)</td>
+								</tr>
+								<tr>
+									<td>image</td>
+									<td>string</td>
+									<td>The image path to the image for the sprite as a string.</td>
+								</tr>
+								<tr>
+									<td>Width</td>
+									<td>int</td>
+									<td>The width for the sprite.</td>
+								</tr>
+									<tr>
+									<td>height</td>
+									<td>int</td>
+									<td>The height for the sprite.</td>
+								</tr>
+								<tr>
+									<td>xcoord</td>
+									<td>int</td>
+									<td>The x coordinate for the sprite.</td>
+								</tr>
+									<tr>
+									<td>ycoord</td>
+									<td>int</td>
+									<td>The y coordinate for the sprite.</td>
+								</tr>
+								<tr>
+									<td>RETURNS</td>
+									<td>Sprite</td>
+									<td>Returns a sprite object! you can now call animations with this object and that sprite will be animated!</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+					<h4>main</h4>
+					<strong>main(theStringToParse)</strong>
+					
+					<p>Parses the string and runs as javascript!</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>theStringToParse</td>
+									<td>string</td>
+									<td>the string with all of the javascript</td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+
+
+																				<h4>Move</h4>
+					<strong>move(sprites, dur, x, y, rotateClockwise, degrees)</strong>
+					
+					<p>This method is a generic animation that will animate over the given paramaters.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The Array of sprites to be animated</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>x</td>
+									<td>int</td>
+									<td>the distance of the movement in the x</td>
+								</tr>
+																<tr>
+									<td>y</td>
+									<td>int</td>
+									<td>the distance of the movement in the y</td>
+								</tr>
+																<tr>
+									<td>rotateClockwise</td>
+									<td>boolean</td>
+									<td>if ture, the roatation will be clockwise otherwise counter clockwise.</td>
+								</tr>
+
+																<tr>
+									<td>degrees</td>
+									<td>int</td>
+									<td>the angle of rotation</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+					<h4>Wait</h4>
+					<strong>wait(sprites, dur)</strong>
+					
+					<p>This method is basically a blocking call that will make the array of sprites wait for the given duration.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The sprite to wait (blocking)</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of the wait in milliseconds</td>
+								</tr>
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+				
+					<h4>Rotate</h4>
+					<strong>rotate(sprites, dur, angle, clockwise)</strong>
+					
+					<p>This method rotates the array of sprites either clockwise or counter clockwise.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be rotated</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>angle</td>
+									<td>int</td>
+									<td>the angle the sprite will rotate</td>
+								</tr>
+								<tr>
+									<td>clockwise</td>
+									<td>boolean</td>
+									<td>if true, the sprite will rotate clockwise</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+					<h4>Jump</h4>
+					<strong>jump(sprites, dur, height)</strong>
+					
+					<p>This method makes an array of sprites jump. This is basically a move up and move down put together to create a jump.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to jump</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>height</td>
+									<td>int</td>
+									<td>the height of the jump</td>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+					<h4>Move Left</h4>
+					<strong>movL(sprites, dur, distance)</strong>
+					
+					<p>This method makes an array of sprites move left.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be moved to the left</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>the distance of the movement</td>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+										<h4>Move Right</h4>
+					<strong>movR(sprites, dur, distance)</strong>
+					
+					<p>This method makes an array of sprites move right.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be moved to the right</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>the distance of the movement</td>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+															<h4>Move Up</h4>
+					<strong>movU(sprites, dur, distance)</strong>
+					
+					<p>This method makes an array of sprites move up.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be moved up</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>the distance of the movement</td>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+															<h4>Move Down</h4>
+					<strong>movD(sprites, dur, distance)</strong>
+					
+					<p>This method makes an array of sprites move down.</p>
+					
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>sprites</td>
+									<td>Sprite[]</td>
+									<td>The array of sprites to be moved down/td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>duration of animation in milliseconds</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>the distance of the movement</td>
+
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+				<!-- 	
+					<h4>Move Right</h4>
+					<strong>moveR = {"functionName":"moveR", "imageName":"mario.jpg", "soundName":"null", "duration":"1000", "distance":"175"}</strong>
+					<p>Description of the moveR animation</p>
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>functionName</td>
+									<td>string</td>
+									<td>description1</td>
+								</tr>
+								<tr>
+									<td>imageName</td>
+									<td>string</td>
+									<td>description2</td>
+								</tr>
+								<tr>
+									<td>soundName</td>
+									<td>string</td>
+									<td>description3</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>description4</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>description5</td>
+								</tr>
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+					<h4>Move Left</h4>
+					<strong>moveL = {"functionName":"moveL", "imageName":"mario.jpg", "soundName":"null", "duration":"1000", "distance":"350"}</strong>
+					<p>Description of the moveL animation</p>
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>functionName</td>
+									<td>string</td>
+									<td>description1</td>
+								</tr>
+								<tr>
+									<td>imageName</td>
+									<td>string</td>
+									<td>description2</td>
+								</tr>
+								<tr>
+									<td>soundName</td>
+									<td>string</td>
+									<td>description3</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>description4</td>
+								</tr>
+								<tr>
+									<td>distance</td>
+									<td>int</td>
+									<td>description5</td>
+								</tr>
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+					<h4>Move Up</h4>
+					<strong>moveU = {"functionName":"moveU", "imageName":"mario.jpg", "soundName":"null", "duration":"100", "height":"150"}</strong>
+					<p>Description of the moveU animation</p>
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>functionName</td>
+									<td>string</td>
+									<td>description1</td>
+								</tr>
+								<tr>
+									<td>imageName</td>
+									<td>string</td>
+									<td>description2</td>
+								</tr>
+								<tr>
+									<td>soundName</td>
+									<td>string</td>
+									<td>description3</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>description4</td>
+								</tr>
+								<tr>
+									<td>height</td>
+									<td>int</td>
+									<td>description5</td>
+								</tr>
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+					<h4>Move Down</h4>
+					<strong>moveD = {"functionName":"moveD", "imageName":"mario.jpg", "soundName":"null", "duration":"100", "height":"150"}</strong>
+					<p>Description of the moveD animation</p>
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>functionName</td>
+									<td>string</td>
+									<td>description1</td>
+								</tr>
+								<tr>
+									<td>imageName</td>
+									<td>string</td>
+									<td>description2</td>
+								</tr>
+								<tr>
+									<td>soundName</td>
+									<td>string</td>
+									<td>description3</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>description4</td>
+								</tr>
+								<tr>
+									<td>height</td>
+									<td>int</td>
+									<td>description5</td>
+								</tr>
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a>
+
+
+					<h4>Long Jump</h4>
+					<strong>longJump = {"functionName":"longJump", "imageName":"mario.jpg", "soundName":"null", "duration":"200", "distance":"350", height":"85"}</strong>
+					<p>Description of the longJump animation</p>
+					<code>
+						<table>
+							<tbody>
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td>functionName</td>
+									<td>string</td>
+									<td>description1</td>
+								</tr>
+								<tr>
+									<td>imageName</td>
+									<td>string</td>
+									<td>description2</td>
+								</tr>
+								<tr>
+									<td>soundName</td>
+									<td>string</td>
+									<td>description3</td>
+								</tr>
+								<tr>
+									<td>duration</td>
+									<td>int</td>
+									<td>description4</td>
+								</tr>
+								<tr>
+									<td>height</td>
+									<td>int</td>
+									<td>description5</td>
+								</tr>
+							</tbody>
+						</table>
+					</code>
+					
+					<a href="#" class=".back-to-top">Back to Top</a> -->
+
+
+					
+
+
+				</article>
+<!--
+				<aside>
+					<h4>Search</h4>
+					No actual search implemented yet.
+					
+					<form action="#" class="s">
+						<input name="search" type="text" Type="Type term and hit enter...">
+					</form>
+					
+
+					<form method="get" action="http://www.google.com/search">
+   						<input type="text" name="q" size="31"
+     						maxlength="255" Type="" />
+    					<input type="submit" Type="Google Search" />
+    					<input type="radio" name="sitesearch" Type="" />
+    					<input type="radio" name="sitesearch"
+     						Type="yoursite.com" checked />My site
+					</form>
+
+					<nav>
+						<h4>Navigation</h4>
+						<ul>
+							<li><a href="#">Lorem</a></li>
+							<li><a href="#">Ipsum</a></li>
+							<li class="active"><a href="#">Dolor Sit</a>
+								<ul>
+									<li><a href="#">Amet</a></li>
+									<li><a href="#">Amet</a></li>
+								</ul>
+							</li>
+							<li><a href="#">Lorem</a></li>
+						<li><a href="#">Ipsum</a></li>
+						</ul>
+					</nav>
+
+					 go to top button jquery 
+<a href="#" class=".back-to-top">Back to Top</a>
+
+<script>
+$(document).ready(function() {
+    var offset = 220;
+    var duration = 500;
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > offset) {
+            $('.back-to-top').fadeIn(duration);
+        } else {
+            $('.back-to-top').fadeOut(duration);
+        }</
+    });
+    
+    $('.back-to-top').click(function(event) {
+        event.preventDefault();
+        $('html, body').animate({scrollTop: 0}, duration);
+        return false;
+    })
+});
+
+				</aside>
+-->
+
+			</div>
+
+			<footer>
+				<!-- 
+				### LICENSE
+				############
+	
+				This W3C-compliant, CSS-based website template has a 
+				Creative Commons Attribution-Share Alike 3.0 Unported License.
+
+				http://creativecommons.org/licenses/by-sa/3.0/
+
+				In short, you must:
+				+ keep the credit links in the footer intact
+				+ not change the license (e.g. copywriting my work)
+
+
+				### BREAKING THE LICENSE
+				#########################
+
+				Breaking the rules of the license will result in me initiating
+				the necessary legal procedures and publicly shaming you here:
+	
+				http://owmx.com/hall-of-shame/
+				-->
+				<p>Template by <a href="http://jonas.me/" title="Profile of Jonas Jacek">Jonas Jared Jacek</a> of <a href="http://owmx.com/" title="Free HTML5 &amp; CSS3 Web 	Templates">owmx.com</a>.</p>
+				<p>Remixed by Calder Herro Whiteley for 	UPS CSCI240 Edith Animation Team.</p>
+			</footer>
+		</div>
+	</body>
+</html>
