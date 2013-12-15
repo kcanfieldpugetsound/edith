@@ -359,8 +359,16 @@
     if (ids === "addSprite") {
       x = "";
       for (var i = 0; i < getGlowingObjects().length; i ++) {
-        xpos = getGlowingObjects()[i].attrs.x;
-        ypos = getGlowingObjects()[i].attrs.y;
+        xpos = prompt("Please enter desired x-coordinate of object.","");
+        while (numberRegex.test(xpos) == false){
+          alert("Please input numbers only.")
+          xpos = prompt("Please enter desired x-coordinate of object.","");
+        }
+        ypos = prompt("Please enter desired y-coordinate of object.","");
+        while (numberRegex.test(ypos) == false){
+          alert("Please input numbers only.")
+          ypos = prompt("Please enter desired y-coordinate of object.","");
+        }
         width = getGlowingObjects()[i].attrs.width;
         height = getGlowingObjects()[i].attrs.height;
         x = x + "addSprite (oCanvasElement," + "'" + getGlowingObjects()[i].attrs.name + "', " + width + ", " + height + ", " + xpos + ", " + ypos + ");\n";
