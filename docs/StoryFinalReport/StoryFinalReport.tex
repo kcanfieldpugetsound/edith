@@ -122,11 +122,25 @@ This was achieved through the use of ajax communicating with the PHP on the serv
 
 \subsection{Low-Level Walkthrough}
 
-Resizing code and server-interfacing code appears in a script on the main Story Creator webpage, "index.html." The object panel is relatively independent from the webpage so its code appears in a seperate file, objectPanel.js, which the webpage imports. This walthrough will first address the code in "index.html," then it will address the code in "objectPanel.js." \\
+Resizing code and server-interfacing code appears in a script on the main Story Creator webpage, "mainpage.html." The object panel is relatively independent from the webpage so its code appears in a seperate file, objectPanel.js, which the webpage imports. There is also login code in the pages "index.html" and "registerpage.html." This walthrough will first address the code in "mainpage.html," then it will address the code in "objectPanel.js," then it will address "index.html" and "reigsterpage.html." \\
 
-"Index.html" 
+"mainpage.html" \\
 
+Mainpage.html starts with a series of imports. The page imports the kineticjs canvas library, jquery, jquery ui visual editor's canvas javascript code, visual editor's sortable javascript code (for sorting visual code blocks in the visual editor canvas), object creator's javascript code, and animation team's javascript code. \\
 
+Next, we set up the page's basic layout in html. We start by making a div regions for the heading/logo, the main animation canvas, the object browser, and the visual editor canvas. We import the "objectPanel.js" script in this section as well. \\
+
+The next part of the page is an embedded javascript. The script first handles page sizing by setting height and width variables for each canvas. There is a function that does this again each time the page is resized so that the canvases resize relative to the overall page size. Sizing is handled by setting canvases to various ratios of the window's current width or height, which is found with the javascript parameters window.innerWidth and window.innerHeight. \\
+
+The next part of the script consists of three functions: \\
+
+1) The function "popitupObjc(url)" creates a new window when given the url for a page. This is used to open the object creation page in a new window. Next is the variable declaration, projectCode, an array which stores the JSON representation of the currently open project (or an empty array if no project is open/if a project fails to open). 2) The function loadProject() makes an ajax get request to Sharing Framework's file load.php to get the project json associated with an id. Upon a successful get request, the function obtains the variable 'unstring', a json representation of the project, which is parsed into an array using JSON.parse. The function then loops over this array to add each object to the object browser. 3) \\
+
+"objectPanel.js" \\
+
+"index.html" \\
+
+"registerpage.html" \\
 
 %-------------------------------------------------------------------------------------------------------------
 % INDIVIDUAL REFLECTIONS
