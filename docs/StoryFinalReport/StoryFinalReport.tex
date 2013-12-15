@@ -1,4 +1,3 @@
-
 %@author Brandon Roberts, Nate Olderman, Billy Rathje, DJ Maguddayao, Kyle Dybdal
 %@date 9/23/13
 
@@ -15,13 +14,13 @@
 %-------------------------------------------------------------------------------------------------------------
 
 \begin{titlepage}
-	\vspace*{\fill} %leave out given verticle space in a document
-	\begin{center}
-		{\Huge Story Creator Final Report}\\ [0.5cm]	%make title huge and have .5cm space in between
-		{\Large Brandon Roberts, Nate Olderman, Billy Rathje, DJ Maguddayao, Kyle Dybdal}\\[0.4cm]
-		\today %put the date that the data is compiled
-	\end{center}
-	\vspace*{\fill}
+        \vspace*{\fill} %leave out given verticle space in a document
+        \begin{center}
+                {\Huge Story Creator Final Report}\\ [0.5cm]        %make title huge and have .5cm space in between
+                {\Large Brandon Roberts, Nate Olderman, Billy Rathje, DJ Maguddayao, Kyle Dybdal}\\[0.4cm]
+                \today %put the date that the data is compiled
+        \end{center}
+        \vspace*{\fill}
 \end{titlepage}
 
 %-------------------------------------------------------------------------------------------------------------
@@ -110,7 +109,7 @@ This was achieved through the use of ajax communicating with the PHP on the serv
 
 \subsection{Non-Functional Requirements}
 \begin{itemize}
-\item "Ease of Use" - 	The number of errors made by experienced users may differ significantly from those made by first-time or novice user. An experienced user should make no more than 3-5 errors per hour. While there is some complexity to the story editor, an experienced user should not have trouble knowing which options to choose to add objects or play the scene.
+\item "Ease of Use" - The number of errors made by experienced users may differ significantly from those made by first-time or novice user. An experienced user should make no more than 3-5 errors per hour. While there is some complexity to the story editor, an experienced user should not have trouble knowing which options to choose to add objects or play the scene.
 \ We never performed any studies to quantify the number of errors made when using Edith, although this could be future work for the project. Judging from anecdotal evidence, it appeared that the system was relatively easy to use (with some instruction from the various teams) during integration demos. Since most of the teams were using parts of Edith designed relatively recently, they could be considered "novice users." Their general ability to learn and use the system readily suggests that Edith is relatively simple for novices to learn. In the sense that this nonfunctional requirement is specific, it is a useful requirement, but in the sense that testing it involves procedures that we never did, it may have been too difficult a requirement to adhere to effectively.
 
 \end{itemize}
@@ -119,6 +118,11 @@ This was achieved through the use of ajax communicating with the PHP on the serv
 %-------------------------------------------------------------------------------------------------------------
 \section{System Design and Architecture}
 
+\subsection{Low-Level Walkthrough}
+
+Resizing code and server-interfacing code appears in a script on the main Story Creator webpage, "index.html." The object panel is relatively independent from the webpage so its code appears in a seperate file, objectPanel.js, which the webpage imports. This walthrough will first address the code in "index.html," then it will address the code in "objectPanel.js." \\
+
+"Index.html" 
 
 
 
@@ -135,9 +139,19 @@ I also encountered many issues with retrieving objects(sprites) from the databas
 In order to complete the project I originally attempted to implement the use cases in my requirements document.  That quickly became outdated so I started to use the "adapter" design patter to try and piece together the other groups software.  If restarting on this project I would attempt to have a long session with other groups to go through what they planned on doing and how we could put it together.  A large problem was that many pieces could not be put together in the way that individual groups  had originally designed.  If I were to continue on this project I would add functionality to actually work.
 
 \subsection{Nate Olderman}
+The biggest challenge I encountered during the development of this project is the dependency we had on the other groups. Because of this it was difficult at first to define clearly what we were responsible for. We tried to overcome this by talking to other groups as well as the professor in an attempt to define, as clearly as possible, everything that we needed to do. But in the end what really helped us to overcome this issue was the restructuring of our group (story creator) and the visual editor group. That helped to clearly define our groups' responsibilities and functions. In the future I think I would use this experience when creating the initial requirements specification which would help to solve this difficulty earlier in the process. \\
+Another difficulty we had was that we also found ourselves repeatedly starting from scratch because of changing functionalities and requirements. This is something that we were not able to completely overcome because of the dependency we had on other groups throughout the entire project, but we got better at communicating with other groups to spot possible future changes and try to account for them. In the future I believe I will use this experience in communication to start the process differently so we can just alter code as opposed to starting from scratch. \\
+Regarding technical challenges, the biggest challenge was actually many small challenges. Because many of us had not worked with html, css and javascript before, some of the biggest challenges had very simple solutions. For example, early on the biggest issue we encountered was how to use variables from other javascript files, in our javascript file. Now that we have practice with these languages, issues like that are obvious. But they did cause big problems early on. Learning from these problems are definitely skills that I will bring to future projects. \\
+Another large technical difficulty we encountered was obtaining the created objects from object group through the sharing group. We needed to obtain these objects so we could display them on the object canvas below the main canvas, and then pass the selected objects to the visual editor group. We overcame this through testing and trial and error. In the end I learned a lot about JSON and Ajax that I can use in future projects. \\
+Personally I mostly applied the iterative software development technique. I tried to repeat previous cycles of development, this technique really helped when we were forced to redo parts or all of our code. This strategy failed when we were short on time. I felt that we did not have time to repeat the same steps. It was at this point that I implemented more of an extreme programming software development style. This strategy really helped me focus and finish large chunks of our program's functionalities but fell short when we had to redo parts of our code, because I hadn't documented my development as well. The end result of this case was that more code than what might have been necessary was rewritten. \\
+If I were to start this project over again the very first thing I would make sure to do differently would be to communicate more with other groups during the requirements specification stage in order to catch the similarities in our requirements. I would also do a lot more research and teach myself more about javascript, JSON, and Ajax earlier on in the semester. \\
+If I were to continue on working on this project I would work with other groups in order to get rid of repetitive code and hopefully make it so the code runs more efficiently. The next thing I would want to add to the project would be to have the object names above each object on the object canvas. This isn't something that is necessary but it seems like it would be a nice touch. I would also want to implement a better tutorial system that would point to various elements of the main page and explain how to use them.
 
 \subsection{Kyle Dybdal}
 Edith was a lesson in communication, patience, and flexibility. How we initially assumed the final project to work ended up being very different from what the website ended up being. 
+
+\subsection{Billy Rathje}
+
 %-------------------------------------------------------------------------------------------------------------
 % GLOSSARY AND REFERENCES 
 %-------------------------------------------------------------------------------------------------------------
@@ -148,3 +162,4 @@ Edith was a lesson in communication, patience, and flexibility. How we initially
 \end{itemize}
 
 \end{document}
+Status API Training Shop Blog About © 2013 GitHub, Inc. Terms Privacy Security Contact 
