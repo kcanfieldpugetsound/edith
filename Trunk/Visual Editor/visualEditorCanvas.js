@@ -344,15 +344,15 @@
     if (ids === "addSprite") {
       x = "";
       for (var i = 0; i < getGlowingObjects().length; i ++) {
-        xpos = prompt("Please enter desired x-coordinate of object.");
-        while (numberRegex.test(dur) == false){
+        xpos = prompt("Please enter desired x-coordinate of object.","");
+        while (numberRegex.test(xpos) == false){
           alert("Please input numbers only.")
-          xpos = prompt("Please enter desired x-coordinate of object.");
+          xpos = prompt("Please enter desired x-coordinate of object.","");
         }
-        ypos = prompt("Please enter desired y-coordinate of object.");
-        while (numberRegex.test(dur) == false){
+        ypos = prompt("Please enter desired y-coordinate of object.","");
+        while (numberRegex.test(ypos) == false){
           alert("Please input numbers only.")
-          ypos = prompt("Please enter desired y-coordinate of object.");
+          ypos = prompt("Please enter desired y-coordinate of object.","");
         }
         width = getGlowingObjects()[i].attrs.width;
         height = getGlowingObjects()[i].attrs.height;
