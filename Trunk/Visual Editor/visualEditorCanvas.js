@@ -499,7 +499,7 @@ function cleanUp(sort) {
       currentRect = groupArray[0];
       id = this.attrs.id;
       console.log(id);
-      text.setText(promptUser(id)); //changes text on draggables to text from user prompt
+       //changes text on draggables to text from user prompt
       var jsText = promptUser(id);// prompts the user to get attributes
           this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
           text.setText(jsText); // sets the text on group
