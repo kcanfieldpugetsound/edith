@@ -1,72 +1,73 @@
 
-  var groupToolbox;
-  var UNIVERSAL_MAIN = ""; 
-  //declaration of variables
-  var startX = 55;
-  var startY = 90;
-  var yPosition;
-  var layer;
-  var tab = "method";
-  var stage;
-  var line;
-  var text;
-  var loadedBlock;
-  var varRegex = /^[\w.-]+$/; //allows letters, digits and underscore. (Technically, should add $ as acceptable for JS var name.)
-  var methodRegex = /^[\w.-]+$/; 
-  var letterRegex = /^[a-zA-Z]+$/;
-  var numberRegex = /^\d+$/; //allow only numeric input
+var groupToolbox;
+var UNIVERSAL_MAIN = "";
+//declaration of variables
+var startX = 55;
+var startY = 90;
+var yPosition;
+var layer;
+var tab = "method";
+var stage;
+var line;
+var text;
+var loadedBlock;
+var varRegex = /^[\w.-]+$/; //allows letters, digits and underscore. (Technically, should add $ as acceptable for JS var name.)
+var methodRegex = /^[\w.-]+$/; 
+var letterRegex = /^[a-zA-Z]+$/;
+var numberPositiveRegex = /^\d+$/; //allow only positive numeric input
+var numberRegex = /^[+-]?[0-9]{1,9}(?:\.[0-9]{1,2})?$/;//allow only numeric input
 
-  //Added by Animation team
-  var addedSprites = new Array();
-  var arrayOfImagesToAnimate = new Array();
-  var finalSpriteArray = new Array();
-  var arrayOfFinalSprites = new Array();
-  var spriteIndex;
-  var selectedSprites = new Array();
-  var counter = 0;
-  //spritesToAnimate[0] = "hi";
+//Added by Animation team
+var addedSprites = new Array();
+var arrayOfImagesToAnimate = new Array();
+var finalSpriteArray = new Array();
+var arrayOfFinalSprites = new Array();
+var spriteIndex;
+var selectedSprites = new Array();
+var counter = 0;
+//spritesToAnimate[0] = "hi";
 
-  var tools = [{'title': 'method', 'jstext': ''},
-    {'title': 'variable', 'jstext': ''},
-    {'title': 'end', 'jstext': ''},
-    {'title': 'addSprite', 'type': 'predefined', 'jstext': ''},
-    {'title': 'wait', 'type': 'predefined', 'jstext': ''},
-    {'title': 'rotate', 'type': 'predefined', 'jstext': ''},
-    {'title': 'move', 'type': 'predefined', 'jstext': ''},
-    {'title': 'jump', 'type': 'predefined', 'jstext': ''},
-    {'title': 'movR', 'type': 'predefined', 'jstext': ''},
-    {'title': 'movL', 'type': 'predefined', 'jstext': ''},
-    {'title': 'movU', 'type': 'predefined', 'jstext': ''},
-    {'title': 'movD', 'type': 'predefined', 'jstext': ''},
-    {'title': 'if', 'type': 'control', 'jstext': ''},
-    {'title': 'while', 'type': 'control', 'jstext': ''},
-    {'title': 'else', 'type': 'control', 'jstext': ''},
-    {'title': 'method', 'type': 'tab', 'jstext': ''},
-    {'title': 'predefined', 'type': 'tab', 'jstext': ''},
-    {'title': 'control', 'type': 'tab', 'jstext': ''},
-    {'title': 'main', 'type': 'main', 'jstext': ''},
-    {'title': 'mainBrack', 'type': 'main', 'jstext': ''}
-    ];
+var tools = [{'title': 'method', 'jstext': ''},
+  {'title': 'variable', 'jstext': ''},
+  {'title': 'end', 'jstext': ''},
+  {'title': 'addSprite', 'type': 'predefined', 'jstext': ''},
+  {'title': 'wait', 'type': 'predefined', 'jstext': ''},
+  {'title': 'rotate', 'type': 'predefined', 'jstext': ''},
+  {'title': 'move', 'type': 'predefined', 'jstext': ''},
+  {'title': 'jump', 'type': 'predefined', 'jstext': ''},
+  {'title': 'movR', 'type': 'predefined', 'jstext': ''},
+  {'title': 'movL', 'type': 'predefined', 'jstext': ''},
+  {'title': 'movU', 'type': 'predefined', 'jstext': ''},
+  {'title': 'movD', 'type': 'predefined', 'jstext': ''},
+  {'title': 'if', 'type': 'control', 'jstext': ''},
+  {'title': 'while', 'type': 'control', 'jstext': ''},
+  {'title': 'else', 'type': 'control', 'jstext': ''},
+  {'title': 'method', 'type': 'tab', 'jstext': ''},
+  {'title': 'predefined', 'type': 'tab', 'jstext': ''},
+  {'title': 'control', 'type': 'tab', 'jstext': ''},
+  {'title': 'main', 'type': 'main', 'jstext': ''},
+  {'title': 'mainBrack', 'type': 'main', 'jstext': ''}
+  ];
 
 
-    var methodBox = [];
-    var predefinedBox = [];
-    var controlBox = [];
-    var tabBox = [];
-    var mainBox = [];
-    var json = "";
+  var methodBox = [];
+  var predefinedBox = [];
+  var controlBox = [];
+  var tabBox = [];
+  var mainBox = [];
+  var json = "";
 
-    methodBox = tools.slice(0,3);
-    predefinedBox = tools.slice(3,12);
-    controlBox = tools.slice(12,15);
-    tabBox = tools.slice(15,18);
-    mainBox = tools.slice(18,20);
+  methodBox = tools.slice(0,3);
+  predefinedBox = tools.slice(3,12);
+  controlBox = tools.slice(12,15);
+  tabBox = tools.slice(15,18);
+  mainBox = tools.slice(18,20);
 
-  var newX = 220;
-  var newY = 70;
-  function cleanUp(sort) {
-    json = JSON.stringify(sort);
-  }
+var newX = 220;
+var newY = 70;
+function cleanUp(sort) {
+  json = JSON.stringify(sort);
+}
 
   function loadBlocks(notarray) {
     layer.get('.sortable').each(function(shape){
@@ -162,7 +163,7 @@
 
     if (ids === "wait") {
       mills = prompt("Seconds Delayed (in milliseconds)");
-      while (numberRegex.test(mills) == false){
+      while (numberPositiveRegex.test(mills) == false){
         alert("Please input numbers only.")
         mills = prompt("Please enter the seconds delayed", "");
         }
@@ -179,7 +180,7 @@
 
     if (ids === "move") {
       dur = prompt("Duration (in milliseconds)");
-      while (numberRegex.test(dur) == false){
+      while (numberPositiveRegex.test(dur) == false){
         alert("Please input numbers only.")
         dur = prompt("Please enter the duration", "");
         }
@@ -214,7 +215,7 @@
 
     if (ids === "rotate") {
       dur = prompt("Duration (in milliseconds)");
-      while (numberRegex.test(dur) == false){
+      while (numberPositiveRegex.test(dur) == false){
         alert("Please input numbers only.")
         dur = prompt("Please enter the duration", "");
         }
@@ -236,7 +237,7 @@
 
     if (ids === "jump") {
       dur = prompt("Duration (in milliseconds)");
-      while (numberRegex.test(dur) == false){
+      while (numberPositiveRegex.test(dur) == false){
         alert("Please input numbers only.")
         dur = prompt("Please enter the duration", "");
         }
@@ -257,7 +258,7 @@
 
     if (ids === "movL") {
       dur = prompt("Duration (in milliseconds)");
-      while (numberRegex.test(dur) == false){
+      while (numberPositiveRegex.test(dur) == false){
         alert("Please input numbers only.")
         dur = prompt("Please enter the duration", "");
         }
@@ -278,7 +279,7 @@
 
     if (ids === "movR") {
       dur = prompt("Duration (in milliseconds)");
-      while (numberRegex.test(dur) == false){
+      while (numberPositiveRegex.test(dur) == false){
         alert("Please input numbers only.")
         dur = prompt("Please enter the duration", "");
         }
@@ -299,7 +300,7 @@
 
    if (ids === "movU") {
       dur = prompt("Duration (in milliseconds)");
-      while (numberRegex.test(dur) == false){
+      while (numberPositiveRegex.test(dur) == false){
         alert("Please input numbers only.")
         dur = prompt("Please enter the duration", "");
         }
@@ -320,7 +321,7 @@
 
    if (ids === "movD") {
       dur = prompt("Duration (in milliseconds)");
-      while (numberRegex.test(dur) == false){
+      while (numberPositiveRegex.test(dur) == false){
         alert("Please input numbers only.")
         dur = prompt("Please enter the duration", "");
         }
@@ -360,12 +361,12 @@
       x = "";
       for (var i = 0; i < getGlowingObjects().length; i ++) {
         xpos = prompt("Please enter desired x-coordinate of object.","");
-        while (numberRegex.test(xpos) == false){
+        while (numberPositiveRegex.test(xpos) == false || xpos > mainCanvas.width){
           alert("Please input numbers only.")
           xpos = prompt("Please enter desired x-coordinate of object.","");
         }
         ypos = prompt("Please enter desired y-coordinate of object.","");
-        while (numberRegex.test(ypos) == false){
+        while (numberPositiveRegex.test(ypos) == false || ypos > mainCanvas.height){
           alert("Please input numbers only.")
           ypos = prompt("Please enter desired y-coordinate of object.","");
         }
@@ -509,7 +510,6 @@
       currentRect = groupArray[0];
       //console.log(this.getY() + currentRect.getY()); // double check
     //BELOW: When draggable is dragged from tool area into work area
-      console.log(this.getPosition().x);
       if (dx + 50 > line.getAbsolutePosition().x) {
         //Only change text, or write to console on first time being dragged over
         if (this.attrs.firstTime === true) {
@@ -565,74 +565,7 @@
     layer.add(line);
     tabSwitcher();
 
-    /*
-    function mainMethodRect (xpos, ypos, id, type){
     
-
-      var mainBracket = new Kinetic.Group({
-        id: id,
-        draggable: true,
-        listening: true,
-        firstTime: true,
-        name: "main",
-        jsText: type
-      });
-
-
-
-        var rectMain =  new Kinetic.Rect({
-        x: xpos,
-        y: ypos,
-        width: 100,
-        height: 50,
-        stroke: 'black',
-        fillLinearGradientStartPoint: [0, 0],
-        fillLinearGradientEndPoint: [80, 80],
-        fillLinearGradientColorStops: [0, 'red', 1, 'cyan'],
-        strokeWidth: 2,
-        offset: 10,
-        name: 'sortable',
-        });
-
-
-        var simpleTextMain = new Kinetic.Text({
-        x: xpos + 10,
-        y: ypos + 10,
-        text: id,
-        kItem: null,
-        fontSize: 12,
-        fontFamily: 'Calibri',
-        stroke: 'black',
-        strokeWidth: 1
-        });
-
-      mainBracket.on("dragend", function () {
-      dx = this.getX();      
-      layer.draw();
-
-      sorter();
-     
-
-    //BELOW: When draggable is dragged from tool area into work area
-      if (dx + 20 > line.getX()) {
-        //Only change text, or write to console on first time being dragged over
-      sorter();
-      } 
-      else {
-        mainBracket.remove();
-        layer.draw();
-      }
-    });
-
-        mainBracket.add(rectMain);
-        mainBracket.add(simpleTextMain);
-        layer.add(mainBracket);
-
-        layer.draw();
-  
-      }
-      */
-
     function newTab (xpos, ypos, id, type){
       var tabMenu = new Kinetic.Group({
         id: id,

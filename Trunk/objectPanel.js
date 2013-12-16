@@ -17,7 +17,7 @@
 			    x: theX,
 			    y: theY,
 			    image: imgObj,
-			    name: src,
+			    name: src, //This is necessary to get name of image (Visual editor)
 			    width: 100,
 			    height: 100,
 			    listening: true,
@@ -45,7 +45,7 @@
 
 		};
 		imgObj.src = src;
-	    console.log(imgObj.src);
+	    //console.log(imgObj.src);
 	}
 
 	var imgs = ["mario.jpg", "luigi.jpg", "kitten.png", "mario.jpg", "luigi.jpg", "mario.jpg"];

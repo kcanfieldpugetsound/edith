@@ -93,7 +93,10 @@
 	/
 	**/
 	function loadProject() {
-		//loadBlocks(json);
+		/**
+		Visual editor's load function to be integrated into sharing.
+		**/
+		loadBlocks(json); 
 		var objectName = prompt("Please enter the name of your project:");
 		
 		$.getJSON("functions/load.php", {id:objectName}, function(data) {
@@ -111,6 +114,9 @@
 	/"code:" This needs to be the updated JSON that we are using for everything
 	**/
 	function save(){
+	/**
+		Visual editor's save function to be integrated into sharing.
+	**/
 	if(sorter()) {
 		cleanUp(sortArray);
 	}
