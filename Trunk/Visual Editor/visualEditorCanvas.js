@@ -500,9 +500,14 @@ function cleanUp(sort) {
       id = this.attrs.id;
       console.log(id);
       text.setText(promptUser(id)); //changes text on draggables to text from user prompt
-      height = currentRect.getHeight();
-      currentRect.setSize(text.getWidth() + 30, height);
-      this.attrs.firstTime = false;
+      var jsText = promptUser(id);// prompts the user to get attributes
+          this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
+          text.setText(jsText); // sets the text on group
+          var height = currentRect.getHeight();
+          currentRect.setSize(text.getWidth() + 30, text.getHeight() + 30);
+          this.attrs.firstTime = false;
+          layer.draw();
+      sorter();
       layer.draw();
     });
 
