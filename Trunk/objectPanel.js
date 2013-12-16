@@ -43,6 +43,22 @@
 	      	}
 	      });
 
+		 	img.on('dblclick', function() {
+		xpos2 = prompt("Please enter desired x-coordinate of object.","");
+        while (numberPositiveRegex.test(xpos2) == false){
+          alert("Please input numbers only.")
+          xpos2 = prompt("Please enter desired x-coordinate of object.","");
+        }
+        ypos2 = prompt("Please enter desired y-coordinate of object.","");
+        while (numberPositiveRegex.test(ypos2) == false){
+          alert("Please input numbers only.")
+          ypos2 = prompt("Please enter desired y-coordinate of object.","");
+        }
+        		xpos2 = parseInt(xpos2);
+        		ypos2 = parseInt(ypos2);
+	      		addSprite(oCanvasElement, img.getName() , img.attrs.width, img.attrs.height, xpos2, ypos2);
+	      	});
+
 		};
 		imgObj.src = src;
 	    //console.log(imgObj.src);
