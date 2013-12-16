@@ -438,7 +438,7 @@ function promptUser(ids) {
         }
         width = getGlowingObjects()[i].attrs.width;
         height = getGlowingObjects()[i].attrs.height;
-        x = x + "addSprite (oCanvasElement," + ", " + getGlowingObjects()[i].attrs.name + ", " + width + ", " + height + ", " + xpos + ", " + ypos + ");\n";
+        x = x + "addSprite (oCanvasElement, " + getGlowingObjects()[i].attrs.name + ", " + width + ", " + height + ", " + xpos + ", " + ypos + ");\n";
         addedSprites.push(getGlowingObjects()[i].attrs.name);
       } else {
         return 0;
@@ -548,10 +548,8 @@ function newRect(xpos, ypos, id, type, unclone, subtext) {
     if (this.attrs.name === "sortable") {
       groupArray = (this.getChildren()).toArray();
       text = groupArray[1];
-      console.log(groupArray[1]);
       currentRect = groupArray[0];
       id = this.attrs.id;
-      console.log(id);
        //changes text on draggables to text from user prompt
       var jsText = promptUser(id);// prompts the user to get attributes
       if (jsText === 0) {
@@ -580,7 +578,6 @@ function newRect(xpos, ypos, id, type, unclone, subtext) {
     groupArray = (this.getChildren()).toArray();
     text = groupArray[1];
     currentRect = groupArray[0];
-    //console.log(this.getY() + currentRect.getY()); // double check
   //BELOW: When draggable is dragged from tool area into work area
     if (dx + 50 > line.getAbsolutePosition().x) {
       //Only change text, or write to console on first time being dragged over
