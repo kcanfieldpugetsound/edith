@@ -4,7 +4,7 @@
 	    height: 300
 	    });
 
-	var layer2 = new Kinetic.Layer();
+	var objectLayer= new Kinetic.Layer();
 	var glow = [];
 	var curImgs = [];
 
@@ -25,8 +25,8 @@
  				filterBrightness: 0
 			  });
 
-			layer2.add(img);
-		 	objectStage.add(layer2);
+			objectLayer.add(img);
+		 	objectStage.add(objectLayer);
 
 		 	img.on('click', function() {
 	      	if(glow.indexOf(img) >= 0)
@@ -34,12 +34,12 @@
 	      		var x = glow.indexOf(img);
 	      		glow.splice(x, 1);
 	      		img.setFilterBrightness(0);
-	      		layer2.batchDraw();
+	      		objectLayer.batchDraw();
 	      	}
 	      	else {
 	      		glow.push(img);
 	      		img.setFilterBrightness(100);
-	      		layer2.batchDraw();
+	      		objectLayer.batchDraw();
 	      	}
 	      });
 
