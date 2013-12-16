@@ -74,11 +74,19 @@ function cleanUp(sort) {
         shape.destroy();
     });
     array = JSON.parse(notarray);
+    var yPos = 70;
     for(var i = 0; i < array.length; i++) {
-      var yPos = i + 1;
-      loadedBlock = newRect(newX, newY * yPos, array[i][0], "predefined", true, array[i][1]);
+      
+      loadedBlock = newRect(newX, yPos, array[i][0], "predefined", true, array[i][1]);
+      console.log(loadedBlock); 
+      loadedBlockArray = (loadedBlock.getChildren()).toArray();
+      var loadedText = loadedBlockArray[1];
+      var loadedRect = loadedBlockArray[0];
+      loadedRect.setSize(loadedText.getWidth() + 30, loadedText.getHeight() + 30);
+      yPos = yPos + loadedText.getHeight() + 40;
       loadedBlock.setName("sortable");
       loadedBlock.setAttr('jsText',array[i][1]);
+      layer.draw();
     }
     sorter();
   }
@@ -518,7 +526,7 @@ function cleanUp(sort) {
           this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
           text.setText(jsText); // sets the text on group
           var height = currentRect.getHeight();
-          currentRect.setSize(text.getWidth() + 30, height);
+          currentRect.setSize(text.getWidth() + 30, text.getHeight() + 30);
           this.attrs.firstTime = false;
           layer.draw();
         }
