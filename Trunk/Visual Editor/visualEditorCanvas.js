@@ -92,57 +92,54 @@ function cleanUp(sort) {
   }
 
   /* Prompts user input of names*/
-  function promptUser(ids) {
-    /*global prompt*/
-	var x,
-		mname,
-		params,
-		varn,
-		sprite,
-		mills,
-		dur,
-		dist,
-		height,
-		clockwise,
-		degrees,
-		angle,
-		condition,
+function promptUser(ids) {
+  /*global prompt*/
+  var x,
+  	mname,
+  	params,
+  	varn,
+  	sprite,
+  	mills,
+  	dur,
+  	dist,
+  	height,
+  	clockwise,
+  	degrees,
+  	angle,
+  	condition,
     canvas,
     width,
     xpos,
     ypos;
-
-   // var ghostElement = deepCopy(oCanvasElement);
-
-
-
-    //addSprite(oCanvasElement, "mario.jpg",100,100,100,100);
-    function loadUpSpritesToAnimate()
+  // var ghostElement = deepCopy(oCanvasElement);
+  //addSprite(oCanvasElement, "mario.jpg",100,100,100,100);
+  function loadUpSpritesToAnimate()
+  {
+    for(var i = 0; i < getGlowingObjects().length; i++)
     {
-      for(var i = 0; i < getGlowingObjects().length; i++)
-      {
-          for(var j = 0; j < addedSprites.length; j++)
-          {
-              if(getGlowingObjects()[i].attrs.name == addedSprites[j]) //
-              {
-                  arrayOfImagesToAnimate.push(addedSprites[j]);
-              }
-          }
-      }
-      //okay, now we actually need to get the image refereces......
-      for(var i = 0; i < arrayOfImagesToAnimate.length; i++)
-      {
-              var imagesOnCanvas = oCanvasElement.canvas.children;
-              if(contains(imagesOnCanvas, arrayOfImagesToAnimate[i]))
-              {
-                  finalSpriteArray.push(imagesOnCanvas[spriteIndex]);                
-              }
-      }
-      arrayOfImagesToAnimate = [];
+        for(var j = 0; j < addedSprites.length; j++)
+        {
+            if(getGlowingObjects()[i].attrs.name == addedSprites[j]) //
+            {
+                arrayOfImagesToAnimate.push(addedSprites[j]);
+            }
+        }
     }
+    //okay, now we actually need to get the image refereces......
+    for(var i = 0; i < arrayOfImagesToAnimate.length; i++)
+    {
+            var imagesOnCanvas = oCanvasElement.canvas.children;
+            if(contains(imagesOnCanvas, arrayOfImagesToAnimate[i]))
+            {
+                finalSpriteArray.push(imagesOnCanvas[spriteIndex]);                
+            }
+    }
+    arrayOfImagesToAnimate = [];
+  }
 
-    if (ids === "method") {
-      mname = prompt("Please enter the name of your method", "");
+  if (ids === "method") {
+    mname = prompt("Please enter the name of your method", "");
+    if(mname != null && mname != '') {
       while ( letterRegex.test(mname) == false){
         alert("Enter a method name (use only letters)")
         mname = prompt("Please enter the name of your method", "");
@@ -151,10 +148,14 @@ function cleanUp(sort) {
       x = "function " + mname + "(" + params + ") {";
       //console.log(x);
       return x;
+    } else {
+      return 0;
     }
+  }
 
-    if (ids === "variable") {
-      varn = prompt("Please enter the name of your variable", "");
+  if (ids === "variable") {
+    varn = prompt("Please enter the name of your variable", "");
+    if(varn != null && varn != ''){
       while ( letterRegex.test(varn) == false){
         alert("Use only letters.")
         varn = prompt("Please enter the name of your variable", "");
@@ -162,15 +163,19 @@ function cleanUp(sort) {
       x = "var " + varn +  ";";
       //console.log(x);
       return x;
+    } else {
+      return 0;
     }
+  }
 
-    if (ids === "end") {
-      x = "}";
-      return x;
-    }
+  if (ids === "end") {
+    x = "}";
+    return x;
+  }
 
-    if (ids === "wait") {
-      mills = prompt("Seconds Delayed (in milliseconds)");
+  if (ids === "wait") {
+    mills = prompt("Seconds Delayed (in milliseconds)");
+    if(mills != null && mills != ''){
       while (numberPositiveRegex.test(mills) == false){
         alert("Please input numbers only.")
         mills = prompt("Please enter the seconds delayed", "");
@@ -183,32 +188,50 @@ function cleanUp(sort) {
       counter++;
       //console.log(x);
       return x;
-     
-    }
+   } else {
+    return 0;
+   }
+  }
 
-    if (ids === "move") {
-      dur = prompt("Duration (in milliseconds)");
+  if (ids === "move") {
+    dur = prompt("Duration (in milliseconds)");
+    if(dur != null && dur != ''){
       while (numberPositiveRegex.test(dur) == false){
         alert("Please input numbers only.")
         dur = prompt("Please enter the duration", "");
-        }
-      dist = prompt("Distance");
+      }
+    } else {
+      return 0;
+    }
+    dist = prompt("Distance");
+    if(dist != null && dist != ''){
       while (numberRegex.test(dist) == false){
         alert("Please input numbers only.")
         dist = prompt("Please enter the distance", "");
-        }
-      height = prompt("Height");
+      }
+    } else {
+      return 0;
+    }
+    height = prompt("Height");
+    if(height != null && height != '') {
       while (numberRegex.test(height) == false){
         alert("Please input numbers only.")
         height = prompt("Please enter the height", "");
-        }
-      clockwise = prompt("Clockwise? (true or false)");
-      degrees = prompt("Degrees");
+      }
+    } else {
+      return 0;
+    }
+    clockwise = prompt("Clockwise? (true or false)");
+    if(clockwise === null || clockwise === '') {
+      return 0;
+    }
+    degrees = prompt("Degrees");
+    if(degrees != null && degrees != '') {
       while (numberRegex.test(degrees) == false){
         alert("Please input numbers only.")
         degrees = prompt("Please enter the degrees", "");
-        }
-              loadUpSpritesToAnimate();
+      }
+      loadUpSpritesToAnimate();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
       selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
@@ -216,177 +239,178 @@ function cleanUp(sort) {
       //console.log(x);
       counter++;
       finalSpriteArray = [];
-
       return x;
-
-    }
-
-    if (ids === "rotate") {
-      dur = prompt("Duration (in milliseconds)");
-      while (numberPositiveRegex.test(dur) == false){
-        alert("Please input numbers only.")
-        dur = prompt("Please enter the duration", "");
-        }
-      angle = prompt("Angle");
-      while (numberRegex.test(angle) == false){
-        alert("Please input numbers only.")
-        angle = prompt("Please enter the angle", "");
-        }
-      clockwise = prompt("Clockwise? (true or false)");
-
-      loadUpSpritesToAnimate();
-      arrayOfFinalSprites.push(finalSpriteArray);
-      finalSpriteArray = [];
-      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "rotate (" + "selectedSprites["+counter+"]" + ", " + dur + ", " + angle + ", "+clockwise+");";
-      counter++;
-      return x;
-    }
-
-    if (ids === "jump") {
-      dur = prompt("Duration (in milliseconds)");
-      while (numberPositiveRegex.test(dur) == false){
-        alert("Please input numbers only.")
-        dur = prompt("Please enter the duration", "");
-        }
-      height = prompt("Height");
-      while (numberRegex.test(height) == false){
-        alert("Please input numbers only.")
-        height = prompt("Please enter the height", "");
-        }
-              loadUpSpritesToAnimate();
-      arrayOfFinalSprites.push(finalSpriteArray);
-      finalSpriteArray = [];
-      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "jump ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+height+");";
-      //console.log(x);
-      counter++;
-      return x;
-    }
-
-    if (ids === "movL") {
-      dur = prompt("Duration (in milliseconds)");
-      while (numberPositiveRegex.test(dur) == false){
-        alert("Please input numbers only.")
-        dur = prompt("Please enter the duration", "");
-        }
-      dist = prompt("Distance");
-      while (numberRegex.test(dist) == false){
-        alert("Please input numbers only.")
-        distance = prompt("Please enter the distance", "");
-        }
-              loadUpSpritesToAnimate();
-      arrayOfFinalSprites.push(finalSpriteArray);
-      finalSpriteArray = [];
-      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "movL ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
-      //console.log(x);
-      counter++;
-      return x;
-    }
-
-    if (ids === "movR") {
-      dur = prompt("Duration (in milliseconds)");
-      while (numberPositiveRegex.test(dur) == false){
-        alert("Please input numbers only.")
-        dur = prompt("Please enter the duration", "");
-        }
-      dist = prompt("Distance");
-      while (numberRegex.test(dist) == false){
-        alert("Please input numbers only.")
-        distance = prompt("Please enter the distance", "");
-        }
-              loadUpSpritesToAnimate();
-      arrayOfFinalSprites.push(finalSpriteArray);
-      finalSpriteArray = [];
-      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "movR ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
-      //console.log(x);
-      counter++;
-      return x;
-      }
-
-   if (ids === "movU") {
-      dur = prompt("Duration (in milliseconds)");
-      while (numberPositiveRegex.test(dur) == false){
-        alert("Please input numbers only.")
-        dur = prompt("Please enter the duration", "");
-        }
-      dist = prompt("Distance");
-      while (numberRegex.test(dist) == false){
-        alert("Please input numbers only.")
-        distance = prompt("Please enter the distance", "");
-        }
-              loadUpSpritesToAnimate();
-      arrayOfFinalSprites.push(finalSpriteArray);
-      finalSpriteArray = [];
-      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "movU ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
-      //console.log(x);
-      counter++;
-      return x;
-      }
-
-   if (ids === "movD") {
-      dur = prompt("Duration (in milliseconds)");
-      while (numberPositiveRegex.test(dur) == false){
-        alert("Please input numbers only.")
-        dur = prompt("Please enter the duration", "");
-        }
-      dist = prompt("Distance");
-      while (numberRegex.test(dist) == false){
-        alert("Please input numbers only.")
-        distance = prompt("Please enter the distance", "");
-        }
-              loadUpSpritesToAnimate();
-      arrayOfFinalSprites.push(finalSpriteArray);
-      finalSpriteArray = [];
-      selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
-      x = "movD ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
-      //console.log(x);
-      counter++;
-      return x;
-    }
-
-    if (ids === "if") {
-      condition = prompt("Please enter the condition");
-      x = "if(" + condition + "){";
-      return x;
-    }
-
-    if (ids === "while") {
-      condition = prompt("Please enter the condition");
-      x = "while(" + condition + "){";
-      return x;
-    }
-
-    if (ids === "else") {
-      x = "else{";
-      return x;
-    }
-
-    if (ids === "addSprite") {
-      x = "";
-      for (var i = 0; i < getGlowingObjects().length; i ++) {
-        xpos = prompt("Please enter desired x-coordinate of object.","");
-        while (numberPositiveRegex.test(xpos) == false || xpos > mainCanvas.width){
-          alert("Please input numbers only.")
-          xpos = prompt("Please enter desired x-coordinate of object.","");
-        }
-        ypos = prompt("Please enter desired y-coordinate of object.","");
-        while (numberPositiveRegex.test(ypos) == false || ypos > mainCanvas.height){
-          alert("Please input numbers only.")
-          ypos = prompt("Please enter desired y-coordinate of object.","");
-        }
-        width = getGlowingObjects()[i].attrs.width;
-        height = getGlowingObjects()[i].attrs.height;
-        x = x + "addSprite (oCanvasElement," + "'" + getGlowingObjects()[i].attrs.name + "', " + width + ", " + height + ", " + xpos + ", " + ypos + ");\n";
-        addedSprites.push(getGlowingObjects()[i].attrs.name);
-        //addSprite(oCanvasElement, getGlowingObjects()[i].attrs.name, width, height, xpos, ypos);
-      }     
-      return x;
+    } else {
+      return 0;
     }
   }
+
+  if (ids === "rotate") {
+    dur = prompt("Duration (in milliseconds)");
+    while (numberPositiveRegex.test(dur) == false){
+      alert("Please input numbers only.")
+      dur = prompt("Please enter the duration", "");
+      }
+    angle = prompt("Angle");
+    while (numberRegex.test(angle) == false){
+      alert("Please input numbers only.")
+      angle = prompt("Please enter the angle", "");
+      }
+    clockwise = prompt("Clockwise? (true or false)");
+
+    loadUpSpritesToAnimate();
+    arrayOfFinalSprites.push(finalSpriteArray);
+    finalSpriteArray = [];
+    selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+    x = "rotate (" + "selectedSprites["+counter+"]" + ", " + dur + ", " + angle + ", "+clockwise+");";
+    counter++;
+    return x;
+  }
+
+  if (ids === "jump") {
+    dur = prompt("Duration (in milliseconds)");
+    while (numberPositiveRegex.test(dur) == false){
+      alert("Please input numbers only.")
+      dur = prompt("Please enter the duration", "");
+      }
+    height = prompt("Height");
+    while (numberRegex.test(height) == false){
+      alert("Please input numbers only.")
+      height = prompt("Please enter the height", "");
+      }
+            loadUpSpritesToAnimate();
+    arrayOfFinalSprites.push(finalSpriteArray);
+    finalSpriteArray = [];
+    selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+    x = "jump ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+height+");";
+    //console.log(x);
+    counter++;
+    return x;
+  }
+
+  if (ids === "movL") {
+    dur = prompt("Duration (in milliseconds)");
+    while (numberPositiveRegex.test(dur) == false){
+      alert("Please input numbers only.")
+      dur = prompt("Please enter the duration", "");
+      }
+    dist = prompt("Distance");
+    while (numberRegex.test(dist) == false){
+      alert("Please input numbers only.")
+      distance = prompt("Please enter the distance", "");
+      }
+            loadUpSpritesToAnimate();
+    arrayOfFinalSprites.push(finalSpriteArray);
+    finalSpriteArray = [];
+    selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+    x = "movL ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
+    //console.log(x);
+    counter++;
+    return x;
+  }
+
+  if (ids === "movR") {
+    dur = prompt("Duration (in milliseconds)");
+    while (numberPositiveRegex.test(dur) == false){
+      alert("Please input numbers only.")
+      dur = prompt("Please enter the duration", "");
+      }
+    dist = prompt("Distance");
+    while (numberRegex.test(dist) == false){
+      alert("Please input numbers only.")
+      distance = prompt("Please enter the distance", "");
+      }
+            loadUpSpritesToAnimate();
+    arrayOfFinalSprites.push(finalSpriteArray);
+    finalSpriteArray = [];
+    selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+    x = "movR ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
+    //console.log(x);
+    counter++;
+    return x;
+    }
+
+ if (ids === "movU") {
+    dur = prompt("Duration (in milliseconds)");
+    while (numberPositiveRegex.test(dur) == false){
+      alert("Please input numbers only.")
+      dur = prompt("Please enter the duration", "");
+      }
+    dist = prompt("Distance");
+    while (numberRegex.test(dist) == false){
+      alert("Please input numbers only.")
+      distance = prompt("Please enter the distance", "");
+      }
+            loadUpSpritesToAnimate();
+    arrayOfFinalSprites.push(finalSpriteArray);
+    finalSpriteArray = [];
+    selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+    x = "movU ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
+    //console.log(x);
+    counter++;
+    return x;
+    }
+
+ if (ids === "movD") {
+    dur = prompt("Duration (in milliseconds)");
+    while (numberPositiveRegex.test(dur) == false){
+      alert("Please input numbers only.")
+      dur = prompt("Please enter the duration", "");
+      }
+    dist = prompt("Distance");
+    while (numberRegex.test(dist) == false){
+      alert("Please input numbers only.")
+      distance = prompt("Please enter the distance", "");
+      }
+            loadUpSpritesToAnimate();
+    arrayOfFinalSprites.push(finalSpriteArray);
+    finalSpriteArray = [];
+    selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length-1];
+    x = "movD ("+ "selectedSprites["+counter+"]" + ", "+dur+ ", "+dist+");";
+    //console.log(x);
+    counter++;
+    return x;
+  }
+
+  if (ids === "if") {
+    condition = prompt("Please enter the condition");
+    x = "if(" + condition + "){";
+    return x;
+  }
+
+  if (ids === "while") {
+    condition = prompt("Please enter the condition");
+    x = "while(" + condition + "){";
+    return x;
+  }
+
+  if (ids === "else") {
+    x = "else{";
+    return x;
+  }
+
+  if (ids === "addSprite") {
+    x = "";
+    for (var i = 0; i < getGlowingObjects().length; i ++) {
+      xpos = prompt("Please enter desired x-coordinate of object.","");
+      while (numberPositiveRegex.test(xpos) == false || xpos > mainCanvas.width){
+        alert("Please input numbers only.")
+        xpos = prompt("Please enter desired x-coordinate of object.","");
+      }
+      ypos = prompt("Please enter desired y-coordinate of object.","");
+      while (numberPositiveRegex.test(ypos) == false || ypos > mainCanvas.height){
+        alert("Please input numbers only.")
+        ypos = prompt("Please enter desired y-coordinate of object.","");
+      }
+      width = getGlowingObjects()[i].attrs.width;
+      height = getGlowingObjects()[i].attrs.height;
+      x = x + "addSprite (oCanvasElement," + "'" + getGlowingObjects()[i].attrs.name + "', " + width + ", " + height + ", " + xpos + ", " + ypos + ");\n";
+      addedSprites.push(getGlowingObjects()[i].attrs.name);
+      //addSprite(oCanvasElement, getGlowingObjects()[i].attrs.name, width, height, xpos, ypos);
+    }     
+    return x;
+  }
+}
 
   /*
   An Array.contains() method
@@ -526,14 +550,21 @@ function cleanUp(sort) {
       if (dx + 50 > line.getAbsolutePosition().x) {
         //Only change text, or write to console on first time being dragged over
         if (this.attrs.firstTime === true) {
-          this.setName("sortable");//sets the selected group to be sorted in the sorted function
-          var jsText = promptUser(id);// prompts the user to get attributes
-          this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
-          text.setText(jsText); // sets the text on group
-          var height = currentRect.getHeight();
-          currentRect.setSize(text.getWidth() + 30, text.getHeight() + 30);
-          this.attrs.firstTime = false;
-          layer.draw();
+          var jsText = promptUser(id);
+          //sets the selected group to be sorted in the sorted function
+          // prompts the user to get attributes
+          if(jsText === 0){
+            groupToolbox.remove();
+            layer.draw();
+          } else {
+            this.setName("sortable");
+            this.setAttr('jsText',jsText);// sets the input from above and gives it to the group that is selected
+            text.setText(jsText); // sets the text on group
+            var height = currentRect.getHeight();
+            currentRect.setSize(text.getWidth() + 30, text.getHeight() + 30);
+            this.attrs.firstTime = false;
+            layer.draw();
+          }
         }
       sorter();
 
