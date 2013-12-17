@@ -30,7 +30,7 @@ var counter = 0;
 var tools = [{'title': 'method', 'jstext': ''},
   {'title': 'variable', 'jstext': ''},
   {'title': 'end', 'jstext': ''},
-  {'title': 'addSprite', 'type': 'predefined', 'jstext': ''},
+  //{'title': 'addSprite', 'type': 'predefined', 'jstext': ''},
   {'title': 'wait', 'type': 'predefined', 'jstext': ''},
   {'title': 'rotate', 'type': 'predefined', 'jstext': ''},
   {'title': 'move', 'type': 'predefined', 'jstext': ''},
@@ -61,10 +61,10 @@ var json = "";
   Defines contents and length of tabs.
 */
 methodBox = tools.slice(0, 3);
-predefinedBox = tools.slice(3, 12);
-controlBox = tools.slice(12, 15);
-tabBox = tools.slice(15, 18);
-mainBox = tools.slice(18, 20);
+predefinedBox = tools.slice(3, 11);
+controlBox = tools.slice(11, 14);
+tabBox = tools.slice(14, 17);
+mainBox = tools.slice(17, 19);
 
 /* Prompts user input of names*/
 function promptUser(ids) {
@@ -110,6 +110,31 @@ function promptUser(ids) {
     arrayOfImagesToAnimate = [];
   }
 
+
+ function loadSprites() {
+      for(var i = 0; i < getGlowingObjects().length; i++)
+      {
+          for(var j = 0; j < testArray.length; j++)
+          {
+              if(getGlowingObjects()[i].attrs.name == testArray[j].image) //
+              {
+                  arrayOfImagesToAnimate.push(testArray[j].image);
+              }
+          }
+      }
+      //okay, now we actually need to get the image refereces......
+      for(var i = 0; i < arrayOfImagesToAnimate.length; i++)
+      {
+              var imagesOnCanvas = oCanvasElement.canvas.children;
+              if(contains(imagesOnCanvas, arrayOfImagesToAnimate[i]))
+              {
+                  finalSpriteArray.push(imagesOnCanvas[spriteIndex]);                
+              }
+      }
+      arrayOfImagesToAnimate = [];
+    }
+
+
   if (ids === "method") {
     mname = prompt("Please enter the name of your method", "");
     if (mname !== null && mname !== '') {
@@ -151,7 +176,7 @@ function promptUser(ids) {
         alert("Please input numbers only.");
         mills = prompt("Please enter the seconds delayed", "");
       }
-      loadUpSpritesToAnimate();
+      loadSprites();
       arrayOfFinalSprites.push(finalSpriteArray);
       selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length - 1];
       finalSpriteArray = [];
@@ -201,7 +226,7 @@ function promptUser(ids) {
         alert("Please input numbers only.");
         degrees = prompt("Please enter the degrees", "");
       }
-      loadUpSpritesToAnimate();
+      loadSprites();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
       selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length - 1];
@@ -235,7 +260,7 @@ function promptUser(ids) {
     }
     if (clockwise !== null && clockwise !== '') {
       clockwise = prompt("Clockwise? (true or false)");
-      loadUpSpritesToAnimate();
+      loadSprites();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
       selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length - 1];
@@ -263,7 +288,7 @@ function promptUser(ids) {
         alert("Please input numbers only.");
         height = prompt("Please enter the height", "");
       }
-      loadUpSpritesToAnimate();
+      loadSprites();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
       selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length - 1];
@@ -291,7 +316,7 @@ function promptUser(ids) {
         alert("Please input numbers only.");
         dist = prompt("Please enter the distance", "");
       }
-      loadUpSpritesToAnimate();
+      loadSprites();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
       selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length - 1];
@@ -319,7 +344,7 @@ function promptUser(ids) {
         alert("Please input numbers only.");
         dist = prompt("Please enter the distance", "");
       }
-      loadUpSpritesToAnimate();
+      loadSprites();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
       selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length - 1];
@@ -347,7 +372,7 @@ function promptUser(ids) {
         alert("Please input numbers only.");
         dist = prompt("Please enter the distance", "");
       }
-      loadUpSpritesToAnimate();
+      loadSprites();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
       selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length - 1];
@@ -375,7 +400,7 @@ function promptUser(ids) {
         alert("Please input numbers only.");
         dist = prompt("Please enter the distance", "");
       }
-      loadUpSpritesToAnimate();
+      loadSprites();
       arrayOfFinalSprites.push(finalSpriteArray);
       finalSpriteArray = [];
       selectedSprites[counter] = arrayOfFinalSprites[arrayOfFinalSprites.length - 1];
@@ -438,7 +463,7 @@ function promptUser(ids) {
         }
         width = getGlowingObjects()[i].attrs.width;
         height = getGlowingObjects()[i].attrs.height;
-        x = x + "addSprite (oCanvasElement, " + getGlowingObjects()[i].attrs.name + ", " + width + ", " + height + ", " + xpos + ", " + ypos + ");\n";
+        x = x + "addSprite (oCanvasElement, " + "'"+getGlowingObjects()[i].attrs.name +"'" + ", " + width + ", " + height + ", " + xpos + ", " + ypos + ");\n";
         addedSprites.push(getGlowingObjects()[i].attrs.name);
       } else {
         return 0;
