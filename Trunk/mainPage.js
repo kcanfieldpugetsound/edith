@@ -39,6 +39,19 @@
 		return false;
 	}
 	
+	/**
+	Used to call the help pop-up window.
+	**/
+	function popitupHelp(url)
+	{
+		newwindow = window.open(url, "height = 500, width = 500");
+		if(window.focus){
+			newwindow.focus()
+		}
+		return false;
+	}
+
+	
 	var projectCode = [];	
 	var objectXPOS = 0;//start the image out at the beginning of the object panel
 	var objectYPOS = 0;
