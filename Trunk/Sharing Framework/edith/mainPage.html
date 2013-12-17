@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link rel="stylesheet" type="text/css" href="mainPage.css">
+
+        <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src='Visual Editor/visualEditorCanvas.js' type = 'text/javascript'></script>
+        <script src='Visual Editor/sortable.js' type = 'text/javascript'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+    
+        <script src='Animation/animationBlocks.js' type = 'text/javascript' ></script>
+
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script src="gui.js"> </script>
+
+</head>
+
+<body>
+    <div id="logo">
+        <img src="EdithLogoName.png" width=50% height=50% >
+    </div>
+    
+    <div class="animationContainer">
+        <canvas id="mainCanvas"></canvas>
+    </div>
+                
+    <div class="objectContainer">
+        <canvas id="objectCanvas"> </canvas>
+        <div id="tabs">
+            <div id="tabs-1">
+                <script src = "objectPanel.js" defer="defer" type="text/javascript"></script>
+            </div>
+        </div>
+    </div>
+
+    <div class="VEContainer">
+        <canvas id = "VECanvas"></canvas>            
+            <div id= 'tabs'>
+                <div id='container1'>  
+                 </div>
+            </div>
+    </div>
+                
+<script src="mainPage.js" type="text/javascript"></script>
+
+<div class="buttons">
+ <button id="button1" onclick = 'animationMain(UNIVERSAL_MAIN)'>Play</button>
+ <!-- <button id="button2" onclick = 'wait()'>Pause</button> -->
+ <button id="button3" onclick = 'popitupObj("ObjectCreation.html")'>Make Object</button>
+ <button id="button4" onClick = 'save()'>Save</button>
+ <button id="button5" onClick = 'loadProject()'>Load</button>
+ <a href = "Sharing Framework/edith/functions/display.php" >Display Projects </a>
+   <!-- <button id="button6" onclick = 'popitupObj("Sharing Framework/edith/functions/display.php")'>Display Projects</button>-->
+ <button id="button7" onclick = 'popitupHelp("help.html")'>Help</button>
+</div>
+
+
+</body>
+
+</html>

@@ -1,12 +1,21 @@
 <?php
-//Not finished...
 require_once 'dblogin.php';
 require_once 'function.php';
 
-$proID = $_GET['id'];
+$userStatus = false;
+  session_start();
+  if(isset($_SESSION['userName'])){
+    $userStatus=true;
+  } 
 
- $selectCode = "SELECT array FROM objectCreator WHERE objectName = $proID";
- $record = mysql_query($selectCode, $conn);
+ $test = $_GET['id'];
+$uName = $_SESSION['userName'];
 
- echo $record;
+
+$query = mysql_query("SELECT array FROM objectCreator WHERE userName = '$uName' AND objectName = '$test'");
+
+$result = mysql_fetch_array($query);
+
+
+echo(json_encode($result));
 ?>

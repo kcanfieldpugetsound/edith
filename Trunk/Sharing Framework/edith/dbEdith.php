@@ -59,19 +59,7 @@ mysql_query($myQuery3, $conn)
 or die("Failed to create table " . mysql_error());
 echo "Table created...<br />";
 
-$myQuery4 = "DROP TABLE IF EXISTS shareProject;";
-mysql_query($myQuery4, $conn);
-echo "Creating table 'shareProject'...<br />";
 
-// Create the table
-$myQuery4 = "CREATE TABLE shareProject (projectID  VARCHAR(15),
-shareID	  VARCHAR(15),
-PRIMARY KEY(projectID)
-)";   
-
-mysql_query($myQuery4, $conn)
-or die("Failed to create table " . mysql_error());
-echo "Table created...<br />"; 
 
 
 
