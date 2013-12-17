@@ -43,6 +43,7 @@
 	      	}
 	      });
 
+		  testArray = [];
 		 	img.on('dblclick', function() {
 		xpos2 = prompt("Please enter desired x-coordinate of object.","");
         while (numberPositiveRegex.test(xpos2) == false){
@@ -56,7 +57,8 @@
         }
         		xpos2 = parseInt(xpos2);
         		ypos2 = parseInt(ypos2);
-	      		addSprite(oCanvasElement, img.getName() , img.attrs.width, img.attrs.height, xpos2, ypos2);
+				testArray.push(addSprite(oCanvasElement, img.getName() , img.attrs.width, img.attrs.height, xpos2, ypos2));
+	      		
 	      	});
 
 		};
