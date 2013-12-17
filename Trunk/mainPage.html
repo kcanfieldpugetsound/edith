@@ -80,13 +80,26 @@
 	**/
 	function popitupObj(url)
 	{
-		newwindow=window.open(url, "object_creator/ObjectCreation.html", "status = 1, scrollbars =1, height = 600, width = 900");
+		newwindow=window.open(url, "object_creator/ObjectCreation.html", "status = 1, scrollbars =1, height = 700, width = 900");
 		if(window.focus){
 			newwindow.focus()
 		}
 		return false;
 	}
-	
+
+	/**
+	Used to call the help pop-up window.
+	**/
+	function popitupHelp(url)
+	{
+		newwindow = window.open(url, "height = 500, width = 500");
+		if(window.focus){
+			newwindow.focus()
+		}
+		return false;
+	}
+
+
 	var projectCode = [];	
 	/**
 	/Load the pCode (THE ACTUAL DATA THAT WE WANT THAT IS A JSON) and then parse the information in order to manipulate the object images
@@ -143,8 +156,9 @@
  <button id="button3" onclick = 'popitupObj("object_creator/ObjectCreation.html")'>Make Object</button>
  <button id="button4" onClick = 'save()'>Save</button>
  <button id="button5" onClick = 'loadProject()'>Load</button>
-  <button id="button6" onClick = 'loadThatThing()'>Load Circle</button>
-  <a href = "Sharing Framework/edith/functions/display.php" >Display Projects </a>
+ <!-- <button id="button6" onclick = 'popitupObj("Sharing Framework/edith/functions/display.php")'>Display Projects</button>-->
+ <a href = "Sharing Framework/edith/functions/display.php" >Display Projects </a> 
+ <button id="button7" onclick = 'popitupHelp("help.html")'>Help</button>
 </div>
 
 

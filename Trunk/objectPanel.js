@@ -48,7 +48,7 @@
 	    //console.log(imgObj.src);
 	}
 
-	var imgs = ["mario.jpg", "luigi.jpg", "kitten.png", "mario.jpg", "luigi.jpg", "mario.jpg"];
+	//var imgs = ["mario.jpg", "luigi.jpg", "kitten.png", "mario.jpg", "luigi.jpg", "mario.jpg"];
 
 	function addImageArray(theArray)
 	{
@@ -75,4 +75,4 @@
 		return glow;
 	}
 
-	addImageArray(imgs);
+	//addImageArray(imgs);
