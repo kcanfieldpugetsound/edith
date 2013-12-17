@@ -1,38 +1,71 @@
 <script src="animationBlocks.js"></script>
-<canvas id="myCanvas" width="800" height="400" style = "border:solid; position:none"></canvas
+<link rel="stylesheet" type="text/css" href="myStyle.css" />
+	<p><a href ="#" class = "myButton" target="_blank" href = 'API/api.html'>API </a></p>
+	
+<canvas id="myCanvas" width="400" height="400" style = "border:solid; position:none"></canvas>
+<canvas id="myCanvas2" width="400" height="400" style = "border:solid; position:none"></canvas>
 <html><head></head><body>
-		
+
 	<script>
 	//var theCanvasToDrawOn = document.getElementById("myCanvas");
 	oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas"), '#FFFFFF');
-	var mario = addSprite(oCanvasElement, 'mario.jpg', 100, 100, 200, 200);
-	var luigi = addSprite(oCanvasElement, 'luigi.jpg', 100, 120, 400, 200);
-	var bowser = addSprite(oCanvasElement, 'Bowser.jpg', 100, 100, 600, 200);
+	oCanvasElement2 = wrapHTMLCanvasToOcanvas(document.getElementById("myCanvas2"), '#FFFFFF');
+	
+	 var body = addSprite(oCanvasElement, 'body.jpeg', 150, 100, 200, 200);
+	 var arm = addSprite(oCanvasElement, 'arm.jpg', 100, 120, 325, 215);
+	 var arm2 = addSprite(oCanvasElement, 'arm 2.jpg', 100, 120, 80, 215);
+	 var leg = addSprite(oCanvasElement, 'leg.jpg', 50, 120, 175, 315);
+	 var leg2 = addSprite(oCanvasElement, 'leg.jpg', 50, 120, 240, 315);
+	 var head = addSprite(oCanvasElement, 'head.jpg', 100, 100, 200, 100);
+
+	 var bodyz = addSprite(oCanvasElement2, 'body.jpeg', 150, 100, 200, 200);
+	 var armz = addSprite(oCanvasElement2, 'arm.jpg', 100, 120, 325, 215);
+	 var arm2z = addSprite(oCanvasElement2, 'arm 2.jpg', 100, 120, 80, 215);
+	 var legz = addSprite(oCanvasElement2, 'leg.jpg', 50, 120, 175, 315);
+	 var leg2z = addSprite(oCanvasElement2, 'leg.jpg', 50, 120, 240, 315);
+	 var headz = addSprite(oCanvasElement2, 'head.jpg', 100, 100, 200, 100);
 
 
 	function doSomeAnimations()
 	{
-		// movR(mario, 2000, 500);
-		// movL(mario, 200, 500);
-		move(mario, 2000, 0, 0, true, -360);
-		rotate(luigi, 400, 360);
-		movD(luigi, 100, 50);
-		movL(luigi, 100, 50);
+		doubleJump(mario, 200, 100);
+		wait(mario, 2000);
+		jump(mario, 200, 100);
+	}
+
+	function parse()
+	{
+		var text = "function moveDiagUL(sprite, dur, distance){sprite.animate({x: sprite.targetX - distance , y: sprite.targetY - distance}, {duration: dur, easing: 'ease-in-sine', queue: 'b',}); sprite.targetX -= distance; sprite.targetY -= distance;}function doubleJump(sprite, dur, height){sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b'}); sprite.targetY -= height; sprite.animate({y: sprite.targetY - height}, { duration: dur, easing: 'ease-in-out-elastic', queue: 'b' }); sprite.targetY -= height; sprite.animate({y: sprite.targetY+height+height}, { duration: dur, easing: 'ease-in-sine', queue: 'b'}); sprite.targetY += (height + height);}doubleJump(mario,200,100);moveDiagUL(mario, 200, 100);movR(mario, 300, 250);";
+		var stringToParse = "function drift(){movL(mario,200,100);movD(mario,200,100);rotate(mario,200,360,true);}drift();";
+				main(text);
+	}
+
+
+
+	function animatieMario()
+	{
+		jump(mario, 200, 100);
+	}
+	function animateLuigi()
+	{
 		movU(luigi, 100, 50);
 		movR(luigi, 100, 50);
-
-		rotate(bowser, 200, 360, true);
-		rotate(bowser, 200, 360, false);
-
+		movD(luigi, 100, 50);
+		movL(luigi, 100, 50);
+	}
+	function animateBowser()
+	{
+		rotate(bowser, 400, 360, true);
 	}
 
-	function pauseSprite()
+	function animateAll()
 	{
-		pauseAnimationsForSprite(mario);
-	}
-	function pauseAll()
-	{
-		pauseAnimationsForEntireScene(oCanvasElement);
+		var sprites = [mario, luigi, bowser];
+		//animateBowser();
+		//animateLuigi();
+		//animatieMario();
+		rotate(sprites,300,360,true,true, 360);
+
 	}
 
 	function delay()
@@ -40,14 +73,63 @@
 		setDelay(mario, 1000);
 	}
 
+	function singleAnimation(type)
+	{
+		if(type == "head")
+		{
+			var array = [head];
+			jump(array, 500, 70);
+		}
+		if(type == "body")
+		{
+			var array = [body];
+			jump(array, 500, 70);
+		}
+		if(type == "arm1")
+		{
+			var array = [arm];
+			jump(array, 500, 70);
+		}
+		if(type == "arm2")
+		{
+			var array = [arm2];
+			jump(array, 500, 70);
+		}
+		if(type == "leg1")
+		{
+			var array = [leg];
+			jump(array, 500, 70);
+		}
+		if(type == "leg2")
+		{
+			var array = [leg2];
+			jump(array, 500, 70);
+		}
+		if(type == "whole")
+		{
+			var array = [bodyz, armz, arm2z, headz, legz, leg2z];
+			jump(array, 500, 70);
+		}
+	}
+
 	</script>
-		
 
-<p> <button onclick = 'doSomeAnimations()'>Animate</button></p>
-<p> <button onclick = 'pauseAll()'>Pause All</button></p>
-<p> <button onclick = 'pauseSprite()'>Pause Only Mario</button></p>
-<p> <button onclick = 'setDelay()'>delay luigi</button></p>
 
+</br>Old Version
+</br>jump(head, 500, 100); jump(body, 500, 100); jump(leftArm, 500, 100); jump(rightArm, 500, 100); jump(leftLeg, 500, 100); jump(rightLeg, 500, 100); 
+<p><a href="#" class="myButton" onclick ='singleAnimation("head")' >Jump Head</a>
+<a href="#" class="myButton" onclick ='singleAnimation("body")' >Jump Body</a>
+<a href="#" class="myButton" onclick ='singleAnimation("arm1")' >Jump Left Arm</a>
+<a href="#" class="myButton" onclick ='singleAnimation("arm2")' >Jump Right Arm</a>
+<a href="#" class="myButton" onclick ='singleAnimation("leg1")' >Jump Left Leg</a>
+<a href="#" class="myButton" onclick ='singleAnimation("leg2")' >Jump Right Leg</a>
+</p>
+
+</br>New Version
+</br>
+jump(figure, 500, 100); (where figure is the array of components)
+<p> 
+<a href="#" class="myButton" onclick ='singleAnimation("whole")' >Animate Whole Figure</a></p>
 
 </body></html>
 

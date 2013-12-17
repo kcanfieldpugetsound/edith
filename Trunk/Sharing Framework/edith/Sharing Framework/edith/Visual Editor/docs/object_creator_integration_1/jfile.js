@@ -24,8 +24,8 @@ function line(evt)
 function continuous(evt)
 {
 	on =1;
-	pathx=evt.clientX;
-	pathy=evt.clientY;
+	pathx=clientX;
+	pathy=clientY;
 	cancx.beginPath();
 	cancx.lineWidth=width;
 	cancx.strokeStyle=color;
@@ -54,14 +54,4 @@ function cont(evt)
 	cancx.lineTo(evt.clientX-10,evt.clientY-35);
 	cancx.stroke();
 	}
-}
-
-
-function popitup(url)
-{
-	newwindow=window.open(url, 'example.html', 'height = 200', 'width = 150');
-	if(window.focus){
-		newwindow.focus()
-	}
-	return false;
 }

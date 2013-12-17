@@ -1,10 +1,10 @@
-		var stage = new Kinetic.Stage({
+		var objectStage = new Kinetic.Stage({
 	    container: 'tabs-1',
 	    width: 540,
 	    height: 300
 	    });
 
-	var layer2 = new Kinetic.Layer();
+	var objectLayer= new Kinetic.Layer();
 	var glow = [];
 	var curImgs = [];
 
@@ -17,6 +17,7 @@
 			    x: theX,
 			    y: theY,
 			    image: imgObj,
+			    name: src, //This is necessary to get name of image (Visual editor)
 			    width: 100,
 			    height: 100,
 			    listening: true,
@@ -24,8 +25,8 @@
  				filterBrightness: 0
 			  });
 
-			layer2.add(img);
-		 	stage.add(layer2);
+			objectLayer.add(img);
+		 	objectStage.add(objectLayer);
 
 		 	img.on('click', function() {
 	      	if(glow.indexOf(img) >= 0)
@@ -33,18 +34,36 @@
 	      		var x = glow.indexOf(img);
 	      		glow.splice(x, 1);
 	      		img.setFilterBrightness(0);
-	      		layer2.batchDraw();
+	      		objectLayer.batchDraw();
 	      	}
 	      	else {
 	      		glow.push(img);
 	      		img.setFilterBrightness(100);
-	      		layer2.batchDraw();
+	      		objectLayer.batchDraw();
 	      	}
 	      });
 
+		  testArray = [];
+		 	img.on('dblclick', function() {
+		xpos2 = prompt("Please enter desired x-coordinate of object.","");
+        while (numberPositiveRegex.test(xpos2) == false){
+          alert("Please input numbers only.")
+          xpos2 = prompt("Please enter desired x-coordinate of object.","");
+        }
+        ypos2 = prompt("Please enter desired y-coordinate of object.","");
+        while (numberPositiveRegex.test(ypos2) == false){
+          alert("Please input numbers only.")
+          ypos2 = prompt("Please enter desired y-coordinate of object.","");
+        }
+        		xpos2 = parseInt(xpos2);
+        		ypos2 = parseInt(ypos2);
+				testArray.push(addSprite(oCanvasElement, img.getName() , img.attrs.width, img.attrs.height, xpos2, ypos2));
+	      		
+	      	});
+
 		};
 		imgObj.src = src;
-	    console.log(imgObj.src);
+	    //console.log(imgObj.src);
 	}
 
 	var imgs = ["mario.jpg", "luigi.jpg", "kitten.png", "mario.jpg", "luigi.jpg", "mario.jpg"];

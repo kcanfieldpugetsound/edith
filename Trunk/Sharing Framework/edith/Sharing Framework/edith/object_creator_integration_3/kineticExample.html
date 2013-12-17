@@ -1,0 +1,412 @@
+<html>
+
+    <head>
+    <center>
+    Make a New Object!
+    </center>
+        <title>Object Creation: Int. 2</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.4.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="ObjectCreationStyleSheet.css">
+    </head>   
+    <header>
+      </br> To build a new character either draw or create shapes. New shapes can be arranged by dragging them to your prefered location.
+      </br> When you are finished building your character, name and export it to use in your story!
+      </br> To rotate an object on the canvas, double click and specify the degress of rotation.
+   </header>
+    <center>
+    <body>
+        <div id='container'>
+        </div>
+        <script>
+            var canvas = new Kinetic.Stage({
+                    container: 'container',
+                    width: 500,
+                    height: 500
+                });
+            var bg = new Kinetic.Layer({
+			id : 'defaultL',
+			});
+            canvas.add(bg);
+        var mousedownB = false;
+        var fpoints = new Array();
+        var fpath;
+        var destroyRB = false;
+        </script>
+        
+        
+        
+        <div id="drawing">
+       Specify Color: <select id = "shapeColor">
+                      <option value="black">Black</option>
+                      <option value="red">Red</option>
+                      <option value="magenta">Magenta</option>
+                      <option value="orange">Orange</option>
+                      <option value="yellow">Yellow</option>
+                      <option value="green">Green</option>
+                      <option value="blue">Blue</option>
+                      <option value="teal">Teal</option>
+                      <option value="purple">Purple</option>
+                      <option value="white">White</option>
+                      <option value="pink">Pink</option>
+                      <option value="gray">Gray</option>
+                      <option value="brown">Brown</option>
+                      <option value="crimson">Crimson</option>
+                      <option value="gold">Gold</option>
+                    </select></br>
+			Specify layer: <select id = "currentLayerSet" onchange = "changePriority(this.value)">
+                      <option value="defaultL">Default Layer</option>
+                    </select></br>
+           <button onclick="addLayer()">Add Layer</button>
+            <button onclick="clearCanvas()">Clear Layer</button> 
+            <button onclick="saveObject()">Save Layer</button>
+            <button onclick="deleteLayer()">Delete Layer </button>
+            <button onclick="displayImage()">Load Layer</button>
+            </br>            
+            
+        Draw Primitives: <button onclick="drawLine()">Draw Line</button>
+
+            <button onclick="drawRec()">Draw Rectangle</button>
+            <button onclick="drawCircle()">Draw Circle</button> </br>
+            
+            <label> Upload Image: </label>
+            <input type= "file" id = "imageLoader"  accept="image/gif, image/jpeg, image/png" /> </br>
+        
+            <button type="button" onclick="exporting()">Export the Object</button>
+            
+            <id="r">
+    
+                <!--<script type="text/javascript" src="script.js"></script>-->
+                <script>
+                var savedObjects = new Array();
+				var currentLayer;
+				var imageLoader = document.getElementById("imageLoader");
+                imageLoader.addEventListener("change", uploadImage, false);
+				
+				
+				function changePriority(layer){
+					currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+					canvas.add(currentLayer);
+				}
+
+                function drawLine() {
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        var length = parseInt(prompt("Please enter the length of your line", "50"));
+                        var color = document.getElementById("shapeColor").value;
+                        var points = new Array();
+                        points.push(0,0, length,0);
+                        var line = new Kinetic.Line({
+                                x: 200,
+                                y: 200,
+                                points: points,
+                                stroke: color,
+                                strokeWidth : 5,
+                                draggable: true
+                            });
+                            
+                        line.on('dblclick', function() {
+                            var degree = prompt("Please enter the rotation degrees", "50");
+                            line.rotateDeg(degree);
+                            currentLayer.draw();
+                        });
+                        line.on('click', function() {
+                            removeShape(this);
+                        });
+                        currentLayer.add(line);
+                        canvas.add(currentLayer);
+                }
+                    
+            	function drawRec()
+            	{
+					currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+            	    var height = parseInt(prompt("Please enter the height of your rectangle", "50"));
+            	    var width = parseInt(prompt("Please enter the width of your rectangle", "50"));
+            	    var color = document.getElementById("shapeColor").value;
+            		var rec = new Kinetic.Rect({
+            			x : 0,
+            			y : 100,
+            			height : height,
+            			width : width,
+            			stroke : color,
+            			fill: color,
+            			strokeWidth : 1,
+            			draggable : true
+            		});
+            		
+            		rec.on('dblclick', function() {
+                        var degree = prompt("Please enter the rotation degrees", "50");
+                        rec.rotateDeg(degree);
+                        currentLayer.draw();
+                    });
+            		rec.on('click', function() {
+                            removeShape(this);
+                        });
+            		currentLayer.add(rec);
+            		canvas.add(currentLayer);
+            	}
+
+                    function drawCircle() {
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        var color = document.getElementById("shapeColor").value;
+                        var circle = new Kinetic.Circle({
+                            x: 100,
+                            y: 100,
+                            radius: parseInt(prompt("Please enter the radius of your circle", "50")),
+                            fill: color,
+                            stroke: color,
+                            strokeWidth: 4,
+                            draggable: true
+                        });
+                        circle.on('click', function() {
+                            removeShape(this);
+                        });
+                        currentLayer.add(circle);
+                        canvas.add(currentLayer);
+                    }
+
+                    function clearCanvas() {
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        currentLayer.destroyChildren();
+                        currentLayer.clear();
+                    }
+                    
+                    function uploadImage(e) {
+
+                        var reader = new FileReader();
+                        currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        reader.onload = function (event) {
+                            var imageObj = new Image(); 
+                            imageObj.onload = function() {
+                                var uploaded = new Kinetic.Image({
+                                    x:100,
+                                    y:100,
+                                    image: imageObj,
+                                    width:200,
+                                    height:200,
+                                    draggable: true
+                                });
+
+                                uploaded.on('dblclick', function() {
+                                var degree = prompt("Please enter the rotation degrees", "50");
+                                uploaded.rotateDeg(degree);
+                                currentLayer.draw();
+                                });
+
+                                currentLayer.add(uploaded);
+                                canvas.add(currentLayer);
+                            }
+                            imageObj.src = event.target.result;//name;
+                        }
+                        reader.readAsDataURL(e.target.files[0]);           
+                    }
+
+
+                    function saveObject() {
+                        var name = prompt("Please enter the name of your layer");
+                        if (name == "") {
+                            alert("Please enter a name to save the file as.");
+                            return false;
+                        }
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        var img = currentLayer.toDataURL();
+                        var imgName = name + ".png";
+                        var i;
+                        for (i = 0; i < savedObjects.length; i++) {
+                            if (savedObjects[i][1] == imgName) {
+                                savedObjects[i][0] = img;
+                                alert("Saved!");
+                                return true;
+                            }
+                        }
+                        savedObjects.push([img, imgName]);
+                        alert("Saved!");
+                        return true;
+                    }
+
+                     //testing and debugging function to test that we can load the image onto the canvas.
+
+                    function displayImage() {
+						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        var testName = prompt("Load file of name (ex: 'head.png')");
+                        if (testName == "") {
+                            alert("Please enter a name so we can load the correct image.");
+                            return false;
+                        }
+                        //go through and find the file with the same name as the inputed one.
+                        for (i = 0; i < savedObjects.length; i++) {
+                            if (savedObjects[i][1] == testName) {
+                                //if the file is the same name then extract the file source data and put it into the canvas.
+                                var context = currentLayer.getContext("2d");
+                                var image = new Image();
+                                //image.src = savedObjects[i][0];
+
+                                image.onload = function() {
+                                   var x = new Kinetic.Image({
+                                    x:0,
+                                    y:0,
+                                    image: image,
+                                    width:500,
+                                    height:500,
+                                    draggable: true
+                                });
+                                image.on('click', function() {
+                                    removeShape(this);
+                                });
+                                currentLayer.add(x);
+                                canvas.add(currentLayer);
+                            }
+                                image.src = savedObjects[i][0];
+
+                                //image.onload = function() {
+                                  //  context.drawImage(image, 0, 0);
+                                //}
+                                return true;
+                            }
+                        }
+                        //if the file name was not found then return false.
+                        alert("the specific image does not exist.");
+                        return false;
+
+                    }
+
+                    function exporting() {
+                        var objectArrayName = document.getElementById("ObjectName").value;
+                        if (objectArrayName == "") {
+                            alert("Please enter a name so we can save the object.");
+                            return false;
+                        }
+                        $.ajax({
+                                type: "POST",
+                                data: {
+                                    ObjectArray: savedObjects
+                                },
+                                url: "functions\save.php"
+                            });
+                        $.ajax({
+                                type: "POST",
+                                data: {
+                                    ObjectName: objectArrayName
+                                },
+                                url: "functions\save.php",
+                                success: function() {
+                                    alert("Exported successfully");
+                                }
+                            });
+					}
+							
+							function addLayer(){
+							    var option = document.createElement("option");
+								var name = prompt("Please enter the name of the new layer", "layer");
+								option.text = name;
+								option.value = name;
+								var select = document.getElementById("currentLayerSet");
+								select.appendChild(option);
+								
+								var temp = new Kinetic.Layer({
+								id : name,
+								});
+								canvas.add(temp);
+								
+							}
+				 function draw (evt){
+				     mousedownB = true;
+                        fpoints.push(evt.clientX - 10,evt.clientY -90);
+                    }
+                 function move(evt){
+                     if(mousedownB){
+                        var tx = evt.clientX - 10;
+                        if(tx > canvas.width)
+                        {fpoints.push(canvas.width);}
+                        else if(tx < 0)
+                        {fpoints.push(0);}
+                        else
+                        {fpoints.push(tx);}
+                        var ty = evt.clientY - 90;
+                        if(ty > canvas.height)
+                        {fpoints.push(canvas.height);}
+                        else if(ty < 0)
+                        {fpoints.push(0);}
+                        else
+                        {fpoints.push(ty);}
+                        bg.add(fpath);
+                        canvas.add(bg);}
+                    }
+                    function drawfinal()
+                {
+                    var color =  document.getElementById("shapeColor").value;
+                    currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                    if(fpoints.length>0){
+                    fpath = new Kinetic.Line({
+                            points: fpoints,
+                            stroke: color,
+                            strokeWidth: 5,
+                            draggable: true
+                            });
+                    currentLayer.add(fpath);
+                    canvas.add(currentLayer);
+                    mousedownB = false; fpoints = new Array();}
+                }
+                function removeShape(shape)
+                {
+                    if(destroyRB == true)
+                    {
+                        shape.destroy();
+                        currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+                        canvas.add(currentLayer);
+                    }
+                }
+                
+                function deleteLayer(){
+					currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
+					currentLayer.destroy();
+					var select = document.getElementById("currentLayerSet");
+					select.remove(select.selectedIndex);
+				}
+				
+                </script>
+        </div>
+
+        <div id="radio">
+            <input type="radio" id="radio1" name="radio" onClick="choice1()">
+            <label for="radio1">None</label>
+            <input type="radio" id="radio2" name="radio" onClick="choice2()">
+            <label for="radio2">Delete Shape</label>
+            <input type="radio" id="radio3" name="radio" onClick="choice3()">
+            <label for="radio3">Free Draw</label>
+
+        </div>
+        <script>
+            $("#radio").buttonset();
+        </script>
+		
+	
+        <script>
+            function wipeListeners(){
+                document.getElementById('container').removeEventListener("mousedown", draw, false);
+                document.getElementById('container').removeEventListener("mouseup", drawfinal, false);
+                document.getElementById('container').removeEventListener("mouseout", drawfinal, false);
+                document.getElementById('container').removeEventListener('mousemove', move ,false);
+                destroyRB = false;
+            }
+            function choice1() {
+            wipeListeners();
+            }
+            function choice2() {
+                wipeListeners();
+                destroyRB = true;
+                
+            }
+            function choice3() {
+                wipeListeners();
+                document.getElementById('container').addEventListener("mousedown", draw, false);
+                document.getElementById('container').addEventListener("mouseup", drawfinal, false);
+                document.getElementById('container').addEventListener("mouseout", drawfinal, false);
+                document.getElementById('container').addEventListener('mousemove', move ,false);
+            }
+        </script>
+
+    </body>
+    </center>
+</html>

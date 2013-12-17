@@ -1,171 +1,51 @@
-<!DOCTYPE html>
+<?php  
+    function redirect() {
+    header('location:index.php');
+}
+?>
+<!-- 
+Code deirved from:
+http://www.daniweb.com/web-development/javascript-dhtml-ajax/code/330933/a-simple-html-login-page-using-javascript
+ -->
+
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="story_creator.css">
-	
-	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src='Visual Editor/visualEditorCanvas.js' type = 'text/javascript'></script>
-	<script src='sortable.js' type = 'text/javascript'></script>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
-	<script src = 'object_creator/jfile.js' type = 'text/javascript' ></script>
-	<script src='Animation/animationBlocks.js' type = 'text/javascript' ></script>
-
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-	<script src="gui.js"> </script>
-
+  <link rel="stylesheet" type="text/css" href="loginstyle.css">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/favicon.ico">
+<title>
+Edith
+</title>
 </head>
-
 <body>
-	<div id="logo">
-		<img src="EdithLogoName.png" width=50% height=50% >
-	</div>
 
-	<div class="animationContainer">
-		<canvas id="mainCanvas"></canvas>
-	</div>
-		
-	<div class="objectContainer">
-		<canvas id="objectCanvas"> </canvas>
+<?php
+if(isset($_SESSION['userName'])){
+  redirect();
+}
+?>
 
-		<div id="tabs">
-  			<div id="tabs-1">
-  				<script src = "objectPanel.js" defer="defer" type="text/javascript"></script>
-			</div>
-		</div>
-	</div>
-
-		<div class="VEContainer">
-			<canvas id = "VECanvas"></canvas>
-			
-			<div id= 'tabs'>
-				<div id='container1'>	</div>
-			</div>
-		</div>
-
-<script>
-	mainCanvas.width = (window.innerWidth / 1.8);
-	mainCanvas.height = (window.innerHeight / 1.8);
-	objectCanvas.width = (window.innerWidth / 1.825);
-	objectCanvas.height = (window.innerHeight / 2.7);
-	VECanvas.width = (window.innerWidth / 2.4);
-	VECanvas.height = (window.innerHeight/1.06);
-
-	var oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
-
-	
-	window.onresize = function(event) {
-    	mainCanvas.width = (window.innerWidth / 1.8);
-		mainCanvas.height = (window.innerHeight / 1.8);
-		objectCanvas.width = (window.innerWidth / 1.825);
-		objectCanvas.height = (window.innerHeight / 2.7);
-		VECanvas.width = (window.innerWidth / 2.4);
-		VECanvas.height = (window.innerHeight/1.06);
-
-		oCanvasElement = wrapHTMLCanvasToOcanvas(document.getElementById("mainCanvas"), '#FFFFFF');  //get the OCanvas so we can animate
-	}
-
-	function getCanvas()
-	{
-		return oCanvasElement;
-	}
-	
-	/**
-	Used to call the object creation pop-up window.
-	**/
-	function popitupObj(url)
-	{
-		newwindow=window.open(url, "object_creator/ObjectCreation.html", "status = 1, scrollbars =1, height = 600, width = 900");
-		if(window.focus){
-			newwindow.focus()
-		}
-		return false;
-	}
-	
-	var projectCode = [];
-	
-	/**
-	/Load the pCode (THE ACTUAL DATA THAT WE WANT THAT IS A JSON) and then parse the information in order to manipulate the object images
-	/
-	**/
-	function loadProject() {
-		var objectName = prompt("Please enter the name of your project:");
-		
-		$.getJSON("functions/objectLoad.php", {id:objectName}, function(data) {
-			$("#theText").html(data.array);
-	
-			projectCode = JSON.parse(data); //get the JSON from sharing and turn it into the array
-			for(var j = 0; j<projectCode.length; j++){//go through the list of 
-				addImage(projectCode[j][0], 300, 150); //get the value out of the two dimensional array at the right spot (the value is the key of the array)
-				//[["data:image/png;base64,i...kc43N5BAAAAAElFTkSuQmCC", "yo.png"], ["data:image/png;base64,i...8lYvwAAAABJRU5ErkJggg==", "lol.png"]]   Just a sample
-			}
-			
-		//	addImageArray(Object.values(projectCode));
-			/* 
-			for(var j=0; j<Object.keys(projectCode).length; j++){
-				addImage(Object.keys(unstringified)[j], 300, 150);
-				console.log(unstringified["bob"]);
-			} */
-			//figure out how to undo the stringify
-		});
-	}
-
-	/**
-	/Save the information for save.php to put to the server's database
-	/"code:" This needs to be the updated JSON that we are using for everything
-	**/
-	function save(){
-	var projectId = prompt("Please enter the name of the project you are saving to:");
-	
-		$.ajax({
-				url: 'Sharing Framework/edith/functions/save.php',
-				type: 'POST',
-				data: {code: "the_Project_code_here", projectName: projectId}, //update what the project code (The json that we want to save) and name are
-				dataType: JSON,
-				success: function(){
-						console.log("Succsessful post!");
-				},
-				error: function(){
-						console.log("Failed post!");
-				}
-		});
-	}
-	
-	
-	function loadThatThing(){
-			//var theJson = {"keys": }
-			
-			theJson = [["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAdYklEQVR4Ae3dXYhmdR0H8J1UhEQFJVH0Ik1K8AVR3F01SxKRzJe6EqVgEeqyi8yiwIvQEPUi6NYbITC90nwhShJji901V8wX0NDNixVlTUVDwUS33385o7vr7M7szPNyzvd8HjjMzDMzz3N+n++Pvp3HnZmF3bt3r3MjQIAAAQIEhi3whWGfvrMnQIAAAQIEmoBCtwcECBAgQCBAQKEHhGgEAgQIECCg0O0AAQIECBAIEFDoASEagQABAgQIKHQ7QIAAAQIEAgQUekCIRiBAgAABAgrdDhAgQIAAgQABhR4QohEIECBAgIBCtwMECBAgQCBAQKEHhGgEAgQIECCg0O0AAQIECBAIEFDoASEagQABAgQIKHQ7QIAAAQIEAgQUekCIRiBAgAABAgrdDhAgQIAAgQABhR4QohEIECBAgIBCtwMECBAgQCBAQKEHhGgEAgQIECCg0O0AAQIECBAIEFDoASEagQABAgQIKHQ7QIAAAQIEAgQUekCIRiBAgAABAgrdDhAgQIAAgQABhR4QohEIECBAgIBCtwMECBAgQCBAQKEHhGgEAgQIECCg0O0AAQIECBAIEFDoASEagQABAgQIKHQ7QIAAAQIEAgQUekCIRiBAgAABAgrdDhAgQIAAgQABhR4QohEIECBAgIBCtwMECBAgQCBAQKEHhGgEAgQIECCg0O0AAQIECBAIEFDoASEagQABAgQIKHQ7QIAAAQIEAgQUekCIRiBAgAABAgrdDhAgQIAAgQABhR4QohEIECBAgIBCtwMECBAgQCBAQKEHhGgEAgQIECCg0O0AAQIECBAIEFDoASEagQABAgQIKHQ7QIAAAQIEAgQUekCIRiBAgAABAocjmI3AwsLCcfVMJ9ZxUvf2QO8fUZ9/ozter7ftaB/v//5/dtet7ncjQIAAAQLrFnTC5LegynuhHvWcOi7tjkvq7fF1TPL2Tj3YX+t4ojueqyw/qffdCBAgQGCEAgp9QqFXhx9VD3V5HdfUcVUdX6pjlrc368keqeOhOv5c5f7BLJ/ccxEgQIDAfAUU+hr9q8g31kP8sI7r6mil3ofb+3US99dxdxX71j6ckHMgQIAAgekKKPRV+laRt6vwW+pYv8qHmNW3basnuq2KvV29uxEgQIBAqIBCP8Rgq8i/Xd9yax3nH+K3zvvLt9cJ3FLF/sd5n4jnJ0CAAIHJCyj0FZpWkW+oL72rjvYP3IZ821wnf3MVe7tydyNAgACBEAGFvkyQVeSn1JfcWcf1y3zp0D59b53wz6vYdw7txJ0vAQIECHxewC+W+bzJnnuqyA+v46b64MU60sq8zXhDm63N2GZtd7gRIECAwHAFXKEvkV0V3Nl19z11nLfEpxPverqG2lRX688lDmcmAgQIjEHAFfpeKVeRt9tP6q6n6hhLmTeBNutTbfYG0O5wI0CAAIFhCbhC7/KqHju23v1dHVcPK8KJn+3D9Yg/qKv1dyf+yB6QAAECBKYmoNCLtsr8K/Xm0Tq+NjXpYT3wS3W636lSf2VYp+1sCRAgMF6B0Rd6lXn7neuP1XHCeNdgycl31b2XV6k/u+Rn3UmAAAECvRIYdaFXmZ9ZabQ/cHJ8r1Lpz8m8VafyzSr1F/pzSs6EAAECBJYSGG2hV5m3ny9vv+f85KVg3PepwGv13sYqdT+v/imJdwgQINA/gVH+K/cq86MrivbfzJX58jvZjB7tzJb/al9BgAABAnMRGF2hVzG1mdtvSWv/7dxtZQLN6t7ObmXf4asIECBAYKYCoyv00r2tjvaX0twOTaCZNTs3AgQIEOihwKj+G3pdYX63MnighzkM6ZS+V/89/cEhnbBzJUCAwBgERlPoVeanVaDtV5y2XyDjtnqB9gtnzqtS37H6h/CdBAgQIDBpgVG85F5lfkTB3VeHMl/7BjXD+zrTtT+aRyBAgACBiQiMotBL6ld1XDARMQ/SBJplM3UjQIAAgZ4IxL/kXleSF5b15joO64l5yml8XINcUi+9b0kZyBwECBAYskB0oVeZH1nhPFPHGUMOqcfn3v5W/LlV6h/2+BydGgECBEYhkP6S+y8rRWU+vVVuts3YjQABAgTmLBB7hV5X56eX7fN1tKt0t+kJtKvzs+oq/eXpPYVHJkCAAIHlBJKv0H9Twyvz5TZg7Z9vxs3ajQABAgTmKBB5hV5X598q07/M0XWMT31ZXaU/PsbBzUyAAIE+CKQW+rbCXd8H4BGdw5NV6BtGNK9RCRAg0CuBuJfc6+q8/c5xZT77NVvf2c/+mT0jAQIECKyLu0KvUtlSuW6U7VwEttZVevu5fzcCBAgQmLFA1BV6lfnF5afMZ7xEez3dxi6Dve7yLgECBAjMQiCq0Avsx7NA8xwHFZDBQXl8kgABAtMRiHnJva4MTyiinXW0P8TiNj+Bj+qpT6mX3nfN7xQ8MwECBMYnkHSF/v2KT5nPf4dbBi0LNwIECBCYoUBSod8wQzdPdXABWRzcx2cJECAwcYGIl9zr5fZTS2bHxHU84FoETq2X3V9dywP4XgIECBBYuUDKFXr72XO3fglc3a/TcTYECBDIFkgp9CuyYxrkdDIZZGxOmgCBoQoM/iX3ern9sMJ/u45jhhpC6Hm/V3MdVy+7fxw6n7EIECDQK4GEK/QzS1SZ92qt9pxMy6Rl40aAAAECMxBIKPTzZ+DkKVYnIJvVufkuAgQIHLJAQqGfdchT+4ZZCchmVtKehwCB0QskFPpXR59ifwFk099snBkBAmECCYX+5bBMksaRTVKaZiFAoNcCCYV+Yq+Fx31yshl3/qYnQGCGAgk/ttZ+LCrh/5jMMPaZPdUn9WNr7ccK3QgQIEBgygIJRZgww5RjntvDy2Zu9J6YAIGxCfgf3LElbl4CBAgQiBRQ6JGxGooAAQIExiag0MeWuHkJECBAIFJAoUfGaigCBAgQGJuAQh9b4uYlQIAAgUgBhR4Zq6EIECBAYGwCCn1siZuXAAECBCIFEgr9k8hkMoaSTUaOpiBAYAACCYX+zgCcx3qKshlr8uYmQGDmAgmF/vrM1TzhSgVks1IpX0eAAIE1CiQU+qtrNPDt0xOQzfRsPTIBAgT2EUgo9H/tM5EP+iQgmz6l4VwIEIgWSCj056MTGvZwshl2fs6eAIEBCSQU+vYBeY/tVGUztsTNS4DA3AQS/h56+3vbb9dxzNwUPfFSAu/VncfV30Nvf6/ejQABAgSmLDD4K/SuMDZP2cnDH7rAZmV+6Gi+gwABAqsVGHyhd4P/abUAvm9qAjKZGq0HJkCAwOcFBv+SextpYWHh1Hqz4/PjuWeOAqfVFfq/5/j8npoAAQKjEoi4Qu+Kwz/A6s/qblfm/QnDmRAgMA6BiELvorp3HJENYkpZDCImJ0mAQJJAxEvuLZB62f2EerOzjiPax25zE/ionvmUukLfNbcz8MQECBAYoUDMFXpXIA+MMMO+jfyAMu9bJM6HAIExCMQUehfWb8cQWs9nlEHPA3J6BAhkCsS85L4YT730vqXe37j4sbczFdhaV+cXzvQZPRkBAgQI7BFIu0JvQ/1atnMTYD83ek9MgMDYBeKu0FugdZW+rd6sH3u4M57/ybo63zDj5/R0BAgQINAJJF6ht9F+IeGZCzCfObknJECAwGcCkYVeV4qP14iPfDam96Ys8EhnPuWn8fAECBAgcCCByJfc27D1svvp9ab9Pe4j28duUxP4sB75rCr0l6f2DB6YAAECBJYViLxCb1N3BXPHsgK+YK0CdyjztRL6fgIECKxdIPYKvdHUVXq7On+mjjPax24TF3ixHvHcKvR2le5GgAABAnMUiL1Cb6Zd0dxY7348R+PUp26mNyrz1HjNRYDA0ASiC72FUYXTftHMnUMLZgDne2dnO4BTdYoECBDIF4h+yX0xvnrpvf3Blr/XccHifd6uSeAf9d0XV6G3P8TiRoAAAQI9EBhFoTfnKvXT6s3TdRzbPnZbtcC79Z3nVZnvWPUj+EYCBAgQmLhA/Evui2JdAW1a/NjbVQtsUuartvONBAgQmJrAaAq9CVYRPVhvbp+aZv4D394Z5k9qQgIECAxMYDQvuS/mUi+9t/8T84c6rlq8z9sVCbTfvHdtFfonK/pqX0SAAAECMxUYXaE33Sr1o+vN3+o4p33stqzAs/UVX68y/++yX+kLCBAgQGAuAqMs9CZdpX5Kvdlax8ntY7cDCrxWn9lYZb7zgF/hEwQIECAwd4FR/Tf0vbW7grqi7ntr7/u9v49As7lCme9j4gMCBAj0UmC0hd7SqKJ6od5cVseu9rHbPgLN5LLOaJ9P+IAAAQIE+icw6kJvcVRh/bPeXFTHS+1jtz0CzeKizgYJAQIECAxAYPSF3jKq4nql3myo4+H28chvzWBDZzJyCuMTIEBgOAIKvcuqCqz9BrRr67ipjv91d4/pTZu5zd5+NK1ZuBEgQIDAgARG+6/cD5ZR/Qv4s+vz99Rx3sG+Luhz7Vfibqoify5oJqMQIEBgVAKu0JeIuyu29hL8T+t4f4kvSbmrzdZmbC+xK/OUVM1BgMAoBVyhLxN79/Pq7c+vXr/Mlw7t07+vE/5ZFbmfLx9acs6XAAECSwgo9CVQlrqrir1dsd9VxyVLfX5A922uc725inzbgM7ZqRIgQIDAMgJecl8GaPHTrQDr+EZ9fGUd2xfvH9Dbds5XthmU+YBSc6oECBBYoYAr9BVC7f9ldcXe/rjLLXWs3/9zPfv4yTqfW6vE2x9XcSNAgACBUAGFvsZgq9g31kP8qI7r6vjiGh9uUt/+QT3Q/XXcXUW+ZVIP6nEIECBAoL8CCn1C2VSxH1UPdXkd19TRrt6/VMcsb2/Wk7Wr8IfqeKyKPPlf58/S1XMRIEBgEAIKfQoxVbm3f5vQ/jTrpXsdx9b7k7y1X/7yxF7Hs1Xi/lb5JIU9FgECBAYkoNBnEFYV/GH1NO2K/cQ6TureHuj9+vS6N7rj9f3etvsX73uzCvzj+tiNAAECBAisU+iWgAABAgQIBAj4sbWAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgAABhW4HCBAgQIBAgIBCDwjRCAQIECBAQKHbAQIECBAgECCg0ANCNAIBAgQIEFDodoAAAQIECAQIKPSAEI1AgAABAgQUuh0gQIAAAQIBAgo9IEQjECBAgACB/wNy5IEzMrDQxQAAAABJRU5ErkJggg==","bob"]];
-			
-			stringifieeed = JSON.stringify(theJson);
-			console.log(stringifieeed);
-			
-			unstringified = JSON.parse(stringifieeed);
-			console.log(unstringified);
-			console.log(theJson.length);
-			
-			for(var j = 0; j<unstringified.length; j++){//go through the list of 
-				addImage(unstringified[j][0], 300, 150);
-				console.log(unstringified[j][0]);
-			}
-	
-	}
-	
-</script>
-<div class="buttons">
- <button id="button1" onclick = 'main(UNIVERSAL_MAIN)'>Play</button>
- <!-- <button id="button2" onclick = 'wait()'>Pause</button> -->
- <button id="button3" onclick = 'popitupObj("ObjectCreation.html")'>Make Object</button>
- <button id="button4" onClick = 'save()'>Save</button>
- <button id="button5" onClick = 'loadProject()'>Load</button>
-  <button id="button6" onClick = 'loadThatThing()'>Load Circle</button>
-  <a href = "Sharing Framework/edith/functions/display.php" >Display Projects </a>
+<div id="logo" width="300" height="120">
+  <img src="EdithLogoName.png">
 </div>
+<!-- <div id="bunny">
+  <img src="edithbunnywhite.png">
+</div> -->
 
-
+<div id="wrapper">
+<form name="login" class="login" id = "login" method = "post" action = "/edith/functions/login.php">
+  <div class="header">
+  <h1> Welcome to Edith!</h1>
+  <span>Please sign in to get started creating your totally awesome story.</span>
+</div>
+<div class="content">
+  <input class="input username" type="text" name = "userName" id="userName" placeholder="Username"/>
+  <input type="password" name = "password" id="password" class="input password" placeholder="Password"/>
+  <div class="footer">
+    <input type="submit" name="submit" value="Login" class="button" onclick="check(this.form)"/>
+    <a class="register"  style="text-decoration: none" href="registerpage.html">Register</a>
+    </div>
+</form>
+</div>
 </body>
-
 </html>

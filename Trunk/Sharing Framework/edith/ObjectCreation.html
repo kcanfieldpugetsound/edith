@@ -6,7 +6,7 @@
     Make a New Object!
     </center>
 	</header>
-        <title>Object Creation: Int. 2</title>
+        <title>Object Creation</title>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -67,9 +67,9 @@
                     </select></br>
            <button onclick="addLayer()">Add Layer</button>
             <button onclick="clearCanvas()">Clear Layer</button> 
-            <button onclick="saveObject()">Save Layer</button>
+           
             <button onclick="deleteLayer()">Delete Layer </button>
-            <button onclick="displayImage()">Load Layer</button>
+           
             </br>            
             
         Draw Primitives: <button onclick="drawLine()">Draw Line</button>
@@ -80,8 +80,9 @@
             <label> Upload Image: </label>
             <input type= "file" id = "imageLoader"  accept="image/gif, image/jpeg, image/png" /> </br>
         
+			<button type="button" onclick="saveAllObject()">Save all Layers</button> <!--For Ajax?-->
             <button type="button" onclick="exporting()">Export the Object</button>
-			<button type="button" onclick="saveAllObject()">Save all Objects</button> <!--For Ajax?-->
+			
             
             <id="r">
     
@@ -131,7 +132,7 @@
                         var degreeInt = parseInt(degree);
                         if(degree == degreeInt)
                         {
-                            obj.rotateDeg(degree);
+                            obj.rotateDeg(-degree);
                             currentLayer.draw();
                         }
                         else 
@@ -318,6 +319,7 @@
                         return false;
 
                     }
+					
 
                     function exporting() {
                         var objectArrayName = prompt("Please enter the name to export the object as. I.e. Person");
@@ -326,25 +328,16 @@
                             alert("Please enter a name so we can save the object.");
                             return false;
                         }
-                        $.ajax({
+                         $.ajax({
                                 type: "POST",
                                 data: {
-                                    code: sendingArray
+                                    ObjectArray: sendingArray,
+									ObjectName: objectArrayName
                                 },
-                                url: "functions\save.php"
-                            });
-                        $.ajax({
-                                type: "POST",
-                                data: {
-                                    projectName: objectArrayName
-                                },
-                                url: "functions\save.php",
-                                success: function() {
+                                url: "functions/ObjectSave.php",
+								success: function() {
                                     alert("Exported successfully");
                                 }
-							/*	error: function(){
-									alert("error");
-								}*/
                             });
 					}
 							
