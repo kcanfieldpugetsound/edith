@@ -274,7 +274,7 @@
 
                      //testing and debugging function to test that we can load the image onto the canvas.
 
-                    function displayImage() {
+                   /* function displayImage() {
 						currentLayer = canvas.find('#' + document.getElementById("currentLayerSet").value)[0];
                         var testName = prompt("Load file of name (ex: 'head')");
                         if (testName == "") {
@@ -318,7 +318,7 @@
                         alert("the specific image does not exist.");
                         return false;
 
-                    }
+                    }*/
 
                     function exporting() {
                         var objectArrayName = prompt("Please enter the name to export the object as. I.e. Person");
@@ -330,10 +330,10 @@
                          $.ajax({
                                 type: "POST",
                                 data: {
-                                    code: sendingArray,
-									projectName: objectArrayName
+                                    ObjectArray: sendingArray,
+									ObjectName: objectArrayName
                                 },
-                                url: "../functions/save.php",
+                                url: "../functions/ObjectSave.php",
 								success: function() {
                                     alert("Exported successfully");
                                 }
