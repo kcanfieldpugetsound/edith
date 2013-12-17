@@ -57,7 +57,7 @@
 		var objectName = prompt("Please enter the name of your project:");
 		
 		
-		$.getJSON("functions/load.php", {id:objectName}, function(data) {
+		$.getJSON("functions/ObjectLoad.php", {id:objectName}, function(data) {
 		
 			var unstring = JSON.parse(data.pCode);
 			
@@ -66,16 +66,10 @@
 						objectXPOS = 0;
 						objectYPOS = objectYPOS + 105;
 					}
-			if(firstLoad == true){
-				addImage(unstring[0][0], 0, 0);
-				
-			}
-			else{
-				addImage(unstring[0][0], objectXPOS, objectYPOS);
-			}
-			
+					//for( var j=0; j<unstring.length; j++){
+						addImage(unstring[0][0], objectXPOS, objectYPOS);
+				//	}
 		});
-		firstLoad = false;
 	}
 	/**
 	/Save the information for save.php to put to the server's database
@@ -90,15 +84,27 @@
 	}
 	var projectId = prompt("Please enter the name of the project you are saving to:");
 	
-		$.ajax({
-				url: "functions/save.php",
-				type: "POST",
-				data: {code: json, projectName: projectId}, //update what the project code (The json that we want to save) and name are
-				success: function(){
-						console.log("Succsessful post!");
-				},
-				error: function(){
-						console.log("Failed post!");
-				}
-		});
+	$.getJSON("functions/save.php", {projectName: projectId, code:json});
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
