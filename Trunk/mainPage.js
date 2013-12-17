@@ -40,6 +40,9 @@
 	}
 	
 	var projectCode = [];	
+	var objectXPOS = 0;//start the image out at the beginning of the object panel
+	var objectYPOS = 0;
+	firstLoad = true;
 	/**
 	/Load the pCode (THE ACTUAL DATA THAT WE WANT THAT IS A JSON) and then parse the information in order to manipulate the object images
 	/
@@ -48,18 +51,31 @@
 		/**
 		Visual editor's load function to be integrated into sharing.
 		**/
-		loadBlocks(json); 
+
+			//loadBlocks(json); 
+	
 		var objectName = prompt("Please enter the name of your project:");
 		
+		
 		$.getJSON("functions/load.php", {id:objectName}, function(data) {
+		
 			var unstring = JSON.parse(data.pCode);
-			//console.log("After Parsing with database data -------------"+unstring);
-			addImage(unstring[0][0], 300, 150);		
 			
-			//for(var j = 0; j<data.length; j++){//go through the list of 
-			//	addImage(unstring[0][0], 300, 150);		 //get the value out of the two dimensional array at the right spot (the value is the key of the array)
-			//}
+				objectXPOS = objectXPOS + 105; //every time we load another object we want to place it to the right of the last object
+					if(objectXPOS > 550){ //if we overflow to the right set the position back to the left and make it go down to the next row
+						objectXPOS = 0;
+						objectYPOS = objectYPOS + 105;
+					}
+			if(firstLoad == true){
+				addImage(unstring[0][0], 0, 0);
+				
+			}
+			else{
+				addImage(unstring[0][0], objectXPOS, objectYPOS);
+			}
+			
 		});
+		firstLoad = false;
 	}
 	/**
 	/Save the information for save.php to put to the server's database
@@ -75,10 +91,9 @@
 	var projectId = prompt("Please enter the name of the project you are saving to:");
 	
 		$.ajax({
-				url: 'Sharing Framework/edith/functions/save.php',
-				type: 'POST',
+				url: "functions/save.php",
+				type: "POST",
 				data: {code: json, projectName: projectId}, //update what the project code (The json that we want to save) and name are
-				dataType: JSON,
 				success: function(){
 						console.log("Succsessful post!");
 				},
