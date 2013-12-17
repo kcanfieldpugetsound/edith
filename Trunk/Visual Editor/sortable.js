@@ -60,9 +60,9 @@ function sorter()
 		
 		if (hash[i].yPos === arrayOfY[limit]){
 			//console.log(orderedString);
-			sortArray[i] = [hash[i].id, hash[i].jsText];
+
 			orderedString = orderedString + hash[i].jsText;
-			
+			sortArray[i] = [hash[i].id, hash[i].jsText];
 			UNIVERSAL_MAIN = orderedString;
 			//console.log( i + " thing " + hash[i].jsText + " y - "+ hash[i].yPos);
 			limit++;

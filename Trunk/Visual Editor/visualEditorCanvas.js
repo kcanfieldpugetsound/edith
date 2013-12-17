@@ -676,8 +676,9 @@ function cleanUp(sort) {
       }
     }
 
-    methodBlock = newRect(250, 70, "method", "", true, "function main() {");
-    methodBlockArr = (methodBlock.getChildren()).toArray();
+
+    var methodBlock = newRect(250, 70, "method", "predefined", true, "function main() {");
+    var methodBlockArr = (methodBlock.getChildren()).toArray();
     var loadedText = methodBlockArr[1];
     var loadedRect = methodBlockArr[0];
     loadedRect.setSize(loadedText.getWidth() + 30, loadedText.getHeight() + 30);
@@ -685,8 +686,8 @@ function cleanUp(sort) {
     methodBlock.setAttr('jsText', "function main() {");
     layer.draw();
 
-    endBlock = newRect(250, 300, "end", "", true, "}");
-    endBlockArr = (methodBlock.getChildren()).toArray();
+    var endBlock = newRect(250, 300, "end", "predefined", true, "}");
+    var endBlockArr = (endBlock.getChildren()).toArray();
     var loadedText = endBlockArr[1];
     var loadedRect = endBlockArr[0];
     loadedRect.setSize(loadedText.getWidth() + 30, loadedText.getHeight() + 30);
@@ -694,7 +695,6 @@ function cleanUp(sort) {
     endBlock.setAttr('jsText', "}");
     layer.draw();
 
-    sorter();
 	//put the rectangle draggables in the tool area
     /*for (i = 0; i < tools.length; i++) {
       newRect(startX, startY, tools[i].title, tools[i].type);
