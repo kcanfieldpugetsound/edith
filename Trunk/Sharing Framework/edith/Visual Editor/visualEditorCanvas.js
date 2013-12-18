@@ -812,3 +812,12 @@ function loadBlocks(notarray) {
   sorter();
 }
 
+	//put the rectangle draggables in the tool area
+    /*for (i = 0; i < tools.length; i++) {
+      newRect(startX, startY, tools[i].title, tools[i].type);
+      startY = startY + 65;
+    }
+    */
+ });
+
+
