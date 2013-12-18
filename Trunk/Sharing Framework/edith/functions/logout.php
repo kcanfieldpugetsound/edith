@@ -7,7 +7,7 @@
          $userStatus=true;
       }
     
- 
+    //Destroys the current session for the user logged in
     session_destroy();
     header("location:/edith/loginPage.php");
 ?> 
