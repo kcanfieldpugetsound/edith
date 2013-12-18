@@ -70,7 +70,7 @@
 		var objectName = prompt("Please enter the name of your project:");
 		
 		
-		$.getJSON("functions/ObjectLoad.php", {id:objectName}, function(data) {
+		$.getJSON("asups.pugetsound.edu/projects/edith/functions/ObjectLoad.php", {id:objectName}, function(data) {
 		
 			var unstring = JSON.parse(data.array);
 			
@@ -103,7 +103,7 @@
                                     code: json,
 									projectName: projectId
                                 },
-                                url: "functions/save.php",
+                                url: "asups.pugetsound.edu/projects/edith/functions/save.php",
 								success: function() {
                                     alert("Exported successfully");
                                 }
