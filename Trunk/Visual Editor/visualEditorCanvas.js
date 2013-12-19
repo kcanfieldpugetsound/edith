@@ -50,6 +50,8 @@ var tools = [{'title': 'method', 'jstext': ''},
   ];
 
 
+
+
 var methodBox = [];
 var predefinedBox = [];
 var controlBox = [];
@@ -495,7 +497,7 @@ function newRect(xpos, ypos, id, type, unclone, subtext) {
     listening: true,
     firstTime: true,
     noclone: unclone,
-    name: "box",
+    name: "menu",
     jsText: ""
   }),
     rect,
@@ -557,12 +559,39 @@ function newRect(xpos, ypos, id, type, unclone, subtext) {
   });
   //for any rect, defines action on dragstart
   groupToolbox.on('dragstart', function () {
+
+    if (tab === "method") {
+      for (i = 0; i < methodBox.length; i++) {
+        console.log(methodBox[i]);
+        console.log("....");
+        
+      }
+    }
+    if (tab === "predefined") {
+      
+      for (i = 0; i < predefinedBox.length; i++) {
+        console.log(predefinedBox[i]);
+        console.log("....");
+       
+      }
+    }
+    if (tab === "control") {
+      
+      for (i = 0; i < controlBox.length; i++) {
+        console.log(controlBox[i]);
+        console.log("....");
+      
+      }
+    }
+
     this.moveToTop();
     this.setOpacity(0.50);
     groupArray = (this.getChildren()).toArray();
     currentRect = groupArray[0];
-    if (this.attrs.noclone === false) {
-      clone = newRect(currentRect.getX(), currentRect.getY(), id, type, false, id); //create a "clone" of this rectangle
+    if (this.attrs.firstTime === true) {
+      if (this.attrs.noclone === false) {
+        clone = newRect(currentRect.getX(), currentRect.getY(), id, type, false, id); //create a "clone" of this rectangle
+      }
     }
     layer.draw();
   });
@@ -655,29 +684,7 @@ $(function () {
   layer = new Kinetic.Layer();
   stage.add(layer);
 
-  function tabSwitcher() {
-    startX = 55;
-    startY = 90;
-    var i;
-    if (tab === "method") {
-      for (i = 0; i < methodBox.length; i++) {
-        newRect(startX, startY, methodBox[i].title, methodBox[i].type, false, methodBox[i].title);
-        startY = startY + 65;
-      }
-    }
-    if (tab === "predefined") {
-      for (i = 0; i < predefinedBox.length; i++) {
-        newRect(startX, startY, predefinedBox[i].title, predefinedBox[i].type, false, predefinedBox[i].title);
-        startY = startY + 65;
-      }
-    }
-    if (tab === "control") {
-      for (i = 0; i < controlBox.length; i++) {
-        newRect(startX, startY, controlBox[i].title, controlBox[i].type, false, controlBox[i].title);
-        startY = startY + 65;
-      }
-    }
-  }
+
 
   //creates and draws dividing line btwn tools and working area
   line = new Kinetic.Line({
@@ -725,7 +732,7 @@ $(function () {
     });
 
     tabMenu.on("click", function () {
-      layer.get('.box').each(function (shape) {
+      layer.get('.menu').each(function (shape) {
         shape.destroy();
       });
       tab = tabMenu.getId();
@@ -737,14 +744,44 @@ $(function () {
     layer.add(tabMenu);
     layer.draw();
   }
+    
+    function tabSwitcher() {
+    startX = 55;
+    startY = 90;
+    var i;
+
+    if (tab === "method") {
+      for (i = 0; i < methodBox.length; i++) {
+        //console.log(methodBox[i]);
+        newRect(startX, startY, methodBox[i].title, methodBox[i].type, false, methodBox[i].title);
+        startY = startY + 65;
+      }
+    }
+    if (tab === "predefined") {
+      
+      for (i = 0; i < predefinedBox.length; i++) {
+        //console.log(predefinedBox[i]);
+        newRect(startX, startY, predefinedBox[i].title, predefinedBox[i].type, false, predefinedBox[i].title);
+        startY = startY + 65;
+      }
+    }
+    if (tab === "control") {
+      
+      for (i = 0; i < controlBox.length; i++) {
+        //.log(controlBox[i]);
+        newRect(startX, startY, controlBox[i].title, controlBox[i].type, false, controlBox[i].title);
+        startY = startY + 65;
+      }
+    }
+  }
   //creates and draws draggable tools' rectangle and text
   //defines drag/drop/double click actions
   function tabMaker() {
     var horOffset;
     var i;
     for (i = 0; i < tabBox.length; i++) {
-      horOffset = (i * 55) + 40;
-      newTab(horOffset, 10, tabBox[i].title, tabBox[i].type);
+      horOffset = (i * 55) + 30;
+      newTab(horOffset, 30, tabBox[i].title, tabBox[i].type);
     }
   }
 
@@ -818,6 +855,6 @@ function loadBlocks(notarray) {
       startY = startY + 65;
     }
     */
- });
+ //});
 
 
