@@ -561,8 +561,10 @@ function newRect(xpos, ypos, id, type, unclone, subtext) {
     this.setOpacity(0.50);
     groupArray = (this.getChildren()).toArray();
     currentRect = groupArray[0];
-    if (this.attrs.noclone === false) {
-      clone = newRect(currentRect.getX(), currentRect.getY(), id, type, false, id); //create a "clone" of this rectangle
+    if (this.attrs.firstTime === true) {
+      if (this.attrs.noclone === false) {
+        clone = newRect(currentRect.getX(), currentRect.getY(), id, type, false, id); //create a "clone" of this rectangle
+      }
     }
     layer.draw();
   });
@@ -818,6 +820,5 @@ function loadBlocks(notarray) {
       startY = startY + 65;
     }
     */
- });
 
 
