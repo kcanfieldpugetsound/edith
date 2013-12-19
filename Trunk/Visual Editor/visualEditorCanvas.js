@@ -560,30 +560,7 @@ function newRect(xpos, ypos, id, type, unclone, subtext) {
   //for any rect, defines action on dragstart
   groupToolbox.on('dragstart', function () {
 
-    if (tab === "method") {
-      for (i = 0; i < methodBox.length; i++) {
-        console.log(methodBox[i]);
-        console.log("....");
-        
-      }
-    }
-    if (tab === "predefined") {
-      
-      for (i = 0; i < predefinedBox.length; i++) {
-        console.log(predefinedBox[i]);
-        console.log("....");
-       
-      }
-    }
-    if (tab === "control") {
-      
-      for (i = 0; i < controlBox.length; i++) {
-        console.log(controlBox[i]);
-        console.log("....");
-      
-      }
-    }
-
+    
     this.moveToTop();
     this.setOpacity(0.50);
     groupArray = (this.getChildren()).toArray();
@@ -752,7 +729,7 @@ $(function () {
 
     if (tab === "method") {
       for (i = 0; i < methodBox.length; i++) {
-        //console.log(methodBox[i]);
+    
         newRect(startX, startY, methodBox[i].title, methodBox[i].type, false, methodBox[i].title);
         startY = startY + 65;
       }
@@ -760,7 +737,6 @@ $(function () {
     if (tab === "predefined") {
       
       for (i = 0; i < predefinedBox.length; i++) {
-        //console.log(predefinedBox[i]);
         newRect(startX, startY, predefinedBox[i].title, predefinedBox[i].type, false, predefinedBox[i].title);
         startY = startY + 65;
       }
@@ -768,7 +744,6 @@ $(function () {
     if (tab === "control") {
       
       for (i = 0; i < controlBox.length; i++) {
-        //.log(controlBox[i]);
         newRect(startX, startY, controlBox[i].title, controlBox[i].type, false, controlBox[i].title);
         startY = startY + 65;
       }
