@@ -1,3 +1,5 @@
+var startingPositions = new Array();
+
 /*
 This method take a HTML5 cavnas ID and a background and returns an oCanvas object.
 */
@@ -12,22 +14,43 @@ function wrapHTMLCanvasToOcanvas(HTML5canvasID, background) {
     return bigObject;
 }
 
+function resetCanvas(theOCanvas)
+{
+    for(var i = 0; i < startingPositions.length; i++)
+    {
+        //addSprite(theOCanvas, startingPositions[i].image, startingPositions[i].imageW, startingPositions[i].imageH, startingPositions[i].xcoord, startingPositions[i].ycoord);
+        startingPositions[i].image.targetY = startingPositions[i].ycoord;
+        startingPositions[i].image.targetX = startingPositions[i].xcoord;
+
+        startingPositions[i].image.animate({
+            y:startingPositions[i].ycoord,
+            x:startingPositions[i].ycoord
+        }, {
+            duration: 500,
+            easing: "ease-in-sine",
+            queue: "b",
+            callback: function () {}
+        });
+
+    }
+}
+
 /*
 This method adds a sprtie onto the oCanvas object. See wrapHTMLCanvasToOcanvas() to get an
 oCanvas object.
 */
-function addSprite(theOCanvas, image, width, height, xcoord, ycoord) {
+function addSprite(theOCanvas, image, imageWidth, imageHeight, xcoord, ycoord) {
     //add the sprite with the location and directory
     theOCanvas.image = theOCanvas.canvas.display.image({
         x: xcoord,
         y: ycoord,
-        width: width,
-        height: height,
+        width: imageWidth,
+        height: imageHeight,
         origin: {
             x: "center",
             y: "center"
         },
-        image: image
+        image: image,
     });
 
     // add the sprite onto the canvas
@@ -38,15 +61,29 @@ function addSprite(theOCanvas, image, width, height, xcoord, ycoord) {
     theOCanvas.image.targetY = ycoord;
     theOCanvas.image.targetRotate = 0;
 
+    spritePosition = new Object();
+    spritePosition.xPos = xcoord;
+    spritePosition.yPos = ycoord;
+    spritePosition.imageW = imageWidth;
+    spritePosition.imageH = imageHeight;
+    spritePosition.image = theOCanvas.image;
+    startingPositions.push(spritePosition);
+
     return theOCanvas.image;
 }
 
 /*
 The main method that parses a String to JavaScript code. 
 */
-function main(stringToParse) {
+function animationMain(stringToParse) {
+    stringToParse += "main();"
+    alert(stringToParse);
+    // var validString = "function ericsTest(){addSprite(oCanvasElement,'mario.jpg',100,100,100,100);}ericsTest();";
     eval(stringToParse);
+   // arrayOfFinalSprites = [];
 }
+
+
 
 
 /*
