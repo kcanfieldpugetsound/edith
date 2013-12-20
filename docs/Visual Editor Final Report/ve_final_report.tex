@@ -27,11 +27,27 @@
         \vspace*{\fill}
 \end{titlepage}
 
+
+
 \section{Project Summary}
+Edith is educational software designed to introduce new computer science students to programming.  New students of any age can learn basic object-oriented programming concepts prior to learning a particular programming language in detail (syntax, data types and structures, etc.).  Edith provides a graphical user interface through which users can create a "script" that animates 2-D characters, or sprites, provided by the program or loaded or created by the user.  The user creates the script by piecing together provided blocks of program structure in a functional way.  Similar programs (e.g., Alice, Scratch) have been shown to increase the interest level and retention of students taking their first programming classes.  Edith is written primarily in JavaScript and is available over the internet.  The software is expected to be open-source to allow further development and additional educational opportunities. 
+
+The first step for the user of Edith is to create an account by entering a user name and password.  With the account, the user can save projects and come back to work on them later, or share projects with friends and classmates.   After an account is created (or a user logs in to an existing account), Edith also allows the user to either select an existing sprite, load a new sprite from a file, or create (draw) his own character within the program by selecting "Make Object."  Even new computer users will be able to make simple objects using the provided shapes and drawing methods.         
+
+The Visual Editor (VE) module provides a visual programming language editor (in essence, an integrated development environment(IDE)).  The user selects a sprite(s) to be added to the canvas and be animated, and the VE allows users to arrange programming elements to create an animation sequence.  VE programming elements are contained in three categories, accessed through one of three drop-down boxes.  The first category, "Method", allows the user to define methods and variables, and includes and end block for the program.  The second category, "Predefined", includes given methods that the user can easily apply to sprites (wait, rotate, move, jump, move right, move left, move up, move down).  The final category, "Control", provides if, while and else blocks for the user's animation.  The user creates the animation by selecting from the available VE blocks and dragging them to the right of a line to the code sequence area.  When a block is dragged to the code sequence area, the user will be prompted for appropriate inputs (e.g., variable names, or the distance for the sprite to move).  User inputs are checked for type; if a user enters a word rather than a number for distance moved, the user will be prompted again for a number.  Blocks can also be dragged from the code sequence area back to the main VE option area; this removes that section of code in real time. As the user is creating the block of code, the VE, while enforcing syntax rules, converts the program into JavaScript to be executed.  Upon creation of an animation sequence, the user will not need to  wait for compiling to see if the code "works". Rather, the code, or sequence of events defined by the user, will be always ready to run ("play") unless a script notifies the user otherwise.
+
+
+
+
+
 
 \section{Development Procedures}
 
+
+
 \section{Requirements Evaluation}
+
+
 
 \section{System Design and Architecture}
 \subsection{Code Walkthrough}
