@@ -106,6 +106,61 @@ To create our model, we originally implemented an Abstract Factory software desi
 
 \section*{Requirements Evaluation}
 
+\\
+\textbf {Functional Requirement:} \\*
+
+1.	Create Object—object creator would allow the users to create sprite (by drawing/importing image), specify identifier for different parts, save and send converted JSON file to story editor.
+
+This requirement is mostly like a wrapper requirement for the whole object creation module. It is met and only the order of the flows of events has been altered. Although this requirement is not very detailed, it is still a helpful one. We were able to test the integration result of different components based on this requirement because it covers the flow of events from the very start (click “create object” from the main page) to the end of object creation task (objects and identifiers has been created and saved for other modules to use). We know our module is fully functional if the create object requirement is met.\\
+
+2.	Create Sprite—users would be able to create sprite on canvas using multiple drawing method. 
+
+The requirement is met and again some events have been slightly altered. Instead of creating new canvas and window every time, now we just need to create a layer in the current window as KineticJS canvas has built in layers and each layer could be saved separately. Moreover, since there are no more pop-up windows, events for “storing canvas data” and “saving canvas data” are no longer present in the final implementation. Instead, we created a separate “save” button to save and send the information of multiple layers. This requirement is not as effective because it has been changed a lot after we implemented Kinetic Canvas. \\
+
+3.	Specify object’s names—editors could specify the names of the object, and those names with associative sprite parts would be saved and sent to story editor for further use.
+
+This requirement is met and the flow of events has been simplified as we implemented the Kinetic Canvas, which has built-in layers and stages. Currently each layer represents a part of the created sprite and could be exported as a separate object with a unique name. Besides, users need to specify the name of layers as they create the layers. This requirement is not very helpful. None of the user case events are preserved because we underestimated the complexity of specifying objects’ names after creating objects.\\
+
+4.	Object Manipulation—editors can manipulate the objects. The editor can access the object manipulations menu and change the object with the specific methods in the menu.
+
+This requirement is met while we didn’t create a menu for manipulation methods. In our module, moving objects is done by simply “drag-and-drop”. And for rotating, scaling, and deleting objects, we created radio buttons so that it is easier to use. The requirement was helpful and our final module functions as described in user case events except for the menu part.\\
+
+
+5.	Importing image—importers would be able to add local image to canvas.
+
+This requirement is met and was very helpful during implementation of this function. The flow of events are properly wrote and with enough details.
+\\
+
+\textbf {Non-functional Requirement:} \\*
+
+1. 	Availability:
+
+- The Object-creator module would be available whenever the users log into systems with PC or Macintosh platforms.
+-The object-creator module should not fail for most of cases.
+
+This requirement is partially met. The object-creator module would be available whenever the users log into systems given that the server is already connected. The module shall not fail for most of cases based on individual tests.\\
+
+2.	Usability:
+-The users are not expected to have any knowledge of or previous experience programming.
+-For users with basic computer operation ability, the average time of learning the facilities of the module independently should be no more than one hour.
+Ten minutes of training before independent use is possible.
+-On average, the users with previous experience using graphics editing pro-
+gram may make errors no more than 5 times per hour. The new users may
+make more errors while learning, but should be able to be skilled users in
+one hour with informative error messages and well-formed graphical user in-
+terfaces.
+
+This requirement is met. Our module has provided the help button with detailed guidelines. Input errors would be caught with informative alert message so that users could recover from error. For irrevocable commands like “deleting shape”, confirm boxes would prevent unintended operations of users.\\
+
+3. 	Documentation:
+-The documentation of object-creator module should be fully understandable to the animation module group.
+
+This requirement is partially met. The final module was not fully documented as it has been revised many times. Instead, we sent group members to directly talk to animation module group and make sure they understand our code.\\
+
+
+
+
+
 
 %------------------------------------------------
 
