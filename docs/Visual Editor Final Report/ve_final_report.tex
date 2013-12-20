@@ -5,6 +5,8 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
 \title{CS240: Individual Report}
 \author{Vikram S. Nilakantan, Graham Baker, Walker Bohannan, Jessica Penick, Steve Marx, Eli Spiegel}
 \begin{document}
@@ -66,12 +68,27 @@ Our code starts with some global declarations, including universal main, which i
 The next big one is ``newRect" which makes the draggable boxes seen in the editor. The color of the box is based on what kind of box it is (control, method, etc). ``Predefined" boxes are method calls received from animation team; ``control" boxes are statements like if, else, and while; and all other boxes (``method" boxes) are default methods (main, etc). The method newRect then sets up the text to display on the box, followed by defining the behaviors of the box on dragstart, double click, and dragend. On dragstart the box is moved across the canvas following the cursor. If the box has not been dragged across the threshold line (created later) before, it's cloned, if it doesn't cross the threshold line, the box gets deleted. Double click only applies to boxes that have been defined as ``sortable" (which happens when the box is cloned, since this means it is a box the user has created). Once defined ``sortable", we prompt the user, update the text and the size of the box based on the text, allowing users to change their previously generated method calls. Behavior on dragend does a lot of the same things: set the position, check if it has been dropped across the line, if it has been we prompt for parameters again, elsewise the box is deleted. We once again use the ``sort" method and set it so that it knows that it has been cloned.\newline \newline 
 The next important section prepares the stage and the threshold line, which acts as a visual marker for the division between the ``staging area" where the boxes are kept, and the ``working area" where the user builds their code. A little lower, the function ``newTab" draws the tabs in the staging area. The tabs have their own text and rectangle definitions. On switching tabs, the function basically destroys everything that's been drawn beneath them and draws new boxes. 
 Beneath all the tab code, there is a method called ``cleanup" that converts the array of method calls from the user into a JSON string. Below that, the method ``loadBlocks" checks through the array we've been keeping everything in (stored as a JSON object), parses it back into an array, and draws the boxes in that array. The last big part of the code is ``sortable", which is in its own file. The mainly it has the method ``sorter" go through the staging area (the right-hand side) of the canvas checking y-coordinates of the boxes and then adds them to an array in that order. The method beneath it, ``lookUp" adds the array to the string universal main, which is later passed to animation.
+See Figure 2 for a UML method flow diagram.
+
+\begin{figure}[h!]
+  \caption{A UML diagram of the structure of our methods.}
+  \centering
+	\includegraphics[]{methodBoxflow}
+\end{figure}
+
 \subsection{High Level Organization}
 \subsubsection{Classes and Modules}
 Canvas - The Visual Editor uses a KineticJS canvas. It serves as a layer for all blocks and ordering. All types of `Block' classes are placed on the same layer to ensure full control by the user. \newline \newline
 Block Class - Blocks have certain types and functions. They can be dragged and dropped around the screen and are used for adding, editing, and sorting methods and elements in a user's story. To categorize blocks, we have placed them in three categories: Method manipulation, Animation functions, and Conditionals. For method manipulation (found in the method tab), a set of blocks are used for defining and ending new methods. Users can create an infinite number of new methods as long as they have enough vertical space on the canvas. For animation functions (found in the predefined tab), a set of blocks are predetermined from the Animation team API. We imported the methods the Animation team implemented and created a subsystem that keeps track of which `Sprites' are being controlled on the screen. Finally for the conditionals (found in the controls tab) are a set of blocks used for controlling classic conditional statements (if, for, while). These blocks are used by the user to create conditional events in their story.\newline \newline
 Prompt Module - The prompt module displays messages and requires user input to define either numbers, variables, methods, or names for boxes. The 'Cancel' function on a prompt window will either revert a box back to original state if it was previously defined (i.e. double-click editing), or will remove the shape from canvas (i.e. dragend adding). The alert module notifies a user that they have entered an incorrect input, and allows them to change their input after clicking 'OK'. \newline \newline
 Sorting Module - The sorting module keeps track of the order of all blocks in the visual editor and reacts differently depending on whether the user is trying to save their story or trying to load their story. While saving, the sorting modules write KineticJS objects in y-axis order into JSON text to be exported. While loading, the sorting module loads a previously saved JSON file and converts the JSON string into our KineticJS objects as Blocks.
+See Figure 2 for a UML sequence diagram.
+\begin{figure}[h!]
+  \caption{A UML diagram of the sequence of the Visual Editor}
+  \centering
+	\includegraphics[width=\linewidth]{sequence}
+\end{figure}
+
 \section{Reflection: Vikram Nilakantan}
 \subsection{Challenges}
 \subsubsection{Technical Challenges}
