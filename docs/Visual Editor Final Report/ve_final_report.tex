@@ -43,6 +43,33 @@ The Visual Editor (VE) module provides a visual programming language editor (in 
 
 \section{Development Procedures}
 
+Incremental development (a fundamental part of agile approaches) was used to develop the Visual Editor module.  This general method of development made sense for the Edith project, as the team needed to move toward a solution in a series of incremental steps.  Given that the languages and technologies were new to the team members, it was the only option for development process.  The team did not know enough to plan everything at the beginning, and needed to build on successive iterations that added functionality and got closer to the objectives.  Not surprisingly, as the VE team began its work and planning on the project, which development procedure would be used was not a topic of discussion or debate.  It should be noted that with more software project experience, project management experience, and with the benefit of more time, additional early planning about how teams are going to go about a project could pay great dividends.    
+
+The VE team's development methodology could accurately be classified as Rapid Application Development ("RAD").  RAD was a natural fit for the VE portion of Edith, as prototypes needed to be developed quickly, with additional functionality and interaction with other modules added for each integration date in the project schedule.  One weakness of RAD and related methodologies is reliance on communal decision-making processes.  In Edith, there was ongoing confusion on the purpose and role boundaries between VE and other modules; this confusion was not resolved for many weeks.  Meanwhile, the VE team assigned some functionality to its team members, and excellent individual efforts produced various early prototypes.  One issue was that there were still different ideas about what the module should do, far beyond how it should be done, and it took a lot of time to get to the point where the team was building on the same prototype.  This may have been resolved with earlier team integration and collaboration as a mutual understanding and method of development were being formed.  However, once more advanced prototypes were being developed, it became easier to combine desirable elements of various prototypes.
+
+The order of component development is difficult to state precisely, as many components were being worked on concurrently.  In basic order: creation of blocks; adding text to blocks; cloning blocks; dragging and dropping blocks; getting user input when blocks are dropped; sorting based on the y positions of the boxes; user input verification.
+
+Testing was performed primarily by the VE team testing the software from the user's perspective.  This natural testing method was very effective and provided direction for program correction and feature improvement.  Static analysis was performed midway through development, but at that point it did not offer much insight, as the code did not have specific errors to be caught by static analysis, and the tools seemed to offer more style than substance feedback.
+
+Some of the contributions of VE team members follow:
+
+Graham Baker - made the sorting function that reads the y positions of the boxes, gets their ids, then puts them all in a string to give to animation. Also made the tabs and helped with save and load functions. Got all of the functions from animation and put them into boxes and made prompts to fill the attributes. 
+
+Walker Bohannen - was responsible for most of the functionality with the double-click, drag-start, drag-end methods. Also co-responsible for the saving and loading of JSON code so blocks can be put into the canvas again. Helped implement canceling of boxes, as well cloning when dragged over the line. Also helped implement the grouping of text and rectangle objects with auto-height and -width functionality.
+
+Steve Marx – added user input checks using regex so that variable names, method names, and predefined method inputs make/prompt user to enter the right type of data.  Worked on some JSON issues.  
+
+Vikram Nilakantan - was responsible for working on the block dynamic creation. AJAX server syncing (used by sharing framework, story creator, and object team) as well as loading and saving VE method blocks.
+
+Jessica Penick  - worked on commenting code, cloning and intergroup relations.
+
+Eli Spiegel – wrote a majority of first two integrations getting blocks that could drag and drop and being able to have user input as those blocks got dropped. Later in the project continued to work with Vikram, Graham, and Walker on the code but also moved to working more with other teams as to find how we could integrate with them. For one of the biggest pieces of integration worked with Eric Lund to get it so VE blocks could add sprite and actually animate them; helped him understand VE code and worked to help him find a solution for how VE blocks could call their methods with the objects Object Team had created.
+
+
+
+
+
+
 
 
 \section{Requirements Evaluation}
