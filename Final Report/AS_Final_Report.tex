@@ -114,14 +114,17 @@ Below is a System state diagram that shows a sample implementation.\\
 
  \newpage
 Our animation functions include a generic animate function and a series of pre-defined animations created by our group. The generic function is called move() and can animate a sprite in any combination of the x-axis, y-axis, and z-axis (rotation). This function is intended to be used for simple animations but also allows the flexibility for the programmer to call a series of move functions to create a more complex animation. Our pre-defined animations include jump, double jump, move left, move right, move up, and move down which can be called in addition to the generic move. The main content behind all of the animation functions is a animation block provided by the oCanvas library. This animation block allows for many optional parameters that can be used to produce different effects. Some of the effects that we utilized are easing functions, duration time, and animation queues. \\ 
-
-
+\paragraph{}
+The animation system is conveniently documented in a clean browsable API. Each method is described in brief detail within the API site with all parameters listed and defined below. This documentation is intended for other developers who are using the animation system and provides all the details necessary to call and handle animation methods.
+\\
 \begin{figure}
 \caption{Figure 2. Animation System API}
   \centering
-    \includegraphics[scale=.3]{api-screenshot.png}
+    \includegraphics[scale=.55]{api-screenshot.png}
     \caption*{All animation methods are documented in an accessible API.}
 \end{figure}
+
+\newpage
 \section{\emph{Individual Reflections}}
 \subsection{Eric Lund}
 \begin{changemargin}{1cm}{0cm} 
@@ -129,7 +132,7 @@ Our animation functions include a generic animate function and a series of pre-d
           
            Our group utilized many software engineering techniques during the development process but what stood out to me the most was our communication abilities. Our group had several meetings in which all of our members were able to attend and stay up to speed with the current development process. We even had several meetings that we didn't do any coding but rather talked about how we were going about on our implantation and what our next steps were going to be. Reflecting back this really made the whole process much easier.\\
            
-           If I were to redo the whole process there are two things I would defiantly do. One of which would be to get a better grasp of Git/GitHub. I feel it would be beneficial if the whole group took time away from development to make sure we all knew and felt comfortable working with Git and also discuss as a group, how we would use it. Another thing I would do is communicate more with the other groups that directly affect what we are developing. As I said earlier, I felt the communication was exceptional in our group but it would of been even better if we extended that out to the other groups as well by staying updated on their current status and implementation. I had a great experience with my group members and felt like we accomplished the task at hand. 
+           If I were to redo the whole process there are two things I would definitely do. One of which would be to get a better grasp of Git/GitHub. I feel it would be beneficial if the whole group took time away from development to make sure we all knew and felt comfortable working with Git and also discuss as a group, how we would use it. Another thing I would do is communicate more with the other groups that directly affect what we are developing. As I said earlier, I felt the communication was exceptional in our group but it would of been even better if we extended that out to the other groups as well by staying updated on their current status and implementation. I had a great experience with my group members and felt like we accomplished the task at hand. 
 \end{changemargin} 
 \subsection{Kramer Canfield}
 \begin{changemargin}{1cm}{0cm} 
@@ -145,7 +148,19 @@ CALDER TYPES HERE
 \end{changemargin} 
 \subsection{Jon Youmans}
 \begin{changemargin}{1cm}{0cm} 
-JON TYPES HERE
+
+Initially, I found the biggest challenge to be concretely defining the goal of our team. It was difficult to discuss and vet approaches to the problem at hand without being positively clear about the target. As the project continued the goal began to take shape and it became easier to see where the group's effort and focus belonged.
+
+Organizationally, our team had a relaxed group structure that made it easy to contribute when our schedules conflicted. This allowed team members to manage their time effectively and balance their efforts for the project with demands from other classes.
+
+While the group had a sound background in programming, as Eric said above, our version control experience was minimal at best and GitHub caused a lot of frustration for us. Its value is really clear but we continually marched forward focusing on development without stopping to get truly comfortable with what git has to offer. Version control was a very valuable concept to me and possibly the most import thing I took away from this class. I intend to improve my understanding of git as I continue with software development.
+
+LaTex was also a valuable technology to be introduced to. I plan to increase my familiarity with it going forward as well.
+    
+While our development style began with a large planning session our heading changed significantly throughout the project. This occurred most notably after integration meetings as the big picture became more firmly established. We designed our module to be somewhat flexible to changing requirements but the passive nature of the animation system, in the sense that it provides methods to be called by other systems, kept our team mostly insulated from sudden changes in requirements throughout the semester.
+    
+If we were to start this project again I would begin with more serious use cases and an immediate intergroup meeting to establish the group roles a little more clearly. Internally, I think we solved the problem quite efficiently by taking advantage of an existing animation library and tailoring it to the project. That being said, I think some of the reasoning behind our design comes from the pressure we had to firm up our implementation before other teams could specify the functionality they required. 
+
 \end{changemargin} 
 
 
